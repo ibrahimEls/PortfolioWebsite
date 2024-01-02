@@ -96,17 +96,17 @@ h6, .h6 {
 }
 
 .btn-primary {
-  background: #41228e;
-  color: #fff;
+  background: #0b7de8;
+  color: #000000;
 }
 .btn-primary:active {
-  background: #542cb7 !important;
+  background: #0b7de8 !important;
 }
 .btn-primary:hover {
-  background: #542cb7;
+  background: #0b7de8;
 }
 .btn-primary.focus, .btn-primary.active {
-  background: #542cb7 !important;
+  background: #0b7de8 !important;
   box-shadow: none !important;
 }
 
@@ -120,18 +120,18 @@ h6, .h6 {
 }
 
 body {
-  background-color: #fff;
+  background-color: #c4e1f5;
   overflow-x: hidden;
 }
 
 ::-moz-selection {
-  background: #542cb7;
-  color: #fff;
+  background: #0b7de8;
+  color: #000000;
 }
 
 ::selection {
-  background: #542cb7;
-  color: #fff;
+  background: #0b7de8;
+  color: #000000;
 }
 
 /* preloader */
@@ -141,7 +141,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #fff;
+  background-color: #888888;
   z-index: 999;
   display: flex;
   align-items: center;
@@ -178,11 +178,11 @@ select:focus {
 }
 
 a.text-dark:hover {
-  color: #41228e !important;
+  color: #0f5da6 !important;
 }
 
 a:hover {
-  color: #41228e;
+  color: #0f5da6;
 }
 
 .slick-slide {
@@ -228,15 +228,15 @@ a:hover {
 }
 
 .bg-primary {
-  background: #41228e !important;
+  background: #0f5da6 !important;
 }
 
 .bg-gray {
-  background: #eaeaea !important;
+  background: #2c2b2b !important;
 }
 
 .text-primary {
-  color: #41228e !important;
+  color: #0f5da6 !important;
 }
 
 .text-color {
@@ -244,11 +244,11 @@ a:hover {
 }
 
 .text-dark {
-  color: #000 !important;
+  color: #ffffff !important;
 }
 
 .text-light {
-  color: #999999 !important;
+  color: #a1a1a1 !important;
 }
 
 .mb-10 {
@@ -332,7 +332,7 @@ a:hover {
 }
 
 .icon-light {
-  color: #c8d5ef;
+  color: #393939;
 }
 
 /* /icon */
@@ -346,13 +346,13 @@ a:hover {
   margin: 2px;
 }
 .slick-dots li.slick-active button {
-  background: #fff;
+  background: #ebebeb;
   width: 25px;
 }
 .slick-dots li button {
   height: 6px;
   width: 12px;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(76, 76, 76, 0.5);
   color: transparent;
   border-radius: 10px;
   overflow: hidden;
@@ -369,7 +369,7 @@ a:hover {
   height: 60px;
 }
 .form-control:focus {
-  border-color: #41228e;
+  border-color: #0f5da6;
   outline: 0;
   box-shadow: none !important;
 }
@@ -396,7 +396,7 @@ textarea.form-control {
   transition: 0.3s ease;
 }
 .navigation.nav-bg {
-  background-color: #41228e;
+  background-color: #0f5da6;
   padding: 15px 100px;
 }
 @media (max-width: 991px) {
@@ -407,7 +407,7 @@ textarea.form-control {
 @media (max-width: 991px) {
   .navigation {
     padding: 20px;
-    background: #41228e;
+    background: #0f5da6;
   }
 }
 
@@ -421,7 +421,7 @@ textarea.form-control {
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: #fff;
+  color: #000000;
 }
 
 .hero-area {
@@ -513,7 +513,7 @@ textarea.form-control {
   height: 800px;
   bottom: 0;
   left: 50%;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(163, 161, 161, 0.4);
   border-radius: 45%;
   transform: translateX(-50%) rotate(0);
   -webkit-animation: rotate 6s linear infinite;
@@ -522,7 +522,7 @@ textarea.form-control {
 }
 .wave::after {
   border-radius: 47%;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(41, 41, 41, 0.9);
   transform: translateX(-50%) rotate(0);
   -webkit-animation: rotate 10s linear -5s infinite;
           animation: rotate 10s linear -5s infinite;
@@ -561,18 +561,18 @@ textarea.form-control {
   transition: 0.3s ease;
 }
 .hover-bg-primary:hover {
-  background: #41228e;
+  background: #0f5da6;
 }
 .hover-bg-primary:hover * {
-  color: #fff;
+  color: #ffffff;
 }
 
 .active-bg-primary {
   transition: 0.3s ease;
-  background: #41228e;
+  background: #0f5da6;
 }
 .active-bg-primary * {
-  color: #fff;
+  color: #000000;
 }
 
 .hover-shadow {
@@ -606,7 +606,7 @@ textarea.form-control {
   border-radius: inherit;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(248, 248, 248, 0.509);
   opacity: 0;
   visibility: hidden;
   transition: 0.3s ease;
@@ -702,8 +702,8 @@ textarea.form-control {
 blockquote {
   display: inline-block;
   padding: 20px 25px;
-  background: #eaeaea;
-  border-left: 3px solid #41228e;
+  background: #070707;
+  border-left: 3px solid #0f5da6;
   font-style: italic;
   font-size: 22px;
   line-height: 1.7;
