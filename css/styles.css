@@ -2930,6 +2930,27 @@ td:last-child {
 	margin: 0;
 }
 
+.image-slider {
+    width: 100%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the slider */
+}
+
+/* Styling for each slide in the slider */
+.image-slider__slide {
+    text-align: center; /* Center the image in the slide */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px; /* Adjust the height as needed */
+}
+
+/* Styling for the images inside each slide */
+.image-slider__image {
+    max-width: 100%; /* Ensure the image does not exceed the container width */
+    max-height: 100%; /* Ensure the image does not exceed the container height */
+    object-fit: cover; /* This will cover the slide area with the image, without stretching it */
+}
+
 .testimonials {
 	margin-top: var(--vspace-3);
 	position  : relative;
