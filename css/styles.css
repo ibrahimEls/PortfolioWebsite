@@ -105,7 +105,7 @@
    * color-3(#FEF5E4)
    */
 	--color-1: hsla(35, 87%, 49%, 1);
-	--color-2: hsla(127, 8%, 22%, 1);
+	--color-2: rgb(52, 58, 61);
 	--color-3: hsla(39, 93%, 95%, 1);
 
   /* theme color variations
@@ -117,11 +117,11 @@
 	--color-1-darker               : hsla(35, 87%, 29%, 1);
 	--color-1-darkest              : hsla(35, 87%, 10%, 1);
 
-	--color-2-lightest             : hsla(127, 8%, 55%, 1);
-	--color-2-lighter              : hsla(127, 8%, 42%, 1);
-	--color-2-light                : hsla(127, 8%, 32%, 1);
-	--color-2-dark                 : hsla(127, 8%, 14%, 1);
-	--color-2-darker               : hsla(127, 8%, 2%, 1);
+	--color-2-lightest             : rgb(131, 144, 149);
+	--color-2-lighter              : rgb(99, 111, 116);
+	--color-2-light                : rgb(75, 84, 88);
+	--color-2-dark                 : rgb(33, 37, 39);
+	--color-2-darker               : rgb(5, 6, 6);
 	
 	--color-3-light                : hsla(39, 93%, 100%, 1);
 	--color-3-dark                 : hsla(39, 93%, 85%, 1);
