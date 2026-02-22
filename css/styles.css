@@ -4840,8 +4840,14 @@ td:last-child {
 	border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.research-card__figure .research-card__img:not(:only-child) {
-	width: calc(50% - var(--vspace-0_25));
+.ss-image-credit {
+	font-size: 1.2rem;
+	color: rgba(255, 255, 255, 0.4);
+	margin-top: var(--vspace-0_25);
+}
+
+.ss-image-credit a {
+	color: rgba(255, 255, 255, 0.5);
 }
 
 /* -------------------------------------------------------------------
