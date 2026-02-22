@@ -3551,7 +3551,7 @@ td:last-child {
 
 .marquee__inner {
 	display: inline-flex;
-	animation: marquee-scroll 200s linear infinite;
+	animation: marquee-scroll 100s linear infinite;
 }
 
 .marquee__inner span {
