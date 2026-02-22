@@ -1,0 +1,225 @@
+\documentclass[lighthipster]{simplehipstercv}
+% available options are: darkhipster, lighthipster, pastel, allblack, grey, verylight, withoutsidebar
+% withoutsidebar
+\usepackage[utf8]{inputenc}
+\usepackage[default]{raleway}
+\usepackage[margin=1cm, a4paper,bottom=.5cm,]{geometry}
+\usepackage{longtable}
+
+
+%------------------------------------------------------------------ Variablen
+
+\newlength{\rightcolwidth}
+\newlength{\leftcolwidth}
+\setlength{\leftcolwidth}{0.23\textwidth}
+\setlength{\rightcolwidth}{0.75\textwidth}
+
+%------------------------------------------------------------------
+\title{New Simple CV}
+\author{\LaTeX{} Ninja}
+\date{June 2019}
+
+\pagestyle{empty}
+\begin{document}
+
+
+\thispagestyle{empty}
+%-------------------------------------------------------------
+
+\section*{Start}
+
+\simpleheader{headercolour}{Ibrahim}{Elsharkawy}{ML Researcher | Physicist}{white}
+
+
+
+%------------------------------------------------
+
+% this has to be here so the paracols starts..
+\subsection*{}
+\vspace{1em}
+
+\setlength{\columnsep}{1.5cm}
+\columnratio{0.23}[0.75]
+\begin{paracol}{2}
+\hbadness5000
+%\backgroundcolor{c[1]}[rgb]{1,1,0.8} % cream yellow for column-1 %\backgroundcolor{g}[rgb]{0.8,1,1} % \backgroundcolor{l}[rgb]{0,0,0.7} % dark blue for left margin
+
+\paracolbackgroundoptions
+
+% 0.9,0.9,0.9 -- 0.8,0.8,0.8
+
+
+\footnotesize
+{\setasidefontcolour
+\flushright
+\begin{center}
+    \roundpic{ibrahim_new.jpg}
+\end{center}
+
+\bg{cvgreen}{white}{About me}\\[0.5em]
+
+{\footnotesize
+Researcher interested in the intersection of Physics and AI. Data-Driven Physics Discovery and Physics-Inspired ML theory}
+\bigskip
+
+
+\bg{cvgreen}{white}{Areas of specialization} \\[0.5em]
+
+~•~ Physics •~ Machine Learning •~ Geophysics •~ Seismic Inversion •~ High Energy Physics  
+
+\bigskip
+
+\bigskip
+
+\bg{cvgreen}{white}{Programming}\\[0.5em]
+\begin{tabular}{r @{\hspace{0.5em}}l}
+     \bg{skilllabelcolour}{iconcolour}{python} & \barrule{0.1}{0.5em}{cvgreen} \\
+     \bg{skilllabelcolour}{iconcolour}{C,C++} & \barrule{0.075}{0.5em}{cvpurple} \\
+      \bg{skilllabelcolour}{iconcolour}{Matlab} & \barrule{0.1}{0.5em}{cvgreen} \\
+     \bg{skilllabelcolour}{iconcolour}{Fortran} & \barrule{0.05}{0.5em}{cvpurple} \\
+     \bg{skilllabelcolour}{iconcolour}{html, css, php} &  \barrule{0.09}{0.5em}{cvpurple}\\
+\end{tabular}
+\bigskip 
+\\~~\\
+\bg{cvgreen}{white}{Other Skills}\\[0.5em]
+~•~ Proficient Arabic Speaker 
+~•~Freelance Photographer
+
+
+\bigskip
+\bg{cvgreen}{white}{Interests}\\[0.5em]
+
+\texttt{Physics} ~/~ \texttt{AI} ~/~ \texttt{Photography}
+
+\texttt{Physics} ~/~ \texttt{AI} ~/~ \texttt{Photography}
+
+\texttt{Physics} ~/~ \texttt{AI} ~/~ \texttt{Photography}
+
+\vspace{4em}
+
+\infobubble{\faAt}{cvgreen}{white}{ibrahime.org}
+\infobubble{\faLinkedin}{cvgreen}{white}{ibrahimelsharkawy}
+
+\phantom{turn the page}
+
+\phantom{turn the page}
+}
+%-----------------------------------------------------------
+\switchcolumn
+
+\small
+\section*{Work Experience}
+\begin{tabular}{r| p{0.5\textwidth} c}
+   \cvevent{2025 - }{Doctoral Researcher}{Lawrence Berkeley National Laboratory}{Berkeley, CA \color{cvred}}{ •~ Researcher at the National Energy Research Scientific Computing Center (NERSC) \textbf{building Foundation Models for Scientific Point Clouds} with applications in High Energy Physics, Cosmology and Molecular Dynamics.}{lbl.jpg}\\
+    \cvevent{2024-2025}{Research Geophysicist Intern}{ExxonMobil}{Houston, TX \color{cvred}}{•~Researched and developed pioneering machine learning \textbf{parameter estimation methods for 3D-seismic inversion} with the potential of enabling the inversion of traditionally degenerate earth properties •~Researched and developed\textbf{ novel ML anomaly detection tools} for 4D Seismic.}{exxon2.png} \\
+    \cvevent{2018-2023}{Research Geophysics and Software Engineering Intern}{Petroleum GeoServices}{Houston, TX \color{cvred}}{•~Researched and developed a \textbf{ML method for first break picking} in seismic. •~Built an ML approach to detect anomalous geophysical data for quality control applications. •~Worked on company's \textbf{cloud migration}}{PGS.png} \\
+    % \cvevent{Summer 2022}{Computational Geophysics Intern}{Petroleum GeoServices}{Houston \color{cvred}}{•~Built a Machine Learning approach to \textbf{detect anomalous geophysical data} for quality control application.~•~Integrated \textbf{Envelope Cross-Correlation to improve the accuracy of move out} corrections}{PGS.png}
+    %This work addressed the limitations of analytic methods and the labor-intensive hand-picking.\\
+\end{tabular}
+\vspace{3em}
+\begin{minipage}[t]{0.35\textwidth}
+\section*{Education}
+\begin{tabular}{r p{0.6\textwidth} c}
+    \cvdegree{2025-}{Physics}{PhD}{University of Toronto \color{headerblue}}{}{Utoronto.png}\\
+    \cvdegree{2023-2025}{Physics}{MSc}{University of Illinois Urbana-Champaign \color{headerblue}}{}{Illinois.png} \\
+    \cvdegree{2019-2023}{Computational Physics}{B.S.}{Rice \color{headerblue}}{}{rice.png} \\
+    \cvdegree{2019-2023}{Applied Mathematics and Philosophy}{B.A.}{Rice \color{headerblue}}{}{rice.png}
+\end{tabular}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.3\textwidth}
+\section*{Awards and Honors}
+\begin{tabular}{>{\footnotesize\bfseries}r >{\footnotesize}p{0.7\textwidth}}
+    2025 & University of Toronto Connaught International Fellow\\
+    2024 & 1st Place Higgs Uncertainty Challenge @ NeurIPS, CERN  \\
+    2023 & 3-Year UIUC Graduate College Fellowship \\
+    2021 & J \& M Graham Physics Scholar \\
+    2019 & Shell Eco-Marathon \\
+    2016 & Eagle Scout \\
+\end{tabular}
+\end{minipage}
+\vspace{-\baselineskip}
+
+\vspace{-\baselineskip}
+\section*{Research Experience}
+\begin{tabular}{r| p{0.5\textwidth} c}
+\cvevent{2025-}{Foundation Models For Science}{Berkeley National Laboratory, Stanford· Prof. Wahid Bhimji, Prof. Ben Nachman}{San Francisco, CA\color{cvred}}{•~ Researching \textbf{optimal pre-training objectives} for foundation models in science, where simulators can produce \textit{labeled} data at scale. •~Building foundation models for scientific point clouds with \textbf{cross-domain transfer.}}{lbl.jpg}\\
+\cvevent{2023-2025}{Neural Uncertainty Quantification and Parameter Estimation}{UIUC · Prof. Yoni Khan Prof. Ben Hooberman}{Urbana, IL\color{cvred}}{•~Quantifying and minimizing the uncertainty of deep neural networks (NN). •~Used an effective field theory of NN to \textbf{successfully predict }initialization-driven ensemble uncertainty without training [1].•~ Built a \textbf{competition-winning} ML methodology robust to systematic sources of error [2]}{Illinois.png}\\
+\cvevent{2019-2023}{CERN CMS Higgs-W-W-Boson Analysis}{Rice \textbf{Physics} · Prof. Karl Ecklund}{Houston, TX \color{cvred}}{•~Working on the CMS Same-Flavor $W^+ W^-$ Boson Pair Cross Section Measurement in Proton-Proton Collisions at $\sqrt{s}= 13$TeV. •~Implemented manifold optimization on Sequential Cuts and Boosted Decision Trees. 
+}{rice.png} \end{tabular}
+\begin{tabular}{r| p{0.5\textwidth} c}
+    %\cvevent{2019-2023}{Tracing Optimality: Dynamic Mixed Integer Math Programs}{Rice \textbf{Applied Math} · Prof. Tyler Perini}{Houston, TX \color{cvred}}{Finally got the goddamn ship back. \lorem}{rice.png} \\ \\
+    \cvevent{2022-2023}{Machine Learning Prosthetics Research}{Rice \textbf{Applied Math} · Prof. Illya V. Hicks}{Houston, TX \color{cvred}}{•~Designed and 3D printed prosthetic arms.•~Trained an ML model to change the prosthetic's grip given the input of a small onboard camera.
+}{texaschildren.png} \\ 
+\cvevent{2021-2023}{Tracing Optimality: Dynamic Mixed Integer Math Programs}{Rice \textbf{Applied Math} · Prof. Tyler Perini}{Houston, TX \color{cvred}}{•~Studied a subset of Non-Linear Math Programs where objectives and constraints vary with time with the goal of computing solutions efficiently.}{rice.png} 
+\end{tabular}
+\vspace{2em}
+\begin{minipage}[t]{0.35\textwidth}
+\section*{Select Papers}
+\footnotesize{\textbf{1.}~Elsharkawy, Ibrahim, et al. \textit{“Uncertainty Quantification from Ensemble Variance Scaling Laws in Deep Neural Networks.”} Machine Learning: Science and Technology, vol. 6, no. 3, 26 Aug. 2025, p. 035040 
+
+\textbf{2.}~Elsharkawy, Ibrahim, and Yonatan Kahn. \textit{“Contrastive Normalizing Flows for Uncertainty-Aware Parameter Estimation.”} arxiv.org/abs/2505.08709.
+
+\textbf{3.}~ Wahid Bhimji, et al. “FAIR Universe HiggsML Uncertainty Dataset and Competition.” , In Proceedings, NeurIPS 2025  Dataset and Competition Track
+
+\textbf{4.}~ Elsharkawy, Ibrahim, et al. \textit{“OmniMol: Transferring Particle Physics Knowledge to Molecular Dynamics with Point-Edge Transformers.”} ArXiv.org, 2026, arxiv.org/abs/2601.10791. 
+
+\textbf{5.}~ Mikuni, Vinicius, et al. “\textit{OmniCosmos: Transferring Particle Physics Knowledge across the Cosmos.”} ArXiv.org, 2025, arxiv.org/abs/2512.24422.
+
+\end{minipage}\hfill
+\begin{minipage}[t]{0.3\textwidth}
+\section*{Select Talks/Posters}
+    \footnotesize{\textbf{1. (Invited Talk)} \textit{1st Place Competition Milestone (Ensembles and Uncertainty Quantification)} in The Challenge of Handling Uncertainties in Fundamental Science @ NeurIPS 2024\\
+    \textbf{2. (Invited Talk)} \textit{Contrastive Normalizing Flows for Uncertainty Aware Parameter Estimation} @ CERN 7th Inter-Experimental LHC Machine Learning Workshop 2025\\
+    \textbf{3. (Poster)} Wahid Bhimji, et al. \textit{“FAIR Universe HiggsML Uncertainty Dataset and Competition.”}, NeurIPS 2025  Dataset and Competition Track \\
+    \textbf{4. (Poster)} I. Elsharkawy, et.al,\textit{ Uncertainty Quantification from Scaling Laws in Deep
+Neural Networks}, in Machine Learning and the Physical Sciences Workshop @ NeurIPS 2024}\\
+\textbf{5.(Poster)} I. Elsharkawy, et.al,\textit{Pre-Training For Science: A study on Foundation Model Training Objectives}, Stanford Center of Decoding the Universe Forum 2025}
+\end{minipage}
+
+% \begin{minipage}[t]{0.3\textwidth}
+% \section*{Awards and Honors}
+% \begin{tabular}{>{\footnotesize\bfseries}r >{\footnotesize}p{0.7\textwidth}}
+%     1715--1716 & 3-Year UIUC Graduate College Fellowship \\
+%     1708 & J \& M Graham Physics Scholar \\
+%     1710 & Eagle Scout \\
+%     1715--1716 & Completion of the MS150 and C2C Race/Fundraiser\\
+%     1715--1716 & Shell Eco-Marathon \\
+% \end{tabular}
+% \bigskip
+
+% \bigskip
+
+% \end{minipage}\hfill
+% \begin{minipage}[t]{0.3\textwidth}
+% \section*{Publications}
+% \begin{tabular}{>{\footnotesize\bfseries}r >{\footnotesize}p{0.7\textwidth}}
+%     1729 & \emph{How I almost got killed by Lady Swan}, Tortuga Printing Press. \\
+%     1720 & ``Privateering for Beginners'', in: \emph{The Pragmatic Pirate} (1/1720).
+% \end{tabular}
+% \bigskip
+
+% \end{minipage}
+
+
+%  \cvevent{2021-2023}{Tracing Optimality: Dynamic Mixed Integer Math Programs}{Rice \textbf{Applied Math} · Prof. Tyler Perini}{Houston, TX \color{cvred}}{•~Studied a subset of Non-Linear Math Programs where objective functions and constraints vary with time.
+% to build a methodology to find optimal solutions for all time.
+% }{rice.png} 
+
+%\vspace{1em}
+
+
+%----------------------------------------------------------------------------------------
+%	FINAL FOOTER
+%----------------------------------------------------------------------------------------
+\setlength{\parindent}{0pt}
+\begin{minipage}[t]{\rightcolwidth}
+\begin{center}\fontfamily{\sfdefault}\selectfont \color{black!70}
+{\small Ibrahim Elsharkawy \icon{\faEnvelopeO}{cvgreen}{} ibra.shark@gmail.com \icon{\faMapMarker}{cvgreen}{} Toronto/Houston \icon{\faPhone}{cvgreen}{} +1 832-247-6842 
+}
+%\newline\icon{\faAt}{cvgreen}{} \protect\url{ibrahime.org}
+\end{center}
+\end{minipage}
+
+\end{paracol}
+
+\end{document}
