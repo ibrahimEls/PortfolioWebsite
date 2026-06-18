@@ -4925,9 +4925,31 @@ td:last-child {
 .research-card__img {
 	width: 100%;
 	max-width: 100%;
-	height: auto;
+	height: 230px;
+	object-fit: contain;
+	background-color: #fff;
+	padding: 0.8rem;
 	border-radius: 4px;
 	border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.research-card__source {
+	width: 100%;
+	font-size: 1.3rem;
+	line-height: 1.4;
+	color: var(--color-text-light);
+	margin: var(--vspace-0_5) 0 0 0;
+}
+
+.research-card__source a {
+	color: var(--color-1);
+	text-decoration: none;
+	border-bottom: 1px solid transparent;
+	transition: border-color 0.2s ease;
+}
+
+.research-card__source a:hover {
+	border-bottom-color: var(--color-1);
 }
 
 .ss-image-credit {

@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sips -g pixelWidth -g pixelHeight CNF-for-param-estimation-learened-2d.png)"
+    ]
+  }
+}
