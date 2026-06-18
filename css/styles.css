@@ -4829,6 +4829,18 @@ td:last-child {
  * ------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------
+ * ## research interests section (distinct from the papers section)
+ * ------------------------------------------------------------------- */
+.s-expertise--interests {
+	background-color: var(--color-1-lightest);
+	border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.s-expertise--interests .research-card {
+	background-color: #fff;
+}
+
+/* -------------------------------------------------------------------
  * ## research interest cards
  * ------------------------------------------------------------------- */
 .research-card {
