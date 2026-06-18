@@ -3309,6 +3309,30 @@ td:last-child {
 	margin: 0;
 }
 
+/* header social icons
+ */
+.s-header__contact {
+	display    : flex;
+	align-items: center;
+	gap        : 1.8rem;
+}
+
+.s-header__social {
+	margin: 0;
+}
+
+.s-header__social svg path,
+.s-header__social svg circle {
+	fill: var(--color-2-lightest);
+}
+
+.s-header__social a:focus svg path,
+.s-header__social a:hover svg path,
+.s-header__social a:focus svg circle,
+.s-header__social a:hover svg circle {
+	fill: var(--color-3);
+}
+
 /* --------------------------------------------------------------------
  * ## mobile menu toggle
  * -------------------------------------------------------------------- */
@@ -3452,12 +3476,18 @@ td:last-child {
 	}
 
 	.s-header__contact {
+		display   : block;
 		margin-top: var(--vspace-1_5);
 	}
 
 	.s-header__contact .btn {
 		width : 100%;
 		margin: 0;
+	}
+
+	.s-header__social {
+		justify-content: center;
+		margin-top     : var(--vspace-1);
 	}
 
 	.s-header__menu-toggle {
