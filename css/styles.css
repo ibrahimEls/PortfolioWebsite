@@ -5531,10 +5531,11 @@ td:last-child {
 	font-size     : calc(var(--text-xs) * 0.9);
 	font-weight   : 600;
 	letter-spacing: 0.03em;
+	line-height   : 1.35;
 	color         : #4d7016;
 	background    : #eaf3d8;
-	border-radius : 3px;
-	padding       : 0.05rem 0.5rem;
+	border-radius : 0.9rem;
+	padding       : 0.2rem 0.7rem;
 	margin        : 0.3rem 0 0 0;
 }
 
