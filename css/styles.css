@@ -5484,8 +5484,8 @@ td:last-child {
 
 .timeline__thumb {
 	flex         : 0 0 auto;
-	width        : 7rem;
-	height       : 7rem;
+	width        : 20rem;
+	height       : 20rem;
 	margin       : 0.2em 0 0 0;
 	overflow     : hidden;
 	border-radius: 4px;
