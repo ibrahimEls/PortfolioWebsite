@@ -5402,9 +5402,8 @@ td:last-child {
 
 .s-intro__content-thesis {
 	font-family: var(--font-2);
-	font-size  : var(--text-md);
-	font-style : italic;
-	color      : var(--color-1-lighter);
+	font-size  : calc(var(--text-md) * 1.5);
+	color      : var(--color-3);
 	margin     : var(--vspace-0_25) 0 0 0;
 }
 
