@@ -5398,7 +5398,7 @@ td:last-child {
 
 .s-intro__content-affil {
 	font-family   : var(--font-1);
-	font-size     : var(--text-sm);
+	font-size     : calc(var(--text-sm) * 1.2);
 	font-weight   : 500;
 	letter-spacing: 0.02em;
 	color         : rgba(254, 245, 228, 0.75);
@@ -5502,7 +5502,7 @@ td:last-child {
 
 /* tighter spacing between news items (homepage column only) */
 .papers-news__aside .timeline__item {
-	padding-bottom: var(--vspace-0_75);
+	padding-bottom: var(--vspace-0_25);
 }
 
 /* --- News aside : shaded + divider line beside Select Papers --- */
