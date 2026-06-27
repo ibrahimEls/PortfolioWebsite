@@ -5500,6 +5500,11 @@ td:last-child {
 	display   : block;
 }
 
+/* tighter spacing between news items (homepage column only) */
+.papers-news__aside .timeline__item {
+	padding-bottom: var(--vspace-0_75);
+}
+
 /* --- News aside : shaded + divider line beside Select Papers --- */
 .papers-news__aside {
 	background-color: var(--color-1-lightest);
