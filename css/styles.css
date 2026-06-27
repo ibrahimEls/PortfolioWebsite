@@ -5282,6 +5282,7 @@ td:last-child {
 	color: rgba(254, 245, 228, 0.7);
 	max-width: 540px;
 	margin-top: var(--vspace-0_5);
+	margin-bottom: 0;
 }
 
 /* -------------------------------------------------------------------
