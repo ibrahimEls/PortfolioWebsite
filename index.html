@@ -201,37 +201,70 @@
 
             </section> <!-- end s-intro -->
 
-            <!-- trust bar
+            <!-- select papers + news (side by side)
             ----------------------------------------------- -->
-            <section class="s-trust">
-                <div class="row width-sixteen-col">
-                    <div class="column xl-12">
-                        <ul class="trust-bar__list">
-                            <li class="trust-bar__item"><strong>1st Place</strong> Higgs Uncertainty Challenge &middot; NeurIPS / CERN 2024</li>
-                            <li class="trust-bar__item"><strong>NSERC</strong> Doctoral CGRS-D</li>
-                            <li class="trust-bar__item"><strong>Connaught</strong> International Fellow</li>
-                            <li class="trust-bar__item"><strong>Published</strong> Mach. Learn.: Sci. Technol.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section> <!-- end s-trust -->
+            <section id="expertise" class="s-expertise">
 
-            <!-- news / recent
-            ----------------------------------------------- -->
-            <section id="news" class="s-news">
-                <div class="row width-sixteen-col">
-                    <div class="column xl-12 grid-block grid-section-split">
+                <div class="row s-expertise__content width-sixteen-col">
 
-                        <div class="section-header grid-section-split__header">
+                    <div class="column xl-7 lg-12">
+
+                        <div class="section-header">
+                            <div class="text-pretitle">Research</div>
+                            <h2 class="text-display-title">Select Papers</h2>
+                        </div> <!-- end section-header -->
+
+                        <div class="s-expertise__content-main">
+                            <ol class="pub-list">
+                                <li>
+                                    <div class="pub-list__title">The Omni family: How best to pretrain for Science and cross-domain scientific foundation models</div>
+                                    <div class="pub-list__tags"><span class="pub-list__tag">Preprint</span><span class="pub-list__tag">2025&ndash;26</span></div>
+                                    <div class="pub-list__authors">Ibrahim Elsharkawy, et al.</div>
+                                    <div class="pub-list__venue">One pre-training program transferring across particle physics, molecular dynamics, and cosmology.</div>
+                                    <div class="pub-list__links"><a href="https://arxiv.org/abs/2606.14870">Pre-Training for Science</a> &middot; <a href="https://arxiv.org/abs/2601.10791">OmniMol</a> &middot; <a href="https://arxiv.org/abs/2512.24422">OmniCosmos</a> &middot; <a href="https://github.com/ibrahimEls/PretrainingForScience">code (Pre-Training for Science)</a> &middot; <a href="https://github.com/ibrahimEls/OmniMol">code (OmniMol)</a></div>
+                                </li>
+                                <li>
+                                    <div class="pub-list__title"><a href="https://arxiv.org/abs/2604.02415">Generative Models on Phase Space</a></div>
+                                    <div class="pub-list__tags"><span class="pub-list__tag">Preprint</span><span class="pub-list__tag pub-list__tag--review">Under review</span></div>
+                                    <div class="pub-list__authors">Zachary Bogorad, Ibrahim Elsharkawy, et al.</div>
+                                    <div class="pub-list__venue">arXiv preprint, 2026</div>
+                                    <div class="pub-list__links"><a href="https://arxiv.org/abs/2604.02415">arXiv</a> &middot; <a href="https://github.com/ibrahimEls/GenerativeModelsOnPhaseSpace">code</a></div>
+                                </li>
+                                <li>
+                                    <div class="pub-list__title"><a href="https://arxiv.org/abs/2505.08709">Contrastive Normalizing Flows for Uncertainty-Aware Parameter Estimation</a></div>
+                                    <div class="pub-list__tags"><span class="pub-list__tag">Preprint</span><span class="pub-list__tag pub-list__tag--review">Under review</span></div>
+                                    <div class="pub-list__authors">Ibrahim Elsharkawy and Yonatan Kahn</div>
+                                    <div class="pub-list__venue">arXiv preprint, 2025</div>
+                                    <div class="pub-list__links"><a href="https://arxiv.org/abs/2505.08709">arXiv</a> &middot; <a href="https://github.com/ibrahimEls?tab=repositories">code</a></div>
+                                </li>
+                                <li>
+                                    <div class="pub-list__title"><a href="https://iopscience.iop.org/article/10.1088/2632-2153/adf7fe">Uncertainty Quantification from Ensemble Variance Scaling Laws in Deep Neural Networks</a></div>
+                                    <div class="pub-list__tags"><span class="pub-list__tag pub-list__tag--published">Published &middot; MLST 2025</span></div>
+                                    <div class="pub-list__authors">Ibrahim Elsharkawy, et al.</div>
+                                    <div class="pub-list__venue">Machine Learning: Science and Technology, vol. 6, no. 3, 2025</div>
+                                    <div class="pub-list__links"><a href="https://iopscience.iop.org/article/10.1088/2632-2153/adf7fe">Paper</a></div>
+                                </li>
+                            </ol> <!-- end pub-list -->
+                        </div> <!-- end s-expertise__content-main -->
+
+                        <div class="s-expertise__content-btn">
+                            <a href="research.html" class="btn btn--stroke u-fullwidth">View All Publications</a>
+                        </div>
+
+                    </div> <!-- end papers column -->
+
+                    <div id="news" class="column xl-5 lg-12">
+
+                        <div class="section-header">
                             <div class="text-pretitle">Recent</div>
                             <h2 class="text-display-title">News</h2>
                         </div> <!-- end section-header -->
 
-                        <div class="grid-section-split__primary">
+                        <div class="s-expertise__content-main">
                             <ul class="timeline">
                                 <li class="timeline__item">
                                     <div class="timeline__date">Jun 2026</div>
-                                    <h3 class="timeline__title">Released OmniLearned &mdash; <a href="https://arxiv.org/abs/2606.14870">Pre-Training for Simulation-Based Science</a> (paper + code)</h3>
+                                    <h3 class="timeline__title">Released OmniLearned: <a href="https://arxiv.org/abs/2606.14870">Pre-Training for Simulation-Based Science</a> (paper + code)</h3>
                                     <div class="timeline__subtitle">Talks at Vector Institute &amp; Stanford Data Science</div>
                                 </li>
                                 <li class="timeline__item">
@@ -258,69 +291,10 @@
                                     <div class="timeline__subtitle">Poster at the ML &amp; the Physical Sciences (ML4PS) workshop</div>
                                 </li>
                             </ul>
-                        </div> <!-- end grid-section-split__primary -->
-
-                    </div> <!-- end grid-block -->
-                </div> <!-- end row -->
-            </section> <!-- end s-news -->
-
-            <!-- select papers
-            ----------------------------------------------- -->
-            <section id="expertise" class="s-expertise">
-
-                <div class="row s-expertise__content width-sixteen-col">
-                    <div class="column xl-12 grid-block grid-section-split">
-
-                        <div class="section-header grid-section-split__header">
-                            <div class="text-pretitle">Research</div>
-                            <h2 class="text-display-title">
-                            Select Papers
-                            </h2>
-
-                            <p class="lead">
-                                We hope to use physics to build better AI, and use AI to do physics better.
-                            </p>
-                        </div> <!-- end section-header -->
-
-                        <div class="s-expertise__content-main grid-section-split__primary">
-
-                            <ol class="pub-list">
-                                <li>
-                                    <div class="pub-list__title">The Omni family &mdash; cross-domain scientific foundation models</div>
-                                    <div class="pub-list__tags"><span class="pub-list__tag">Preprint</span><span class="pub-list__tag">2025&ndash;26</span></div>
-                                    <div class="pub-list__authors">Ibrahim Elsharkawy, et al.</div>
-                                    <div class="pub-list__venue">One pre-training program transferring across particle physics, molecular dynamics, and cosmology.</div>
-                                    <div class="pub-list__links"><a href="https://arxiv.org/abs/2606.14870">OmniLearned</a> &middot; <a href="https://arxiv.org/abs/2601.10791">OmniMol</a> &middot; <a href="https://arxiv.org/abs/2512.24422">OmniCosmos</a> &middot; <a href="https://github.com/ibrahimEls/PretrainingForScience">code (OmniLearned)</a> &middot; <a href="https://github.com/ibrahimEls/OmniMol">code (OmniMol)</a></div>
-                                </li>
-                                <li>
-                                    <div class="pub-list__title"><a href="https://arxiv.org/abs/2604.02415">Generative Models on Phase Space</a></div>
-                                    <div class="pub-list__tags"><span class="pub-list__tag">Preprint</span></div>
-                                    <div class="pub-list__authors">Zachary Bogorad, Ibrahim Elsharkawy, et al.</div>
-                                    <div class="pub-list__venue">arXiv preprint, 2026</div>
-                                    <div class="pub-list__links"><a href="https://arxiv.org/abs/2604.02415">arXiv</a> &middot; <a href="https://github.com/ibrahimEls?tab=repositories">code</a></div>
-                                </li>
-                                <li>
-                                    <div class="pub-list__title"><a href="https://arxiv.org/abs/2505.08709">Contrastive Normalizing Flows for Uncertainty-Aware Parameter Estimation</a></div>
-                                    <div class="pub-list__tags"><span class="pub-list__tag">Preprint</span><span class="pub-list__tag pub-list__tag--review">Under review</span></div>
-                                    <div class="pub-list__authors">Ibrahim Elsharkawy and Yonatan Kahn</div>
-                                    <div class="pub-list__venue">arXiv preprint, 2025</div>
-                                    <div class="pub-list__links"><a href="https://arxiv.org/abs/2505.08709">arXiv</a> &middot; <a href="https://github.com/ibrahimEls?tab=repositories">code</a></div>
-                                </li>
-                                <li>
-                                    <div class="pub-list__title"><a href="https://iopscience.iop.org/article/10.1088/2632-2153/adf7fe">Uncertainty Quantification from Ensemble Variance Scaling Laws in Deep Neural Networks</a></div>
-                                    <div class="pub-list__tags"><span class="pub-list__tag pub-list__tag--published">Published &middot; MLST 2025</span></div>
-                                    <div class="pub-list__authors">Ibrahim Elsharkawy, et al.</div>
-                                    <div class="pub-list__venue">Machine Learning: Science and Technology, vol. 6, no. 3, 2025</div>
-                                    <div class="pub-list__links"><a href="https://iopscience.iop.org/article/10.1088/2632-2153/adf7fe">Paper</a></div>
-                                </li>
-                            </ol> <!-- end pub-list -->
                         </div> <!-- end s-expertise__content-main -->
 
-                        <div class="s-expertise__content-btn grid-section-split__bottom">
-                            <a href="research.html" class="btn btn--stroke u-fullwidth">View All Publications</a>
-                        </div> <!-- end s-about__content-btn -->
+                    </div> <!-- end news column -->
 
-                    </div> <!-- end grid-block-->
                 </div> <!-- end s-expertise__content -->
 
             </section> <!-- end s-expertise -->
