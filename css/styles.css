@@ -4850,6 +4850,25 @@ td:last-child {
 	background-color: #fff;
 }
 
+/* Research Focus: full-width grid, tighter + shorter */
+#expertise-interests {
+	padding-top   : var(--vspace-2);
+	padding-bottom: var(--vspace-2);
+}
+
+#expertise-interests .s-expertise__content-main {
+	margin-top: var(--vspace-1);
+}
+
+#expertise-interests .research-grid {
+	gap: var(--vspace-0_75);
+}
+
+#expertise-interests .research-card {
+	margin-bottom: 0;
+	padding      : var(--vspace-1) var(--vspace-1_25);
+}
+
 /* -------------------------------------------------------------------
  * ## research interest cards
  * ------------------------------------------------------------------- */
