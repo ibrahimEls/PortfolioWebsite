@@ -3654,7 +3654,7 @@ td:last-child {
  *
  * ------------------------------------------------------------------- */
 .s-intro {
-	--content-padding-top   : max(7rem, 9vh);
+	--content-padding-top   : max(5rem, 5vh);
 	--content-padding-bottom: 4rem;
 	--content-min-height    : calc(var(--vspace-1) * 27);
 	z-index                 : 2;
