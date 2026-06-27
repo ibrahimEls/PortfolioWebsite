@@ -5524,6 +5524,11 @@ td:last-child {
 	padding-bottom: var(--vspace-0_5);
 }
 
+/* smaller news entry titles (homepage column only) */
+.papers-news__aside .timeline__title {
+	font-size: calc(var(--text-md) * 0.75);
+}
+
 /* talk/poster subtitles as small thin pills (like the paper tags, smaller) */
 .papers-news__aside .timeline__subtitle {
 	display       : inline-block;
