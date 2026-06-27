@@ -3730,7 +3730,7 @@ td:last-child {
 
 .s-intro__content-media img {
 	z-index       : 2;
-	width         : clamp(240px, 24vw, 320px);
+	width         : clamp(280px, 30vw, 420px);
 	margin        : 0;
 	-o-object-fit : cover;
 	object-fit    : cover;
@@ -3943,6 +3943,10 @@ td:last-child {
 	.s-intro__content-media {
 		grid-column: 4/-1;
 		grid-row   : 2;
+	}
+
+	.s-intro__content-media img {
+		width: min(40vw, 200px);
 	}
 
 	.s-intro__content-media .lines {
