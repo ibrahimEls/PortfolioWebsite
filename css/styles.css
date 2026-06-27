@@ -5401,6 +5401,32 @@ td:last-child {
 	margin        : var(--vspace-0_5) 0 0 0;
 }
 
+.s-intro__content-honors {
+	font-family: var(--font-1);
+	font-size  : var(--text-sm);
+	font-weight: 500;
+	color      : rgba(254, 245, 228, 0.75);
+	margin     : var(--vspace-0_25) 0 0 0;
+}
+
+.s-intro__content-advisors {
+	font-family: var(--font-1);
+	font-size  : var(--text-sm);
+	color      : rgba(254, 245, 228, 0.6);
+	margin     : var(--vspace-0_125) 0 0 0;
+}
+
+.s-intro__content-advisors a {
+	color        : var(--color-1-lighter);
+	border-bottom: 1px solid transparent;
+	transition   : border-color 0.2s ease;
+}
+
+.s-intro__content-advisors a:focus,
+.s-intro__content-advisors a:hover {
+	border-bottom-color: var(--color-1-lighter);
+}
+
 .s-intro__content-thesis {
 	font-family: var(--font-2);
 	font-size  : calc(var(--text-md) * 1.5);
