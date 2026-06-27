@@ -3654,7 +3654,7 @@ td:last-child {
  *
  * ------------------------------------------------------------------- */
 .s-intro {
-	--content-padding-top   : max(5rem, 5vh);
+	--content-padding-top   : max(7rem, 9vh);
 	--content-padding-bottom: 4rem;
 	--content-min-height    : calc(var(--vspace-1) * 27);
 	z-index                 : 2;
@@ -5521,7 +5521,7 @@ td:last-child {
 
 /* tighter spacing between news items (homepage column only) */
 .papers-news__aside .timeline__item {
-	padding-bottom: var(--vspace-0_25);
+	padding-bottom: var(--vspace-0_5);
 }
 
 /* talk/poster subtitles as small thin pills (like the paper tags, smaller) */
