@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(sips -g pixelWidth -g pixelHeight CNF-for-param-estimation-learened-2d.png)",
-      "WebSearch"
+      "WebSearch",
+      "WebFetch(domain:inspirehep.net)",
+      "Bash(curl -s \"https://inspirehep.net/api/literature/3145893\")",
+      "Bash(python3 -c ' *)"
     ]
   }
 }
