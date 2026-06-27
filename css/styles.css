@@ -5547,15 +5547,17 @@ td:last-child {
 /* --- News aside : shaded + divider line beside Select Papers --- */
 .papers-news__aside {
 	background-color: var(--color-1-lightest);
-	border-left     : 1px solid var(--color-3-dark);
+	border-right    : 1px solid var(--color-3-dark);
 	padding         : var(--vspace-1) var(--gutter);
+	order           : -1;
 }
 
 @media screen and (max-width: 1200px) {
 	.papers-news__aside {
-		border-left: none;
-		border-top : 1px solid var(--color-3-dark);
-		margin-top : var(--vspace-1_5);
+		order       : 0;
+		border-right: none;
+		border-top  : 1px solid var(--color-3-dark);
+		margin-top  : var(--vspace-1_5);
 	}
 }
 
