@@ -3654,14 +3654,14 @@ td:last-child {
  *
  * ------------------------------------------------------------------- */
 .s-intro {
-	--content-padding-top   : max(20rem, 18vh);
-	--content-padding-bottom: 10.8rem;
+	--content-padding-top   : max(11rem, 13vh);
+	--content-padding-bottom: 4rem;
 	--content-min-height    : calc(var(--vspace-1) * 27);
 	z-index                 : 2;
 	background-color        : var(--color-2-dark);
 	background              : linear-gradient(20deg, hsl(130deg, 8%, 14%) 40%, hsl(0deg, 0%, 13%) 100%);
 	width                   : 100%;
-	height                  : max(var(--content-min-height), 100vh);
+	height                  : auto;
 	overflow                : hidden;
 	position                : relative;
 }
@@ -3710,7 +3710,7 @@ td:last-child {
 }
 
 .s-intro__content-title {
-	font-size    : clamp(5rem, 7vw, 11.6rem);
+	font-size    : clamp(4rem, 5.5vw, 8rem);
 	line-height  : 1;
 	margin-top   : 0;
 	margin-bottom: var(--vspace-1_25);
@@ -3730,7 +3730,7 @@ td:last-child {
 
 .s-intro__content-media img {
 	z-index       : 2;
-	width         : max(440px, 10vw);
+	width         : clamp(240px, 24vw, 320px);
 	margin        : 0;
 	-o-object-fit : cover;
 	object-fit    : cover;
@@ -4097,6 +4097,12 @@ td:last-child {
 .s-expertise {
 	padding-top   : var(--vspace-6);
 	padding-bottom: var(--vspace-5);
+}
+
+/* Homepage Select Papers sits right under the (now shorter) hero,
+   so it gets a much smaller top gap to be visible on first load. */
+#expertise {
+	padding-top: var(--vspace-2);
 }
 
 .s-expertise__content-main {
