@@ -1,115 +1,24 @@
 @charset "UTF-8";
-/* =================================================================== 
- * Ibrahim Main Stylesheet
- * Template Ver. 1.0.0
- * 12-13-2022
- * ------------------------------------------------------------------
- *
- * TOC:
- * # SETTINGS
- *		## fonts
- *    	## colors
- *	  	## spacing and typescale
- *		## grid variables
- * # CSS RESET
- * # GRID
- *		## extra large devices
- *		## large devices
- *		## medium devices 
- *		## tablet devices
- *		## mobile devices
- *		## small mobile devices
- *		## additional column stackpoints 
- * # BASE SETUP
- * # UTILITY CLASSES
- * # TYPOGRAPHY 
- *		## additional typography & helper classes
- *		## lists
- *		## media 
- *		## spacing
- * # PRELOADER
- *		## page loaded
- * # FORM 
- *		## style placeholder text
- *		## change autocomplete styles in Chrome
- * # BUTTONS
- * # TABLE
- * # COMPONENTS
- *		## pagination 
- *		## alert box 
- *		## skillbars
- *		## stats tabs
- * # PROJECT-WIDE SHARED STYLES
- *		## list items
- *		## social list
- *		## blog card
- *		## testimonials
- *		## swiper overrides
- * # GRID-BASED LAYOUTS
- *		## grid block
- *		## list grid
- * # PAGE WRAP
- * # SITE HEADER
- *		## logo
- *		## main navigation
- *		## mobile menu toggle
- * # PAGEHEADER & PAGECONTENT
- * # INTRO
- *		## intro content
- *		## intro scroll down
- *		## intro transitions
- * # ABOUT
- * # EXPERTISE
- * # CLIENTS
- *		## clients list
- * # CTA
- * # JOURNAL
- * # FOOTER
- *		## newsletter
- *		## copyright
- *		## go top
- * # BLOG STYLES 
- * # PAGE STYLES 
- *		## services page
- *		## contact page
- *
- * ------------------------------------------------------------------ */
 
 
-/* ===================================================================
- * # SETTINGS
- *
- *
- * ------------------------------------------------------------------- */
-
-/* ------------------------------------------------------------------- 
- * ## fonts 
- * ------------------------------------------------------------------- */
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600&display=swap");
 
 :root {
 	--font-1: "Roboto Flex", sans-serif;
 	--font-2: "DM Serif Display", Serif;
 
-  /* monospace
-   */
+
 	--font-mono: Consolas, "Andale Mono", Courier, "Courier New", monospace;
 }
 
-/* ------------------------------------------------------------------- 
- * ## colors
- * ------------------------------------------------------------------- */
+
 :root {
-  /* color-1(#EA9010)
-   * color-2(#343D35)
-   * color-3(#FEF5E4)
-   */
+
 	--color-1: hsla(35, 87%, 49%, 1);
 	--color-2: rgb(52, 58, 61);
 	--color-3: hsla(39, 93%, 95%, 1);
 
-  /* theme color variations
-   */
+
 	--color-1-lightest             : hsla(35, 87%, 96%, 1);
 	--color-1-lighter              : hsla(35, 87%, 69%, 1);
 	--color-1-light                : hsla(35, 87%, 59%, 1);
@@ -122,15 +31,12 @@
 	--color-2-light                : rgb(75, 84, 88);
 	--color-2-dark                 : rgb(33, 37, 39);
 	--color-2-darker               : rgb(5, 6, 6);
-	
+
 	--color-3-light                : hsla(39, 93%, 100%, 1);
 	--color-3-dark                 : hsla(39, 93%, 85%, 1);
 	--color-3-darker               : hsla(39, 93%, 75%, 1);
 
-  /* feedback colors
-   * color-error(#ffd1d2), color-success(#c8e675), 
-   * color-info(#d7ecfb), color-notice(#fff099)
-   */
+
 	--color-error                  : hsla(359, 100%, 91%, 1);
 	--color-success                : hsla(76, 69%, 68%, 1);
 	--color-info                   : hsla(205, 82%, 91%, 1);
@@ -140,11 +46,7 @@
 	--color-info-content           : hsla(205, 32%, 31%, 1);
 	--color-notice-content         : hsla(51, 30%, 30%, 1);
 
-  /* shades 
-   * generated using 
-   * Tint & Shade Generator 
-   * (https                     ://maketintsandshades.com/)
-   */
+
 	--color-black                  : #000000;
 	--color-gray-19                : #121212;
 	--color-gray-18                : #242525;
@@ -167,21 +69,18 @@
 	--color-gray-1                 : #f8f8f8;
 	--color-white                  : #ffffff;
 
-  /* text
-   */
+
 	--color-text                   : var(--color-gray-18);
 	--color-text-dark              : #181818;
 	--color-text-light             : var(--color-gray-14);
 	--color-placeholder            : var(--color-gray-12);
 
-  /* link
-   */
+
 	--color-link                   : var(--color-1);
 	--color-link-hover             : var(--color-2-lighter);
 	--color-link-active            : var(--color-2-lighter);
 
-  /* buttons
-   */
+
 	--color-btn                    : var(--color-gray-4);
 	--color-btn-text               : var(--color-text);
 	--color-btn-hover              : var(--color-gray-5);
@@ -195,34 +94,26 @@
 	--color-btn-stroke-hover       : var(--color-text-dark);
 	--color-btn-stroke-hover-text  : var(--color-white);
 
-  /* preloader
-   */
+
 	--color-preloader-bg           : var(--color-2-dark);
 	--color-loader                 : var(--color-white);
 	--color-loader-light           : var(--color-2-light);
 
-  /* others
-   */
+
 	--color-body                   : white;
 	--color-border                 : rgba(0, 0, 0, .1);
 	--border-radius                : 5px;
 }
 
-/* ------------------------------------------------------------------- 
- * ## spacing and typescale
- * ------------------------------------------------------------------- */
+
 :root {
-  /* spacing
-   * base font size: 20px 
-   * vertical space unit : 32px
-   */
+
 	--base-size        : 62.5%;
 	--multiplier       : 1;
 	--base-font-size   : calc(2rem * var(--multiplier));
 	--space            : calc(3.2rem * var(--multiplier));
 
-  /* vertical spacing 
-   */
+
 	--vspace-0_125     : calc(0.125 * var(--space));
 	--vspace-0_25      : calc(0.25 * var(--space));
 	--vspace-0_375     : calc(0.375 * var(--space));
@@ -252,27 +143,7 @@
 	--vspace-9_5       : calc(9.5 * var(--space));
 	--vspace-10        : calc(10 * var(--space));
 
-  /* type scale
-   * ratio 1        :2 | base: 20px
-   * -------------------------------------------------------
-   *
-   * --text-huge-3    = (148.60px)
-   * --text-huge-2    = (123.83px)
-   * --text-huge-1    = (103.20px)
-   * --text-display-3 = (86.00px)
-   * --text-display-2 = (71.66px)
-   * --text-display-1 = (59.72px)
-   * --text-xxxl      = (49.77px)
-   * --text-xxl       = (41.47px)
-   * --text-xl        = (34.56px)
-   * --text-lg        = (28.80px)
-   * --text-md        = (24.00px)
-   * --text-size      = (20.00px) BASE
-   * --text-sm        = (16.67px)
-   * --text-xs        = (13.89px)
-   *
-   * ---------------------------------------------------------
-   */
+
 	--text-scale-ratio : 1.2;
 	--text-size        : var(--base-font-size);
 	--text-xs          : calc((var(--text-size) / var(--text-scale-ratio)) / var(--text-scale-ratio));
@@ -289,27 +160,21 @@
 	--text-huge-2      : calc(var(--text-huge-1) * var(--text-scale-ratio));
 	--text-huge-3      : calc(var(--text-huge-2) * var(--text-scale-ratio));
 
-  /* default button height
-   */
+
 	--vspace-btn       : var(--vspace-2);
 }
 
-/* on mobile devices below 600px, change the value of '--multiplier' 
- * to adjust the values of base font size and vertical space unit.
- */
+
 @media screen and (max-width: 600px) {
 	:root {
 		--multiplier: .9375;
 	}
 }
 
-/* ------------------------------------------------------------------- 
- * ## grid variables
- * ------------------------------------------------------------------- */
+
 :root {
-  
-  /* widths for rows and containers
-   */
+
+
 	--width-sixteen-cols: 1760px;
 	--width-default     : 1320px;
 	--width-wide        : 1600px;
@@ -320,21 +185,18 @@
 	--width-full        : 100%;
 	--width-grid-max    : var(--width-default);
 
-  /* gutter
-   */
+
 	--gutter            : 2.4rem;
 }
 
-/* on large screen devices
- */
+
 @media screen and (max-width: 1000px) {
 	:root {
 		--gutter: 2.2rem;
 	}
 }
 
-/* on small devices
- */
+
 @media screen and (max-width: 600px) {
 	:root {
 		--gutter: 1rem;
@@ -342,16 +204,6 @@
 }
 
 
-
-/* ====================================================================
- * # CSS RESET
- *
- *
- * --------------------------------------------------------------------
- * http://meyerweb.com/eric/tools/css/reset/ 
- * v2.0 | 20110126
- * License: none (public domain)
- * -------------------------------------------------------------------- */
 html,
 body,
 div,
@@ -484,26 +336,6 @@ table {
 }
 
 
-/* ===================================================================
- * # GRID v5.0.0
- *
- *
- * -------------------------------------------------------------------
- * - Grid system based on the flex display property.
- *
- * - Grid breakpoints are based on MAXIMUM WIDTH media queries, 
- *   meaning they apply to that one breakpoint and ALL THOSE BELOW IT.
- *
- * - Grid columns without a specified width will automatically layout 
- *   as equal width columns.
- *
- * - On viewports 400px and below, all grid columns will stacked 
- *   vertically
- *
- * ------------------------------------------------------------------- */
-
-/* row 
- */
 .row {
 	display  : flex;
 	flex-flow: row wrap;
@@ -517,8 +349,7 @@ table {
 	margin-right: calc(var(--gutter) * -1);
 }
 
-/* column
- */
+
 .column {
 	flex   : 1;
 	padding: 0 var(--gutter);
@@ -529,8 +360,7 @@ table {
 	padding: 0;
 }
 
-/* row utility classes
- */
+
 .row.row-wrap {
 	flex-wrap: wrap;
 }
@@ -576,9 +406,7 @@ table {
 	justify-content: center;
 }
 
-/* ------------------------- -------------------------------------------
- * ## extra large devices (1201px and above)
- * -------------------------------------------------------------------- */
+
 .xl-1 {
 	flex : none;
 	width: 8.3333333333%;
@@ -639,9 +467,7 @@ table {
 	width: 100%;
 }
 
-/* --------------------------------------------------------------------
- * ## large devices (1001px to 1200px)
- * -------------------------------------------------------------------- */
+
 @media screen and (max-width: 1200px) {
 	.lg-1 {
 		flex : none;
@@ -704,9 +530,7 @@ table {
 	}
 }
 
-/* --------------------------------------------------------------------
- * ## medium devices (801px to 1000px)
- * -------------------------------------------------------------------- */
+
 @media screen and (max-width: 1000px) {
 	.md-1 {
 		flex : none;
@@ -769,9 +593,7 @@ table {
 	}
 }
 
-/* --------------------------------------------------------------------
- * ## tablet devices (601px to 800px)  
- * -------------------------------------------------------------------- */
+
 @media screen and (max-width: 800px) {
 	.tab-1 {
 		flex : none;
@@ -834,9 +656,7 @@ table {
 	}
 }
 
-/* --------------------------------------------------------------------
- * ## mobile devices (401px to 600px)  
- * -------------------------------------------------------------------- */
+
 @media screen and (max-width: 600px) {
 	.row {
 		width        : 100%;
@@ -910,12 +730,7 @@ table {
 	}
 }
 
-/* --------------------------------------------------------------------
- * ## small mobile devices (up to 400px)
- * -------------------------------------------------------------------- */
 
-/* stack columns vertically
- */
 @media screen and (max-width: 400px) {
 	.row .row {
 		margin-left : 0;
@@ -931,9 +746,7 @@ table {
 	}
 }
 
-/* --------------------------------------------------------------------
- * ## additional column stackpoints 
- * -------------------------------------------------------------------- */
+
 @media screen and (max-width: 900px) {
 	.stack-on-900 {
 		flex        : none;
@@ -962,11 +775,6 @@ table {
 }
 
 
-/* ===================================================================
- * # BASE SETUP
- *
- *
- * ------------------------------------------------------------------- */
 html {
 	font-size : var(--base-size);
 	box-sizing: border-box;
@@ -1048,14 +856,6 @@ textarea {
 }
 
 
-/* ===================================================================
- * # UTILITY CLASSES
- *
- *
- * ------------------------------------------------------------------- */
-
-/* flex item alignment classes
- */
 .u-flexitem-center {
 	margin    : auto;
 	align-self: center;
@@ -1096,8 +896,7 @@ textarea {
 	align-self: flex-end;
 }
 
-/* misc helper classes
- */
+
 .u-screen-reader-text {
 	clip             : rect(1px, 1px, 1px, 1px);
 	-webkit-clip-path: inset(50%);
@@ -1173,34 +972,6 @@ textarea {
 }
 
 
-/* ===================================================================
- * # TYPOGRAPHY 
- *
- *
- * ------------------------------------------------------------------- 
- * type scale - ratio 1:2 | base: 20px
- * -------------------------------------------------------------------
- *
- * --text-huge-3    = (148.60px)
- * --text-huge-2    = (123.83px)
- * --text-huge-1    = (103.20px)
- * --text-display-3 = (86.00px)
- * --text-display-2 = (71.66px)
- * --text-display-1 = (59.72px)
- * --text-xxxl      = (49.77px)
- * --text-xxl       = (41.47px)
- * --text-xl        = (34.56px)
- * --text-lg        = (28.80px)
- * --text-md        = (24.00px)
- * --text-size      = (20.00px) BASE
- * --text-sm        = (16.67px)
- * --text-xs        = (13.89px)
- *
- * -------------------------------------------------------------------- */
-
-/* --------------------------------------------------------------------
- * ## base type styles
- * -------------------------------------------------------------------- */
 body {
 	font-family: var(--font-1);
 	font-size  : var(--base-font-size);
@@ -1209,8 +980,7 @@ body {
 	color      : var(--color-text);
 }
 
-/* links
- */
+
 a {
 	color     : var(--color-link);
 	transition: all 0.3s ease-in-out;
@@ -1227,8 +997,7 @@ a:active {
 	outline: 0;
 }
 
-/* headings
- */
+
 h1,
 h2,
 h3,
@@ -1323,9 +1092,7 @@ h6,
 	letter-spacing: 0.3rem;
 }
 
-/* emphasis, italic,
- * strong, bold and small text
- */
+
 em,
 i,
 strong,
@@ -1351,8 +1118,7 @@ small {
 	line-height: var(--vspace-0_5);
 }
 
-/* figures
- */
+
 figure img,
 p img {
 	margin        : 0;
@@ -1376,8 +1142,7 @@ figcaption {
 	margin-bottom: 0;
 }
 
-/* preformatted, code
- */
+
 var,
 kbd,
 samp,
@@ -1413,9 +1178,7 @@ pre>code {
 	border     : none;
 }
 
-/* deleted text, abbreviation,
- * & mark text
- */
+
 del {
 	text-decoration: line-through;
 }
@@ -1441,8 +1204,7 @@ mark {
 	color     : var(--color-text);
 }
 
-/* horizontal rule
- */
+
 hr {
 	border      : solid var(--color-border);
 	border-width: 0.1rem 0 0;
@@ -1463,9 +1225,7 @@ hr.fancy::before {
 	letter-spacing: 0.3em;
 }
 
-/* --------------------------------------------------------------------
- * ## additional typography & helper classes
- * -------------------------------------------------------------------- */
+
 .lead,
 .attention-getter {
 	font-family: var(--font-1);
@@ -1506,9 +1266,7 @@ hr.fancy::before {
 	text-align: right;
 }
 
-/* --------------------------------------------------------------------
- * ## lists
- * -------------------------------------------------------------------- */
+
 ol {
 	list-style: decimal;
 }
@@ -1570,8 +1328,7 @@ dd {
 	margin: 0 0 0 2rem;
 }
 
-/* definition list line style 
- */
+
 .lining dt,
 .lining dd {
 	display: inline;
@@ -1597,8 +1354,7 @@ dd {
 	margin-left: -0.2em;
 }
 
-/* definition list dictionary style 
- */
+
 .dictionary-style dt {
 	display      : inline;
 	counter-reset: definitions;
@@ -1618,12 +1374,7 @@ dd {
 	content: counter(definitions, decimal) ". ";
 }
 
-/* ------------------------------------------------------------------- 
- * ## media 
- * ------------------------------------------------------------------- */
 
-/* floated image
- */
 img.u-pull-right {
 	margin: var(--vspace-0_5) 0 var(--vspace-0_5) var(--vspace-0_875);
 }
@@ -1632,8 +1383,7 @@ img.u-pull-left {
 	margin: var(--vspace-0_5) var(--vspace-0_875) var(--vspace-0_5) 0;
 }
 
-/* responsive video container
- */
+
 .video-container {
 	--aspect-ratio: 16/9;
 	position      : relative;
@@ -1653,9 +1403,7 @@ img.u-pull-left {
 	height  : 100%;
 }
 
-/* --------------------------------------------------------------------
- * ## spacing
- * -------------------------------------------------------------------- */
+
 fieldset,
 button,
 .btn {
@@ -1682,26 +1430,6 @@ img,
 }
 
 
-
-/* ===================================================================
- * # PRELOADER
- * 
- * 
- * -------------------------------------------------------------------
- * - markup:
- *
- * <div id="preloader">
- *     <div id="loader" class="dots-fade">
- *         <div></div>
- *         <div></div>
- *         <div></div>
- *     </div>
- * </div>
- *
- * - loader class:
- * <dots-fade | dots-jump | dots-pulse>
- *
- * ------------------------------------------------------------------- */
 #preloader {
 	position       : fixed;
 	display        : flex;
@@ -1885,9 +1613,7 @@ img,
 	}
 }
 
-/* ------------------------------------------------------------------- 
- * ## page loaded
- * ------------------------------------------------------------------- */
+
 .ss-loaded #preloader {
 	opacity   : 0;
 	visibility: hidden;
@@ -1900,12 +1626,6 @@ img,
 }
 
 
-
-/* ===================================================================
- * # BUTTONS
- *
- *
- * ------------------------------------------------------------------- */
 .btn,
 button,
 input[type=submit],
@@ -1949,8 +1669,7 @@ input[type=button]:hover {
 	outline         : 0;
 }
 
-/* button primary
- */
+
 .btn.btn--primary,
 button.btn--primary,
 input[type=submit].btn--primary,
@@ -1976,8 +1695,7 @@ input[type=button].btn--primary:hover {
 	color       : var(--color-btn-primary-hover-text);
 }
 
-/* button modifiers
- */
+
 .btn.u-fullwidth,
 button.u-fullwidth {
 	width       : 100%;
@@ -2023,11 +1741,6 @@ button.btn--pill {
 }
 
 
-/* ===================================================================
- * # PROJECT-WIDE SHARED STYLES
- *
- *
- * ------------------------------------------------------------------- */
 .width-sixteen-col {
 	--width-grid-max: var(--width-sixteen-cols);
 }
@@ -2059,9 +1772,7 @@ button.btn--pill {
 	margin-bottom : var(--vspace-1_5);
 }
 
-/* ------------------------------------------------------------------- 
- * ## list items
- * ------------------------------------------------------------------- */
+
 .list-items.show-ctr {
 	counter-reset: ctr;
 }
@@ -2122,9 +1833,7 @@ button.btn--pill {
 	fill: var(--color-1);
 }
 
-/* ------------------------------------------------------------------- 
- * ## social list
- * ------------------------------------------------------------------- */
+
 .social-list {
 	display    : flex;
 	align-items: center;
@@ -2162,9 +1871,7 @@ button.btn--pill {
 	transition: all 0.5s;
 }
 
-/* ------------------------------------------------------------------- 
- * ## blog card
- * ------------------------------------------------------------------- */
+
 .blog-card__header {
 	margin-bottom: var(--vspace-0_75);
 }
@@ -2186,9 +1893,7 @@ button.btn--pill {
 	color: var(--color-text-dark);
 }
 
-/* --------------------------------------------------------------------
- * ## testimonials
- * -------------------------------------------------------------------- */
+
 .s-testimonials {
 	padding-top     : var(--vspace-4);
 	padding-bottom  : var(--vspace-3);
@@ -2229,7 +1934,7 @@ button.btn--pill {
 .image-slider__image {
     max-width: 100%; /* Ensure the image does not exceed the container width */
     max-height: 100%; /* Ensure the image does not exceed the container height */
-    object-fit: cover; /* This will cover the slide area with the image, without stretching it */
+    object-fit: cover;
 }
 
 .testimonials {
@@ -2284,9 +1989,7 @@ button.btn--pill {
 	color      : var(--color-text-light);
 }
 
-/* ------------------------------------------------------------------- 
- * ## swiper overrides
- * ------------------------------------------------------------------- */
+
 .swiper-container .swiper-pagination-bullets .swiper-pagination-bullet {
 	margin: 0 1.2rem;
 }
@@ -2307,10 +2010,7 @@ button.btn--pill {
 	visibility: hidden;
 }
 
-/* ------------------------------------------------------------------- 
- * responsive:
- * project-wide and shared styles
- * ------------------------------------------------------------------- */
+
 @media screen and (max-width: 1200px) {
 	.text-display-title {
 		font-size: clamp(4rem, 8vw, var(--text-display-2));
@@ -2340,16 +2040,6 @@ button.btn--pill {
 }
 
 
-
-/* ===================================================================
- * # GRID-BASED LAYOUTS
- *
- *
- * ------------------------------------------------------------------- */
-
-/* --------------------------------------------------------------------
- * ## grid block
- * -------------------------------------------------------------------- */
 .grid-block {
 	--col                : 12;
 	--grid-gap-h         : calc(var(--gutter) * 2);
@@ -2399,9 +2089,7 @@ button.btn--pill {
 	grid-row   : 2;
 }
 
-/* ------------------------------------------------------------------- 
- * ## list grid
- * ------------------------------------------------------------------- */
+
 .grid-list-items {
 	--gap                : calc(var(--gutter) * 2);
 	--min-width          : 360px;
@@ -2415,10 +2103,7 @@ button.btn--pill {
 	margin-bottom: var(--vspace-0_5);
 }
 
-/* ------------------------------------------------------------------- 
- * responsive:
- * grid layouts
- * ------------------------------------------------------------------- */
+
 @media screen and (max-width: 1600px) {
 	.grid-section-split__header {
 		grid-column: 1/span 8;
@@ -2467,12 +2152,6 @@ button.btn--pill {
 }
 
 
-
-/* ===================================================================
- * # PAGE WRAP
- *
- *
- * ------------------------------------------------------------------- */
 .s-pagewrap {
 	display       : flex;
 	flex-direction: column;
@@ -2482,11 +2161,6 @@ button.btn--pill {
 }
 
 
-/* ===================================================================
- * # SITE HEADER
- *
- *
- * ------------------------------------------------------------------- */
 .s-header {
 	--header-height: 80px;
 	--logo-width   : 9.6rem;
@@ -2518,9 +2192,7 @@ button.btn--pill {
 	position: relative;
 }
 
-/* --------------------------------------------------------------------
- * ## logo
- * -------------------------------------------------------------------- */
+
 .s-header__logo {
 	z-index    : 3;
 	line-height: 1;
@@ -2541,9 +2213,7 @@ button.btn--pill {
 	vertical-align: bottom;
 }
 
-/* --------------------------------------------------------------------
- * ## main navigation
- * -------------------------------------------------------------------- */
+
 .s-header__nav {
 	margin-left    : var(--vspace-1);
 	display        : flex;
@@ -2584,14 +2254,12 @@ button.btn--pill {
 	color: var(--color-3);
 }
 
-/* header contact button
- */
+
 .s-header__contact-btn {
 	margin: 0;
 }
 
-/* header social icons
- */
+
 .s-header__contact {
 	display    : flex;
 	align-items: center;
@@ -2614,9 +2282,7 @@ button.btn--pill {
 	fill: var(--color-3);
 }
 
-/* --------------------------------------------------------------------
- * ## mobile menu toggle
- * -------------------------------------------------------------------- */
+
 .s-header__menu-toggle {
 	--toggle-block-width: 44px;
 	--toggle-line-width : 28px;
@@ -2666,8 +2332,7 @@ button.btn--pill {
 	bottom: -10px;
 }
 
-/* is clicked 
- */
+
 .s-header__menu-toggle.is-clicked span {
 	background-color: rgba(255, 255, 255, 0);
 	transition      : all 0.1s;
@@ -2688,10 +2353,7 @@ button.btn--pill {
 	transform: rotate(225deg);
 }
 
-/* ------------------------------------------------------------------- 
- * responsive:
- * site-header
- * ------------------------------------------------------------------- */
+
 @media screen and (max-width: 900px) {
 	.s-header {
 		--logo-width: 10rem;
@@ -2826,12 +2488,6 @@ button.btn--pill {
 }
 
 
-
-/* ===================================================================
- * # PAGEHEADER & PAGECONTENT
- *
- *
- * ------------------------------------------------------------------- */
 .s-pageheader {
 	padding-top     : var(--vspace-6);
 	padding-bottom  : var(--vspace-3);
@@ -2898,10 +2554,7 @@ button.btn--pill {
 	margin-top: var(--vspace-2);
 }
 
-/* ------------------------------------------------------------------- 
- * responsive:
- * pageheader & pagecontent
- * ------------------------------------------------------------------- */
+
 @media screen and (max-width: 1200px) {
 
 	.s-pagecontent .pageintro h1,
@@ -2928,12 +2581,6 @@ button.btn--pill {
 }
 
 
-
-/* ===================================================================
- * # INTRO
- *
- *
- * ------------------------------------------------------------------- */
 .s-intro {
 	--content-padding-top   : max(12rem, 14vh);
 	--content-padding-bottom: 4rem;
@@ -2947,9 +2594,7 @@ button.btn--pill {
 	position                : relative;
 }
 
-/* --------------------------------------------------------------------
- * ## intro content
- * -------------------------------------------------------------------- */
+
 .s-intro__content {
 	z-index       : 2;
 	align-items   : center;
@@ -3061,9 +2706,7 @@ button.btn--pill {
 	top: 50%;
 }
 
-/* --------------------------------------------------------------------
- * ## intro scroll down
- * -------------------------------------------------------------------- */
+
 .s-intro__scroll-down {
 	z-index    : 2;
 	grid-column: 1/10;
@@ -3101,9 +2744,7 @@ button.btn--pill {
 	stroke: var(--color-3);
 }
 
-/* --------------------------------------------------------------------
- * ## intro transitions
- * -------------------------------------------------------------------- */
+
 .ss-home .s-header__inner,
 .s-intro__content-media img,
 .s-intro__content-media .lines,
@@ -3194,10 +2835,7 @@ button.btn--pill {
 	bottom          : 0;
 }
 
-/* ------------------------------------------------------------------- 
- * responsive:
- * intro
- * ------------------------------------------------------------------- */
+
 @media screen and (max-width: 900px) {
 	.s-intro {
 		--content-padding-top: max(12rem, 18vh);
@@ -3303,12 +2941,6 @@ button.btn--pill {
 }
 
 
-
-/* ===================================================================
- * # NEWS TICKER
- *
- * thin auto-scrolling bar between the intro and select papers
- * ------------------------------------------------------------------- */
 .s-news {
 	z-index         : 2;
 	display         : flex;
@@ -3378,7 +3010,7 @@ button.btn--pill {
 	color      : hsla(39, 93%, 95%, 0.8);
 }
 
-/* small diamond separator after every item (keeps the loop seamless) */
+
 .s-news__item::after {
 	content         : "";
 	width           : 0.5rem;
@@ -3436,18 +3068,12 @@ button.btn--pill {
 }
 
 
-/* ===================================================================
- * # EXPERTISE
- *
- *
- * ------------------------------------------------------------------- */
 .s-expertise {
 	padding-top   : var(--vspace-6);
 	padding-bottom: var(--vspace-5);
 }
 
-/* Homepage Select Papers sits right under the (now shorter) hero,
-   so it gets a much smaller top gap to be visible on first load. */
+
 #expertise {
 	padding-top: var(--vspace-2);
 }
@@ -3456,10 +3082,7 @@ button.btn--pill {
 	margin-top: var(--vspace-1_5);
 }
 
-/* ------------------------------------------------------------------- 
- * responsive:
- * expertise
- * ------------------------------------------------------------------- */
+
 @media screen and (max-width: 800px) {
 	.s-expertise {
 		padding-top: var(--vspace-5);
@@ -3467,12 +3090,6 @@ button.btn--pill {
 }
 
 
-
-/* ===================================================================
- * # CTA
- *
- *
- * ------------------------------------------------------------------- */
 .s-cta {
 	padding-top     : var(--vspace-4_5);
 	padding-bottom  : var(--vspace-3_5);
@@ -3493,10 +3110,7 @@ button.btn--pill {
 	font-weight: 300;
 }
 
-/* ------------------------------------------------------------------- 
- * responsive:
- * CTA
- * ------------------------------------------------------------------- */
+
 @media screen and (max-width: 1000px) {
 	.s-cta__content .btn {
 		width       : 100%;
@@ -3505,12 +3119,6 @@ button.btn--pill {
 }
 
 
-
-/* ===================================================================
- * # JOURNAL
- *
- *
- * ------------------------------------------------------------------- */
 .s-journal {
 	padding-top     : var(--vspace-6);
 	padding-bottom  : var(--vspace-3);
@@ -3561,12 +3169,6 @@ button.btn--pill {
 }
 
 
-
-/* ===================================================================
- * # FOOTER
- *
- *
- * ------------------------------------------------------------------- */
 .s-footer {
 	font-size       : calc(var(--text-size) * 0.95);
 	font-weight     : 300;
@@ -3624,9 +3226,7 @@ button.btn--pill {
 	color: var(--color-3);
 }
 
-/* ------------------------------------------------------------------- 
- * ## newsletter
- * ------------------------------------------------------------------- */
+
 .s-footer__newsletter input[type=email] {
 	margin-bottom   : var(--vspace-0_5);
 	background-color: var(--color-gray-18);
@@ -3648,9 +3248,7 @@ button.btn--pill {
 	color      : var(--color-1);
 }
 
-/* ------------------------------------------------------------------- 
- * ## copyright
- * ------------------------------------------------------------------- */
+
 .ss-copyright {
 	margin: 0 var(--vspace-2) 0 0;
 }
@@ -3679,9 +3277,7 @@ button.btn--pill {
 	display: none;
 }
 
-/* ------------------------------------------------------------------- 
- * ## go top
- * ------------------------------------------------------------------- */
+
 .ss-go-top {
 	z-index : 2;
 	position: absolute;
@@ -3719,10 +3315,7 @@ button.btn--pill {
 	transition: all 0.3s ease-in-out;
 }
 
-/* ------------------------------------------------------------------- 
- * responsive:
- * footer
- * ------------------------------------------------------------------- */
+
 @media screen and (max-width: 1200px) {
 	.ss-copyright {
 		margin-top: var(--vspace-0_5);
@@ -3765,12 +3358,6 @@ button.btn--pill {
 }
 
 
-
-/* ===================================================================
- * # PAGE STYLES 
- *
- *
- * ------------------------------------------------------------------- */
 .pagemedia {
 	margin-bottom: var(--vspace-2_5);
 }
@@ -3788,13 +3375,13 @@ button.btn--pill {
 	margin-top: 0;
 }
 
-/* side-by-side pagemain columns: align leading headings across columns */
+
 @media screen and (min-width: 1201px) {
 	.pagemain .column>h2:first-child {
 		margin-top: 0;
 	}
 
-	/* stretch paired timelines into equal grid rows so entries line up */
+
 	.cv-columns .column {
 		display       : flex;
 		flex-direction: column;
@@ -3812,8 +3399,7 @@ button.btn--pill {
 	margin: 0;
 }
 
-/* a pagemain row that follows another one keeps its section spacing
-   (the first-child rule above strips the leading heading's margin) */
+
 .pagemain+.pagemain {
 	margin-top: var(--vspace-2);
 }
@@ -3857,9 +3443,7 @@ button.btn--pill {
 	}
 }
 
-/* --------------------------------------------------------------------
- * ## services page
- * -------------------------------------------------------------------- */
+
 .list-services {
 	list-style : none;
 	font-size  : calc(var(--text-size) * 0.95);
@@ -3890,9 +3474,7 @@ button.btn--pill {
 	top             : calc(0.8rem + var(--vspace-0_375));
 }
 
-/* --------------------------------------------------------------------
- * ## contact page
- * -------------------------------------------------------------------- */
+
 .contact-cta {
 	margin-bottom: var(--vspace-2);
 }
@@ -3950,16 +3532,6 @@ button.btn--pill {
 }
 
 
-
-/* ===================================================================
- * # CUSTOM ADDITIONS — Portfolio Overhaul
- *
- *
- * ------------------------------------------------------------------- */
-
-/* -------------------------------------------------------------------
- * ## research interests section (distinct from the papers section)
- * ------------------------------------------------------------------- */
 .s-expertise--interests {
 	background-color: var(--color-1-lightest);
 	border-top: 1px solid rgba(0, 0, 0, 0.05);
@@ -3988,9 +3560,7 @@ button.btn--pill {
 	padding      : var(--vspace-1) var(--vspace-1_25);
 }
 
-/* -------------------------------------------------------------------
- * ## research interest cards
- * ------------------------------------------------------------------- */
+
 .research-card {
 	background-color: var(--color-3);
 	border: 1px solid rgba(0, 0, 0, 0.06);
@@ -4109,9 +3679,7 @@ button.btn--pill {
 	color: rgba(255, 255, 255, 0.5);
 }
 
-/* -------------------------------------------------------------------
- * ## publication list
- * ------------------------------------------------------------------- */
+
 .pub-list {
 	list-style: none;
 	margin-left: 0;
@@ -4141,7 +3709,7 @@ button.btn--pill {
 	top: var(--vspace-1);
 }
 
-/* homepage variant: compact 2x2 card grid instead of a numbered list */
+
 .pub-list--grid {
 	display              : grid;
 	grid-template-columns: 1fr 1fr;
@@ -4214,9 +3782,7 @@ button.btn--pill {
 	color: var(--color-1-dark);
 }
 
-/* -------------------------------------------------------------------
- * ## talks list
- * ------------------------------------------------------------------- */
+
 .talk-list {
 	list-style: none;
 	margin-left: 0;
@@ -4270,9 +3836,7 @@ button.btn--pill {
 	color: var(--color-text-light);
 }
 
-/* -------------------------------------------------------------------
- * ## timeline
- * ------------------------------------------------------------------- */
+
 .timeline {
 	list-style: none;
 	margin-left: 0;
@@ -4339,9 +3903,7 @@ button.btn--pill {
 	color: var(--color-text-light);
 }
 
-/* -------------------------------------------------------------------
- * ## blog empty state
- * ------------------------------------------------------------------- */
+
 .blog-empty {
 	text-align: center;
 	padding: var(--vspace-4) var(--vspace-2);
@@ -4367,9 +3929,7 @@ button.btn--pill {
 	margin: 0 auto;
 }
 
-/* -------------------------------------------------------------------
- * ## awards grid
- * ------------------------------------------------------------------- */
+
 .awards-list {
 	list-style: none;
 	margin-left: 0;
@@ -4400,9 +3960,7 @@ button.btn--pill {
 	color: var(--color-text-dark);
 }
 
-/* -------------------------------------------------------------------
- * ## section divider
- * ------------------------------------------------------------------- */
+
 .section-divider {
 	width: 60px;
 	height: 3px;
@@ -4410,9 +3968,7 @@ button.btn--pill {
 	margin: var(--vspace-0_5) 0 var(--vspace-1_25) 0;
 }
 
-/* -------------------------------------------------------------------
- * ## research overview on homepage
- * ------------------------------------------------------------------- */
+
 .research-grid {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
@@ -4425,9 +3981,7 @@ button.btn--pill {
 	}
 }
 
-/* -------------------------------------------------------------------
- * ## dark section links
- * ------------------------------------------------------------------- */
+
 .s-cta a.text-link {
 	color: var(--color-1);
 	border-bottom: 1px solid rgba(234, 144, 16, 0.3);
@@ -4437,9 +3991,7 @@ button.btn--pill {
 	border-bottom-color: var(--color-1);
 }
 
-/* -------------------------------------------------------------------
- * ## intro subtitle
- * ------------------------------------------------------------------- */
+
 .s-intro__content-subtitle {
 	font-family: var(--font-1);
 	font-size: var(--text-md);
@@ -4451,17 +4003,13 @@ button.btn--pill {
 	margin-bottom: 0;
 }
 
-/* -------------------------------------------------------------------
- * ## Google Scholar SVG
- * ------------------------------------------------------------------- */
+
 .social-list .scholar-icon svg {
 	height: calc(var(--vspace-1) - 2px);
 	width: calc(var(--vspace-1) - 2px);
 }
 
-/* -------------------------------------------------------------------
- * ## contact page enhancements
- * ------------------------------------------------------------------- */
+
 .contact-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -4508,9 +4056,7 @@ button.btn--pill {
 	color: var(--color-1);
 }
 
-/* -------------------------------------------------------------------
- * ## responsive adjustments
- * ------------------------------------------------------------------- */
+
 @media screen and (max-width: 600px) {
 	.research-card {
 		padding: var(--vspace-1) var(--vspace-0_75);
@@ -4530,11 +4076,6 @@ button.btn--pill {
 }
 
 
-/* ===================================================================
- * # HOMEPAGE CREDIBILITY REDESIGN
- * hero actions, paper tags, news, photography
- * ------------------------------------------------------------------- */
-
 /* hero action buttons (CV + Email) on the dark intro */
 .s-intro__content-actions {
 	display    : flex;
@@ -4547,7 +4088,7 @@ button.btn--pill {
 	margin: 0;
 }
 
-/* outline button needs to read on the dark hero background */
+
 .s-intro .btn--stroke {
 	border-color: var(--color-3);
 	color       : var(--color-3);
@@ -4625,7 +4166,7 @@ button.btn--pill {
 	background: var(--color-gray-2);
 }
 
-/* --- News timeline items with a right-side thumbnail --- */
+
 .timeline__item--media {
 	display        : flex;
 	align-items    : flex-start;

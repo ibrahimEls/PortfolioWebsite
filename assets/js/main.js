@@ -1,14 +1,8 @@
-/* ===================================================================
- * Ibrahim 1.0.0 - Main JS
- *
- * ------------------------------------------------------------------- */
-
 (function(html) {
 
     'use strict';
 
-   /* preloader
-    * -------------------------------------------------- */
+
     const ssPreloader = function() {
 
         const siteBody = document.querySelector('body');
@@ -33,8 +27,6 @@
     }; // end ssPreloader
 
 
-   /* mobile menu
-    * ---------------------------------------------------- */
     const ssMobileMenu = function() {
 
         const toggleButton = document.querySelector('.s-header__menu-toggle');
@@ -73,8 +65,6 @@
     }; // end ssMobileMenu
 
 
-   /* smoothscroll
-    * ------------------------------------------------------ */
     const ssMoveTo = function() {
 
         const easeFunctions = {
@@ -116,8 +106,6 @@
     }; // end ssMoveTo
 
 
-   /* Initialize
-    * ------------------------------------------------------ */
     (function ssInit() {
 
         ssPreloader();
