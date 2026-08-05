@@ -5224,6 +5224,30 @@ td:last-child {
 	top: var(--vspace-1);
 }
 
+/* homepage variant: compact 2x2 card grid instead of a numbered list */
+.pub-list--grid {
+	display              : grid;
+	grid-template-columns: 1fr 1fr;
+	gap                  : var(--vspace-1);
+}
+
+.pub-list--grid li,
+.pub-list--grid li:first-child {
+	padding      : var(--vspace-1);
+	border       : 1px solid var(--color-gray-3);
+	border-radius: 0.8rem;
+}
+
+.pub-list--grid li::before {
+	display: none;
+}
+
+@media screen and (max-width: 800px) {
+	.pub-list--grid {
+		grid-template-columns: 1fr;
+	}
+}
+
 .pub-list__title {
 	font-family: var(--font-2);
 	font-size: var(--text-md);
