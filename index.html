@@ -202,13 +202,47 @@
 
             </section> <!-- end s-intro -->
 
-            <!-- select papers + news (side by side)
+            <!-- news ticker
+            ----------------------------------------------- -->
+            <section id="news" class="s-news">
+                <div class="s-news__label">News</div>
+                <div class="s-news__ticker">
+                    <div class="s-news__track">
+                        <ul class="s-news__list">
+                            <li class="s-news__item"><span class="s-news__date">Jun 2026</span>NERSC AI4Sci proposal accepted &mdash; 7,000 GPU node-hours awarded</li>
+                            <li class="s-news__item"><span class="s-news__date">Jun 2026</span><a href="https://arxiv.org/abs/2604.14451">FAIR Universe Weak Lensing Challenge</a>&nbsp;accepted to NeurIPS 2026</li>
+                            <li class="s-news__item"><span class="s-news__date">Jun 2026</span>Released&nbsp;<a href="https://arxiv.org/abs/2606.14870">Pre-Training for Simulation-Based Science</a>&nbsp;&mdash; talks at Vector &amp; Stanford</li>
+                            <li class="s-news__item"><span class="s-news__date">Apr 2026</span>Awarded the NSERC Doctoral Scholarship (CGRS-D)</li>
+                            <li class="s-news__item"><span class="s-news__date">Feb 2026</span>Guest lecturer, &ldquo;The Physics of Machine Learning&rdquo; at U of T</li>
+                            <li class="s-news__item"><span class="s-news__date">Jan 2026</span>Released the&nbsp;<a href="https://arxiv.org/abs/2601.10791">OmniMol</a>&nbsp;&amp;&nbsp;<a href="https://arxiv.org/abs/2512.24422">OmniCosmos</a>&nbsp;preprints</li>
+                            <li class="s-news__item"><span class="s-news__date">Sep 2025</span>First-place prize (ex aequo) at CERN &mdash; HiggsML Uncertainty Challenge, NeurIPS 2025</li>
+                            <li class="s-news__item"><span class="s-news__date">May 2025</span>Released&nbsp;<a href="https://arxiv.org/abs/2505.08709">Contrastive Normalizing Flows</a>&nbsp;&mdash; invited talks at MIT IAIFI &amp; Berkeley Lab</li>
+                            <li class="s-news__item"><span class="s-news__date">Mar 2025</span>Awarded the U of T Connaught International Fellowship</li>
+                            <li class="s-news__item"><span class="s-news__date">Dec 2024</span>Invited talk on the first-place Higgs solution at NeurIPS 2024 &mdash; Milestone award</li>
+                        </ul>
+                        <ul class="s-news__list" aria-hidden="true">
+                            <li class="s-news__item"><span class="s-news__date">Jun 2026</span>NERSC AI4Sci proposal accepted &mdash; 7,000 GPU node-hours awarded</li>
+                            <li class="s-news__item"><span class="s-news__date">Jun 2026</span><a href="https://arxiv.org/abs/2604.14451" tabindex="-1">FAIR Universe Weak Lensing Challenge</a>&nbsp;accepted to NeurIPS 2026</li>
+                            <li class="s-news__item"><span class="s-news__date">Jun 2026</span>Released&nbsp;<a href="https://arxiv.org/abs/2606.14870" tabindex="-1">Pre-Training for Simulation-Based Science</a>&nbsp;&mdash; talks at Vector &amp; Stanford</li>
+                            <li class="s-news__item"><span class="s-news__date">Apr 2026</span>Awarded the NSERC Doctoral Scholarship (CGRS-D)</li>
+                            <li class="s-news__item"><span class="s-news__date">Feb 2026</span>Guest lecturer, &ldquo;The Physics of Machine Learning&rdquo; at U of T</li>
+                            <li class="s-news__item"><span class="s-news__date">Jan 2026</span>Released the&nbsp;<a href="https://arxiv.org/abs/2601.10791" tabindex="-1">OmniMol</a>&nbsp;&amp;&nbsp;<a href="https://arxiv.org/abs/2512.24422" tabindex="-1">OmniCosmos</a>&nbsp;preprints</li>
+                            <li class="s-news__item"><span class="s-news__date">Sep 2025</span>First-place prize (ex aequo) at CERN &mdash; HiggsML Uncertainty Challenge, NeurIPS 2025</li>
+                            <li class="s-news__item"><span class="s-news__date">May 2025</span>Released&nbsp;<a href="https://arxiv.org/abs/2505.08709" tabindex="-1">Contrastive Normalizing Flows</a>&nbsp;&mdash; invited talks at MIT IAIFI &amp; Berkeley Lab</li>
+                            <li class="s-news__item"><span class="s-news__date">Mar 2025</span>Awarded the U of T Connaught International Fellowship</li>
+                            <li class="s-news__item"><span class="s-news__date">Dec 2024</span>Invited talk on the first-place Higgs solution at NeurIPS 2024 &mdash; Milestone award</li>
+                        </ul>
+                    </div>
+                </div>
+            </section> <!-- end s-news -->
+
+            <!-- select papers
             ----------------------------------------------- -->
             <section id="expertise" class="s-expertise">
 
                 <div class="row s-expertise__content width-sixteen-col">
 
-                    <div class="column xl-8 lg-12">
+                    <div class="column xl-12">
 
                         <div class="section-header">
                             <div class="text-pretitle">Research</div>
@@ -260,76 +294,6 @@
                         </div>
 
                     </div> <!-- end papers column -->
-
-                    <div id="news" class="column xl-4 lg-12 papers-news__aside">
-
-                        <div class="section-header">
-                            <div class="text-pretitle">Recent</div>
-                            <h2 class="text-display-title">News</h2>
-                        </div> <!-- end section-header -->
-
-                        <div class="s-expertise__content-main">
-                            <ul class="timeline">
-                                <li class="timeline__item">
-                                    <div class="timeline__date">Jun 2026</div>
-                                    <h3 class="timeline__title">NERSC AI4Sci proposal accepted: awarded 7,000 GPU compute node-hours</h3>
-                                </li>
-                                <li class="timeline__item">
-                                    <div class="timeline__date">Jun 2026</div>
-                                    <h3 class="timeline__title"><a href="https://arxiv.org/abs/2604.14451">FAIR Universe Weak Lensing ML Uncertainty Challenge</a> accepted to NeurIPS 2026</h3>
-                                </li>
-                                <li class="timeline__item timeline__item--media">
-                                    <div class="timeline__body">
-                                        <div class="timeline__date">Jun 2026</div>
-                                        <h3 class="timeline__title">Released <a href="https://arxiv.org/abs/2606.14870">Pre-Training for Simulation-Based Science</a> (paper + code)</h3>
-                                        <div class="timeline__subtitle">Talks at Vector Institute &amp; Stanford Data Science</div>
-                                    </div>
-                                    <figure class="timeline__thumb"><img src="news-photos/pretraining-talks.jpg" alt="Pre-Training for Simulation-Based Science talk"></figure>
-                                </li>
-                                <li class="timeline__item">
-                                    <div class="timeline__date">Apr 2026</div>
-                                    <h3 class="timeline__title">Awarded the NSERC Doctoral Canadian Graduate Research Scholarship (CGRS-D)</h3>
-                                </li>
-                                <li class="timeline__item">
-                                    <div class="timeline__date">Feb 2026</div>
-                                    <h3 class="timeline__title">Guest lecturer for &ldquo;The Physics of Machine Learning&rdquo; at the University of Toronto</h3>
-                                </li>
-                                <li class="timeline__item">
-                                    <div class="timeline__date">Jan 2026</div>
-                                    <h3 class="timeline__title">Released <a href="https://arxiv.org/abs/2601.10791">OmniMol</a> (first-author) and <a href="https://arxiv.org/abs/2512.24422">OmniCosmos</a> preprints</h3>
-                                </li>
-                                <li class="timeline__item timeline__item--media">
-                                    <div class="timeline__body">
-                                        <div class="timeline__date">Sep 2025</div>
-                                        <h3 class="timeline__title">HiggsML Uncertainty Challenge accepted to NeurIPS 2025; first-place prize (ex aequo) at CERN</h3>
-                                        <div class="timeline__subtitle">Talk at the CERN IML Machine Learning conference</div>
-                                    </div>
-                                    <figure class="timeline__thumb"><img src="news-photos/cern-higgs.jpg" alt="First-place prize at CERN, HiggsML Uncertainty Challenge"></figure>
-                                </li>
-                                <li class="timeline__item timeline__item--media">
-                                    <div class="timeline__body">
-                                        <div class="timeline__date">May 2025</div>
-                                        <h3 class="timeline__title">Released the <a href="https://arxiv.org/abs/2505.08709">Contrastive Normalizing Flows</a> preprint</h3>
-                                        <div class="timeline__subtitle">Invited talks at MIT IAIFI, ExxonMobil &amp; Berkeley Lab</div>
-                                    </div>
-                                    <figure class="timeline__thumb"><img src="news-photos/cnf-iaifi.jpg" alt="Contrastive Normalizing Flows invited talk"></figure>
-                                </li>
-                                <li class="timeline__item">
-                                    <div class="timeline__date">Mar 2025</div>
-                                    <h3 class="timeline__title">Awarded the University of Toronto Connaught International Fellowship</h3>
-                                </li>
-                                <li class="timeline__item timeline__item--media">
-                                    <div class="timeline__body">
-                                        <div class="timeline__date">Dec 2024</div>
-                                        <h3 class="timeline__title">Invited talk on the first-place Higgs solution at NeurIPS 2024; NeurIPS Milestone award</h3>
-                                        <div class="timeline__subtitle">Poster at the ML &amp; the Physical Sciences (ML4PS) workshop</div>
-                                    </div>
-                                    <figure class="timeline__thumb"><img src="news-photos/neurips-2024.jpg" alt="NeurIPS 2024 invited talk"></figure>
-                                </li>
-                            </ul>
-                        </div> <!-- end s-expertise__content-main -->
-
-                    </div> <!-- end news column -->
 
                 </div> <!-- end s-expertise__content -->
 

@@ -4094,6 +4094,138 @@ td:last-child {
 
 
 /* ===================================================================
+ * # NEWS TICKER
+ *
+ * thin auto-scrolling bar between the intro and select papers
+ * ------------------------------------------------------------------- */
+.s-news {
+	z-index         : 2;
+	display         : flex;
+	align-items     : center;
+	position        : relative;
+	background-color: hsl(130deg, 10%, 11%);
+	border-top      : 1px solid hsla(39, 93%, 95%, 0.07);
+	border-bottom   : 1px solid hsla(39, 93%, 95%, 0.07);
+}
+
+.s-news__label {
+	flex          : none;
+	display       : flex;
+	align-items   : center;
+	gap           : 0.9rem;
+	font-family   : var(--font-1);
+	font-size     : var(--text-xs);
+	font-weight   : 600;
+	letter-spacing: 0.25em;
+	text-transform: uppercase;
+	color         : var(--color-3);
+	padding       : 0 2.8rem 0 4rem;
+}
+
+.s-news__label::before {
+	content         : "";
+	width           : 0.7rem;
+	height          : 0.7rem;
+	border-radius   : 50%;
+	background-color: #97b34a;
+	animation       : s-news-pulse 2.4s ease-in-out infinite;
+}
+
+.s-news__ticker {
+	flex              : 1;
+	min-width         : 0;
+	overflow          : hidden;
+	-webkit-mask-image: linear-gradient(to right, transparent, black 6rem, black calc(100% - 6rem), transparent);
+	mask-image        : linear-gradient(to right, transparent, black 6rem, black calc(100% - 6rem), transparent);
+}
+
+.s-news__track {
+	display  : flex;
+	width    : max-content;
+	animation: s-news-scroll 80s linear infinite;
+}
+
+.s-news__ticker:hover .s-news__track {
+	animation-play-state: paused;
+}
+
+.s-news__list {
+	display    : flex;
+	align-items: center;
+	margin     : 0;
+	padding    : 1.4rem 0;
+	list-style : none;
+}
+
+.s-news__item {
+	display    : flex;
+	align-items: center;
+	white-space: nowrap;
+	font-family: var(--font-1);
+	font-size  : calc(var(--text-sm) * 0.95);
+	line-height: 1;
+	color      : hsla(39, 93%, 95%, 0.8);
+}
+
+/* small diamond separator after every item (keeps the loop seamless) */
+.s-news__item::after {
+	content         : "";
+	width           : 0.5rem;
+	height          : 0.5rem;
+	margin          : 0 2.4rem;
+	transform       : rotate(45deg);
+	background-color: hsla(83, 41%, 50%, 0.45);
+}
+
+.s-news__date {
+	font-size     : calc(var(--text-xs) * 0.9);
+	font-weight   : 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color         : #a8c25e;
+	margin-right  : 1.2rem;
+}
+
+.s-news__item a {
+	color        : inherit;
+	border-bottom: 1px solid hsla(39, 93%, 95%, 0.25);
+	transition   : color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.s-news__item a:hover,
+.s-news__item a:focus {
+	color       : var(--color-1-lighter);
+	border-color: currentColor;
+}
+
+@keyframes s-news-scroll {
+	to { transform: translateX(-50%); }
+}
+
+@keyframes s-news-pulse {
+	0%, 100% { opacity: 1; }
+	50%      { opacity: 0.3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.s-news__track          { animation: none; }
+	.s-news__label::before  { animation: none; }
+	.s-news__ticker {
+		overflow-x        : auto;
+		-webkit-mask-image: none;
+		mask-image        : none;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.s-news__label {
+		padding       : 0 1.6rem 0 2rem;
+		letter-spacing: 0.2em;
+	}
+}
+
+
+/* ===================================================================
  * # EXPERTISE
  *
  *
@@ -5509,48 +5641,6 @@ td:last-child {
 	height    : 100%;
 	object-fit: cover;
 	display   : block;
-}
-
-/* tighter spacing between news items (homepage column only) */
-.papers-news__aside .timeline__item {
-	padding-bottom: var(--vspace-0_5);
-}
-
-/* smaller news entry titles (homepage column only) */
-.papers-news__aside .timeline__title {
-	font-size: calc(var(--text-md) * 0.75);
-}
-
-/* talk/poster subtitles as small thin pills (like the paper tags, smaller) */
-.papers-news__aside .timeline__subtitle {
-	display       : inline-block;
-	font-family   : var(--font-1);
-	font-size     : calc(var(--text-xs) * 0.9);
-	font-weight   : 600;
-	letter-spacing: 0.03em;
-	line-height   : 1.35;
-	color         : #4d7016;
-	background    : #eaf3d8;
-	border-radius : 0.9rem;
-	padding       : 0.2rem 0.7rem;
-	margin        : 0.3rem 0 0 0;
-}
-
-/* --- News aside : shaded + divider line beside Select Papers --- */
-.papers-news__aside {
-	background-color: var(--color-1-lightest);
-	border-right    : 1px solid var(--color-3-dark);
-	padding         : var(--vspace-1) var(--gutter);
-	order           : -1;
-}
-
-@media screen and (max-width: 1200px) {
-	.papers-news__aside {
-		order       : 0;
-		border-right: none;
-		border-top  : 1px solid var(--color-3-dark);
-		margin-top  : var(--vspace-1_5);
-	}
 }
 
 /* --- trimmed photography figure (single astrophoto) --- */
