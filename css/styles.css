@@ -4984,6 +4984,7 @@ td:last-child {
 	display        : flex;
 	justify-content: center;
 	align-items    : center;
+	margin-top     : var(--vspace-1_5);
 }
 
 .contact-btn svg {
@@ -5545,7 +5546,8 @@ td:last-child {
 	margin-bottom: var(--vspace-0_5);
 }
 
-.contact-card svg path {
+.contact-card svg path,
+.contact-card svg circle {
 	fill: var(--color-1);
 }
 
@@ -5558,6 +5560,7 @@ td:last-child {
 	font-size: var(--text-sm);
 	color: var(--color-text);
 	border: none;
+	overflow-wrap: anywhere;
 }
 
 .contact-card a:hover {
