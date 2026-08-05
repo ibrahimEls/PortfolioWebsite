@@ -4876,6 +4876,23 @@ td:last-child {
 	.pagemain .column>h2:first-child {
 		margin-top: 0;
 	}
+
+	/* stretch paired timelines into equal grid rows so entries line up */
+	.cv-columns .column {
+		display       : flex;
+		flex-direction: column;
+	}
+
+	.cv-columns .timeline {
+		flex          : 1;
+		display       : grid;
+		grid-auto-rows: 1fr;
+	}
+}
+
+/* CV button in the dark page header */
+.s-pageheader__cta {
+	margin: 0;
 }
 
 /* a pagemain row that follows another one keeps its section spacing
