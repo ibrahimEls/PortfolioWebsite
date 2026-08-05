@@ -3572,6 +3572,12 @@ td:last-child {
 	margin-bottom: 0;
 }
 
+/* title-less variant: just a slim dark band behind the fixed nav */
+.s-pageheader--compact {
+	padding-top   : calc(var(--vspace-0_75) + 80px);
+	padding-bottom: var(--vspace-0_75);
+}
+
 /* marquee loop */
 .marquee {
 	width: 100%;
