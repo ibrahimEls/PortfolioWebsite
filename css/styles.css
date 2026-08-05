@@ -3654,7 +3654,7 @@ td:last-child {
  *
  * ------------------------------------------------------------------- */
 .s-intro {
-	--content-padding-top   : max(7rem, 9vh);
+	--content-padding-top   : max(12rem, 14vh);
 	--content-padding-bottom: 4rem;
 	--content-min-height    : calc(var(--vspace-1) * 27);
 	z-index                 : 2;
@@ -5422,14 +5422,6 @@ td:last-child {
 	letter-spacing: 0.02em;
 	color         : rgba(254, 245, 228, 0.75);
 	margin        : var(--vspace-0_5) 0 0 0;
-}
-
-.s-intro__content-honors {
-	font-family: var(--font-1);
-	font-size  : var(--text-sm);
-	font-weight: 500;
-	color      : rgba(254, 245, 228, 0.75);
-	margin     : var(--vspace-0_25) 0 0 0;
 }
 
 .s-intro__content-advisors {
