@@ -4142,7 +4142,7 @@ td:last-child {
 .s-news__track {
 	display  : flex;
 	width    : max-content;
-	animation: s-news-scroll 80s linear infinite;
+	animation: s-news-scroll 200s linear infinite;
 }
 
 .s-news__ticker:hover .s-news__track {
@@ -5435,7 +5435,7 @@ td:last-child {
 	font-weight: 300;
 	line-height: 1.6;
 	color: rgba(254, 245, 228, 0.7);
-	max-width: 540px;
+	max-width: 640px;
 	margin-top: var(--vspace-0_5);
 	margin-bottom: 0;
 }
