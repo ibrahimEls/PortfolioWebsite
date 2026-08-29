@@ -5206,7 +5206,7 @@ button.btn--pill {
 	letter-spacing: 0.04em;
 	text-transform: none;
 	color         : var(--color-1-dark);
-	margin-top    : 0.15rem;
+	margin-top    : 0.1rem;
 }
 
 .combo__list {
@@ -5254,5 +5254,4 @@ button.btn--pill {
 
 .combo:not(.combo--axis) .combo__btn .combo__name {
 	-webkit-line-clamp: 2;
-	min-height        : 3.4rem;
 }

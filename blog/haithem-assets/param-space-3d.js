@@ -421,7 +421,8 @@
                         value: e.file,
                         html: e.number + '. '
                             + (e.field || e.cls.replace(/_/g, ' ')),
-                        meta: 'd = ' + e.d + '<br>' + e.nViable + ' viable'
+                        meta: 'Parameter Dimension = ' + e.d + '<br>'
+                            + e.nViable + ' viable'
                     };
                 });
                 comboLagr.change(function (file) {
