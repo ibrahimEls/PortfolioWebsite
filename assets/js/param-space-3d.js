@@ -44,6 +44,44 @@
 
     function log10(v) { return Math.log(v) / Math.LN10; }
 
+    /* Parameter names as symbols. Plotly titles take a small HTML subset
+       (<i>, <b>, <sub>), so the rich form is built from that rather than
+       pulling in MathJax for four symbols. The <option> form has to be
+       plain text, so it uses Unicode subscripts where they exist. */
+    function symbol(name, rich) {
+        var sub = rich
+            ? function (b, s) { return '<i>' + b + '</i><sub>' + s + '</sub>'; }
+            : function (b, s) { return b + s; };
+        var m;
+        if ((m = /^alpha(\d+)$/.exec(name))) {
+            return sub('α', rich ? m[1] : digitsToSub(m[1]));
+        }
+        if ((m = /^MDM(\d*)$/.exec(name))) {
+            return sub('M', (rich ? 'χ' : 'ᵪ')
+                + (m[1] ? (rich ? m[1] : digitsToSub(m[1])) : ''));
+        }
+        if (name === 'MZp') return sub('M', rich ? "Z'" : "_Z'");
+        if (name === 'gU1p') return sub('g', rich ? "U(1)'" : "_U(1)'");
+        if (name === 'epsilon') return rich ? '<i>ε</i>' : 'ε';
+        return name;
+    }
+
+    function digitsToSub(s) {
+        return s.replace(/\d/g, function (d) {
+            return '₀₁₂₃₄₅₆₇₈₉'[+d];
+        });
+    }
+
+    function axisTitle(name) {
+        var unit = D.kind[name] === 'mass' ? ' [GeV]' : '';
+        return '<b>' + symbol(name, true) + unit + '</b>';
+    }
+
+    function optionLabel(name) {
+        var unit = D.kind[name] === 'mass' ? ' [GeV]' : '';
+        return symbol(name, false) + unit + '  (' + D.kind[name] + ')';
+    }
+
     function axisSpan(name) {
         var b = D.bounds[name];
         return [log10(b[0]), log10(b[1])];
@@ -111,12 +149,12 @@
         }
 
         traces.push({
-            type: 'scatter3d', mode: 'markers', name: 'Excluded probes',
+            type: 'scatter3d', mode: 'markers', showlegend: false,
             x: ex[0], y: ex[1], z: ex[2], hoverinfo: 'skip',
             marker: { size: 1.8, color: COL.excluded, opacity: 0.35 }
         });
         traces.push({
-            type: 'scatter3d', mode: 'markers', name: 'Viable points',
+            type: 'scatter3d', mode: 'markers', showlegend: false,
             x: vi[0], y: vi[1], z: vi[2], hoverinfo: 'skip',
             marker: {
                 size: 3.4, color: COL.viable, symbol: 'diamond', opacity: 0.95,
@@ -124,7 +162,7 @@
             }
         });
         traces.push({
-            type: 'scatter3d', mode: 'markers', name: 'Current-turn probes',
+            type: 'scatter3d', mode: 'markers', showlegend: false,
             x: cu[0], y: cu[1], z: cu[2], hoverinfo: 'skip',
             marker: {
                 size: 4.2, symbol: 'circle-open', opacity: 0.9,
@@ -159,11 +197,30 @@
                     contours: { x: { highlight: false }, y: { highlight: false },
                                 z: { highlight: false } },
                     lighting: { ambient: 1, diffuse: 0, specular: 0 },
-                    showlegend: L === 0 && h === 0,
-                    name: 'Policy heads'
+                    showlegend: false
                 });
             }
         }
+
+        // Legend entries are drawn by empty proxy traces: Plotly sizes a
+        // legend icon from its trace's marker, and the real markers have to
+        // stay small to keep thousands of points readable.
+        [['Excluded probes', COL.excluded, 'circle', 1],
+         ['Viable points', COL.viable, 'diamond', 1],
+         ['Current-turn probes', COL.current, 'circle-open', 1],
+         ['Policy heads', HEAD_COLORS[0], 'circle', 0.5]
+        ].forEach(function (e) {
+            traces.push({
+                type: 'scatter3d', mode: 'markers', name: e[0],
+                x: [null], y: [null], z: [null], hoverinfo: 'skip',
+                showlegend: true,
+                marker: {
+                    size: 13, color: e[1], symbol: e[2], opacity: e[3],
+                    line: { color: e[2] === 'circle-open' ? e[1] : '#ffffff',
+                            width: 2 }
+                }
+            });
+        });
         return traces;
     }
 
@@ -174,9 +231,10 @@
             var span = axisSpan(names[i]);
             var t = decadeTicks(span[0], span[1]);
             scene[key] = {
-                title: { text: names[i], font: { size: 12 } },
+                title: { text: axisTitle(names[i]),
+                         font: { size: 17, color: '#2f3437' } },
                 range: span, tickvals: t.vals, ticktext: t.text,
-                tickfont: { size: 10 },
+                tickfont: { size: 11 },
                 gridcolor: 'rgba(0,0,0,0.12)', zeroline: false,
                 backgroundcolor: 'rgba(244,244,246,1)', showbackground: true
             };
@@ -185,8 +243,11 @@
             scene: scene, uirevision: 'keep',
             margin: { l: 0, r: 0, t: 8, b: 0 },
             showlegend: true,
-            legend: { orientation: 'h', y: -0.02, x: 0.5, xanchor: 'center',
-                      font: { size: 11 } },
+            legend: {
+                orientation: 'h', y: -0.02, x: 0.5, xanchor: 'center',
+                font: { size: 13 },
+                itemwidth: 46
+            },
             paper_bgcolor: 'rgba(0,0,0,0)'
         };
     }
@@ -236,7 +297,7 @@
             D.params.forEach(function (n) {
                 var o = document.createElement('option');
                 o.value = n;
-                o.textContent = n + ' (' + D.kind[n] + ')';
+                o.textContent = optionLabel(n);
                 sel.appendChild(o);
             });
             sel.value = [D.axes.x, D.axes.y, D.axes.z][i];
