@@ -2504,6 +2504,10 @@ button.btn--pill {
 	color        : var(--color-3);
 }
 
+.s-pageheader .page-title--index {
+	font-size: clamp(4rem, 7vw, 7rem);
+}
+
 .s-pageheader .page-title__small-type {
 	display      : block;
 	margin-bottom: 0;
@@ -4245,8 +4249,8 @@ button.btn--pill {
 
 .post-list__thumb {
 	flex         : none;
-	width        : 24rem;
-	border-radius: 0.8rem;
+	width        : 19rem;
+	border-radius: 0.6rem;
 	overflow     : hidden;
 	background   : #fff;
 	border       : 1px solid var(--color-3-dark);
@@ -5413,7 +5417,7 @@ sup { top: -0.45em; }
 	stroke        : none;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 480px) {
 	.post-list__link { flex-direction: column; }
-	.post-list__thumb { width: 100%; }
+	.post-list__thumb { width: 60%; }
 }
