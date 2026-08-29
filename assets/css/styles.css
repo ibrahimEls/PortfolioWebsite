@@ -5255,3 +5255,18 @@ button.btn--pill {
 .combo:not(.combo--axis) .combo__btn .combo__name {
 	-webkit-line-clamp: 2;
 }
+
+/* The reset lists sub/sup among the elements it flattens to
+   vertical-align: baseline, which renders every subscript inline and
+   full size. Nothing on the site relied on that, so give them back their
+   normal typography. */
+sub,
+sup {
+	font-size    : 72%;
+	line-height  : 0;
+	position     : relative;
+	vertical-align: baseline;
+}
+
+sub { bottom: -0.28em; }
+sup { top: -0.45em; }

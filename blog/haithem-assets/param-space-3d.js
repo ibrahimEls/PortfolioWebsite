@@ -78,9 +78,12 @@
         return '<b>' + symbol(name, true) + unit + '</b>';
     }
 
-    function optionLabel(name) {
-        var unit = D.kind[name] === 'mass' ? ' [GeV]' : '';
-        return symbol(name, false) + unit + '  (' + D.kind[name] + ')';
+    var KIND_LABEL = {
+        mass: 'mass', coupling: 'coupling', kinmix: 'kinetic-mixing'
+    };
+
+    function kindLabel(name) {
+        return KIND_LABEL[D.kind[name]] || D.kind[name];
     }
 
     function axisSpan(name) {
@@ -298,7 +301,7 @@
                 value: n,
                 html: symbol(n, true)
                     + (D.kind[n] === 'mass' ? ' [GeV]' : ''),
-                meta: D.kind[n]
+                meta: kindLabel(n)
             };
         });
         [comboX, comboY, comboZ].forEach(function (c, i) {
