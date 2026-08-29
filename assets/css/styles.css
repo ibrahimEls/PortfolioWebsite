@@ -4330,8 +4330,8 @@ button.btn--pill {
 
 /* --- blog: post page --- */
 .s-pageheader .page-title--post {
-	font-size : clamp(3.4rem, 5.2vw, 6.4rem);
-	max-width : 24ch;
+	font-size   : clamp(3.4rem, 5.2vw, 6.4rem);
+	max-width   : 34ch;
 	margin-left : auto;
 	margin-right: auto;
 }
