@@ -188,7 +188,9 @@
                 .attr('stroke', t.stroke)
                 .attr('stroke-width', collapsed ? 2.5 : 1.2)
                 .attr('stroke-dasharray', collapsed ? '5 3' : null);
-            g2.selectAll('text, a').remove();
+            // the button lives in its own group, so clear that too or a
+            // redraw leaves the old pill behind with its label stripped
+            g2.selectAll('text, a, g.ctree__nodebtn').remove();
             // main label sits above any agent output, so lay out from the top
             var y = -b.h / 2 + opt.padY + opt.lineH * 0.72;
             b.lines.forEach(function (line) {
