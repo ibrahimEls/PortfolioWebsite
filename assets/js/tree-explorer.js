@@ -93,23 +93,56 @@
         return n.label || n.kind || '';
     }
 
-    /* Box geometry for a node: text wrapped, box sized to fit it. */
+    /* Box geometry for a node: text wrapped, box sized to fit it. When the
+       node carries agent output (arXiv references, a status or feasibility
+       verdict) those get their own rows and the box grows to hold them. */
     function box(n, opt) {
         var font = opt.weight + ' ' + opt.size + 'px ' + opt.family;
         var lines = wrap(nodeText(n), opt.maxW, opt.maxLines, font);
         var w = 0;
         lines.forEach(function (l) { w = Math.max(w, measure(l, font)); });
+
+        var meta = null, refRows = [];
+        if (opt.showRefs) {
+            var verdict = n.status ? 'Status: ' + n.status
+                        : (n.feasibility ? 'Feasibility: ' + n.feasibility : null);
+            if (verdict) {
+                meta = verdict;
+                w = Math.max(w, measure(meta, opt.metaSize + 'px ' + opt.family));
+            }
+            // pack "arXiv:xxxx" chips into rows that fit the box
+            var rf = opt.refSize + 'px ' + opt.family;
+            (n.refs || []).forEach(function (r) {
+                var label = 'arXiv:' + r;
+                var lw = measure(label, rf);
+                var row = refRows[refRows.length - 1];
+                if (row && row.w + opt.refGap + lw <= opt.maxW) {
+                    row.items.push({ id: r, label: label, w: lw });
+                    row.w += opt.refGap + lw;
+                } else {
+                    refRows.push({ items: [{ id: r, label: label, w: lw }], w: lw });
+                }
+            });
+            refRows.forEach(function (row) { w = Math.max(w, row.w); });
+        }
+
+        var h = lines.length * opt.lineH + opt.padY * 2
+              + (meta ? opt.metaLineH : 0)
+              + refRows.length * opt.refLineH;
         return {
-            lines: lines, font: font,
-            w: Math.min(Math.max(w + opt.padX * 2, opt.minW), opt.maxW + opt.padX * 2),
-            h: lines.length * opt.lineH + opt.padY * 2
+            lines: lines, font: font, meta: meta, refRows: refRows,
+            w: Math.min(Math.max(w + opt.padX * 2, opt.minW),
+                        opt.maxW + opt.padX * 2),
+            h: h
         };
     }
 
     var OV = { size: 12.5, weight: '500', family: 'Roboto Flex, sans-serif',
                maxW: 190, maxLines: 2, padX: 10, padY: 7, lineH: 15, minW: 70 };
     var WK = { size: 16, weight: '500', family: 'Roboto Flex, sans-serif',
-               maxW: 260, maxLines: 3, padX: 14, padY: 11, lineH: 21, minW: 120 };
+               maxW: 275, maxLines: 3, padX: 14, padY: 11, lineH: 21, minW: 120,
+               showRefs: true, metaSize: 12.5, metaLineH: 19,
+               refSize: 12.5, refLineH: 18, refGap: 12 };
 
     // --- shared node drawing ----------------------------------------------
 
@@ -139,15 +172,47 @@
                 .attr('stroke', t.stroke)
                 .attr('stroke-width', collapsed ? 2.5 : 1.2)
                 .attr('stroke-dasharray', collapsed ? '5 3' : null);
-            g2.selectAll('text').remove();
-            b.lines.forEach(function (line, i) {
+            g2.selectAll('text, a').remove();
+            // main label sits above any agent output, so lay out from the top
+            var y = -b.h / 2 + opt.padY + opt.lineH * 0.72;
+            b.lines.forEach(function (line) {
                 g2.append('text')
                     .attr('text-anchor', 'middle')
-                    .attr('y', (i - (b.lines.length - 1) / 2) * opt.lineH + 4)
+                    .attr('y', y)
                     .attr('font-size', opt.size)
                     .attr('font-weight', opt.weight)
                     .attr('fill', '#22262a')
                     .text(line);
+                y += opt.lineH;
+            });
+            if (b.meta) {
+                g2.append('text')
+                    .attr('text-anchor', 'middle')
+                    .attr('y', y + opt.metaLineH * 0.1)
+                    .attr('font-size', opt.metaSize)
+                    .attr('font-weight', 700)
+                    .attr('fill', t.stroke)
+                    .text(b.meta);
+                y += opt.metaLineH;
+            }
+            b.refRows.forEach(function (row) {
+                var x = -row.w / 2;
+                row.items.forEach(function (it) {
+                    var a = g2.append('a')
+                        .attr('href', 'https://arxiv.org/abs/' + it.id)
+                        .attr('xlink:href', 'https://arxiv.org/abs/' + it.id)
+                        .attr('target', '_blank')
+                        .attr('rel', 'noopener');
+                    a.append('text')
+                        .attr('class', 'ctree__ref')
+                        .attr('x', x + it.w / 2)
+                        .attr('y', y + opt.refLineH * 0.15)
+                        .attr('text-anchor', 'middle')
+                        .attr('font-size', opt.refSize)
+                        .text(it.label);
+                    x += it.w + opt.refGap;
+                });
+                y += opt.refLineH;
             });
         });
         return all;
@@ -373,9 +438,37 @@
             var q = cursor.criterion
                 ? (cursor.label ? cursor.label + '<br><em>' + cursor.criterion + '</em>' : cursor.criterion)
                 : (cursor.label || '');
+            var extra = '';
+            if (cursor.status) {
+                extra += '<p class="ctree__crit"><strong>Status</strong> '
+                      + cursor.status + '</p>';
+            }
+            if (cursor.feasibility) {
+                extra += '<p class="ctree__crit"><strong>Feasibility</strong> '
+                      + cursor.feasibility + '</p>';
+            }
+            if (cursor.refs && cursor.refs.length) {
+                extra += '<p class="ctree__crit"><strong>References</strong><br>'
+                    + cursor.refs.map(function (r) {
+                        return '<a href="https://arxiv.org/abs/' + r
+                            + '" target="_blank" rel="noopener">arXiv:' + r
+                            + '</a>';
+                    }).join('<br>') + '</p>';
+            }
+            // a region the standard probes stopped at, which an agent then
+            // split further: frame it as that rather than as a question
+            var isSplitRegion = cursor.type === 'leaf';
+            var head4 = isSplitRegion ? 'Region reached' : cursor.kind;
+            if (isSplitRegion) {
+                q = (cursor.pts != null ? cursor.pts.toLocaleString() : '?')
+                  + ' points survive here'
+                  + '<em>The standard probes stop at this region. An agent '
+                  + 'proposed a further split:</em>';
+            }
             body = '<div class="ctree__question">'
-                + (cursor.kind ? '<h4>' + cursor.kind + '</h4>' : '')
+                + (head4 ? '<h4>' + head4 + '</h4>' : '')
                 + '<p class="ctree__q">' + q + '</p>'
+                + extra
                 + '<div class="ctree__answers">'
                 + kids.map(function (c, i) {
                     return '<button type="button" data-i="' + i + '">'

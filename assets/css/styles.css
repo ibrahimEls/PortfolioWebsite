@@ -4685,6 +4685,17 @@ button.btn--pill {
 
 .ctree__node text { font-family: var(--font-1); pointer-events: none; }
 
+.ctree__node a { cursor: pointer; }
+
+.ctree__node text.ctree__ref {
+	pointer-events : auto;
+	fill           : #1f6feb;
+	text-decoration: underline;
+	font-weight    : 600;
+}
+
+.ctree__node a:hover text.ctree__ref { fill: #0a4bbf; }
+
 .ctree__panel,
 .ctree__ask {
 	flex         : none;
