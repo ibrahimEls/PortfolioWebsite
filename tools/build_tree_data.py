@@ -188,10 +188,16 @@ def outcome_branch(parent_id, child_id):
     """
     if not child_id.startswith(parent_id + "_"):
         return ""
-    m = re.match(r'o(\d+)', child_id[len(parent_id) + 1:])
-    if not m:
-        return ""
-    return "observed" if m.group(1) == "0" else "not observed"
+    suffix = child_id[len(parent_id) + 1:]
+    m = re.match(r'o(\d+)', suffix)
+    if m:
+        return "observed" if m.group(1) == "0" else "not observed"
+    # a surviving outcome region that an agent then proposes to split
+    # further: the same transition the dashed leaf -> lit edges represent.
+    # Proposals are named novelN or subN; both carry the same index.
+    if re.match(r'(?:novel|sub)\d+', suffix):
+        return "LLM split"
+    return ""
 
 
 def build_tree(nodes, edges):
@@ -200,6 +206,8 @@ def build_tree(nodes, edges):
     for e in edges:
         if not e["branch"]:
             e["branch"] = outcome_branch(e["p"], e["c"])
+            if e["branch"] == "LLM split":
+                e["dashed"] = True     # drawn like the other agent splits
         kids.setdefault(e["p"], []).append(e)
         has_parent.add(e["c"])
     roots = [n for n in nodes if n not in has_parent]
@@ -317,9 +325,11 @@ def attach_reasoning(tree, by_leaf):
         for k, text in enumerate(r.get("novel") or []):
             if not text:
                 continue
-            # the DOT names these <leaf>_lit_o<outcome>_novel<k>; the outcome
-            # index varies, so find the id that exists rather than guess it
-            pat = re.compile(r'^%s_lit_o\d+_novel%d$' % (re.escape(lid), k))
+            # the DOT names these <leaf>_lit_o<outcome>_novel<k>, or _sub<k>
+            # for the later proposals on the same outcome; the outcome index
+            # varies, so find the id that exists rather than guess it
+            pat = re.compile(r'^%s_lit_o\d+_(?:novel|sub)%d$'
+                             % (re.escape(lid), k))
             hit = next((i for i in ids if pat.match(i)), None)
             if hit:
                 target[hit] = text

@@ -499,8 +499,10 @@
 
         var steps = path.map(function (p, i) {
             var next = path[i + 1] || cursor;
-            return '<li><span class="ctree__step-q">' + esc(stepQuestion(p))
-                + '</span><span class="ctree__crumb">'
+            var t = TYPE[p.type] || TYPE.probe;   // same palette as the graph
+            return '<li><span class="ctree__step-node" style="background:'
+                + t.fill + ';border-color:' + t.stroke + '">'
+                + esc(stepQuestion(p)) + '</span><span class="ctree__crumb">'
                 + esc(next.branch || '—') + '</span></li>';
         }).join('');
         var crumbs = steps

@@ -4886,22 +4886,23 @@ button.btn--pill {
 
 .ctree__path li {
 	display        : flex;
-	align-items    : baseline;
+	align-items    : center;
 	justify-content: space-between;
 	gap            : 0.8rem;
-	padding        : 0.35rem 0;
-	border-bottom  : 1px solid rgba(0, 0, 0, 0.06);
+	padding        : 0.3rem 0;
 }
 
-.ctree__path li:last-child { border-bottom: none; }
-
-.ctree__step-q {
-	flex       : 1;
-	min-width  : 0;
-	font-family: var(--font-1);
-	font-size  : calc(var(--text-xs) * 0.98);
-	line-height: 1.35;
-	color      : var(--color-text-light);
+.ctree__step-node {
+	flex         : 1;
+	min-width    : 0;
+	font-family  : var(--font-1);
+	font-size    : calc(var(--text-xs) * 0.98);
+	line-height  : 1.35;
+	color        : #22262a;
+	background   : #e3eefb;
+	border       : 1px solid #5b8db8;
+	border-radius: 0.7rem;
+	padding      : 0.4rem 0.7rem;
 }
 
 .ctree__path li::before {
