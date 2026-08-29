@@ -128,9 +128,11 @@
             refRows.forEach(function (row) { w = Math.max(w, row.w); });
         }
 
+        // the ref/meta metrics only exist on configs that show them, so
+        // fall back to 0 rather than multiplying by undefined
         var h = lines.length * opt.lineH + opt.padY * 2
-              + (meta ? opt.metaLineH : 0)
-              + refRows.length * opt.refLineH;
+              + (meta ? (opt.metaLineH || 0) : 0)
+              + refRows.length * (opt.refLineH || 0);
         return {
             lines: lines, font: font, meta: meta, refRows: refRows,
             w: Math.min(Math.max(w + opt.padX * 2, opt.minW),
@@ -139,8 +141,8 @@
         };
     }
 
-    var OV = { size: 12.5, weight: '500', family: 'Roboto Flex, sans-serif',
-               maxW: 190, maxLines: 2, padX: 10, padY: 7, lineH: 15, minW: 70 };
+    var OV = { size: 14, weight: '500', family: 'Roboto Flex, sans-serif',
+               maxW: 215, maxLines: 2, padX: 12, padY: 9, lineH: 17, minW: 90 };
     var WK = { size: 16, weight: '500', family: 'Roboto Flex, sans-serif',
                maxW: 275, maxLines: 3, padX: 14, padY: 11, lineH: 21, minW: 120,
                showRefs: true, metaSize: 12.5, metaLineH: 19,
@@ -233,7 +235,7 @@
     // --- overview ----------------------------------------------------------
 
     function layoutOverview() {
-        d3.tree().nodeSize([46, 260])(rootNode);
+        d3.tree().nodeSize([56, 300])(rootNode);
         rootNode.each(function (d) { d.box = box(d.data, OV); });
     }
 
@@ -343,6 +345,8 @@
         var b = (child.branch || '').toLowerCase();
         if (b === 'yes') return 'Yes';
         if (b === 'no') return 'No';
+        if (b === 'observed') return 'Observed';
+        if (b === 'not observed') return 'Not observed';
         if (b === 'llm split') return 'Follow LLM-agents';
         return 'Option ' + (i + 1);
     }

@@ -176,10 +176,30 @@ def parse_dot(path):
     return nodes, edges, title
 
 
+BRANCH_ORDER = {"yes": 0, "observed": 0, "no": 1, "not observed": 1}
+
+
+def outcome_branch(parent_id, child_id):
+    """Read an LLM node's outcome from the child id.
+
+    Edges out of an LLM node carry no label in the DOT; the branch is only
+    encoded in the child's id suffix, _o0 or _o1, which are the two answers
+    to the criterion the agent proposed.
+    """
+    if not child_id.startswith(parent_id + "_"):
+        return ""
+    m = re.match(r'o(\d+)', child_id[len(parent_id) + 1:])
+    if not m:
+        return ""
+    return "observed" if m.group(1) == "0" else "not observed"
+
+
 def build_tree(nodes, edges):
     kids = {}
     has_parent = set()
     for e in edges:
+        if not e["branch"]:
+            e["branch"] = outcome_branch(e["p"], e["c"])
         kids.setdefault(e["p"], []).append(e)
         has_parent.add(e["c"])
     roots = [n for n in nodes if n not in has_parent]
@@ -191,8 +211,8 @@ def build_tree(nodes, edges):
         if dashed:
             node["dashed"] = True
         ch = kids.get(nid, [])
-        # yes before no, so the tree reads consistently
-        ch.sort(key=lambda e: {"yes": 0, "no": 1}.get(e["branch"], 2))
+        # affirmative branch first, so the tree reads consistently
+        ch.sort(key=lambda e: BRANCH_ORDER.get(e["branch"], 2))
         if ch:
             node["children"] = [attach(e["c"], e["branch"], e["dashed"],
                                        depth + 1) for e in ch]
