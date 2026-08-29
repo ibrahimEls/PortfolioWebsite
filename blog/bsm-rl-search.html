@@ -144,6 +144,15 @@
                                     This post is about treating that as a search problem: an agent proposes points in the parameter space of a Lagrangian, the accumulated experimental constraints act as the environment, and the reward is finding regions that survive everything we have measured so far.
                                 </p>
 
+                                <figure class="embed-figure">
+                                    <iframe src="haithem-assets/alphazero-parameter-space.html"
+                                            title="AlphaZero-style parameter-space search"></iframe>
+                                    <figcaption>
+                                        The search as a game: an AlphaZero-style agent proposing points in
+                                        the parameter space of a Lagrangian.
+                                    </figcaption>
+                                </figure>
+
                                 <h2>Why this is a search problem</h2>
 
                                 <p>
@@ -161,7 +170,7 @@
                                 </p>
 
                                 <figure class="ps3d" id="ps3d"
-                                        data-dir="../assets/data/param-space"
+                                        data-dir="haithem-assets/param-space"
                                         data-default="6">
 
                                     <div class="ps3d__bar">
@@ -205,7 +214,7 @@
                                 </p>
 
                                 <figure class="ctree" id="ctree"
-                                        data-dir="../assets/data/trees"
+                                        data-dir="haithem-assets/trees"
                                         data-default="global_tree">
 
                                     <div class="ctree__controls">
@@ -265,6 +274,59 @@
                                         proposed observables, and grey nodes are surviving regions. Dashed
                                         links mark where the agents split a region the standard probes had
                                         left whole.
+                                    </figcaption>
+                                </figure>
+
+                                <h2>How the agent sees a Lagrangian</h2>
+
+                                <p>
+                                    Rough placement for now: these are the method figures, covering how a
+                                    Lagrangian is turned into tokens, what the network does with them, and
+                                    how a proposal is sampled one parameter at a time.
+                                </p>
+
+                                <figure class="static-figure">
+                                    <img src="haithem-assets/figures/fig-lagrangian-tokens.png"
+                                         alt="A Lagrangian's fields encoded into per-field tokens plus a global token">
+                                    <figcaption>
+                                        Each field becomes its own token, with the symmetry structure folded
+                                        into a global Lagrangian token.
+                                        <a href="haithem-assets/pdf/fig-lagrangian-tokens.pdf">PDF</a>
+                                    </figcaption>
+                                </figure>
+
+                                <figure class="static-figure static-figure--wide">
+                                    <img src="haithem-assets/figures/fig-token-architecture-pretrain.png"
+                                         alt="Token encoders feeding a causal transformer with policy, value, summary and viability heads">
+                                    <figcaption>
+                                        The full architecture: the Lagrangian, the viability config, the
+                                        current turn and the probe history all become token streams into a
+                                        causal transformer, with one Beta policy head per action dimension.
+                                        The summary and viability heads are used in pre-training only.
+                                        <a href="haithem-assets/pdf/fig-token-architecture-pretrain.pdf">PDF</a>
+                                    </figcaption>
+                                </figure>
+
+                                <figure class="static-figure static-figure--wide">
+                                    <img src="haithem-assets/figures/fig-ar-sampling.png"
+                                         alt="Autoregressive sampling of each parameter from a Beta policy">
+                                    <figcaption>
+                                        A proposal is built one parameter at a time, each drawn from its own
+                                        Beta policy conditioned on the dimensions already chosen.
+                                        <a href="haithem-assets/pdf/fig-ar-sampling.pdf">PDF</a>
+                                    </figcaption>
+                                </figure>
+
+                                <h2>Does it scale with dimension?</h2>
+
+                                <figure class="static-figure">
+                                    <img src="haithem-assets/figures/mean-viable-per-lagrangian.png"
+                                         alt="Mean viable points per Lagrangian against parameter-space dimension">
+                                    <figcaption>
+                                        The learned policies find more viable points as the parameter space
+                                        grows, while differential evolution falls away, which is the opposite
+                                        of what a fixed search budget usually does.
+                                        <a href="haithem-assets/pdf/mean-viable-per-lagrangian.pdf">PDF</a>
                                     </figcaption>
                                 </figure>
 
@@ -375,9 +437,9 @@
     <script src="../assets/js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly-gl3d.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-    <script src="../assets/js/param-space-3d.js"></script>
-    <script src="../assets/js/tree-explorer.js"></script>
-    <script src="../assets/js/param-space-list.js"></script>
+    <script src="haithem-assets/param-space-3d.js"></script>
+    <script src="haithem-assets/tree-explorer.js"></script>
+    <script src="haithem-assets/param-space-list.js"></script>
 
 </body>
 </html>
