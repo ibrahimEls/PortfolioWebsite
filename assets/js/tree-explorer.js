@@ -292,6 +292,79 @@
         setTimeout(fit, 30);
     }
 
+    // --- reasoning modal ---------------------------------------------------
+
+    var modal = root.querySelector('.ctree__modal');
+
+    function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                        .replace(/>/g, '&gt;');
+    }
+
+    /* The reasoning arrives as one long block. Prefer breaking it where a
+       sentence opens with an all-caps marker (SEEN, NOT-SEEN, CAVEATS…),
+       which is how many of these are structured. Where there are no such
+       markers, fall back to grouping sentences so it is not one wall of
+       text. The lookbehind for a sentence end never fires inside a decimal,
+       since those have no space after the point. */
+    function paragraphs(text) {
+        var s = String(text);
+        var parts = s.split(/(?<=\.)\s+(?=[A-Z][A-Z-]{3,}\b)/);
+        if (parts.length === 1 && s.length > 700) {
+            var sentences = s.split(/(?<=[.!?])\s+(?=[A-Z(])/);
+            parts = [];
+            for (var i = 0; i < sentences.length; i += 3) {
+                parts.push(sentences.slice(i, i + 3).join(' '));
+            }
+        }
+        return parts.map(function (p) {
+            return '<p>' + esc(p).replace(
+                /^([A-Z][A-Z -]{3,}[A-Z])(?=[,:\s])/,
+                '<strong>$1</strong>') + '</p>';
+        }).join('');
+    }
+
+    function openReasoning(n) {
+        if (!modal || !n.reasoning) return;
+        modal.querySelector('.ctree__modal-kind').textContent =
+            n.kind || 'LLM agent';
+        modal.querySelector('#ctree-modal-title').textContent = n.label || '';
+        var crit = modal.querySelector('.ctree__modal-crit');
+        crit.textContent = n.criterion || '';
+        crit.hidden = !n.criterion;
+        modal.querySelector('.ctree__modal-body').innerHTML =
+            paragraphs(n.reasoning);
+        modal.hidden = false;
+        modal.querySelector('.ctree__modal-close').focus();
+    }
+
+    function closeReasoning() {
+        if (modal) modal.hidden = true;
+    }
+
+    if (modal) {
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal
+                || e.target.classList.contains('ctree__modal-close')) {
+                closeReasoning();
+            }
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeReasoning();
+        });
+    }
+
+    function reasoningButton(n) {
+        return n.reasoning
+            ? '<button type="button" class="ctree__why">View reasoning</button>'
+            : '';
+    }
+
+    function wireReasoning(scope, n) {
+        var b = scope.querySelector('.ctree__why');
+        if (b) b.addEventListener('click', function () { openReasoning(n); });
+    }
+
     // --- detail panel ------------------------------------------------------
 
     function statLine(n) {
@@ -336,7 +409,9 @@
                         + '" target="_blank" rel="noopener">arXiv:' + r + '</a>';
                 }).join('<br>') + '</p>');
         }
+        rows.push(reasoningButton(n));
         panel.innerHTML = rows.join('');
+        wireReasoning(panel, n);
     }
 
     // --- walk --------------------------------------------------------------
@@ -474,6 +549,7 @@
                             + '</a>';
                     }).join('<br>') + '</p>';
             }
+            extra += reasoningButton(cursor);
             // a region the standard probes stopped at, which an agent then
             // split further: frame it as that rather than as a question
             var isSplitRegion = cursor.type === 'leaf';
@@ -504,6 +580,7 @@
             + '</div>'
             + (crumbs ? '<p class="ctree__crumbs">' + crumbs + '</p>' : '');
 
+        wireReasoning(ask, cursor);
         ask.querySelectorAll('.ctree__answers button').forEach(function (b) {
             b.addEventListener('click', function () {
                 path.push(cursor);

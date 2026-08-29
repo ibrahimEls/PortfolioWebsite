@@ -223,6 +223,119 @@ def build_tree(nodes, edges):
     return attach(roots[0], "", False, 0)
 
 
+def salvage_json(s):
+    """Close a JSON blob that was cut off mid-object.
+
+    One response file is truncated at source, so rather than dropping it
+    entirely we trim to the last complete value and balance the brackets.
+    """
+    def scan(text):
+        depth, in_str, esc, last = [], False, False, None
+        for i, ch in enumerate(text):
+            if in_str:
+                if esc:
+                    esc = False
+                elif ch == '\\':
+                    esc = True
+                elif ch == '"':
+                    in_str = False
+                continue
+            if ch == '"':
+                in_str = True
+            elif ch in '{[':
+                depth.append(ch)
+            elif ch in '}]':
+                if depth:
+                    depth.pop()
+                last = i
+        return depth, last
+
+    _, last = scan(s)
+    if last is None:
+        return None
+    head = s[:last + 1]
+    depth, _ = scan(head)
+    return head + ''.join('}' if c == '{' else ']' for c in reversed(depth))
+
+
+def load_responses(resp_dir):
+    """reasoning keyed by tree name -> leaf_id -> {'lit':…, 'novel':[…]}."""
+    out, repaired = {}, []
+    if not os.path.isdir(resp_dir):
+        return out, repaired
+    sources = [("global_tree", os.path.join(resp_dir, "global-tree")),
+               (None, os.path.join(resp_dir, "per-model"))]
+    for fixed_name, folder in sources:
+        if not os.path.isdir(folder):
+            continue
+        # only the top level; the *-old / stale-* subfolders are superseded
+        for fn in sorted(os.listdir(folder)):
+            if not fn.endswith(".md"):
+                continue
+            path = os.path.join(folder, fn)
+            blocks = re.findall(r'```json\s*(.*?)```', open(path).read(), re.S)
+            if not blocks:
+                continue
+            try:
+                data = json.loads(blocks[-1])
+            except ValueError:
+                fixed = salvage_json(blocks[-1])
+                try:
+                    data = json.loads(fixed)
+                    repaired.append(fn)
+                except (ValueError, TypeError):
+                    print("  [warn] unreadable JSON in", fn)
+                    continue
+            tree = fixed_name or fn[:-3]
+            bucket = out.setdefault(tree, {})
+            for leaf in data.get("leaves", []):
+                lid = leaf.get("leaf_id")
+                if not lid:
+                    continue
+                bucket[lid] = {
+                    "lit": (leaf.get("lit_review") or {}).get("reasoning"),
+                    "novel": [n.get("reasoning") for n in leaf.get("novel", [])],
+                }
+    return out, repaired
+
+
+def attach_reasoning(tree, by_leaf):
+    """Put each reasoning on the node it belongs to, matching by node id."""
+    ids = []
+
+    def collect(n):
+        ids.append(n["id"])
+        for c in n.get("children", []):
+            collect(c)
+    collect(tree)
+    idset = set(ids)
+
+    target = {}
+    for lid, r in by_leaf.items():
+        if r.get("lit") and lid + "_lit" in idset:
+            target[lid + "_lit"] = r["lit"]
+        for k, text in enumerate(r.get("novel") or []):
+            if not text:
+                continue
+            # the DOT names these <leaf>_lit_o<outcome>_novel<k>; the outcome
+            # index varies, so find the id that exists rather than guess it
+            pat = re.compile(r'^%s_lit_o\d+_novel%d$' % (re.escape(lid), k))
+            hit = next((i for i in ids if pat.match(i)), None)
+            if hit:
+                target[hit] = text
+
+    hits = [0]
+
+    def apply(n):
+        if n["id"] in target:
+            n["reasoning"] = target[n["id"]]
+            hits[0] += 1
+        for c in n.get("children", []):
+            apply(c)
+    apply(tree)
+    return hits[0], len(target)
+
+
 def annotate(node):
     """Attach subtree totals used by the walk-through panel.
 
@@ -322,6 +435,9 @@ def display_name(key):
 def main():
     src_dir, out_dir = sys.argv[1], sys.argv[2]
     os.makedirs(out_dir, exist_ok=True)
+    responses, repaired = load_responses(os.path.join(src_dir, "responses"))
+    if repaired:
+        print("recovered truncated JSON in:", ", ".join(repaired), "\n")
 
     parsed = []
     for fn in sorted(os.listdir(src_dir)):
@@ -357,6 +473,7 @@ def main():
         title = best["title"] or next(
             (v["title"] for v in variants if v["title"]), None)
         acc = best["stats"]
+        got, want = attach_reasoning(best["tree"], responses.get(key, {}))
         disp = display_name(key)
         out_name = key.replace(".", "_") + ".json"
         with open(os.path.join(out_dir, out_name), "w") as fh:
@@ -370,9 +487,10 @@ def main():
             "leaves": acc.get("leaf", 0), "lit": acc.get("lit", 0),
             "novel": acc.get("novel", 0),
         })
-        print("  %-46s <- %-40s %s"
+        print("  %-46s <- %-38s %s%s"
               % (disp, best["stem"] + ".dot",
-                 "(has LLM)" if best["llm"] else ""))
+                 "(has LLM)" if best["llm"] else "",
+                 "  reasoning %d/%d" % (got, want) if want else ""))
 
     manifest.sort(key=lambda m: -m["nodes"])
     with open(os.path.join(out_dir, "index.json"), "w") as fh:

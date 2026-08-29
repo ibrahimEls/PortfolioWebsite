@@ -4896,3 +4896,130 @@ button.btn--pill {
 	.ctree__panel, .ctree__ask { width: auto; max-height: none; }
 	.ctree__status { margin-left: 0; width: 100%; }
 }
+
+/* --- blog: reasoning button and modal --- */
+.ctree__why {
+	margin        : 0 0 var(--vspace-0_5);
+	padding       : 0 1.4rem;
+	height        : 3.4rem;
+	line-height   : 3.4rem;
+	font-family   : var(--font-1);
+	font-size     : calc(var(--text-xs) * 0.95);
+	font-weight   : 600;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color         : var(--color-text-dark);
+	background    : #fff;
+	border        : 1px solid var(--color-1);
+	border-radius : 0.5rem;
+	cursor        : pointer;
+}
+
+.ctree__why:hover {
+	background: var(--color-1);
+	color     : var(--color-btn-primary-text);
+}
+
+.ctree__modal {
+	position       : fixed;
+	inset          : 0;
+	z-index        : 200;
+	display        : flex;
+	align-items    : center;
+	justify-content: center;
+	padding        : var(--vspace-1);
+	background     : rgba(20, 22, 24, 0.55);
+}
+
+.ctree__modal[hidden] { display: none; }
+
+.ctree__modal-box {
+	position     : relative;
+	width        : min(78rem, 100%);
+	max-height   : 86vh;
+	display      : flex;
+	flex-direction: column;
+	background   : #fff;
+	border-radius: 1.2rem;
+	box-shadow   : 0 24px 70px rgba(0, 0, 0, 0.3);
+	overflow     : hidden;
+}
+
+.ctree__modal-close {
+	position   : absolute;
+	top        : 1rem;
+	right      : 1.2rem;
+	width      : 3.4rem;
+	height     : 3.4rem;
+	margin     : 0;
+	padding    : 0;
+	font-size  : 2.4rem;
+	line-height: 1;
+	color      : var(--color-text-light);
+	background : transparent;
+	border     : none;
+	cursor     : pointer;
+}
+
+.ctree__modal-close:hover { color: var(--color-text-dark); }
+
+.ctree__modal-head {
+	padding      : var(--vspace-1) var(--vspace-1_5) var(--vspace-0_75);
+	border-bottom: 1px solid var(--color-gray-3);
+	background   : var(--color-1-lightest);
+}
+
+.ctree__modal-kind {
+	display       : block;
+	font-family   : var(--font-1);
+	font-size     : calc(var(--text-xs) * 0.9);
+	font-weight   : 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color         : var(--color-1-dark);
+	margin-bottom : 0.4rem;
+}
+
+.ctree__modal-head h4 {
+	font-family: var(--font-2);
+	font-size  : var(--text-lg);
+	line-height: 1.25;
+	color      : var(--color-text-dark);
+	margin     : 0 3rem 0.4rem 0;
+	text-transform: none;
+	letter-spacing: 0;
+}
+
+.ctree__modal-crit {
+	font-family: var(--font-1);
+	font-size  : var(--text-sm);
+	color      : var(--color-text-light);
+	margin     : 0;
+}
+
+.ctree__modal-crit[hidden] { display: none; }
+
+.ctree__modal-body {
+	overflow-y: auto;
+	padding   : var(--vspace-1) var(--vspace-1_5) var(--vspace-1_5);
+}
+
+.ctree__modal-body p {
+	max-width    : 72ch;
+	font-size    : var(--text-sm);
+	line-height  : 1.65;
+	color        : var(--color-text);
+	margin-bottom: var(--vspace-0_75);
+}
+
+.ctree__modal-body strong {
+	font-family   : var(--font-1);
+	font-weight   : 700;
+	letter-spacing: 0.04em;
+	color         : var(--color-1-dark);
+}
+
+@media screen and (max-width: 600px) {
+	.ctree__modal-box { max-height: 92vh; }
+	.ctree__modal-head, .ctree__modal-body { padding-left: var(--vspace-0_75); padding-right: var(--vspace-0_75); }
+}
