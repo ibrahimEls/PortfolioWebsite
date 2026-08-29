@@ -485,13 +485,26 @@
         var kids = cursor.children || [];
         var isEnd = kids.length === 0;
 
-        // one chip per decision taken: the branch of every node below the
-        // root, including the one we are standing on. None at the root.
-        var crumbs = path.length
-            ? path.slice(1).concat([cursor]).map(function (p) {
-                  return '<span class="ctree__crumb">' + (p.branch || '—')
-                      + '</span>';
-              }).join('')
+        /* The path so far, as the question each step asked paired with the
+           answer given, so the combination of cuts is readable rather than
+           a bare run of yes/no. The node visited at step i produced the
+           node at i+1, so the answer belongs to the following node. */
+        function stepQuestion(n) {
+            if (n.type === 'leaf') {
+                return 'Region left whole, split by an agent';
+            }
+            var q = n.label || n.kind || '';
+            return q.length > 74 ? q.slice(0, 73).trim() + '…' : q;
+        }
+
+        var steps = path.map(function (p, i) {
+            var next = path[i + 1] || cursor;
+            return '<li><span class="ctree__step-q">' + esc(stepQuestion(p))
+                + '</span><span class="ctree__crumb">'
+                + esc(next.branch || '—') + '</span></li>';
+        }).join('');
+        var crumbs = steps
+            ? '<h4>Cuts applied</h4><ol class="ctree__path">' + steps + '</ol>'
             : '';
 
         /* Lagrangians left: exact at a terminal node, which states its own
@@ -578,7 +591,7 @@
             + (path.length ? '' : ' disabled') + '>Back</button>'
             + '<button type="button" class="ctree__restart">Start over</button>'
             + '</div>'
-            + (crumbs ? '<p class="ctree__crumbs">' + crumbs + '</p>' : '');
+            + (crumbs ? '<div class="ctree__crumbs">' + crumbs + '</div>' : '');
 
         wireReasoning(ask, cursor);
         ask.querySelectorAll('.ctree__answers button').forEach(function (b) {
