@@ -46,7 +46,7 @@
     var gNodes = gRoot.append('g');
     var walkSvg = d3.select(walkSvgEl);
 
-    var data = null, rootNode = null, zoom = null, mode = 'overview';
+    var data = null, rootNode = null, zoom = null, mode = 'walk';
     var cursor = null, path = [];
 
     // --- text metrics ------------------------------------------------------
@@ -88,7 +88,9 @@
     function nodeText(n) {
         if (n.type === 'leaf' && n.pts != null) {
             return n.pts.toLocaleString() + ' pts, ' + n.regions
-                + (n.regions === 1 ? ' region' : ' regions');
+                + (n.regions === 1 ? ' region, ' : ' regions, ')
+                + n.lagrangians
+                + (n.lagrangians === 1 ? ' Lagrangian' : ' Lagrangians');
         }
         return n.label || n.kind || '';
     }
@@ -341,7 +343,7 @@
         var b = (child.branch || '').toLowerCase();
         if (b === 'yes') return 'Yes';
         if (b === 'no') return 'No';
-        if (b === 'llm split') return 'Follow the agent’s split';
+        if (b === 'llm split') return 'Follow LLM-agents';
         return 'Option ' + (i + 1);
     }
 
@@ -405,14 +407,27 @@
         var isEnd = kids.length === 0;
 
         // one chip per decision taken: the branch of every node below the
-        // root, including the one we are standing on
-        var crumbs = path.slice(1).concat([cursor]).map(function (p) {
-            return '<span class="ctree__crumb">' + (p.branch || '—')
-                + '</span>';
-        }).join('');
+        // root, including the one we are standing on. None at the root.
+        var crumbs = path.length
+            ? path.slice(1).concat([cursor]).map(function (p) {
+                  return '<span class="ctree__crumb">' + (p.branch || '—')
+                      + '</span>';
+              }).join('')
+            : '';
+
+        /* Lagrangians left: exact at a terminal node, which states its own
+           count. Above one, the data gives per-region counts but not which
+           Lagrangian each region belongs to, so the union cannot be
+           recovered and the largest region count is a lower bound. */
+        var lagr = isEnd && cursor.lagrangians != null
+            ? String(cursor.lagrangians)
+            : '≥ ' + (a.lagr || 0);
 
         var head = '<div class="ctree__stats">'
             + '<div><span>' + (a.pts || 0).toLocaleString() + '</span>points still viable</div>'
+            + '<div><span>' + lagr + '</span>'
+            + ((isEnd && cursor.lagrangians === 1) ? 'Lagrangian left' : 'Lagrangians left')
+            + '</div>'
             + '<div><span>' + path.length + '</span>decisions made</div>'
             + '<div><span>' + (a.leaves || 0) + '</span>'
             + (a.leaves === 1 ? 'region ahead' : 'regions ahead') + '</div>'
@@ -559,12 +574,22 @@
     fetch(DATA_DIR + '/index.json')
         .then(function (r) { return r.json(); })
         .then(function (idx) {
-            idx.trees.forEach(function (t) {
-                var o = document.createElement('option');
-                o.value = t.file;
-                o.textContent = t.display + ' (' + t.nodes + ' nodes)';
-                if (t.name === DEFAULT) o.selected = true;
-                sel.appendChild(o);
+            [['many', 'Trees over many Lagrangians'],
+             ['per', 'Trees per Lagrangian']].forEach(function (g) {
+                var rows = idx.trees.filter(function (t) {
+                    return t.group === g[0];
+                });
+                if (!rows.length) return;
+                var grp = document.createElement('optgroup');
+                grp.label = g[1];
+                rows.forEach(function (t) {
+                    var o = document.createElement('option');
+                    o.value = t.file;
+                    o.textContent = t.display + ' (' + t.nodes + ' nodes)';
+                    if (t.name === DEFAULT) o.selected = true;
+                    grp.appendChild(o);
+                });
+                sel.appendChild(grp);
             });
             load(sel.value || idx.trees[0].file);
         })

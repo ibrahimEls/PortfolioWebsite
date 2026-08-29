@@ -257,6 +257,20 @@ FIELD_ABBR = [
 SUB = {"2": "Z₂", "3": "Z₃", "4": "Z₄", "5": "Z₅"}
 
 
+def symmetries(key):
+    """The Zn assignments a tree covers, from its filename."""
+    m = re.search(r'Z((?:\d\+?)+)',
+                  key.split("DM.")[-1] if "DM." in key else key)
+    return [SUB[c] for c in m.group(1) if c in SUB] if m else []
+
+
+def group_of(key):
+    """Trees spanning several Zn assignments cover several Lagrangians."""
+    if key == "global_tree" or len(symmetries(key)) > 1:
+        return "many"
+    return "per"
+
+
 def display_name(key):
     """Decode the filename into the paper's field-content vocabulary.
 
@@ -266,7 +280,7 @@ def display_name(key):
     treated as authoritative and the embedded label is kept separately.
     """
     if key == "global_tree":
-        return "All benchmark Lagrangians"
+        return "All Dark-Singlet Lagrangians"
 
     name = None
     for abbr, full in FIELD_ABBR:
@@ -281,8 +295,7 @@ def display_name(key):
         m = re.search(r'U1p\.([pm])', key)
         if m:
             name += " (" + m.group(1) + ")"
-    m = re.search(r'Z((?:\d\+?)+)', key.split("DM.")[-1] if "DM." in key else key)
-    syms = [SUB[c] for c in m.group(1) if c in SUB] if m else []
+    syms = symmetries(key)
     return name + (", " + ", ".join(syms) if syms else "")
 
 
@@ -327,11 +340,12 @@ def main():
         disp = display_name(key)
         out_name = key.replace(".", "_") + ".json"
         with open(os.path.join(out_dir, out_name), "w") as fh:
-            json.dump({"name": key, "display": disp, "sourceTitle": title,
-                       "tree": best["tree"], "stats": acc},
-                      fh, separators=(",", ":"))
+            json.dump({"name": key, "display": disp, "group": group_of(key),
+                       "sourceTitle": title, "tree": best["tree"],
+                       "stats": acc}, fh, separators=(",", ":"))
         manifest.append({
-            "name": key, "display": disp, "file": out_name,
+            "name": key, "display": disp, "group": group_of(key),
+            "file": out_name,
             "nodes": acc["nodes"], "depth": acc["depth"],
             "leaves": acc.get("leaf", 0), "lit": acc.get("lit", 0),
             "novel": acc.get("novel", 0),
