@@ -4224,7 +4224,9 @@ button.btn--pill {
 }
 
 .post-list__link {
-	display         : block;
+	display         : flex;
+	align-items     : flex-start;
+	gap             : var(--vspace-1_25);
 	padding         : var(--vspace-1_5);
 	border          : 1px solid var(--color-gray-3);
 	border-radius   : 1.2rem;
@@ -4240,6 +4242,23 @@ button.btn--pill {
 	box-shadow: 0 10px 34px rgba(0, 0, 0, 0.08);
 	color     : inherit;
 }
+
+.post-list__thumb {
+	flex         : none;
+	width        : 24rem;
+	border-radius: 0.8rem;
+	overflow     : hidden;
+	background   : #fff;
+	border       : 1px solid var(--color-3-dark);
+}
+
+.post-list__thumb img {
+	display: block;
+	width  : 100%;
+	height : auto;
+}
+
+.post-list__body { flex: 1; min-width: 0; }
 
 .post-list__date {
 	font-family   : var(--font-1);
@@ -5392,4 +5411,9 @@ sup { top: -0.45em; }
 	letter-spacing: 0.03em;
 	pointer-events: none;
 	stroke        : none;
+}
+
+@media screen and (max-width: 700px) {
+	.post-list__link { flex-direction: column; }
+	.post-list__thumb { width: 100%; }
 }

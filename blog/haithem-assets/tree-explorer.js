@@ -129,8 +129,10 @@
         // a leaf that knows its composition carries a button to show it
         var btn = null;
         if (opt.showModels && n.models && n.models.length) {
-            btn = n.models.length === 1 ? '1 Lagrangian'
-                : n.models.length + ' Lagrangians';
+            var mc = n.modelsInherited ? null
+                : (n.lagrangians != null ? n.lagrangians : n.models.length);
+            btn = mc == null ? 'Lagrangians'
+                : mc + (mc === 1 ? ' Lagrangian' : ' Lagrangians');
             w = Math.max(w, measure(btn, opt.btnSize + 'px ' + opt.family)
                              + opt.btnPadX * 2);
         }
@@ -372,6 +374,19 @@
                 + '</li>';
         }).join('');
         var body = '<ul class="ctree__models">' + rows + '</ul>';
+        var count = modelCount(n);
+        var named = (n.models || []).length;
+        if (count != null && named < count) {
+            var listed = (n.models || []).reduce(function (a, m) {
+                return a + (m.pts || 0);
+            }, 0);
+            var rest = (n.pts != null ? n.pts - listed : 0);
+            body += '<p class="ctree__note">The source names the leading '
+                + named + ' of ' + count + ' classes here'
+                + (rest > 0 ? ', leaving ' + rest.toLocaleString()
+                    + ' points in the remainder' : '')
+                + '.</p>';
+        }
         if (n.signature) {
             // split before escaping: an escaped '>' is '&gt;', whose
             // semicolon would otherwise be treated as a separator
@@ -387,16 +402,30 @@
                 + ' observable rather than by Lagrangian.</p>';
         }
         openModal('Surviving region',
-                  (n.models || []).length === 1 ? '1 Lagrangian here'
-                      : (n.models || []).length + ' Lagrangians here',
+                  count == null
+                      ? 'Lagrangians in this region'
+                      : count + (count === 1 ? ' Lagrangian here'
+                                             : ' Lagrangians here'),
                   '', body);
     }
 
+    /* The node's own count is authoritative. The source names only the
+       leading contributors for a few regions, and a region an agent split
+       further carries its parent's list, so the button must not invent a
+       count from the number of names it happens to have. */
+    function modelCount(n) {
+        if (n.modelsInherited) return null;
+        return n.lagrangians != null ? n.lagrangians
+             : (n.models ? n.models.length : null);
+    }
+
     function modelsButton(n) {
-        return (n.models && n.models.length)
-            ? '<button type="button" class="ctree__models-btn">'
-              + 'Which Lagrangians?</button>'
-            : '';
+        if (!n.models || !n.models.length) return '';
+        var c = modelCount(n);
+        var label = c == null ? 'Lagrangians'
+            : c + (c === 1 ? ' Lagrangian' : ' Lagrangians');
+        return '<button type="button" class="ctree__models-btn">'
+             + label + '</button>';
     }
 
     function wireModels(scope, n) {
