@@ -209,27 +209,47 @@
                                         data-default="global_tree">
 
                                     <div class="ctree__controls">
+                                        <div class="ctree__modes">
+                                            <button type="button" class="ctree__mode is-active" data-mode="overview">Whole tree</button>
+                                            <button type="button" class="ctree__mode" data-mode="walk">Walk the tree</button>
+                                        </div>
                                         <label>Tree
                                             <select class="ctree__select"></select>
                                         </label>
-                                        <button type="button" class="ctree__expand">Expand all</button>
-                                        <button type="button" class="ctree__collapse">Collapse</button>
                                         <span class="ctree__status">Loading&hellip;</span>
                                     </div>
 
-                                    <div class="ctree__body">
-                                        <div class="ctree__canvas">
-                                            <svg class="ctree__svg"></svg>
+                                    <div class="ctree__overview">
+                                        <div class="ctree__toolbar">
+                                            <button type="button" class="ctree__expand">Expand all</button>
+                                            <button type="button" class="ctree__fit">Fit to view</button>
                                         </div>
-                                        <aside class="ctree__panel"></aside>
+                                        <div class="ctree__body">
+                                            <div class="ctree__canvas">
+                                                <svg class="ctree__svg"></svg>
+                                            </div>
+                                            <aside class="ctree__panel"></aside>
+                                        </div>
+                                    </div>
+
+                                    <div class="ctree__walk" hidden>
+                                        <div class="ctree__body">
+                                            <div class="ctree__canvas ctree__canvas--walk">
+                                                <svg class="ctree__walk-svg"></svg>
+                                            </div>
+                                            <aside class="ctree__ask"></aside>
+                                        </div>
                                     </div>
 
                                     <figcaption>
-                                        Click a node to open it and to read its details on the right. Drag to pan
-                                        and scroll to zoom. Blue nodes are standard experimental probes, gold are
-                                        literature searches proposed by the agent, orange are newly proposed
-                                        observables, and grey leaves are the surviving regions. Dashed links mark
-                                        where an agent split a region that the standard probes had left whole.
+                                        <strong>Whole tree</strong> shows the full partition: click a node to
+                                        expand or collapse it and to read its details, drag to pan, scroll to
+                                        zoom. <strong>Walk the tree</strong> takes the questions one at a time,
+                                        answering them yourself and watching how much parameter space survives.
+                                        Blue nodes are standard experimental probes, gold are literature searches
+                                        proposed by the agent, orange are newly proposed observables, and grey
+                                        nodes are surviving regions. Dashed links mark where an agent split a
+                                        region the standard probes had left whole.
                                     </figcaption>
                                 </figure>
 

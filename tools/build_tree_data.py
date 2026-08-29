@@ -203,6 +203,32 @@ def build_tree(nodes, edges):
     return attach(roots[0], "", False, 0)
 
 
+def annotate(node):
+    """Attach subtree totals used by the walk-through panel.
+
+    A node carrying its own pts is authoritative for its region: an LLM
+    split subdivides that region further and does not conserve the total
+    (a 3086-point region splits into leaves summing 2524). Summing the
+    topmost point-carrying nodes reproduces the figure's grand total.
+    """
+    kids = node.get("children", [])
+    for c in kids:
+        annotate(c)
+    if node.get("pts") is not None:
+        pts, regions, lagr = (node["pts"], node["regions"],
+                              node["lagrangians"])
+    elif kids:
+        pts = sum(c["agg"]["pts"] for c in kids)
+        regions = sum(c["agg"]["regions"] for c in kids)
+        lagr = max(c["agg"]["lagr"] for c in kids)
+    else:
+        pts = regions = lagr = 0
+    node["agg"] = {
+        "pts": pts, "regions": regions, "lagr": lagr,
+        "leaves": 1 if not kids else sum(c["agg"]["leaves"] for c in kids),
+    }
+
+
 def totals(node, acc):
     acc["nodes"] += 1
     acc[node["type"]] = acc.get(node["type"], 0) + 1
@@ -273,6 +299,7 @@ def main():
             print("skip (no nodes):", fn)
             continue
         tree = build_tree(nodes, edges)
+        annotate(tree)
         acc = totals(tree, {"nodes": 0, "depth": 0, "_d": 0})
         acc.pop("_d")
         stem = fn[:-4]
