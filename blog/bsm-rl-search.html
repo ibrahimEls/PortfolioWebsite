@@ -160,11 +160,42 @@
                                     The clearest way to see this is to watch a single benchmark Lagrangian over the course of a run. Early on, the agent's proposals are scattered and almost everything it touches is excluded. By the end of the run, the policy heads have collapsed onto a thin sheet of surviving parameter space and are sampling it densely.
                                 </p>
 
-                                <div class="figure-placeholder">
-                                    <span class="figure-placeholder__label">Interactive figure</span>
-                                    <h4>3D parameter-space explorer</h4>
-                                    <p>Rotatable, zoomable view of the probes and viable points for one benchmark Lagrangian, with a play button and turn slider to animate the run.</p>
-                                </div>
+                                <figure class="ps3d" id="ps3d"
+                                        data-dir="../assets/data/param-space"
+                                        data-lagrangians="06,10">
+
+                                    <div class="ps3d__bar">
+                                        <button type="button" class="ps3d__play" aria-label="Play animation">Play</button>
+                                        <input type="range" class="ps3d__slider" min="0" max="49" value="49"
+                                               aria-label="Turn">
+                                        <span class="ps3d__turn">Turn &ndash;</span>
+                                    </div>
+
+                                    <div class="ps3d__plot"></div>
+
+                                    <div class="ps3d__controls">
+                                        <label>Lagrangian
+                                            <select class="ps3d__lagrangian">
+                                                <option value="06">6 &middot; inert doublet (d = 5)</option>
+                                                <option value="10">10 &middot; dark photon scalar (d = 10)</option>
+                                            </select>
+                                        </label>
+                                        <label>x <select class="ps3d__x"></select></label>
+                                        <label>y <select class="ps3d__y"></select></label>
+                                        <label>z <select class="ps3d__z"></select></label>
+                                    </div>
+
+                                    <p class="ps3d__status">Loading&hellip;</p>
+
+                                    <figcaption>
+                                        Drag to rotate, scroll to zoom, and press play to watch the run turn by turn.
+                                        Grey points are excluded probes, red rings are the probes proposed on the
+                                        current turn, and gold marks parameter points that survive every constraint.
+                                        The translucent shells are the policy heads, drawn at central probability
+                                        masses of 0.30, 0.62 and 0.86 of their per-dimension Beta marginals &mdash;
+                                        these are probability masses, not &sigma; contours.
+                                    </figcaption>
+                                </figure>
 
                                 <h2>The structure the constraints impose</h2>
 
@@ -186,6 +217,22 @@
 
                                 <p>
                                     The open question is whether the observables the agent proposes are worth taking seriously as experimental targets &mdash; whether "this measurement would split the surviving parameter space in half" is a useful way to prioritize what to build next.
+                                </p>
+
+                                <h2>Additional materials</h2>
+
+                                <p>
+                                    The same export for the remaining benchmark classes. Each file carries the full
+                                    probe table for the episode, the per-turn policy heads as Beta parameters, and
+                                    the sampling bounds needed to map the normalized cube back to physical units.
+                                </p>
+
+                                <ul class="data-list" id="ps3d-extra"></ul>
+
+                                <p class="data-list__note">
+                                    Files are JSON, schema <code>rl4dm-3dvid/1</code>. Head vectors cover only the
+                                    action dimensions, so index them through <code>headIndex</code> rather than by
+                                    raw parameter position.
                                 </p>
 
                                 <p class="post-draft-note">
@@ -270,6 +317,9 @@
 
     <script src="../assets/js/plugins.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly-gl3d.min.js"></script>
+    <script src="../assets/js/param-space-3d.js"></script>
+    <script src="../assets/js/param-space-list.js"></script>
 
 </body>
 </html>

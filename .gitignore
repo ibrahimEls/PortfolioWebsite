@@ -9,3 +9,6 @@ package-lock.json
 yarn.lock
 netlify
 .claude/
+3d-vid-info/
+__pycache__/
+*.pyc
