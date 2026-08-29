@@ -4247,9 +4247,16 @@ button.btn--pill {
 	color     : inherit;
 }
 
+.post-list__thumbs {
+	flex          : none;
+	width         : 19rem;
+	display       : flex;
+	flex-direction: column;
+	gap           : var(--vspace-0_5);
+}
+
 .post-list__thumb {
-	flex         : none;
-	width        : 19rem;
+	width        : 100%;
 	border-radius: 0.6rem;
 	overflow     : hidden;
 	background   : #fff;
@@ -5419,5 +5426,5 @@ sup { top: -0.45em; }
 
 @media screen and (max-width: 480px) {
 	.post-list__link { flex-direction: column; }
-	.post-list__thumb { width: 60%; }
+	.post-list__thumbs { width: 100%; }
 }
