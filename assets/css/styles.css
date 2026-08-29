@@ -4249,24 +4249,49 @@ button.btn--pill {
 
 .post-list__thumbs {
 	flex          : none;
-	width         : 19rem;
+	width         : 26rem;
 	display       : flex;
 	flex-direction: column;
-	gap           : var(--vspace-0_5);
+	gap           : var(--vspace-0_25);
 }
 
+/* the artwork is transparent, so it sits straight on the card instead of in
+   a framed box; a soft wash behind it keeps it from reading as loose debris */
 .post-list__thumb {
-	width        : 100%;
-	border-radius: 0.6rem;
-	overflow     : hidden;
-	background   : #fff;
-	border       : 1px solid var(--color-3-dark);
+	position     : relative;
+	border-radius: 0.9rem;
+	padding      : 0.3rem 0.4rem;
+}
+
+.post-list__thumb::before {
+	content      : "";
+	position     : absolute;
+	inset        : 0;
+	border-radius: inherit;
+	background   : radial-gradient(115% 95% at 50% 45%,
+	               rgba(255, 255, 255, 0.9) 0%,
+	               rgba(255, 255, 255, 0) 70%);
+}
+
+/* the tree is a wide detail crop, so it gets to bleed past the column edge
+   while the parameter-space cube stays inset */
+.post-list__thumb--wide {
+	margin-left : -0.9rem;
+	margin-right: -1.6rem;
 }
 
 .post-list__thumb img {
-	display: block;
-	width  : 100%;
-	height : auto;
+	position  : relative;
+	display   : block;
+	width     : 100%;
+	height    : auto;
+	filter    : drop-shadow(0 3px 9px rgba(0, 0, 0, 0.11));
+	transition: transform 0.3s ease;
+}
+
+.post-list__link:hover .post-list__thumb img,
+.post-list__link:focus .post-list__thumb img {
+	transform: scale(1.035);
 }
 
 .post-list__body { flex: 1; min-width: 0; }
@@ -5439,6 +5464,7 @@ sup { top: -0.45em; }
 @media screen and (max-width: 480px) {
 	.post-list__link { flex-direction: column; }
 	.post-list__thumbs { width: 100%; }
+	.post-list__thumb--wide { margin-left: 0; margin-right: 0; }
 }
 
 /* --- blog: paper and code links in the post header --- */
