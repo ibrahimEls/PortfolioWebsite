@@ -162,7 +162,7 @@
 
                                 <figure class="ps3d" id="ps3d"
                                         data-dir="../assets/data/param-space"
-                                        data-lagrangians="06,10">
+                                        data-default="6">
 
                                     <div class="ps3d__bar">
                                         <button type="button" class="ps3d__play" aria-label="Play animation">Play</button>
@@ -175,10 +175,7 @@
 
                                     <div class="ps3d__controls">
                                         <label>Lagrangian
-                                            <select class="ps3d__lagrangian">
-                                                <option value="06">6 &middot; inert doublet (d = 5)</option>
-                                                <option value="10">10 &middot; dark photon scalar (d = 10)</option>
-                                            </select>
+                                            <select class="ps3d__lagrangian"></select>
                                         </label>
                                         <label>x <select class="ps3d__x"></select></label>
                                         <label>y <select class="ps3d__y"></select></label>
@@ -222,9 +219,10 @@
                                 <h2>Additional materials</h2>
 
                                 <p>
-                                    The same export for the remaining benchmark classes. Each file carries the full
-                                    probe table for the episode, the per-turn policy heads as Beta parameters, and
-                                    the sampling bounds needed to map the normalized cube back to physical units.
+                                    The underlying export for every benchmark class, all of which can be loaded in
+                                    the figure above. Each file carries the full probe table for the episode, the
+                                    per-turn policy heads as Beta parameters, and the sampling bounds needed to map
+                                    the normalized cube back to physical units.
                                 </p>
 
                                 <ul class="data-list" id="ps3d-extra"></ul>

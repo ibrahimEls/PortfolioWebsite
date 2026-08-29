@@ -1,5 +1,4 @@
-/* Builds the additional-materials download list from the data index,
-   skipping the Lagrangians already shown in the interactive figure. */
+/* Builds the additional-materials download list from the data index. */
 (function () {
     'use strict';
 
@@ -8,9 +7,6 @@
     if (!list || !fig) return;
 
     var dir = fig.getAttribute('data-dir');
-    var shown = fig.getAttribute('data-lagrangians').split(',').map(Number);
-
-    function pad(n) { return (n < 10 ? '0' : '') + n; }
 
     function label(cls) {
         return cls.replace(/_/g, ' ');
@@ -20,12 +16,11 @@
         .then(function (r) { return r.json(); })
         .then(function (idx) {
             idx.lagrangians
-                .filter(function (e) { return shown.indexOf(e.number) === -1; })
                 .sort(function (a, b) { return a.number - b.number; })
                 .forEach(function (e) {
                     var li = document.createElement('li');
                     var a = document.createElement('a');
-                    a.href = dir + '/lagrangian_' + pad(e.number) + '.json';
+                    a.href = dir + '/' + e.file;
                     a.setAttribute('download', '');
                     a.textContent = 'Lagrangian ' + e.number + ' · ' + label(e.cls);
                     var meta = document.createElement('span');

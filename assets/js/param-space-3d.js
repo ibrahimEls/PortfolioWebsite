@@ -19,7 +19,7 @@
     if (!root || typeof Plotly === 'undefined') return;
 
     var DATA_DIR = root.getAttribute('data-dir');
-    var CHOICES = root.getAttribute('data-lagrangians').split(',');
+    var DEFAULT_N = root.getAttribute('data-default') || '6';
 
     var COL = { excluded: '#8d9196', current: '#ff3b3b', viable: '#f5b301' };
     var HEAD_COLORS = ['#3b6ea5', '#12a4a4', '#7d55c7', '#c2571a'];
@@ -243,7 +243,7 @@
         });
     }
 
-    function load(num) {
+    function load(file, num) {
         stop();
         status.textContent = 'Loading Lagrangian ' + num + '…';
         var done = function (data) {
@@ -255,16 +255,43 @@
             slider.value = D.turns.length - 1;
             render(+slider.value);
         };
-        if (cache[num]) return done(cache[num]);
-        fetch(DATA_DIR + '/lagrangian_' + num + '.json')
+        if (cache[file]) return done(cache[file]);
+        fetch(DATA_DIR + '/' + file)
             .then(function (r) {
                 if (!r.ok) throw new Error(r.status);
                 return r.json();
             })
-            .then(function (data) { cache[num] = data; done(data); })
+            .then(function (data) { cache[file] = data; done(data); })
             .catch(function (err) {
                 status.textContent = 'Could not load the data for Lagrangian '
                     + num + ' (' + err.message + ').';
+            });
+    }
+
+    // Options come from the data index so the menu tracks whatever was built.
+    function buildMenu() {
+        return fetch(DATA_DIR + '/index.json')
+            .then(function (r) { return r.json(); })
+            .then(function (idx) {
+                idx.lagrangians
+                    .sort(function (a, b) { return a.number - b.number; })
+                    .forEach(function (e) {
+                        var o = document.createElement('option');
+                        o.value = e.file;
+                        o.setAttribute('data-number', e.number);
+                        o.textContent = e.number + ' · '
+                            + e.cls.replace(/_/g, ' ')
+                            + ' (d = ' + e.d + ', ' + e.nViable + ' viable)';
+                        if (String(e.number) === String(DEFAULT_N)) {
+                            o.selected = true;
+                        }
+                        selLagr.appendChild(o);
+                    });
+                var sel = selLagr.options[selLagr.selectedIndex];
+                load(sel.value, sel.getAttribute('data-number'));
+            })
+            .catch(function () {
+                status.textContent = 'Could not load the data index.';
             });
     }
 
@@ -282,7 +309,10 @@
             render(+slider.value);
         });
     });
-    selLagr.addEventListener('change', function () { load(selLagr.value); });
+    selLagr.addEventListener('change', function () {
+        var opt = selLagr.options[selLagr.selectedIndex];
+        load(opt.value, opt.getAttribute('data-number'));
+    });
 
-    load(CHOICES[0]);
+    buildMenu();
 })();
