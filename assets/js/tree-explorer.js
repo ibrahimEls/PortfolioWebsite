@@ -422,8 +422,41 @@
         if (b === 'no') return 'No';
         if (b === 'observed') return 'Observed';
         if (b === 'not observed') return 'Not observed';
-        if (b === 'llm split') return 'Follow LLM-agent';
+        if (b === 'llm split') {
+            // Following the agent is a single decision, taken at the
+            // literature search. Where a region carries several competing
+            // proposals there is a real choice, so name them.
+            if (child.type === 'novel') {
+                var t = child.label || 'Proposal ' + (i + 1);
+                return t.length > 42 ? t.slice(0, 41).trim() + '…' : t;
+            }
+            return 'Follow LLM-agent';
+        }
         return 'Option ' + (i + 1);
+    }
+
+    /* A region whose only continuation is one agent proposal needs no
+       decision: the reader already chose to follow the agent at the
+       literature search, so step through it. */
+    function autoSkip(n) {
+        var k = n.children || [];
+        return k.length === 1 && k[0].type === 'novel'
+            && (k[0].branch || '').toLowerCase() === 'llm split';
+    }
+
+    function advanceTo(node) {
+        cursor = node;
+        while (autoSkip(cursor)) {
+            path.push(cursor);
+            cursor = cursor.children[0];
+        }
+    }
+
+    function stepBack() {
+        if (!path.length) return;
+        cursor = path.pop();
+        // do not land on a node the walk steps through automatically
+        while (path.length && autoSkip(cursor)) cursor = path.pop();
     }
 
     function drawWalkTree() {
@@ -497,7 +530,10 @@
             return q.length > 74 ? q.slice(0, 73).trim() + '…' : q;
         }
 
+        // nodes the walk steps through on its own were never a decision
+        var taken = path.filter(function (p) { return !autoSkip(p); });
         var steps = path.map(function (p, i) {
+            if (autoSkip(p)) return '';
             var next = path[i + 1] || cursor;
             var t = TYPE[p.type] || TYPE.probe;   // same palette as the graph
             return '<li><span class="ctree__step-node" style="background:'
@@ -522,7 +558,7 @@
             + '<div><span>' + lagr + '</span>'
             + ((isEnd && cursor.lagrangians === 1) ? 'Lagrangian left' : 'Lagrangians left')
             + '</div>'
-            + '<div><span>' + path.length + '</span>decisions made</div>'
+            + '<div><span>' + taken.length + '</span>decisions made</div>'
             + '<div><span>' + (a.leaves || 0) + '</span>'
             + (a.leaves === 1 ? 'region ahead' : 'regions ahead') + '</div>'
             + '</div>';
@@ -598,17 +634,21 @@
         wireReasoning(ask, cursor);
         ask.querySelectorAll('.ctree__answers button').forEach(function (b) {
             b.addEventListener('click', function () {
+                var next = cursor.children[+b.getAttribute('data-i')];
                 path.push(cursor);
-                cursor = cursor.children[+b.getAttribute('data-i')];
+                advanceTo(next);
                 renderWalk();
             });
         });
         var back = ask.querySelector('.ctree__back');
         if (back) back.addEventListener('click', function () {
-            if (path.length) { cursor = path.pop(); renderWalk(); }
+            stepBack();
+            renderWalk();
         });
         ask.querySelector('.ctree__restart').addEventListener('click', function () {
-            cursor = data.tree; path = []; renderWalk();
+            path = [];
+            advanceTo(data.tree);
+            renderWalk();
         });
     }
 
@@ -635,6 +675,7 @@
         });
         cursor = payload.tree;
         path = [];
+        advanceTo(payload.tree);
         var s = payload.stats || {};
         var a = payload.tree.agg || {};
         status.textContent = a.pts.toLocaleString() + ' points, ' + s.nodes
