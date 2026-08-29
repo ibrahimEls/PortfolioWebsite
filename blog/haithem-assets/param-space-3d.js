@@ -329,27 +329,71 @@
             });
     }
 
+    /* A native <select> cannot wrap an option over two lines, and the
+       field content of the larger Lagrangians is long enough to stretch
+       the control across the figure. This is a small listbox instead:
+       the field content on one line, the size on another. */
+    var combo = {
+        btn: selLagr.querySelector('.combo__btn'),
+        name: selLagr.querySelector('.combo__name'),
+        meta: selLagr.querySelector('.combo__meta'),
+        list: selLagr.querySelector('.combo__list'),
+        items: []
+    };
+
+    function comboOpen(open) {
+        combo.list.hidden = !open;
+        combo.btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        selLagr.classList.toggle('is-open', open);
+    }
+
+    function comboSelect(e) {
+        combo.name.textContent = e.number + '. '
+            + (e.field || e.cls.replace(/_/g, ' '));
+        combo.meta.textContent = 'd = ' + e.d + ', ' + e.nViable + ' viable';
+        combo.items.forEach(function (li) {
+            li.setAttribute('aria-selected',
+                li.getAttribute('data-file') === e.file ? 'true' : 'false');
+        });
+        comboOpen(false);
+        load(e.file, e.number);
+    }
+
+    combo.btn.addEventListener('click', function () {
+        comboOpen(combo.list.hidden);
+    });
+    document.addEventListener('click', function (ev) {
+        if (!selLagr.contains(ev.target)) comboOpen(false);
+    });
+    document.addEventListener('keydown', function (ev) {
+        if (ev.key === 'Escape') comboOpen(false);
+    });
+
     // Options come from the data index so the menu tracks whatever was built.
     function buildMenu() {
         return fetch(DATA_DIR + '/index.json')
             .then(function (r) { return r.json(); })
             .then(function (idx) {
-                idx.lagrangians
-                    .sort(function (a, b) { return a.number - b.number; })
-                    .forEach(function (e) {
-                        var o = document.createElement('option');
-                        o.value = e.file;
-                        o.setAttribute('data-number', e.number);
-                        o.textContent = e.number + '. '
-                            + (e.field || e.cls.replace(/_/g, ' '))
-                            + ' (d = ' + e.d + ', ' + e.nViable + ' viable)';
-                        if (String(e.number) === String(DEFAULT_N)) {
-                            o.selected = true;
-                        }
-                        selLagr.appendChild(o);
+                var rows = idx.lagrangians.slice().sort(function (a, b) {
+                    return a.number - b.number;
+                });
+                var initial = rows[0];
+                rows.forEach(function (e) {
+                    var li = document.createElement('li');
+                    li.setAttribute('role', 'option');
+                    li.setAttribute('data-file', e.file);
+                    li.innerHTML = '<span class="combo__name">' + e.number
+                        + '. ' + (e.field || e.cls.replace(/_/g, ' '))
+                        + '</span><span class="combo__meta">d = ' + e.d
+                        + ', ' + e.nViable + ' viable</span>';
+                    li.addEventListener('click', function () {
+                        comboSelect(e);
                     });
-                var sel = selLagr.options[selLagr.selectedIndex];
-                load(sel.value, sel.getAttribute('data-number'));
+                    combo.list.appendChild(li);
+                    combo.items.push(li);
+                    if (String(e.number) === String(DEFAULT_N)) initial = e;
+                });
+                comboSelect(initial);
             })
             .catch(function () {
                 status.textContent = 'Could not load the data index.';
@@ -370,10 +414,5 @@
             render(+slider.value);
         });
     });
-    selLagr.addEventListener('change', function () {
-        var opt = selLagr.options[selLagr.selectedIndex];
-        load(opt.value, opt.getAttribute('data-number'));
-    });
-
     buildMenu();
 })();

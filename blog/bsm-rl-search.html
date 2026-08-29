@@ -145,8 +145,11 @@
                                 </p>
 
                                 <figure class="embed-figure">
-                                    <iframe src="haithem-assets/alphazero-parameter-space.html"
-                                            title="AlphaZero-style parameter-space search"></iframe>
+                                    <div class="embed-figure__frame" data-w="1400" data-h="720">
+                                        <iframe src="haithem-assets/alphazero-parameter-space.html"
+                                                title="AlphaZero-style parameter-space search"
+                                                scrolling="no"></iframe>
+                                    </div>
                                     <figcaption>
                                         The search as a game: an AlphaZero-style agent proposing points in
                                         the parameter space of a Lagrangian.
@@ -183,9 +186,16 @@
                                     <div class="ps3d__plot"></div>
 
                                     <div class="ps3d__controls">
-                                        <label>Lagrangian
-                                            <select class="ps3d__lagrangian"></select>
-                                        </label>
+                                        <span class="ps3d__combo-wrap">Lagrangian
+                                            <div class="combo ps3d__lagrangian">
+                                                <button type="button" class="combo__btn"
+                                                        aria-haspopup="listbox" aria-expanded="false">
+                                                    <span class="combo__name"></span>
+                                                    <span class="combo__meta"></span>
+                                                </button>
+                                                <ul class="combo__list" role="listbox" hidden></ul>
+                                            </div>
+                                        </span>
                                         <label>x <select class="ps3d__x"></select></label>
                                         <label>y <select class="ps3d__y"></select></label>
                                         <label>z <select class="ps3d__z"></select></label>
@@ -198,7 +208,7 @@
                                         Grey points are excluded probes, red rings are the probes proposed on the
                                         current turn, and gold marks parameter points that survive every constraint.
                                         The translucent shells are the policy heads, drawn at central probability
-                                        masses of 0.30, 0.62 and 0.86 of their per-dimension Beta marginals ,
+                                        masses of 0.30, 0.62 and 0.86 of their per-dimension Beta marginals,
                                         these are probability masses, not &sigma; contours.
                                     </figcaption>
                                 </figure>
@@ -330,6 +340,29 @@
                                     </figcaption>
                                 </figure>
 
+                                <figure class="static-figure">
+                                    <img src="haithem-assets/figures/total-viable-count-vs-budget-summed-over-21-benchmark-lagrangians.png"
+                                         alt="Total viable points found against probe budget for each method">
+                                    <figcaption>
+                                        Summed over all 21 benchmark Lagrangians, the RL policies stay ahead
+                                        of both differential evolution and the pre-trained-only models at
+                                        every budget, and the gap is widest when probes are scarcest.
+                                        <a href="haithem-assets/pdf/total-viable-count-vs-budget-summed-over-21-benchmark-lagrangians.pdf">PDF</a>
+                                    </figcaption>
+                                </figure>
+
+                                <figure class="static-figure static-figure--wide">
+                                    <img src="haithem-assets/figures/diversity-benchmark.png"
+                                         alt="Distinct signature classes and regions per 100 viable points by method">
+                                    <figcaption>
+                                        Finding more points is not the same as finding more kinds of point.
+                                        The RL policies also return the most distinct signature classes, and
+                                        every learned model spreads its survivors over about twice as many
+                                        disconnected regions per 100 viable points as differential evolution.
+                                        <a href="haithem-assets/pdf/diversity-benchmark.pdf">PDF</a>
+                                    </figcaption>
+                                </figure>
+
                                 <h2>What comes next</h2>
 
                                 <p>
@@ -440,6 +473,7 @@
     <script src="haithem-assets/param-space-3d.js"></script>
     <script src="haithem-assets/tree-explorer.js"></script>
     <script src="haithem-assets/param-space-list.js"></script>
+    <script src="haithem-assets/embed-fit.js"></script>
 
 </body>
 </html>
