@@ -1,0 +1,13 @@
+digraph "RsSg_DM.Z2+3+4+5" {
+graph [label="Real Scalar Singlet\n877 viable points", labelloc="t", labeljust="c", fontsize="20", fontname="Helvetica-Bold"];
+	rankdir=LR
+	root [label="BR(h->inv) >= 0.001?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes [label="See anything at LZ?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes [label="5 pts, 3 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes -> root_yes_yes [label=yes]
+	root_yes_no [label="463 pts, 1 region, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes -> root_yes_no [label=no]
+	root -> root_yes [label=yes]
+	root_no [label="409 pts, 1 region, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root -> root_no [label=no]
+}

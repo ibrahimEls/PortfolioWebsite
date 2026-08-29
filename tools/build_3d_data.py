@@ -20,6 +20,40 @@ import sys
 LEVELS = (0.30, 0.62, 0.86)   # render.levels; central probability mass, NOT sigma
 MAX_POINTS = 9000             # cap on probe rows per Lagrangian
 
+# Field content per benchmark class, from the paper's table of the 21
+# Lagrangian classes (ordered by parameter dimension d).
+FIELDS = {
+    1:  "Z₃: Real Scalar Singlet",
+    2:  "Z₃: Real Majorana Singlet",
+    3:  "Z₃: Real Majorana Triplet",
+    4:  "Z₃: Complex Dirac Doublet",
+    5:  "Z₃: Complex Dirac Triplet",
+    6:  "Z₃: Complex Scalar Doublet",
+    7:  "Z₃: 3× Real Majorana Singlet",
+    8:  "Z₃: Complex Dirac Singlet",
+    9:  "Z₃: Real Majorana Singlet + Complex Dirac Doublet",
+    10: "Z₃: Complex Scalar Singlet",
+    11: "Z₃: Complex Scalar Singlet",
+    12: "Z₅: Complex Scalar Singlet",
+    13: "Z₄: Complex Dirac Doublet + 3× Complex Scalar Singlet "
+        "+ 2× Real Majorana Doublet + 2× Complex Dirac Singlet",
+    14: "Z₄: Real Scalar Singlet + Real Majorana Singlet "
+        "+ Complex Dirac Singlet",
+    15: "Z₂: Complex Scalar Doublet + 4× Complex Dirac Singlet "
+        "+ 2× Complex Dirac Doublet",
+    16: "Z₄: 2× Real Majorana Doublet + 2× Complex Scalar Singlet "
+        "+ 3× Complex Scalar Doublet",
+    17: "Z₃: Complex Scalar Singlet + Complex Dirac Singlet "
+        "+ Real Scalar Singlet",
+    18: "Z₂: Real Majorana Singlet + Complex Scalar Singlet",
+    19: "Z₂: 4× Real Majorana Singlet + 2× Complex Scalar Singlet",
+    20: "Z₃: 2× Complex Scalar Singlet + 3× Real Majorana Singlet "
+        "+ 3× Complex Scalar Singlet",
+    21: "Z₅: 3× Complex Scalar Singlet + Real Majorana Doublet "
+        "+ 2× Complex Scalar Singlet",
+}
+U1_PRIME = {8, 10, 13, 15, 16, 17}   # classes carrying a dark U(1)'
+
 
 # --- regularized incomplete beta, and its inverse by bisection -------------
 
@@ -192,8 +226,12 @@ def main():
         out, n_in, n_out = convert(os.path.join(src_dir, entry["file"]),
                                    os.path.join(out_dir, name))
         mb = os.path.getsize(os.path.join(out_dir, name)) / 1e6
+        num = out["number"]
+        field = FIELDS.get(num, out["cls"].replace("_", " "))
+        if num in U1_PRIME:
+            field += " + U(1)′"
         manifest.append({
-            "number": out["number"], "cls": out["cls"], "d": out["d"],
+            "number": num, "cls": out["cls"], "field": field, "d": out["d"],
             "nViable": out["nViable"], "nTurns": len(out["turns"]),
             "file": name, "axes": out["axes"],
         })

@@ -1,0 +1,38 @@
+digraph "CsSg_DM.Z2+3+4+5" {
+	rankdir=LR
+	root [label="BR(h->inv) >= 0.001?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes [label="BR(h->inv) >= 0.0032?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes [label="See anything at LZ?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes_yes [label="112 pts, 112 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes -> root_yes_yes_yes [label=yes]
+	root_yes_yes_no [label="See anything at DarkSide?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes_no_yes [label="82 pts, 80 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes_no -> root_yes_yes_no_yes [label=yes]
+	root_yes_yes_no_no [label="25 pts, 25 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes_no -> root_yes_yes_no_no [label=no]
+	root_yes_yes -> root_yes_yes_no [label=no]
+	root_yes -> root_yes_yes [label=yes]
+	root_yes_no [label="2071 pts, 2032 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes -> root_yes_no [label=no]
+	root -> root_yes [label=yes]
+	root_no [label="5194 pts, 4815 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root -> root_no [label=no]
+
+// LLM-suggested splits
+root_yes_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>Higgs-factory ZH-recoil<BR/>invisible width (CEPC/FCC-<BR/>ee)<BR/>BR(h-&gt;inv) &gt;= 2.3e-3 ?<BR/>arXiv:1811.10545,<BR/>arXiv:1612.09284,<BR/>arXiv:1503.07675<BR/><B>Status: No Split!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_no -> root_yes_no_lit [style=dashed, label="LLM split"];
+root_yes_no_lit_o0_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>0.2%-resolution space<BR/>calorimeter, GC-halo line<BR/>survey<BR/>gamma-gamma line energy &gt;=<BR/>95.6 GeV ?<BR/><B>Feasibility: speculative</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_no_lit -> root_yes_no_lit_o0_novel0;
+root_yes_no_lit_o0_novel0_o0 [label="31 pts, 8 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_lit_o0_novel0 -> root_yes_no_lit_o0_novel0_o0;
+root_yes_no_lit_o0_novel0_o1 [label="23 pts, 7 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_lit_o0_novel0 -> root_yes_no_lit_o0_novel0_o1;
+root_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>CTA inner-halo continuum<BR/>search, WW/ZZ at ~98 GeV<BR/>&lt;sigma v&gt;(WW) &gt;= 1e-26 cm3/s<BR/>?<BR/>arXiv:2007.16129,<BR/>arXiv:1506.00013<BR/><B>Status: No Split!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_no -> root_no_lit [style=dashed, label="LLM split"];
+root_no_lit_o0_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>0.1%-resolution space<BR/>calorimeter, GC-halo line<BR/>survey<BR/>gamma-gamma line energy &gt;=<BR/>97.6 GeV ?<BR/><B>Feasibility: speculative</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_no_lit -> root_no_lit_o0_novel0;
+root_no_lit_o0_novel0_o0 [label="463 pts, 89 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_lit_o0_novel0 -> root_no_lit_o0_novel0_o0;
+root_no_lit_o0_novel0_o1 [label="7 pts, 2 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_lit_o0_novel0 -> root_no_lit_o0_novel0_o1;
+}

@@ -8,8 +8,8 @@
 
     var dir = fig.getAttribute('data-dir');
 
-    function label(cls) {
-        return cls.replace(/_/g, ' ');
+    function label(e) {
+        return e.field || e.cls.replace(/_/g, ' ');
     }
 
     fetch(dir + '/index.json')
@@ -22,11 +22,11 @@
                     var a = document.createElement('a');
                     a.href = dir + '/' + e.file;
                     a.setAttribute('download', '');
-                    a.textContent = 'Lagrangian ' + e.number + ' · ' + label(e.cls);
+                    a.textContent = 'Lagrangian ' + e.number + ', ' + label(e);
                     var meta = document.createElement('span');
                     meta.className = 'data-list__meta';
-                    meta.textContent = 'd = ' + e.d + ' · ' + e.nTurns
-                        + ' turns · ' + e.nViable + ' viable';
+                    meta.textContent = 'd = ' + e.d + ', ' + e.nTurns
+                        + ' turns, ' + e.nViable + ' viable';
                     li.appendChild(a);
                     li.appendChild(meta);
                     list.appendChild(li);

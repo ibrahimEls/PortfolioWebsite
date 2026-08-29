@@ -1,0 +1,17 @@
+digraph "CsDh_U1p.m_DM.Z2+3+4+5" {
+graph [label="Complex Scalar Doublet + dark U(1)-\n24 viable points", labelloc="t", labeljust="c", fontsize="20", fontname="Helvetica-Bold"];
+	rankdir=LR
+	root [label="BR(h->inv) >= 0.032?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes [label="BR(h->inv) >= 0.1?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes [label="1 pts, 1 region, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes -> root_yes_yes [label=yes]
+	root_yes_no [label="11 pts, 6 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes -> root_yes_no [label=no]
+	root -> root_yes [label=yes]
+	root_no [label="BR(h->inv) >= 0.01?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_yes [label="4 pts, 4 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no -> root_no_yes [label=yes]
+	root_no_no [label="8 pts, 6 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no -> root_no_no [label=no]
+	root -> root_no [label=no]
+}

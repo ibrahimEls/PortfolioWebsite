@@ -1,0 +1,98 @@
+digraph "CsSg_U1p.m_DM.Z2" {
+	rankdir=LR
+	root [label="See anything at XLZD?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes [label="See anything at IceCube-Gen2?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes [label="See anything at DarkSide?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes_yes [label="See anything at LZ?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes_yes_yes [label="9 pts, 9 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes_yes -> root_yes_yes_yes_yes [label=yes]
+	root_yes_yes_yes_no [label="35 pts, 33 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes_yes -> root_yes_yes_yes_no [label=no]
+	root_yes_yes -> root_yes_yes_yes [label=yes]
+	root_yes_yes_no [label="127 pts, 66 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes -> root_yes_yes_no [label=no]
+	root_yes -> root_yes_yes [label=yes]
+	root_yes_no [label="See anything at DarkSide?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes [label="See anything at LZ?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes [label="BR(h->inv) >= 0.0032?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_yes [label="1 pts, 1 region, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes -> root_yes_no_yes_yes_yes [label=yes]
+	root_yes_no_yes_yes_no [label="12 pts, 12 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes -> root_yes_no_yes_yes_no [label=no]
+	root_yes_no_yes -> root_yes_no_yes_yes [label=yes]
+	root_yes_no_yes_no [label="27 pts, 22 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes -> root_yes_no_yes_no [label=no]
+	root_yes_no -> root_yes_no_yes [label=yes]
+	root_yes_no_no [label="BR(h->inv) >= 0.001?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_no_yes [label="17 pts, 13 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_no -> root_yes_no_no_yes [label=yes]
+	root_yes_no_no_no [label="41 pts, 35 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_no -> root_yes_no_no_no [label=no]
+	root_yes_no -> root_yes_no_no [label=no]
+	root_yes -> root_yes_no [label=no]
+	root -> root_yes [label=yes]
+	root_no [label="See anything at IceCube-Gen2?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_yes [label="719 pts, 248 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no -> root_no_yes [label=yes]
+	root_no_no [label="BR(h->inv) >= 0.001?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_no_yes [label="BR(h->inv) >= 0.0032?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_no_yes_yes [label="BR(h->inv) >= 0.01?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes [label="BR(h->inv) >= 0.032?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes_yes [label="BR(h->inv) >= 0.1?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes_yes_yes [label="1 pts, 1 region, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes_yes -> root_no_no_yes_yes_yes_yes_yes [label=yes]
+	root_no_no_yes_yes_yes_yes_no [label="2 pts, 2 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes_yes -> root_no_no_yes_yes_yes_yes_no [label=no]
+	root_no_no_yes_yes_yes -> root_no_no_yes_yes_yes_yes [label=yes]
+	root_no_no_yes_yes_yes_no [label="3 pts, 1 region, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes -> root_no_no_yes_yes_yes_no [label=no]
+	root_no_no_yes_yes -> root_no_no_yes_yes_yes [label=yes]
+	root_no_no_yes_yes_no [label="3 pts, 3 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no_yes_yes -> root_no_no_yes_yes_no [label=no]
+	root_no_no_yes -> root_no_no_yes_yes [label=yes]
+	root_no_no_yes_no [label="16 pts, 16 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no_yes -> root_no_no_yes_no [label=no]
+	root_no_no -> root_no_no_yes [label=yes]
+	root_no_no_no [label="77 pts, 70 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no -> root_no_no_no [label=no]
+	root_no -> root_no_no [label=no]
+	root -> root_no [label=no]
+
+// LLM-suggested splits
+root_yes_yes_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>HL-LHC dark-photon dimuon<BR/>search (LHCb prompt + CMS<BR/>scouting)<BR/>A'-&gt;mumu peak, 10-165 GeV,<BR/>epsilon &gt;= 3e-4 ?<BR/>arXiv:1910.06926,<BR/>arXiv:1912.04776,<BR/>arXiv:1603.08926<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_yes_no -> root_yes_yes_no_lit [style=dashed, label="LLM split"];
+root_yes_yes_no_lit_o0_novel0 [label=<<B>LLM-Agent Novel Experiment Proposal</B><BR/>A' signal-strength mixing<BR/>extraction<BR/>epsilon from<BR/>sigma(A')xBR(mumu): epsilon<BR/>&gt;= 2e-3 ?<BR/><B>Feasibility: possible</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_yes_no_lit -> root_yes_yes_no_lit_o0_novel0;
+root_yes_yes_no_lit_o0_novel0_o0 [label="61 pts, 5 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_no_lit_o0_novel0 -> root_yes_yes_no_lit_o0_novel0_o0;
+root_yes_yes_no_lit_o0_novel0_o1 [label="4 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_no_lit_o0_novel0 -> root_yes_yes_no_lit_o0_novel0_o1;
+root_yes_yes_no_lit_o1 [label="3 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_no_lit -> root_yes_yes_no_lit_o1;
+root_yes_no_yes_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>CMS trigger-level dimuon<BR/>scouting resonance search<BR/>A'-&gt;mumu peak, 30-75 GeV,<BR/>epsilon &gt;= 1e-3 ?<BR/>arXiv:1912.04776,<BR/>arXiv:1910.06926<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_no_yes_no -> root_yes_no_yes_no_lit [style=dashed, label="LLM split"];
+root_yes_no_yes_no_lit_o0 [label="4 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_no_lit -> root_yes_no_yes_no_lit_o0;
+root_yes_no_yes_no_lit_o1 [label="3 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_no_lit -> root_yes_no_yes_no_lit_o1;
+root_no_yes_lit [label=<<B>LLM-Agent Literature Search</B><BR/>LHCb Run 3-6 + CMS HL dark-<BR/>photon dimuon search<BR/>A'-&gt;mumu peak, 3-135 GeV,<BR/>epsilon &gt;= 2e-4 ?<BR/>arXiv:1603.08926,<BR/>arXiv:1910.06926,<BR/>arXiv:1912.04776<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_no_yes -> root_no_yes_lit [style=dashed, label="LLM split"];
+root_no_yes_lit_o0_novel0 [label=<<B>LLM-Agent Novel Experiment Proposal</B><BR/>A' signal-strength mixing<BR/>extraction<BR/>epsilon from<BR/>sigma(A')xBR(mumu): epsilon<BR/>&gt;= 0.03 ?<BR/><B>Feasibility: possible</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_no_yes_lit -> root_no_yes_lit_o0_novel0;
+root_no_yes_lit_o0_novel0_o0 [label="22 pts, 6 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_yes_lit_o0_novel0 -> root_no_yes_lit_o0_novel0_o0;
+root_no_yes_lit_o0_novel0_o1 [label="420 pts, 7 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_yes_lit_o0_novel0 -> root_no_yes_lit_o0_novel0_o1;
+root_no_yes_lit_o1_novel1 [label=<<B>LLM-Agent Novel Experiment Proposal</B><BR/>CTA Galactic-centre cascade<BR/>spectral-endpoint fit<BR/>gamma-ray spectral cutoff<BR/>E_cut &gt;= 450 GeV ?<BR/><B>Feasibility: possible</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_no_yes_lit -> root_no_yes_lit_o1_novel1;
+root_no_yes_lit_o1_novel1_o0 [label="24 pts, 5 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_yes_lit_o1_novel1 -> root_no_yes_lit_o1_novel1_o0;
+root_no_yes_lit_o1_novel1_o1 [label="31 pts, 8 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_yes_lit_o1_novel1 -> root_no_yes_lit_o1_novel1_o1;
+root_no_no_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>Belle II visible dark-photon<BR/>search, e+e- -&gt; gamma A'<BR/>gamma + dilepton peak, m(A')<BR/>&lt; 8 GeV, epsilon &gt;= 3e-4 ?<BR/>arXiv:1406.2980,<BR/>arXiv:1808.10567<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_no_no_no -> root_no_no_no_lit [style=dashed, label="LLM split"];
+root_no_no_no_lit_o0 [label="5 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_no_lit -> root_no_no_no_lit_o0;
+root_no_no_no_lit_o1 [label="4 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_no_lit -> root_no_no_no_lit_o1;
+}

@@ -1,0 +1,24 @@
+digraph "Z2_CsSg_U1p.p_DM" {
+	rankdir=LR
+	root [label="See a signal 10x above the CTA (WW) limit?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes [label="See anything at DARWIN?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes [label="1 pts, 1 region, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes -> root_yes_yes [label=yes]
+	root_yes_no [label="29 pts, 18 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes -> root_yes_no [label=no]
+	root -> root_yes [label=yes]
+	root_no [label="See a signal 10x above the CTA (bb) limit?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_yes [label="6 pts, 6 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no -> root_no_yes [label=yes]
+	root_no_no [label="3 pts, 1 region, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no -> root_no_no [label=no]
+	root -> root_no [label=no]
+
+// LLM-suggested splits
+root_yes_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>LHCb/CMS dark-photon dimuon<BR/>search at m(Z') ~ 39 GeV<BR/>epsilon &gt;~ 0.01 (sigma x<BR/>BR(mumu) &gt;~ 1 pb) ?<BR/>arXiv:1910.06926,<BR/>arXiv:1912.04776,<BR/>arXiv:1412.0018<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_no -> root_yes_no_lit [style=dashed, label="LLM split"];
+root_yes_no_lit_o0 [label="R1\n3 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_lit -> root_yes_no_lit_o0;
+root_yes_no_lit_o1 [label="R0\n10 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_lit -> root_yes_no_lit_o1;
+}

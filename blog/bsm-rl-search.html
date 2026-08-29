@@ -137,7 +137,7 @@
                             <article class="post">
 
                                 <p class="lead">
-                                    Most of the parameter space of any beyond-the-Standard-Model theory is already dead. The interesting question is not which points a given experiment excludes &mdash; it is which points <em>nothing</em> excludes, and how you find them when the space is high-dimensional and every evaluation is expensive.
+                                    Most of the parameter space of any beyond-the-Standard-Model theory is already dead. The interesting question is not which points a given experiment excludes, it is which points <em>nothing</em> excludes, and how you find them when the space is high-dimensional and every evaluation is expensive.
                                 </p>
 
                                 <p>
@@ -147,7 +147,7 @@
                                 <h2>Why this is a search problem</h2>
 
                                 <p>
-                                    A single-field extension of the Standard Model can easily have five or more free parameters spanning several decades each. Scanning that space uniformly is hopeless: the viable regions are thin, curved, and vastly outnumbered by excluded volume. Worse, the exclusions come from a heterogeneous pile of experiments &mdash; direct detection at LZ, DarkSide, and XLZD, indirect detection at Fermi, CTA, IceCube-Gen2, and AMS-02, and collider bounds like the Higgs invisible branching ratio &mdash; each of which carves the space in a different direction.
+                                    A single-field extension of the Standard Model can easily have five or more free parameters spanning several decades each. Scanning that space uniformly is hopeless: the viable regions are thin, curved, and vastly outnumbered by excluded volume. Worse, the exclusions come from a heterogeneous pile of experiments, direct detection at LZ, DarkSide, and XLZD, indirect detection at Fermi, CTA, IceCube-Gen2, and AMS-02, and collider bounds like the Higgs invisible branching ratio, each of which carves the space in a different direction.
                                 </p>
 
                                 <p>
@@ -189,7 +189,7 @@
                                         Grey points are excluded probes, red rings are the probes proposed on the
                                         current turn, and gold marks parameter points that survive every constraint.
                                         The translucent shells are the policy heads, drawn at central probability
-                                        masses of 0.30, 0.62 and 0.86 of their per-dimension Beta marginals &mdash;
+                                        masses of 0.30, 0.62 and 0.86 of their per-dimension Beta marginals ,
                                         these are probability masses, not &sigma; contours.
                                     </figcaption>
                                 </figure>
@@ -201,19 +201,42 @@
                                 </p>
 
                                 <p>
-                                    Some of the most useful splits are the ones a literature-search agent proposes rather than the ones already in the pipeline &mdash; existing bounds nobody thought to apply to this corner of parameter space. Others are genuinely new observables the agent invents, tagged by how plausible they are to actually build.
+                                    Some of the most useful splits are the ones a literature-search agent proposes rather than the ones already in the pipeline, existing bounds nobody thought to apply to this corner of parameter space. Others are genuinely new observables the agent invents, tagged by how plausible they are to actually build.
                                 </p>
 
-                                <div class="figure-placeholder">
-                                    <span class="figure-placeholder__label">Interactive figure</span>
-                                    <h4>Constraint decision tree</h4>
-                                    <p>Collapsible tree over all 1-field Lagrangians. Click a node to see its criterion, the surviving point counts, and the references behind it.</p>
-                                </div>
+                                <figure class="ctree" id="ctree"
+                                        data-dir="../assets/data/trees"
+                                        data-default="global_tree">
+
+                                    <div class="ctree__controls">
+                                        <label>Tree
+                                            <select class="ctree__select"></select>
+                                        </label>
+                                        <button type="button" class="ctree__expand">Expand all</button>
+                                        <button type="button" class="ctree__collapse">Collapse</button>
+                                        <span class="ctree__status">Loading&hellip;</span>
+                                    </div>
+
+                                    <div class="ctree__body">
+                                        <div class="ctree__canvas">
+                                            <svg class="ctree__svg"></svg>
+                                        </div>
+                                        <aside class="ctree__panel"></aside>
+                                    </div>
+
+                                    <figcaption>
+                                        Click a node to open it and to read its details on the right. Drag to pan
+                                        and scroll to zoom. Blue nodes are standard experimental probes, gold are
+                                        literature searches proposed by the agent, orange are newly proposed
+                                        observables, and grey leaves are the surviving regions. Dashed links mark
+                                        where an agent split a region that the standard probes had left whole.
+                                    </figcaption>
+                                </figure>
 
                                 <h2>What comes next</h2>
 
                                 <p>
-                                    The open question is whether the observables the agent proposes are worth taking seriously as experimental targets &mdash; whether "this measurement would split the surviving parameter space in half" is a useful way to prioritize what to build next.
+                                    The open question is whether the observables the agent proposes are worth taking seriously as experimental targets, whether "this measurement would split the surviving parameter space in half" is a useful way to prioritize what to build next.
                                 </p>
 
                                 <h2>Additional materials</h2>
@@ -234,7 +257,7 @@
                                 </p>
 
                                 <p class="post-draft-note">
-                                    <strong>Draft:</strong> the body text above is placeholder written from the figures &mdash; rewrite it with the actual setup and results before sharing this link widely.
+                                    <strong>Draft:</strong> the body text above is placeholder written from the figures, rewrite it with the actual setup and results before sharing this link widely.
                                 </p>
 
                             </article>
@@ -316,7 +339,9 @@
     <script src="../assets/js/plugins.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly-gl3d.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <script src="../assets/js/param-space-3d.js"></script>
+    <script src="../assets/js/tree-explorer.js"></script>
     <script src="../assets/js/param-space-list.js"></script>
 
 </body>

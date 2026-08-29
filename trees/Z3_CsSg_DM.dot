@@ -1,0 +1,36 @@
+digraph Z3_CsSg_DM {
+	rankdir=LR
+	root [label="BR(h->inv) >= 0.001?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes [label="BR(h->inv) >= 0.0032?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes [label="See anything at DARWIN?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes_yes [label="45 pts, 45 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes -> root_yes_yes_yes [label=yes]
+	root_yes_yes_no [label="41 pts, 39 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes -> root_yes_yes_no [label=no]
+	root_yes -> root_yes_yes [label=yes]
+	root_yes_no [label="1117 pts, 1097 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes -> root_yes_no [label=no]
+	root -> root_yes [label=yes]
+	root_no [label="116 pts, 111 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root -> root_no [label=no]
+
+// LLM-suggested splits
+root_yes_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>Merging-cluster DM self-<BR/>interaction limit<BR/>sigma/m &lt; 0.5 cm^2/g ?<BR/>arXiv:1503.07675,<BR/>arXiv:0704.0261<BR/><B>Status: No Split!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_no -> root_yes_no_lit [style=dashed, label="LLM split"];
+root_yes_no_lit_o0_novel0 [label=<<B>LLM-Agent Novel Experiment Proposal</B><BR/>Sub-0.1% GC gamma-line<BR/>spectrometer<BR/>E(gamma line): &lt;95.75 /<BR/>95.75-95.83 / &gt;=95.83 GeV ?<BR/><B>Feasibility: speculative</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_no_lit -> root_yes_no_lit_o0_novel0;
+root_yes_no_lit_o0_novel0_o0 [label="R1+R5\n9 pts, 2 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_lit_o0_novel0 -> root_yes_no_lit_o0_novel0_o0;
+root_yes_no_lit_o0_novel0_o1 [label="R3+R4+R6\n9 pts, 3 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_lit_o0_novel0 -> root_yes_no_lit_o0_novel0_o1;
+root_yes_no_lit_o0_novel0_o2 [label="R0+R2\n9 pts, 2 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_lit_o0_novel0 -> root_yes_no_lit_o0_novel0_o2;
+root_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>Merging-cluster DM self-<BR/>interaction limit<BR/>sigma/m &lt; 0.5 cm^2/g ?<BR/>arXiv:1503.07675,<BR/>arXiv:0704.0261<BR/><B>Status: No Split!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_no -> root_no_lit [style=dashed, label="LLM split"];
+root_no_lit_o0_novel0 [label=<<B>LLM-Agent Novel Experiment Proposal</B><BR/>Sub-0.1% GC gamma-line<BR/>spectrometer<BR/>E(gamma line) &gt;= 97.5 GeV ?<BR/><B>Feasibility: speculative</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_no_lit -> root_no_lit_o0_novel0;
+root_no_lit_o0_novel0_o0 [label="R1\n3 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_lit_o0_novel0 -> root_no_lit_o0_novel0_o0;
+root_no_lit_o0_novel0_o1 [label="R0\n4 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_lit_o0_novel0 -> root_no_lit_o0_novel0_o1;
+}

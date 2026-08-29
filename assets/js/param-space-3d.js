@@ -279,8 +279,8 @@
                         var o = document.createElement('option');
                         o.value = e.file;
                         o.setAttribute('data-number', e.number);
-                        o.textContent = e.number + ' · '
-                            + e.cls.replace(/_/g, ' ')
+                        o.textContent = e.number + '. '
+                            + (e.field || e.cls.replace(/_/g, ' '))
                             + ' (d = ' + e.d + ', ' + e.nViable + ' viable)';
                         if (String(e.number) === String(DEFAULT_N)) {
                             o.selected = true;
