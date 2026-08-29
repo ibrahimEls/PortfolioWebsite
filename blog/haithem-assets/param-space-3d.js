@@ -36,6 +36,7 @@
     var selZ = root.querySelector('.ps3d__z');
 
     var D = null;          // current dataset
+    var byFile = {};
     var timer = null;
     var drawn = false;
     var cache = {};
@@ -120,7 +121,7 @@
     // --- trace building ---------------------------------------------------
 
     function currentAxes() {
-        return [selX.value, selY.value, selZ.value];
+        return [comboX.value(), comboY.value(), comboZ.value()];
     }
 
     function buildTraces(turn) {
@@ -292,15 +293,16 @@
     // --- dataset loading --------------------------------------------------
 
     function fillAxisSelects() {
-        [selX, selY, selZ].forEach(function (sel, i) {
-            sel.innerHTML = '';
-            D.params.forEach(function (n) {
-                var o = document.createElement('option');
-                o.value = n;
-                o.textContent = optionLabel(n);
-                sel.appendChild(o);
-            });
-            sel.value = [D.axes.x, D.axes.y, D.axes.z][i];
+        var rows = D.params.map(function (n) {
+            return {
+                value: n,
+                html: symbol(n, true)
+                    + (D.kind[n] === 'mass' ? ' [GeV]' : ''),
+                meta: D.kind[n]
+            };
+        });
+        [comboX, comboY, comboZ].forEach(function (c, i) {
+            c.set(rows, [D.axes.x, D.axes.y, D.axes.z][i]);
         });
     }
 
@@ -329,71 +331,104 @@
             });
     }
 
-    /* A native <select> cannot wrap an option over two lines, and the
-       field content of the larger Lagrangians is long enough to stretch
-       the control across the figure. This is a small listbox instead:
-       the field content on one line, the size on another. */
-    var combo = {
-        btn: selLagr.querySelector('.combo__btn'),
-        name: selLagr.querySelector('.combo__name'),
-        meta: selLagr.querySelector('.combo__meta'),
-        list: selLagr.querySelector('.combo__list'),
-        items: []
-    };
+    /* Native <select> options are plain text: they cannot wrap onto a
+       second line, and they cannot render a subscript, so a long field
+       content stretches the control and M_Z' shows its underscore. These
+       are small listboxes instead, which take real markup. */
+    function makeCombo(el) {
+        var btn = el.querySelector('.combo__btn');
+        var name = el.querySelector('.combo__btn .combo__name');
+        var meta = el.querySelector('.combo__btn .combo__meta');
+        var list = el.querySelector('.combo__list');
+        var value = null, onPick = null;
 
-    function comboOpen(open) {
-        combo.list.hidden = !open;
-        combo.btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        selLagr.classList.toggle('is-open', open);
-    }
-
-    function comboSelect(e) {
-        combo.name.textContent = e.number + '. '
-            + (e.field || e.cls.replace(/_/g, ' '));
-        combo.meta.textContent = 'd = ' + e.d + ', ' + e.nViable + ' viable';
-        combo.items.forEach(function (li) {
-            li.setAttribute('aria-selected',
-                li.getAttribute('data-file') === e.file ? 'true' : 'false');
+        function open(o) {
+            list.hidden = !o;
+            btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+            el.classList.toggle('is-open', o);
+        }
+        btn.addEventListener('click', function () { open(list.hidden); });
+        document.addEventListener('click', function (ev) {
+            if (!el.contains(ev.target)) open(false);
         });
-        comboOpen(false);
-        load(e.file, e.number);
+        document.addEventListener('keydown', function (ev) {
+            if (ev.key === 'Escape') open(false);
+        });
+
+        var api = {
+            value: function () { return value; },
+            change: function (cb) { onPick = cb; },
+            select: function (v, quiet) {
+                var row = api.rows.filter(function (r) {
+                    return String(r.value) === String(v);
+                })[0];
+                if (!row) return;
+                value = row.value;
+                name.innerHTML = row.html;
+                if (meta) meta.innerHTML = row.meta || '';
+                Array.prototype.forEach.call(list.children, function (li) {
+                    li.setAttribute('aria-selected',
+                        String(li.getAttribute('data-value')) === String(value)
+                            ? 'true' : 'false');
+                });
+                open(false);
+                if (!quiet && onPick) onPick(value);
+            },
+            rows: [],
+            set: function (rows, initial) {
+                api.rows = rows;
+                list.innerHTML = '';
+                rows.forEach(function (r) {
+                    var li = document.createElement('li');
+                    li.setAttribute('role', 'option');
+                    li.setAttribute('data-value', r.value);
+                    li.innerHTML = '<span class="combo__name">' + r.html
+                        + '</span>'
+                        + (r.meta ? '<span class="combo__meta">' + r.meta
+                                  + '</span>' : '');
+                    li.addEventListener('click', function () {
+                        api.select(r.value);
+                    });
+                    list.appendChild(li);
+                });
+                api.select(initial, true);
+            }
+        };
+        return api;
     }
 
-    combo.btn.addEventListener('click', function () {
-        comboOpen(combo.list.hidden);
-    });
-    document.addEventListener('click', function (ev) {
-        if (!selLagr.contains(ev.target)) comboOpen(false);
-    });
-    document.addEventListener('keydown', function (ev) {
-        if (ev.key === 'Escape') comboOpen(false);
-    });
+    var comboLagr = makeCombo(selLagr);
+    var comboX = makeCombo(selX);
+    var comboY = makeCombo(selY);
+    var comboZ = makeCombo(selZ);
 
     // Options come from the data index so the menu tracks whatever was built.
     function buildMenu() {
         return fetch(DATA_DIR + '/index.json')
             .then(function (r) { return r.json(); })
             .then(function (idx) {
-                var rows = idx.lagrangians.slice().sort(function (a, b) {
+                var entries = idx.lagrangians.slice().sort(function (a, b) {
                     return a.number - b.number;
                 });
-                var initial = rows[0];
-                rows.forEach(function (e) {
-                    var li = document.createElement('li');
-                    li.setAttribute('role', 'option');
-                    li.setAttribute('data-file', e.file);
-                    li.innerHTML = '<span class="combo__name">' + e.number
-                        + '. ' + (e.field || e.cls.replace(/_/g, ' '))
-                        + '</span><span class="combo__meta">d = ' + e.d
-                        + ', ' + e.nViable + ' viable</span>';
-                    li.addEventListener('click', function () {
-                        comboSelect(e);
-                    });
-                    combo.list.appendChild(li);
-                    combo.items.push(li);
-                    if (String(e.number) === String(DEFAULT_N)) initial = e;
+                byFile = {};
+                var initial = entries[0].file;
+                var rows = entries.map(function (e) {
+                    byFile[e.file] = e;
+                    if (String(e.number) === String(DEFAULT_N)) {
+                        initial = e.file;
+                    }
+                    return {
+                        value: e.file,
+                        html: e.number + '. '
+                            + (e.field || e.cls.replace(/_/g, ' ')),
+                        meta: 'd = ' + e.d + '<br>' + e.nViable + ' viable'
+                    };
                 });
-                comboSelect(initial);
+                comboLagr.change(function (file) {
+                    load(file, byFile[file].number);
+                });
+                comboLagr.set(rows, initial);
+                load(initial, byFile[initial].number);
             })
             .catch(function () {
                 status.textContent = 'Could not load the data index.';
@@ -407,8 +442,8 @@
         render(+slider.value);
     });
     playBtn.addEventListener('click', play);
-    [selX, selY, selZ].forEach(function (sel) {
-        sel.addEventListener('change', function () {
+    [comboX, comboY, comboZ].forEach(function (c) {
+        c.change(function () {
             drawn = false;
             plot.innerHTML = '';
             render(+slider.value);

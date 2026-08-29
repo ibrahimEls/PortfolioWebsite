@@ -444,6 +444,15 @@
             && (k[0].branch || '').toLowerCase() === 'llm split';
     }
 
+    /* The node a branch actually leads to once the automatic steps are
+       taken, so the diagram connects a literature search straight to the
+       proposals rather than through the region summary in between. */
+    function landingNode(n) {
+        var cur = n;
+        while (autoSkip(cur)) cur = cur.children[0];
+        return cur;
+    }
+
     function advanceTo(node) {
         cursor = node;
         while (autoSkip(cursor)) {
@@ -466,7 +475,8 @@
         var spacing = 132;
         kids.forEach(function (c, i) {
             nodes.push({
-                data: c, x: (i - (kids.length - 1) / 2) * spacing, y: 430
+                data: landingNode(c), branchOf: c,
+                x: (i - (kids.length - 1) / 2) * spacing, y: 430
             });
         });
         nodes.forEach(function (d) { d.box = box(d.data, WK); });
@@ -476,11 +486,11 @@
         g.append('g').attr('fill', 'none').selectAll('path')
             .data(nodes.slice(1)).enter().append('path')
             .attr('stroke', function (d) {
-                return d.data.dashed ? '#c9a227' : '#c3c8cd';
+                return (d.branchOf || d.data).dashed ? '#c9a227' : '#c3c8cd';
             })
             .attr('stroke-width', 1.6)
             .attr('stroke-dasharray', function (d) {
-                return d.data.dashed ? '5 3' : null;
+                return (d.branchOf || d.data).dashed ? '5 3' : null;
             })
             .attr('d', function (d) {
                 return linkPath({ source: stub, target: d });
@@ -493,7 +503,9 @@
             .attr('text-anchor', 'middle')
             .attr('font-size', 13).attr('font-weight', 700)
             .attr('fill', '#8a9199')
-            .text(function (d, i) { return branchLabel(d.data, i); });
+            .text(function (d, i) {
+                return branchLabel(d.branchOf || d.data, i);
+            });
         drawBoxes(g.append('g'), nodes, WK, null);
 
         var xs = d3.extent(nodes, function (d) { return d.x; });
@@ -661,18 +673,18 @@
         });
         overview.hidden = m !== 'overview';
         walkWrap.hidden = m !== 'walk';
-        if (m === 'walk') renderWalk();
-        else updateOverview();
+        if (m === 'walk') {
+            renderWalk();
+        } else {
+            updateOverview();
+            setTimeout(fit, 30);   // after layout, so the bbox is real
+        }
     }
 
     function render(payload) {
         data = payload;
+        // the whole-tree view opens on the whole tree, fitted to the frame
         rootNode = d3.hierarchy(payload.tree);
-        rootNode.each(function (d) {
-            if (d.depth >= 2 && d.children) {
-                d._children = d.children; d.children = null;
-            }
-        });
         cursor = payload.tree;
         path = [];
         advanceTo(payload.tree);
