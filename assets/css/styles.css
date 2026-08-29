@@ -5473,3 +5473,23 @@ sup { top: -0.45em; }
 	fill  : currentColor;
 	flex  : none;
 }
+
+/* --- blog: paper collaborators, styled like the homepage advisor line --- */
+.post-collab {
+	font-family: var(--font-1);
+	font-size  : var(--text-sm);
+	line-height: 1.5;
+	color      : rgba(254, 245, 228, 0.6);
+	margin     : var(--vspace-0_5) 0 0 0;
+}
+
+.post-collab a {
+	color        : var(--color-1-lighter);
+	border-bottom: 1px solid transparent;
+	transition   : border-color 0.2s ease;
+}
+
+.post-collab a:focus,
+.post-collab a:hover {
+	border-bottom-color: var(--color-1-lighter);
+}
