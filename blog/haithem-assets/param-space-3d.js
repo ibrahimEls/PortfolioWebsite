@@ -400,6 +400,9 @@
         return api;
     }
 
+    // the downloads picker further down the page uses the same listbox
+    window.haithemCombo = makeCombo;
+
     var comboLagr = makeCombo(selLagr);
     var comboX = makeCombo(selX);
     var comboY = makeCombo(selY);

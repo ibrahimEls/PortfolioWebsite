@@ -410,19 +410,32 @@
                                 <h2>Additional materials</h2>
 
                                 <p>
-                                    The underlying export for every benchmark class, all of which can be loaded in
-                                    the figure above. Each file carries the full probe table for the episode, the
-                                    per-turn policy heads as Beta parameters, and the sampling bounds needed to map
-                                    the normalized cube back to physical units.
+                                    Pick a Lagrangian class for its decision tree at full resolution, and for
+                                    the raw replies the literature-search agents gave when they proposed the
+                                    splits in it.
                                 </p>
 
-                                <ul class="data-list" id="ps3d-extra"></ul>
+                                <div class="dl-pick" id="dl-pick" data-dir="haithem-assets/downloads">
+                                    <div class="combo dl-pick__combo">
+                                        <button type="button" class="combo__btn"
+                                                aria-haspopup="listbox" aria-expanded="false">
+                                            <span class="combo__name"></span>
+                                            <span class="combo__meta"></span>
+                                        </button>
+                                        <ul class="combo__list" role="listbox" hidden></ul>
+                                    </div>
 
-                                <p class="data-list__note">
-                                    Files are JSON, schema <code>rl4dm-3dvid/1</code>. Head vectors cover only the
-                                    action dimensions, so index them through <code>headIndex</code> rather than by
-                                    raw parameter position.
-                                </p>
+                                    <div class="dl-pick__files">
+                                        <a class="dl-pick__file dl-pick__file--pdf" download>
+                                            <span class="dl-pick__kind">Decision tree</span>
+                                            <span class="dl-pick__note"></span>
+                                        </a>
+                                        <a class="dl-pick__file dl-pick__file--docs" download>
+                                            <span class="dl-pick__kind">Agent responses</span>
+                                            <span class="dl-pick__note"></span>
+                                        </a>
+                                    </div>
+                                </div>
 
                                 <p class="post-draft-note">
                                     <strong>Draft:</strong> the body text above is placeholder written from the figures, rewrite it with the actual setup and results before sharing this link widely.
@@ -510,7 +523,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <script src="haithem-assets/param-space-3d.js"></script>
     <script src="haithem-assets/tree-explorer.js"></script>
-    <script src="haithem-assets/param-space-list.js"></script>
+    <script src="haithem-assets/downloads.js"></script>
     <script src="haithem-assets/embed-fit.js"></script>
 
 </body>

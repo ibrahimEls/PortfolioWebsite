@@ -51,10 +51,10 @@
   \emph{Caption:} #3
   \end{tcolorbox}}
 
-% the downloads list at the foot of the post
+% the downloads picker at the foot of the post
 \newcommand{\datalist}[1]{%
   \begin{tcolorbox}[colback=gray!6,colframe=gray!50,
-                    title={Generated list: per-Lagrangian data downloads}]
+                    title={Generated: downloads picker}]
   #1
   \end{tcolorbox}}
 
@@ -180,18 +180,15 @@ what to build next.
 
 \section{Additional materials}
 
-The underlying export for every benchmark class, all of which can be loaded in
-the figure above. Each file carries the full probe table for the episode, the
-per-turn policy heads as Beta parameters, and the sampling bounds needed to
-map the normalized cube back to physical units.
+Pick a Lagrangian class for its decision tree at full resolution, and for the
+raw replies the literature-search agents gave when they proposed the splits in
+it.
 
 \datalist{Built at page load from
-\texttt{haithem-assets/param-space/index.json}: one row per Lagrangian with
-its dimension, turn count and viable count, linking the JSON. Nothing to write
-here, it updates itself when the data is rebuilt.}
-
-Files are JSON, schema \texttt{rl4dm-3dvid/1}. Head vectors cover only the
-action dimensions, so index them through \texttt{headIndex} rather than by raw
-parameter position.
+\texttt{haithem-assets/downloads/index.json}: a dropdown of the same eleven
+trees the explorer carries, and two buttons under it, the tree as a PDF and
+the agent transcripts as one Markdown file. The transcripts button greys out
+on the seven trees the agents were never run on. Nothing to write here, it
+updates itself when the downloads are rebuilt.}
 
 \end{document}

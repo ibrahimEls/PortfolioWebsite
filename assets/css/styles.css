@@ -4588,47 +4588,82 @@ button.btn--pill {
 	.ps3d__turn { min-width: 8rem; }
 }
 
-/* --- blog: data download list --- */
-.data-list {
-	list-style: none;
-	margin    : var(--vspace-1) 0;
-	padding   : 0;
-	border-top: 1px solid var(--color-gray-3);
+/* --- blog: downloads picker --- */
+.dl-pick {
+	margin       : var(--vspace-1) 0 var(--vspace-1_5);
+	padding      : var(--vspace-0_75) var(--vspace-1) var(--vspace-1);
+	border       : 1px solid var(--color-gray-3);
+	border-radius: 1.2rem;
+	background   : var(--color-1-lightest);
 }
 
-.data-list li {
+.dl-pick__combo { width: 100%; }
+
+.dl-pick__combo .combo__btn { width: 100%; }
+
+.dl-pick__files {
+	display              : grid;
+	grid-template-columns: 1fr 1fr;
+	gap                  : var(--vspace-0_5);
+	margin-top           : var(--vspace-0_75);
+}
+
+.dl-pick__file {
 	display        : flex;
-	flex-wrap      : wrap;
-	align-items    : baseline;
-	justify-content: space-between;
-	gap            : 0.6rem 1.6rem;
-	padding        : var(--vspace-0_5) 0;
-	border-bottom  : 1px solid var(--color-gray-3);
+	flex-direction : column;
+	gap            : 0.3rem;
+	padding        : var(--vspace-0_5) var(--vspace-0_75);
+	border         : 1px solid var(--color-1);
+	border-radius  : 0.9rem;
+	background     : #fff;
+	text-decoration: none;
+	transition     : background 0.18s ease, transform 0.18s ease,
+	                 box-shadow 0.18s ease;
 }
 
-.data-list a {
+.dl-pick__file:hover,
+.dl-pick__file:focus {
+	transform : translateY(-2px);
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.09);
+}
+
+.dl-pick__kind {
 	font-family: var(--font-1);
 	font-size  : var(--text-sm);
-	font-weight: 500;
+	font-weight: 600;
 	color      : var(--color-1-dark);
-	border     : none;
 }
 
-.data-list a:hover {
-	color          : var(--color-1);
-	text-decoration: underline;
+/* the arrow marks these as downloads without needing a second element */
+.dl-pick__kind::before {
+	content     : "\2193";
+	margin-right: 0.6rem;
+	font-weight : 700;
+	color       : var(--color-1);
 }
 
-.data-list__meta {
+.dl-pick__note {
 	font-family   : var(--font-1);
 	font-size     : calc(var(--text-xs) * 0.95);
 	letter-spacing: 0.04em;
 	color         : var(--color-text-light);
 }
 
-.data-list__note {
-	font-size: var(--text-sm);
-	color    : var(--color-text-light);
+/* a tree the agents were never run on has nothing to hand over */
+.dl-pick__file.is-empty {
+	border-color  : var(--color-gray-3);
+	background    : transparent;
+	pointer-events: none;
+	opacity       : 0.5;
+}
+
+.dl-pick__file.is-empty .dl-pick__kind,
+.dl-pick__file.is-empty .dl-pick__kind::before {
+	color: var(--color-text-light);
+}
+
+@media screen and (max-width: 600px) {
+	.dl-pick__files { grid-template-columns: 1fr; }
 }
 
 /* --- blog: constraint tree explorer --- */

@@ -1,0 +1,93 @@
+{
+ "items": [
+  {
+   "name": "global_tree",
+   "display": "All Dark-Singlet Lagrangians",
+   "group": "many",
+   "pdf": "trees/global_tree.pdf",
+   "pdfSize": 108924,
+   "responses": "responses/global_tree.md",
+   "responsesSize": 252868,
+   "responsesFiles": 15
+  },
+  {
+   "name": "CsSg_U1p.p_DM.Z2+3+4+5",
+   "display": "Complex Scalar Singlet + U(1)\u2032 (p), Z\u2082, Z\u2083, Z\u2084, Z\u2085",
+   "group": "many",
+   "pdf": "trees/CsSg_U1p_p_DM_Z2-3-4-5.pdf",
+   "pdfSize": 77179,
+   "responses": "responses/CsSg_U1p_p_DM_Z2-3-4-5.md",
+   "responsesSize": 47674,
+   "responsesFiles": 1
+  },
+  {
+   "name": "CsSg_U1p.p_DM.Z2",
+   "display": "Complex Scalar Singlet + U(1)\u2032 (p), Z\u2082",
+   "group": "per",
+   "pdf": "trees/CsSg_U1p_p_DM_Z2.pdf",
+   "pdfSize": 51164,
+   "responses": "responses/CsSg_U1p_p_DM_Z2.md",
+   "responsesSize": 42244,
+   "responsesFiles": 1
+  },
+  {
+   "name": "CsDh_DM.Z2+3+4+5",
+   "display": "Complex Scalar Doublet, Z\u2082, Z\u2083, Z\u2084, Z\u2085",
+   "group": "many",
+   "pdf": "trees/CsDh_DM_Z2-3-4-5.pdf",
+   "pdfSize": 19780
+  },
+  {
+   "name": "CsSg_U1p.m_DM.Z2+3+4+5",
+   "display": "Complex Scalar Singlet + U(1)\u2032 (m), Z\u2082, Z\u2083, Z\u2084, Z\u2085",
+   "group": "many",
+   "pdf": "trees/CsSg_U1p_m_DM_Z2-3-4-5.pdf",
+   "pdfSize": 75678
+  },
+  {
+   "name": "CsSg_U1p.m_DM.Z2",
+   "display": "Complex Scalar Singlet + U(1)\u2032 (m), Z\u2082",
+   "group": "per",
+   "pdf": "trees/CsSg_U1p_m_DM_Z2.pdf",
+   "pdfSize": 47549
+  },
+  {
+   "name": "RsSg_DM.Z2+3+4+5",
+   "display": "Real Scalar Singlet, Z\u2082, Z\u2083, Z\u2084, Z\u2085",
+   "group": "many",
+   "pdf": "trees/RsSg_DM_Z2-3-4-5.pdf",
+   "pdfSize": 18637
+  },
+  {
+   "name": "CsSg_DM.Z2+3+4+5",
+   "display": "Complex Scalar Singlet, Z\u2082, Z\u2083, Z\u2084, Z\u2085",
+   "group": "many",
+   "pdf": "trees/CsSg_DM_Z2-3-4-5.pdf",
+   "pdfSize": 38250,
+   "responses": "responses/CsSg_DM_Z2-3-4-5.md",
+   "responsesSize": 15310,
+   "responsesFiles": 1
+  },
+  {
+   "name": "Z3_CsSg_DM",
+   "display": "Complex Scalar Singlet, Z\u2083",
+   "group": "per",
+   "pdf": "trees/Z3_CsSg_DM.pdf",
+   "pdfSize": 37408
+  },
+  {
+   "name": "Z2_CsSg_U1p.p_DM",
+   "display": "Complex Scalar Singlet + U(1)\u2032 (p), Z\u2082",
+   "group": "per",
+   "pdf": "trees/Z2_CsSg_U1p_p_DM.pdf",
+   "pdfSize": 34183
+  },
+  {
+   "name": "CsDh_U1p.m_DM.Z2+3+4+5",
+   "display": "Complex Scalar Doublet + U(1)\u2032 (m), Z\u2082, Z\u2083, Z\u2084, Z\u2085",
+   "group": "many",
+   "pdf": "trees/CsDh_U1p_m_DM_Z2-3-4-5.pdf",
+   "pdfSize": 17348
+  }
+ ]
+}
