@@ -1,0 +1,197 @@
+% ===========================================================================
+%  hAIthem blog post, editable source
+%
+%  Write the prose here; hand the file back and it gets pushed to
+%  blog/bsm-rl-search.html. Everything the page renders has a placeholder
+%  below, in page order, so moving a \interactive or \figplace block moves
+%  the real thing on the page.
+%
+%  Compile with pdflatex to see the layout with the placeholders drawn in.
+%
+%  Rules of the mapping:
+%    \section{...}        -> an <h2> on the page
+%    ordinary paragraphs  -> <p>
+%    \lead{...}           -> the opening paragraph, set larger
+%    \interactive{key}{}  -> a live figure, keys listed below
+%    \figplace{file}{}{}  -> a static figure from haithem-assets/figures
+%    \wide                -> as the last argument, breaks the figure out of
+%                            the text column (for very wide diagrams)
+%
+%  Interactive keys, do not rename:
+%    alphazero  the bundled AlphaZero parameter-space page
+%    param3d    the 3D parameter-space explorer
+%    tree       the constraint-tree explorer (walk + whole tree)
+% ===========================================================================
+
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{parskip}
+
+\newcommand{\posttitle}[1]{\title{#1}}
+\newcommand{\posttags}[1]{\def\theposttags{#1}}
+\newcommand{\postdate}[1]{\date{#1}}
+
+% opening paragraph, rendered larger on the page
+\newcommand{\lead}[1]{{\large #1}\par\medskip}
+
+% a live figure on the page
+\newcommand{\interactive}[3][]{%
+  \begin{tcolorbox}[colback=orange!5,colframe=orange!60!black,
+                    title={Interactive: \texttt{#2}\ifx\relax#1\relax\else\ (#1)\fi}]
+  \emph{Caption:} #3
+  \end{tcolorbox}}
+
+% a static figure; #1 optional "wide", #2 file stem, #3 caption
+\newcommand{\figplace}[3][]{%
+  \begin{tcolorbox}[colback=blue!4,colframe=blue!40!black,
+                    title={Figure: \texttt{#2}\ifx\relax#1\relax\else\ (#1)\fi}]
+  \emph{Caption:} #3
+  \end{tcolorbox}}
+
+% the downloads list at the foot of the post
+\newcommand{\datalist}[1]{%
+  \begin{tcolorbox}[colback=gray!6,colframe=gray!50,
+                    title={Generated list: per-Lagrangian data downloads}]
+  #1
+  \end{tcolorbox}}
+
+\posttitle{The Search for (Non-Excluded) Beyond Standard Model Physics is an RL Problem}
+\postdate{August 2026}
+\posttags{Large Lagrangian Models; Dark Matter; Reinforcement Learning; LLM Agents}
+
+\begin{document}
+\maketitle
+\noindent\textbf{Tags:} \theposttags
+
+% ---------------------------------------------------------------- opening --
+\lead{Most of the parameter space of any beyond-the-Standard-Model theory is
+already dead. The interesting question is not which points a given experiment
+excludes, it is which points \emph{nothing} excludes, and how you find them
+when the space is high-dimensional and every evaluation is expensive.}
+
+This post is about treating that as a search problem: an agent proposes points
+in the parameter space of a Lagrangian, the accumulated experimental
+constraints act as the environment, and the reward is finding regions that
+survive everything we have measured so far.
+
+\interactive{alphazero}{The search as a game: an AlphaZero-style agent
+proposing points in the parameter space of a Lagrangian.}
+
+% ------------------------------------------------------------------ setup --
+\section{Why this is a search problem}
+
+A single-field extension of the Standard Model can easily have five or more
+free parameters spanning several decades each. Scanning that space uniformly
+is hopeless: the viable regions are thin, curved, and vastly outnumbered by
+excluded volume. Worse, the exclusions come from a heterogeneous pile of
+experiments, direct detection at LZ, DarkSide, and XLZD, indirect detection at
+Fermi, CTA, IceCube-Gen2, and AMS-02, and collider bounds like the Higgs
+invisible branching ratio, each of which carves the space in a different
+direction.
+
+A policy that learns where the survivors are, and concentrates its proposals
+there, does dramatically better than random sampling.
+
+\section{Watching the policy find the viable region}
+
+The clearest way to see this is to watch a single benchmark Lagrangian over
+the course of a run. Early on, the agent's proposals are scattered and almost
+everything it touches is excluded. By the end of the run, the policy heads
+have collapsed onto a thin sheet of surviving parameter space and are sampling
+it densely.
+
+\interactive{param3d}{Drag to rotate, scroll to zoom, and press play to watch
+the run turn by turn. Grey points are excluded probes, red rings are the
+probes proposed on the current turn, and gold marks parameter points that
+survive every constraint. The translucent shells are the policy heads.}
+
+\section{The structure the constraints impose}
+
+Aggregating across Lagrangians, the constraints induce a decision tree over
+the space: each experimental question splits the surviving points into those
+that would show a signal and those that would not. Reading the tree tells you
+which measurements are actually doing the discriminating, and which are
+redundant given everything else.
+
+Some of the most useful splits are the ones a literature-search agent proposes
+rather than the ones already in the pipeline, existing bounds nobody thought
+to apply to this corner of parameter space. Others are genuinely new
+observables the agent invents, tagged by how plausible they are to build.
+
+\interactive{tree}{\textbf{Walk the tree:} answer what observables were found
+and find what Lagrangians survive. \textbf{Whole tree:} show the full tree,
+drag to pan, scroll to zoom, and click a node for its details. Blue nodes are
+standard experimental probes, gold are literature searches proposed by the
+agents, orange are newly proposed observables, and grey nodes are surviving
+regions. Dashed links mark where the agents split a region the standard probes
+had left whole.}
+
+% ----------------------------------------------------------------- method --
+\section{How the agent sees a Lagrangian}
+
+% TODO: replace this paragraph with the real description of the method.
+Rough placement for now: these are the method figures, covering how a
+Lagrangian is turned into tokens, what the network does with them, and how a
+proposal is sampled one parameter at a time.
+
+\figplace{fig-lagrangian-tokens}{Each field becomes its own token, with the
+symmetry structure folded into a global Lagrangian token.}
+
+\figplace[wide]{fig-token-architecture-pretrain}{The full architecture: the
+Lagrangian, the viability config, the current turn and the probe history all
+become token streams into a causal transformer, with one Beta policy head per
+action dimension. The summary and viability heads are used in pre-training
+only.}
+
+\figplace[wide]{fig-ar-sampling}{A proposal is built one parameter at a time,
+each drawn from its own Beta policy conditioned on the dimensions already
+chosen.}
+
+% ---------------------------------------------------------------- results --
+\section{Does it scale with dimension?}
+
+% TODO: text for the results section.
+
+\figplace{mean-viable-per-lagrangian}{The learned policies find more viable
+points as the parameter space grows, while differential evolution falls away,
+which is the opposite of what a fixed search budget usually does.}
+
+\figplace{total-viable-count-vs-budget-summed-over-21-benchmark-lagrangians}{%
+Summed over all 21 benchmark Lagrangians, the RL policies stay ahead of both
+differential evolution and the pre-trained-only models at every budget, and
+the gap is widest when probes are scarcest.}
+
+\figplace[wide]{diversity-benchmark}{Finding more points is not the same as
+finding more kinds of point. The RL policies also return the most distinct
+signature classes, and every learned model spreads its survivors over about
+twice as many disconnected regions per 100 viable points as differential
+evolution.}
+
+% ------------------------------------------------------------------- close --
+\section{What comes next}
+
+The open question is whether the observables the agent proposes are worth
+taking seriously as experimental targets, whether ``this measurement would
+split the surviving parameter space in half'' is a useful way to prioritise
+what to build next.
+
+\section{Additional materials}
+
+The underlying export for every benchmark class, all of which can be loaded in
+the figure above. Each file carries the full probe table for the episode, the
+per-turn policy heads as Beta parameters, and the sampling bounds needed to
+map the normalized cube back to physical units.
+
+\datalist{Built at page load from
+\texttt{haithem-assets/param-space/index.json}: one row per Lagrangian with
+its dimension, turn count and viable count, linking the JSON. Nothing to write
+here, it updates itself when the data is rebuilt.}
+
+Files are JSON, schema \texttt{rl4dm-3dvid/1}. Head vectors cover only the
+action dimensions, so index them through \texttt{headIndex} rather than by raw
+parameter position.
+
+\end{document}
