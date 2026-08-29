@@ -347,7 +347,7 @@
         if (b === 'no') return 'No';
         if (b === 'observed') return 'Observed';
         if (b === 'not observed') return 'Not observed';
-        if (b === 'llm split') return 'Follow LLM-agents';
+        if (b === 'llm split') return 'Follow LLM-agent';
         return 'Option ' + (i + 1);
     }
 
