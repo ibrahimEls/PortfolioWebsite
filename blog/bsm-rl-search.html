@@ -268,14 +268,11 @@
 
                                     <div class="ctree__overview" hidden>
                                         <div class="ctree__toolbar">
-                                            <button type="button" class="ctree__expand">Expand all</button>
                                             <button type="button" class="ctree__fit">Fit to view</button>
+                                            <span class="ctree__hint">Drag to pan, scroll to zoom, click a node for its details</span>
                                         </div>
-                                        <div class="ctree__body">
-                                            <div class="ctree__canvas">
-                                                <svg class="ctree__svg"></svg>
-                                            </div>
-                                            <aside class="ctree__panel"></aside>
+                                        <div class="ctree__canvas ctree__canvas--full">
+                                            <svg class="ctree__svg"></svg>
                                         </div>
                                     </div>
 
@@ -305,9 +302,9 @@
                                     <figcaption>
                                         <strong>Walk the tree</strong> takes the questions one at a time:
                                         answer each yourself and watch how much parameter space survives.
-                                        <strong>Whole tree</strong> shows the full partition instead, where
-                                        you can click a node to expand or collapse it, drag to pan and
-                                        scroll to zoom. Blue nodes are standard experimental probes, gold
+                                        <strong>Whole tree</strong> shows the full partition instead: drag to
+                                        pan, scroll to zoom, and click a node for its details. Zoom in on a
+                                        surviving region and its button names the Lagrangians there. Blue nodes are standard experimental probes, gold
                                         are literature searches proposed by the agents, orange are newly
                                         proposed observables, and grey nodes are surviving regions. Dashed
                                         links mark where the agents split a region the standard probes had

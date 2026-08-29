@@ -4675,6 +4675,15 @@ button.btn--pill {
 
 .ctree__canvas--walk { background: #fff; }
 
+/* the whole tree gets the full width now that it has no side panel */
+.ctree__canvas--full { width: 100%; }
+
+.ctree__hint {
+	font-family: var(--font-1);
+	font-size  : calc(var(--text-xs) * 0.9);
+	color      : var(--color-text-light);
+}
+
 .ctree__svg, .ctree__walk-svg {
 	display: block;
 	width  : 100%;
@@ -5363,4 +5372,24 @@ sup { top: -0.45em; }
 	border-left: 3px solid var(--color-1);
 	border-radius: 0 0.5rem 0.5rem 0;
 	padding    : var(--vspace-0_5) var(--vspace-0_75);
+}
+
+/* in-node button on the whole-tree leaves */
+.ctree__nodebtn { cursor: pointer; }
+
+.ctree__nodebtn rect {
+	fill        : var(--color-1);
+	stroke      : none;
+	transition  : fill 0.15s ease;
+}
+
+.ctree__nodebtn:hover rect { fill: var(--color-1-dark); }
+
+.ctree__nodebtn text {
+	fill          : var(--color-btn-primary-text);
+	font-family   : var(--font-1);
+	font-weight   : 700;
+	letter-spacing: 0.03em;
+	pointer-events: none;
+	stroke        : none;
 }

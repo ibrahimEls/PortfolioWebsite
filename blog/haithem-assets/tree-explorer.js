@@ -29,7 +29,6 @@
     };
 
     var svgEl   = root.querySelector('.ctree__svg');
-    var panel   = root.querySelector('.ctree__panel');
     var sel     = root.querySelector('.ctree__select');
     var status  = root.querySelector('.ctree__status');
     var overview = root.querySelector('.ctree__overview');
@@ -37,7 +36,6 @@
     var walkSvgEl = root.querySelector('.ctree__walk-svg');
     var ask     = root.querySelector('.ctree__ask');
     var modeBtns = root.querySelectorAll('.ctree__mode');
-    var btnExpand = root.querySelector('.ctree__expand');
     var btnFit = root.querySelector('.ctree__fit');
 
     var svg = d3.select(svgEl);
@@ -128,13 +126,23 @@
             refRows.forEach(function (row) { w = Math.max(w, row.w); });
         }
 
+        // a leaf that knows its composition carries a button to show it
+        var btn = null;
+        if (opt.showModels && n.models && n.models.length) {
+            btn = n.models.length === 1 ? '1 Lagrangian'
+                : n.models.length + ' Lagrangians';
+            w = Math.max(w, measure(btn, opt.btnSize + 'px ' + opt.family)
+                             + opt.btnPadX * 2);
+        }
+
         // the ref/meta metrics only exist on configs that show them, so
         // fall back to 0 rather than multiplying by undefined
         var h = lines.length * opt.lineH + opt.padY * 2
               + (meta ? (opt.metaLineH || 0) : 0)
-              + refRows.length * (opt.refLineH || 0);
+              + refRows.length * (opt.refLineH || 0)
+              + (btn ? (opt.btnLineH || 0) : 0);
         return {
-            lines: lines, font: font, meta: meta, refRows: refRows,
+            lines: lines, font: font, meta: meta, refRows: refRows, btn: btn,
             w: Math.min(Math.max(w + opt.padX * 2, opt.minW),
                         opt.maxW + opt.padX * 2),
             h: h
@@ -142,7 +150,9 @@
     }
 
     var OV = { size: 14, weight: '500', family: 'Roboto Flex, sans-serif',
-               maxW: 215, maxLines: 2, padX: 12, padY: 9, lineH: 17, minW: 90 };
+               maxW: 215, maxLines: 2, padX: 12, padY: 9, lineH: 17, minW: 90,
+               showModels: true, btnSize: 11.5, btnLineH: 22, btnPadX: 9,
+               btnH: 17 };
     var WK = { size: 16, weight: '500', family: 'Roboto Flex, sans-serif',
                maxW: 275, maxLines: 3, padX: 14, padY: 11, lineH: 21, minW: 120,
                showRefs: true, metaSize: 12.5, metaLineH: 19,
@@ -198,6 +208,27 @@
                     .attr('fill', t.stroke)
                     .text(b.meta);
                 y += opt.metaLineH;
+            }
+            if (b.btn) {
+                var bw = measure(b.btn, opt.btnSize + 'px ' + opt.family)
+                       + opt.btnPadX * 2;
+                var g3 = g2.append('g')
+                    .attr('class', 'ctree__nodebtn')
+                    .attr('transform', 'translate(' + (-bw / 2) + ','
+                        + (y - opt.btnH * 0.72) + ')')
+                    .on('click', function (ev) {
+                        ev.stopPropagation();
+                        openModels(d.data);
+                    });
+                g3.append('rect')
+                    .attr('width', bw).attr('height', opt.btnH)
+                    .attr('rx', opt.btnH / 2).attr('ry', opt.btnH / 2);
+                g3.append('text')
+                    .attr('x', bw / 2).attr('y', opt.btnH * 0.72)
+                    .attr('text-anchor', 'middle')
+                    .attr('font-size', opt.btnSize)
+                    .text(b.btn);
+                y += opt.btnLineH;
             }
             b.refRows.forEach(function (row) {
                 var x = -row.w / 2;
@@ -258,17 +289,14 @@
             .attr('d', linkPath);
 
         drawBoxes(gNodes, nodes, OV, function (e, d) {
-            detail(d.data);
-            if (d.children) { d._children = d.children; d.children = null; }
-            else if (d._children) { d.children = d._children; d._children = null; }
-            updateOverview();
+            openDetail(d.data);
         });
 
         var xs = d3.extent(nodes, function (d) { return d.x; });
         var ys = d3.extent(nodes, function (d) { return d.y; });
         svg.attr('viewBox', [ys[0] - 140, xs[0] - 40,
                              ys[1] - ys[0] + 320, xs[1] - xs[0] + 80].join(' '))
-           .style('height', Math.min(Math.max(xs[1] - xs[0] + 80, 340), 620) + 'px');
+           .style('height', Math.min(Math.max(xs[1] - xs[0] + 80, 340), 720) + 'px');
     }
 
     function fit() {
@@ -282,14 +310,6 @@
                 .scale(k)
                 .translate(-(b.x + b.width / 2), -(b.y + b.height / 2))
         );
-    }
-
-    function expandAll() {
-        rootNode.each(function (d) {
-            if (d._children) { d.children = d._children; d._children = null; }
-        });
-        updateOverview();
-        setTimeout(fit, 30);
     }
 
     // --- reasoning modal ---------------------------------------------------
@@ -411,7 +431,7 @@
         if (b) b.addEventListener('click', function () { openReasoning(n); });
     }
 
-    // --- detail panel ------------------------------------------------------
+    // --- node details ------------------------------------------------------
 
     function statLine(n) {
         var a = n.agg || {};
@@ -428,18 +448,8 @@
         return '<ul class="ctree__facts">' + out.join('') + '</ul>';
     }
 
-    function detail(n) {
-        var t = TYPE[n.type] || TYPE.probe;
-        var rows = ['<span class="ctree__badge" style="background:' + t.fill
-                    + ';border:1px solid ' + t.stroke + '">' + t.label
-                    + '</span>'];
-        if (n.kind) rows.push('<h4>' + n.kind + '</h4>');
-        rows.push('<p class="ctree__panel-title">' + (n.label || '') + '</p>');
-        if (n.criterion) {
-            rows.push('<p class="ctree__crit"><strong>Criterion</strong><br>'
-                      + n.criterion + '</p>');
-        }
-        rows.push(statLine(n));
+    function detailRows(n) {
+        var rows = [statLine(n)];
         if (n.status) {
             rows.push('<p class="ctree__crit"><strong>Status</strong> '
                       + n.status + '</p>');
@@ -455,11 +465,16 @@
                         + '" target="_blank" rel="noopener">arXiv:' + r + '</a>';
                 }).join('<br>') + '</p>');
         }
-        rows.push(reasoningButton(n));
-        rows.push(modelsButton(n));
-        panel.innerHTML = rows.join('');
-        wireReasoning(panel, n);
-        wireModels(panel, n);
+        return rows.join('');
+    }
+
+    function openDetail(n) {
+        var t = TYPE[n.type] || TYPE.probe;
+        openModal(n.kind || t.label, n.label || '', n.criterion || '',
+                  detailRows(n));
+        var body = modal.querySelector('.ctree__modal-body');
+        wireReasoning(body, n);
+        wireModels(body, n);
     }
 
     // --- walk --------------------------------------------------------------
@@ -743,7 +758,6 @@
             + ' nodes, depth ' + s.depth + ', '
             + ((s.lit || 0) + (s.novel || 0)) + ' LLM-proposed nodes';
         svg.call(zoom.transform, d3.zoomIdentity);
-        detail(payload.tree);
         setMode(mode);
     }
 
@@ -765,7 +779,6 @@
             setMode(b.getAttribute('data-mode'));
         });
     });
-    btnExpand.addEventListener('click', expandAll);
     btnFit.addEventListener('click', fit);
     sel.addEventListener('change', function () { load(sel.value); });
 
