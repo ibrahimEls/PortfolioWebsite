@@ -324,18 +324,64 @@
         }).join('');
     }
 
-    function openReasoning(n) {
-        if (!modal || !n.reasoning) return;
-        modal.querySelector('.ctree__modal-kind').textContent =
-            n.kind || 'LLM agent';
-        modal.querySelector('#ctree-modal-title').textContent = n.label || '';
+    function openModal(kind, title, sub, bodyHtml) {
+        if (!modal) return;
+        modal.querySelector('.ctree__modal-kind').textContent = kind;
+        modal.querySelector('#ctree-modal-title').textContent = title;
         var crit = modal.querySelector('.ctree__modal-crit');
-        crit.textContent = n.criterion || '';
-        crit.hidden = !n.criterion;
-        modal.querySelector('.ctree__modal-body').innerHTML =
-            paragraphs(n.reasoning);
+        crit.textContent = sub || '';
+        crit.hidden = !sub;
+        modal.querySelector('.ctree__modal-body').innerHTML = bodyHtml;
         modal.hidden = false;
         modal.querySelector('.ctree__modal-close').focus();
+    }
+
+    function openReasoning(n) {
+        if (!n.reasoning) return;
+        openModal(n.kind || 'LLM agent', n.label || '', n.criterion || '',
+                  paragraphs(n.reasoning));
+    }
+
+    /* Which Lagrangians survive at a region, by name rather than by count. */
+    function openModels(n) {
+        var rows = (n.models || []).map(function (m) {
+            return '<li><span class="ctree__model-name">' + esc(m.name)
+                + '</span>' + (m.pts != null
+                    ? '<span class="ctree__model-pts">'
+                      + m.pts.toLocaleString() + ' pts</span>' : '')
+                + '</li>';
+        }).join('');
+        var body = '<ul class="ctree__models">' + rows + '</ul>';
+        if (n.signature) {
+            // split before escaping: an escaped '>' is '&gt;', whose
+            // semicolon would otherwise be treated as a separator
+            body += '<p class="ctree__sig"><strong>Signature</strong>'
+                + n.signature.split(';').map(function (t) {
+                    return '<span>' + esc(t.trim()) + '</span>';
+                }).join('') + '</p>';
+        }
+        if (n.modelsInherited) {
+            body += '<p class="ctree__note">This region was split further by'
+                + ' an agent. The composition above is that of the region it'
+                + ' was split from, since the split is defined by an'
+                + ' observable rather than by Lagrangian.</p>';
+        }
+        openModal('Surviving region',
+                  (n.models || []).length === 1 ? '1 Lagrangian here'
+                      : (n.models || []).length + ' Lagrangians here',
+                  '', body);
+    }
+
+    function modelsButton(n) {
+        return (n.models && n.models.length)
+            ? '<button type="button" class="ctree__models-btn">'
+              + 'Which Lagrangians?</button>'
+            : '';
+    }
+
+    function wireModels(scope, n) {
+        var b = scope.querySelector('.ctree__models-btn');
+        if (b) b.addEventListener('click', function () { openModels(n); });
     }
 
     function closeReasoning() {
@@ -410,8 +456,10 @@
                 }).join('<br>') + '</p>');
         }
         rows.push(reasoningButton(n));
+        rows.push(modelsButton(n));
         panel.innerHTML = rows.join('');
         wireReasoning(panel, n);
+        wireModels(panel, n);
     }
 
     // --- walk --------------------------------------------------------------
@@ -590,7 +638,7 @@
                 + (fr === 1 ? '' : 's') + '</li>'
                 + '<li><strong>' + fl + '</strong> Lagrangian'
                 + (fl === 1 ? '' : 's') + '</li>'
-                + '</ul></div>';
+                + '</ul>' + modelsButton(cursor) + '</div>';
         } else {
             var q = cursor.criterion
                 ? (cursor.label ? cursor.label + '<br><em>' + cursor.criterion + '</em>' : cursor.criterion)
@@ -644,6 +692,7 @@
             + (crumbs ? '<div class="ctree__crumbs">' + crumbs + '</div>' : '');
 
         wireReasoning(ask, cursor);
+        wireModels(ask, cursor);
         ask.querySelectorAll('.ctree__answers button').forEach(function (b) {
             b.addEventListener('click', function () {
                 var next = cursor.children[+b.getAttribute('data-i')];

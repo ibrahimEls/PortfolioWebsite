@@ -231,6 +231,149 @@ def build_tree(nodes, edges):
     return attach(roots[0], "", False, 0)
 
 
+# --- model ids -> human-readable names -------------------------------------
+# readable_model_id is the project's own function, used verbatim so the names
+# here match the ones used elsewhere in the pipeline.
+
+_RT = {"R": "Real", "C": "Complex"}
+_RS = {"s": "Scalar", "m": "Majorana", "d": "Dirac", "v": "Vector"}
+_RR = {"Sg": "Singlet", "Dh": "Doublet", "Dz": "Doublet",
+       "Tr": "Triplet", "Tc": "Triplet"}
+_FTOK = re.compile(r"^(\d*)([RC])([smdv])(Sg|Dh|Dz|Tr|Tc)$")
+
+
+def readable_model_id(mid, with_count=True, with_orders=True):
+    """Human-readable name for a merged model id, with or without a ':N'
+    count suffix."""
+    s = str(mid).strip()
+
+    count = None
+    m = re.search(r":(\d+)\s*$", s)
+    if m:
+        count = int(m.group(1))
+        s = s[: m.start()]
+
+    otag = None
+    m = re.search(r"\.(Z[\d+]+|Zx)$", s)
+    if m:
+        otag = m.group(1)
+        s = s[: m.start()]
+
+    m = re.match(r"^Z(\d+)_(.*)$", s)
+    if m:
+        otag = otag or "Z%s" % m.group(1)
+        s = m.group(2)
+
+    s = re.sub(r"_DM$", "", s)
+
+    u1p = None
+    m = re.search(r"_U1p\[([^\]]*)\]$", s)
+    if m:
+        u1p = m.group(1)
+        s = s[: m.start()]
+
+    units, toks = [], [t for t in s.split("_") if t]
+    for tok in toks:
+        tm = _FTOK.match(tok)
+        if not tm:
+            return str(mid)
+        copies, ty, spn, rep = tm.groups()
+        units += ["%s %s %s" % (_RT[ty], _RS[spn], _RR[rep])] * (int(copies or 1))
+
+    groups = []
+    for u in units:
+        if groups and groups[-1][0] == u:
+            groups[-1] = (u, groups[-1][1] + 1)
+        else:
+            groups.append((u, 1))
+    out = " + ".join("%dx %s" % (c, lbl) if c > 1 else lbl
+                     for lbl, c in groups)
+
+    if u1p is not None:
+        hyper = any(_FTOK.match(t) and _FTOK.match(t).group(4) == "Dh"
+                    for t in toks)
+        sign = u1p if (hyper and u1p in ("+", "-")) else ""
+        out += " + dark U(1)%s" % sign
+
+    if with_orders and otag:
+        out += " [%s]" % otag
+    if with_count and count is not None:
+        out += " ({:,} pts)".format(count)
+    return out
+
+
+def parse_text_tree(path):
+    """Leaf composition from the plain-text tree: node id -> models."""
+    out = {}
+    stack, pending = [], None
+    for raw in open(path):
+        line = raw.rstrip("\n")
+        if not line.strip() or line.strip().startswith("```"):
+            continue
+        indent = len(line) - len(line.lstrip(" "))
+        text = line.strip()
+
+        m = re.match(r"^(YES|NO):$", text)
+        if m:
+            while stack and stack[-1][0] >= indent:
+                stack.pop()
+            stack.append((indent, m.group(1).lower()))
+            pending = None
+            continue
+
+        m = re.match(r"^LEAF\s+([\d,]+)\s+pts", text)
+        if m:
+            while stack and stack[-1][0] >= indent:
+                stack.pop()
+            nid = "root" + "".join("_" + b for _, b in stack)
+            pending = nid
+            out[nid] = {"models": [], "signature": ""}
+            continue
+
+        if pending and re.match(r"^[\d,]+\s+pts\s", text):
+            body = text.split(" pts ", 1)[1]
+            ids, _, sig = body.partition(": ")
+            models = []
+            for part in ids.split(","):
+                part = part.strip()
+                if not part:
+                    continue
+                mm = re.match(r"^(.*):(\d+)$", part)
+                raw_id = mm.group(1) if mm else part
+                models.append({
+                    "id": raw_id,
+                    "name": readable_model_id(raw_id, with_count=False),
+                    "pts": int(mm.group(2)) if mm else None,
+                })
+            out[pending]["models"] = models
+            out[pending]["signature"] = sig.strip()
+            pending = None
+            continue
+
+        while stack and stack[-1][0] >= indent:
+            stack.pop()
+        pending = None
+    return out
+
+
+def attach_models(tree, by_leaf):
+    """Put each leaf's composition on its node; descendants of a leaf that
+    an agent split further inherit it, flagged so the page can say so."""
+    def walk(n, inherited):
+        own = by_leaf.get(n["id"])
+        if own and own["models"]:
+            n["models"] = own["models"]
+            if own["signature"]:
+                n["signature"] = own["signature"]
+            inherited = own["models"]
+        elif inherited and not n.get("children"):
+            n["models"] = inherited
+            n["modelsInherited"] = True
+        for c in n.get("children", []):
+            walk(c, inherited)
+    walk(tree, None)
+
+
 def salvage_json(s):
     """Close a JSON blob that was cut off mid-object.
 
@@ -446,6 +589,11 @@ def main():
     src_dir, out_dir = sys.argv[1], sys.argv[2]
     os.makedirs(out_dir, exist_ok=True)
     responses, repaired = load_responses(os.path.join(src_dir, "responses"))
+    text_trees = {}
+    for fn in os.listdir(src_dir):
+        if fn.endswith("_no_llm.text"):
+            text_trees[fn[:-len("_no_llm.text")]] = parse_text_tree(
+                os.path.join(src_dir, fn))
     if repaired:
         print("recovered truncated JSON in:", ", ".join(repaired), "\n")
 
@@ -484,6 +632,8 @@ def main():
             (v["title"] for v in variants if v["title"]), None)
         acc = best["stats"]
         got, want = attach_reasoning(best["tree"], responses.get(key, {}))
+        if key in text_trees:
+            attach_models(best["tree"], text_trees[key])
         disp = display_name(key)
         out_name = key.replace(".", "_") + ".json"
         with open(os.path.join(out_dir, out_name), "w") as fh:
