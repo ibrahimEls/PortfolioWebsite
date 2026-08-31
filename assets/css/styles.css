@@ -4417,6 +4417,51 @@ button.btn--pill {
 	margin-bottom: var(--vspace-0_5);
 }
 
+.post h3 {
+	font-size    : var(--text-lg);
+	margin-top   : var(--vspace-1_5);
+	margin-bottom: var(--vspace-0_5);
+}
+
+/* a large quote standing on its own between sections */
+.post-quote {
+	margin     : var(--vspace-2) 0;
+	padding    : 0;
+	border     : none;
+	font-family: var(--font-2);
+	font-size  : var(--text-lg);
+	line-height: 1.35;
+	color      : var(--color-text-dark);
+	text-align : center;
+}
+
+.post-quote p {
+	margin     : 0;
+	max-width  : none;
+	font-size  : inherit;
+	line-height: inherit;
+	color      : inherit;
+}
+
+/* the two-part form sets the old question against the one that replaces it */
+.post-quote--arrow {
+	display        : flex;
+	flex-wrap      : wrap;
+	align-items    : center;
+	justify-content: center;
+	gap            : var(--vspace-0_5) var(--vspace-1);
+}
+
+.post-quote--arrow p { flex: 1 1 24rem; }
+
+.post-quote__arrow {
+	flex       : none;
+	font-family: var(--font-1);
+	font-size  : var(--text-xl);
+	line-height: 1;
+	color      : var(--color-1);
+}
+
 .post .lead {
 	margin-bottom: var(--vspace-1_25);
 }

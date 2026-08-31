@@ -156,14 +156,6 @@
 
                                 <p class="post-byline">by Ibrahim Elsharkawy last edited August 2026</p>
 
-                                <p class="lead">
-                                    Most of the parameter space of any beyond-the-Standard-Model theory is already dead. The interesting question is not which points a given experiment excludes, it is which points <em>nothing</em> excludes, and how you find them when the space is high-dimensional and every evaluation is expensive.
-                                </p>
-
-                                <p>
-                                    This post is about treating that as a search problem: an agent proposes points in the parameter space of a Lagrangian, the accumulated experimental constraints act as the environment, and the reward is finding regions that survive everything we have measured so far.
-                                </p>
-
                                 <figure class="embed-figure">
                                     <div class="embed-figure__frame" data-w="1400" data-h="720">
                                         <iframe src="haithem-assets/alphazero-parameter-space.html"
@@ -171,26 +163,22 @@
                                                 scrolling="no"></iframe>
                                     </div>
                                     <figcaption>
-                                        The search as a game: an AlphaZero-style agent proposing points in
-                                        the parameter space of a Lagrangian.
+                                        Illustration of the similarities between AlphaGo and AlphaZero and
+                                        hAIthem. Both search optimal moves conditioned on the current play turn
+                                        and past actions.
                                     </figcaption>
                                 </figure>
 
-                                <h2>Why this is a search problem</h2>
+                                <p>Intro text</p>
 
-                                <p>
-                                    A single-field extension of the Standard Model can easily have five or more free parameters spanning several decades each. Scanning that space uniformly is hopeless: the viable regions are thin, curved, and vastly outnumbered by excluded volume. Worse, the exclusions come from a heterogeneous pile of experiments, direct detection at LZ, DarkSide, and XLZD, indirect detection at Fermi, CTA, IceCube-Gen2, and AMS-02, and collider bounds like the Higgs invisible branching ratio, each of which carves the space in a different direction.
-                                </p>
+                                <blockquote class="post-quote post-quote--arrow">
+                                    <p>&ldquo;What is the best description of reality&rdquo;</p>
+                                    <span class="post-quote__arrow" aria-hidden="true">&rArr;</span>
+                                    <p>&ldquo;What set of descriptions are consistent with current data and
+                                       what future observables distinguish them&rdquo;</p>
+                                </blockquote>
 
-                                <p>
-                                    A policy that learns where the survivors are, and concentrates its proposals there, does dramatically better than random sampling.
-                                </p>
-
-                                <h2>Watching the policy find the viable region</h2>
-
-                                <p>
-                                    The clearest way to see this is to watch a single benchmark Lagrangian over the course of a run. Early on, the agent's proposals are scattered and almost everything it touches is excluded. By the end of the run, the policy heads have collapsed onto a thin sheet of surviving parameter space and are sampling it densely.
-                                </p>
+                                <h2>The Parameter Space Search Problem</h2>
 
                                 <figure class="ps3d" id="ps3d"
                                         data-dir="haithem-assets/param-space"
@@ -251,22 +239,15 @@
                                     <p class="ps3d__status">Loading&hellip;</p>
 
                                     <figcaption>
-                                        Drag to rotate, scroll to zoom, and press play to watch the run turn by turn.
-                                        Grey points are excluded probes, red rings are the probes proposed on the
-                                        current turn, and gold marks parameter points that survive every constraint.
-                                        The translucent shells are the policy heads.
+                                        Drag to rotate, scroll to zoom, and press play to watch the LLaM-search
+                                        for each turn. Grey points are excluded probes, red rings are the probes
+                                        proposed on the current turn, and gold marks parameter points that
+                                        survive every constraint. The shells are the policy heads, the models&rsquo;
+                                        &ldquo;flashlights&rdquo;.
                                     </figcaption>
                                 </figure>
 
-                                <h2>The structure the constraints impose</h2>
-
-                                <p>
-                                    Aggregating across Lagrangians, the constraints induce a decision tree over the space: each experimental question splits the surviving points into those that would show a signal and those that would not. Reading the tree tells you which measurements are actually doing the discriminating, and which are redundant given everything else.
-                                </p>
-
-                                <p>
-                                    Some of the most useful splits are the ones a literature-search agent proposes rather than the ones already in the pipeline, existing bounds nobody thought to apply to this corner of parameter space. Others are genuinely new observables the agent invents, tagged by how plausible they are to actually build.
-                                </p>
+                                <h2>Phenomenological Taxonomy with Decision Trees</h2>
 
                                 <figure class="ctree" id="ctree"
                                         data-dir="haithem-assets/trees"
@@ -319,33 +300,26 @@
                                     </div>
 
                                     <figcaption>
-                                        <strong>Walk the tree:</strong> answer what observables were found and
-                                        find what Lagrangians survive. <strong>Whole tree:</strong> show the
-                                        full tree, drag to pan, scroll to zoom, and click a node for its
-                                        details. Blue nodes are standard experimental probes, gold are
-                                        literature searches proposed by the agents, orange are newly proposed
-                                        observables, and grey nodes are surviving regions. Dashed links mark
-                                        where the agents split a region the standard probes had left whole.
-                                        Where the standard probes run out, two sets of agents were asked what
-                                        to measure next: the walk offers both and you can follow either, and the
-                                        whole tree shows one at a time, switched with the buttons above it.
+                                        <strong>Walk the tree:</strong> Answer what observables were found and
+                                        find what Lagrangians survive. <strong>Whole tree:</strong> show the full
+                                        tree, drag to pan, scroll to zoom, and click a node for its details. Blue
+                                        nodes are analytically computed observables, gold are literature searches
+                                        proposed by an LLM-agents, orange are LLM-agent-proposed novel
+                                        observables, and grey nodes leafs containing Lagrangians with that
+                                        signature. Dashed links mark where the agents split a region the standard
+                                        probes had left whole.
                                     </figcaption>
                                 </figure>
 
-                                <h2>How the agent sees a Lagrangian</h2>
-
-                                <p>
-                                    Rough placement for now: these are the method figures, covering how a
-                                    Lagrangian is turned into tokens, what the network does with them, and
-                                    how a proposal is sampled one parameter at a time.
-                                </p>
+                                <h2>The Large Lagrangian Model</h2>
 
                                 <figure class="static-figure">
                                     <img src="haithem-assets/figures/fig-lagrangian-tokens.png"
                                          alt="A Lagrangian's fields encoded into per-field tokens plus a global token">
                                     <figcaption>
-                                        Each field becomes its own token, with the symmetry structure folded
-                                        into a global Lagrangian token.
+                                        Tokenization of an example Lagrangian. Each dark-sector field is embedded
+                                        into its own field token, while the symmetry content and per-field
+                                        summaries (dashed) are embedded into a single global Lagrangian token.
                                         <a href="haithem-assets/pdf/fig-lagrangian-tokens.pdf">PDF</a>
                                     </figcaption>
                                 </figure>
@@ -354,10 +328,7 @@
                                     <img src="haithem-assets/figures/fig-token-architecture-pretrain.png"
                                          alt="Token encoders feeding a causal transformer with policy, value, summary and viability heads">
                                     <figcaption>
-                                        The full architecture: the Lagrangian, the viability config, the
-                                        current turn and the probe history all become token streams into a
-                                        causal transformer, with one Beta policy head per action dimension.
-                                        The summary and viability heads are used in pre-training only.
+                                        The Large Lagrangian Model.
                                         <a href="haithem-assets/pdf/fig-token-architecture-pretrain.pdf">PDF</a>
                                     </figcaption>
                                 </figure>
@@ -366,33 +337,36 @@
                                     <img src="haithem-assets/figures/fig-ar-sampling.png"
                                          alt="Autoregressive sampling of each parameter from a Beta policy">
                                     <figcaption>
-                                        A proposal is built one parameter at a time, each drawn from its own
-                                        Beta policy conditioned on the dimensions already chosen.
+                                        A depiction of autoregressive sampling. Each parameter is drawn from a
+                                        model forward pass and fed back as context for the next forward pass for
+                                        the next parameter. The mode chooses the beta distribution or differential
+                                        evolution style policy once per probe and fixes the choice for all
+                                        parameter dimensions.
                                         <a href="haithem-assets/pdf/fig-ar-sampling.pdf">PDF</a>
                                     </figcaption>
                                 </figure>
 
-                                <h2>Does it scale with dimension?</h2>
-
-                                <figure class="static-figure">
-                                    <img src="haithem-assets/figures/mean-viable-per-lagrangian.png"
-                                         alt="Mean viable points per Lagrangian against parameter-space dimension">
-                                    <figcaption>
-                                        The learned policies find more viable points as the parameter space
-                                        grows, while differential evolution falls away, which is the opposite
-                                        of what a fixed search budget usually does.
-                                        <a href="haithem-assets/pdf/mean-viable-per-lagrangian.pdf">PDF</a>
-                                    </figcaption>
-                                </figure>
+                                <h3>Benchmarking the Large Lagrangian Model</h3>
 
                                 <figure class="static-figure">
                                     <img src="haithem-assets/figures/total-viable-count-vs-budget-summed-over-21-benchmark-lagrangians.png"
                                          alt="Total viable points found against probe budget for each method">
                                     <figcaption>
-                                        Summed over all 21 benchmark Lagrangians, the RL policies stay ahead
-                                        of both differential evolution and the pre-trained-only models at
-                                        every budget, and the gap is widest when probes are scarcest.
+                                        Total number of viable points found as a function of search budget,
+                                        summed over 21 benchmark Lagrangians.
                                         <a href="haithem-assets/pdf/total-viable-count-vs-budget-summed-over-21-benchmark-lagrangians.pdf">PDF</a>
+                                    </figcaption>
+                                </figure>
+
+                                <figure class="static-figure">
+                                    <img src="haithem-assets/figures/mean-viable-per-lagrangian.png"
+                                         alt="Mean viable points per Lagrangian against parameter-space dimension">
+                                    <figcaption>
+                                        Mean number of viable points per benchmark Lagrangian as a function of the
+                                        Lagrangian parameter-space dimension <em>d</em>. The LLaM becomes
+                                        <em>more</em> effective as the dimension grows, while Differential
+                                        Evolution collapses, as is expected with the curse of dimensionality.
+                                        <a href="haithem-assets/pdf/mean-viable-per-lagrangian.pdf">PDF</a>
                                     </figcaption>
                                 </figure>
 
@@ -400,20 +374,27 @@
                                     <img src="haithem-assets/figures/diversity-benchmark.png"
                                          alt="Distinct signature classes and regions per 100 viable points by method">
                                     <figcaption>
-                                        Finding more points is not the same as finding more kinds of point.
-                                        The RL policies also return the most distinct signature classes, and
-                                        every learned model spreads its survivors over about twice as many
-                                        disconnected regions per 100 viable points as differential evolution.
+                                        Diversity benchmark. Distinct experimental-signature classes discovered
+                                        (that is, the number of decision tree leaf nodes, solid, left axis) and
+                                        viable regions found per 100 viable points.
                                         <a href="haithem-assets/pdf/diversity-benchmark.pdf">PDF</a>
                                     </figcaption>
                                 </figure>
 
-                                <h2>What comes next</h2>
+                                <h2>Building the Decision Tree</h2>
 
-                                <p>
-                                    The open question is whether the observables the agent proposes are worth taking seriously as experimental targets, whether "this measurement would split the surviving parameter space in half" is a useful way to prioritize what to build next.
-                                </p>
+                                <blockquote class="post-quote">
+                                    <p>&ldquo;The LLaM finds where to look, and LLM-Agents do the
+                                       phenomenology there, both working at scale&rdquo;</p>
+                                </blockquote>
 
+                                <h2>Next Steps</h2>
+
+                                <!-- Additional materials is on the shelf; the same section is commented
+                                     out in haithem-post.tex. Uncomment both together to bring the
+                                     downloads picker back, along with the downloads.js script tag at
+                                     the foot of the page. -->
+                                <!--
                                 <h2>Additional materials</h2>
 
                                 <p>
@@ -443,9 +424,11 @@
                                         </a>
                                     </div>
                                 </div>
+                                -->
 
                                 <p class="post-draft-note">
-                                    <strong>Draft:</strong> the body text above is placeholder written from the figures, rewrite it with the actual setup and results before sharing this link widely.
+                                    <strong>Draft:</strong> the body text is still to be written; the figures
+                                    and section order are in place.
                                 </p>
 
                             </article>
@@ -530,7 +513,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <script src="haithem-assets/param-space-3d.js"></script>
     <script src="haithem-assets/tree-explorer.js"></script>
-    <script src="haithem-assets/downloads.js"></script>
+    <!-- <script src="haithem-assets/downloads.js"></script> -->
     <script src="haithem-assets/embed-fit.js"></script>
 
 </body>
