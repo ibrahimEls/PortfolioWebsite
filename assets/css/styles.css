@@ -5392,8 +5392,8 @@ button.btn--pill {
 	transform   : translateX(-50%);
 }
 
-/* the opening figure runs at three quarters of that */
-.embed-figure { width: min(94.5rem, 69vw); }
+/* the opening figure runs at 0.85 of that */
+.embed-figure { width: min(107.1rem, 78.2vw); }
 
 .embed-figure figcaption,
 .static-figure figcaption {
