@@ -2544,6 +2544,12 @@ button.btn--pill {
 	padding-bottom: var(--vspace-3);
 }
 
+/* the post header already closes with its tags and collaborators, so the
+   body does not need the full page gap under it */
+.s-pagecontent--post {
+	padding-top: var(--vspace-1_5);
+}
+
 .s-pagecontent .pageintro {
 	margin-bottom: var(--vspace-2_5);
 }
