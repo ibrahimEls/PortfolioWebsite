@@ -4583,12 +4583,12 @@ button.btn--pill {
 	background   : #fff;
 }
 
-/* the plot area keeps the same shape as the bundled figure above it */
+/* the bundled figure's shape, flattened to 0.8 of its height */
 .ps3d__plot {
 	width       : 100%;
 	height      : auto;
-	aspect-ratio: 1400 / 720;
-	min-height  : 40rem;
+	aspect-ratio: 1400 / 576;
+	min-height  : 32rem;
 }
 
 .ps3d__bar {
