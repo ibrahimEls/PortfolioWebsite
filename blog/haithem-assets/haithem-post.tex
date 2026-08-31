@@ -33,6 +33,7 @@
 \newcommand{\posttitle}[1]{\title{#1}}
 \newcommand{\posttags}[1]{\def\theposttags{#1}}
 \newcommand{\postdate}[1]{\date{#1}}
+\newcommand{\postbyline}[1]{\def\thepostbyline{#1}}
 
 % opening paragraph, rendered larger on the page
 \newcommand{\lead}[1]{{\large #1}\par\medskip}
@@ -60,10 +61,12 @@
 
 \posttitle{The Search for (Non-Excluded) Beyond Standard Model Physics is an RL Problem}
 \postdate{August 2026}
+\postbyline{by Ibrahim Elsharkawy last edited August 2026}
 \posttags{Large Lagrangian Models; Dark Matter; Reinforcement Learning; LLM Agents}
 
 \begin{document}
 \maketitle
+\noindent\textit{\thepostbyline}\par\smallskip
 \noindent\textbf{Tags:} \theposttags
 
 % ---------------------------------------------------------------- opening --

@@ -5589,6 +5589,15 @@ sup { top: -0.45em; }
 }
 
 /* --- blog: paper collaborators, styled like the homepage advisor line --- */
+/* the byline, set quiet so it sits under the title without competing */
+.post-byline {
+	font-family: var(--font-1);
+	font-size  : var(--text-sm);
+	line-height: 1.5;
+	color      : rgba(254, 245, 228, 0.55);
+	margin     : var(--vspace-0_5) 0 var(--vspace-0_75) 0;
+}
+
 .post-collab {
 	font-family: var(--font-1);
 	font-size  : var(--text-sm);
