@@ -286,6 +286,8 @@
                                     <div class="ctree__overview" hidden>
                                         <div class="ctree__toolbar">
                                             <button type="button" class="ctree__fit">Fit to view</button>
+                                            <div class="ctree__agents" role="group"
+                                                 aria-label="Whose proposals to show" hidden></div>
                                             <span class="ctree__hint">Drag to pan, scroll to zoom, click a node for its details</span>
                                         </div>
                                         <div class="ctree__canvas ctree__canvas--full">
@@ -325,7 +327,8 @@
                                         observables, and grey nodes are surviving regions. Dashed links mark
                                         where the agents split a region the standard probes had left whole.
                                         Where the standard probes run out, two sets of agents were asked what
-                                        to measure next, so the walk offers both and you can follow either.
+                                        to measure next: the walk offers both and you can follow either, and the
+                                        whole tree shows one at a time, switched with the buttons above it.
                                     </figcaption>
                                 </figure>
 

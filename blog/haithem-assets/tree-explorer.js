@@ -37,6 +37,7 @@
     var ask     = root.querySelector('.ctree__ask');
     var modeBtns = root.querySelectorAll('.ctree__mode');
     var btnFit = root.querySelector('.ctree__fit');
+    var agentBar = root.querySelector('.ctree__agents');
 
     var svg = d3.select(svgEl);
     var gRoot = svg.append('g');
@@ -46,6 +47,7 @@
 
     var data = null, rootNode = null, zoom = null, mode = 'walk';
     var cursor = null, path = [];
+    var shownAgent = null;
 
     // --- text metrics ------------------------------------------------------
 
@@ -268,6 +270,50 @@
     }
 
     // --- overview ----------------------------------------------------------
+
+    /* The whole tree carries every run's proposals at once, which is far
+       too much to read side by side, so the overview shows one run's at a
+       time. Analytic nodes are untagged and always shown; a proposal is
+       tagged all the way down, so filtering at the graft point is enough. */
+    function overviewChildren(d) {
+        var kids = d.children || [];
+        if (!shownAgent) return kids;
+        return kids.filter(function (c) {
+            return !c.agent || c.agent === shownAgent;
+        });
+    }
+
+    function buildOverviewRoot() {
+        rootNode = d3.hierarchy(data.tree, overviewChildren);
+    }
+
+    function buildAgentBar() {
+        if (!agentBar) return;
+        agentBar.innerHTML = '';
+        var agents = (data && data.agents) || [];
+        agentBar.hidden = agents.length < 2;
+        if (agents.length < 2) return;
+        agents.forEach(function (a) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'ctree__agent'
+                + (a.slug === shownAgent ? ' is-active' : '');
+            b.textContent = a.label;
+            b.setAttribute('data-agent', a.slug);
+            b.addEventListener('click', function () {
+                if (shownAgent === a.slug) return;
+                shownAgent = a.slug;
+                Array.prototype.forEach.call(agentBar.children, function (o) {
+                    o.classList.toggle('is-active',
+                        o.getAttribute('data-agent') === shownAgent);
+                });
+                buildOverviewRoot();
+                updateOverview();
+                setTimeout(fit, 30);
+            });
+            agentBar.appendChild(b);
+        });
+    }
 
     function layoutOverview() {
         d3.tree().nodeSize([56, 300])(rootNode);
@@ -844,7 +890,10 @@
     function render(payload) {
         data = payload;
         // the whole-tree view opens on the whole tree, fitted to the frame
-        rootNode = d3.hierarchy(payload.tree);
+        var agents = payload.agents || [];
+        shownAgent = agents.length > 1 ? agents[0].slug : null;
+        buildAgentBar();
+        buildOverviewRoot();
         cursor = payload.tree;
         path = [];
         advanceTo(payload.tree);

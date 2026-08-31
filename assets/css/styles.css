@@ -4758,6 +4758,23 @@ button.btn--pill {
 .ctree__mode:not(.is-active):hover,
 .ctree__toolbar button:hover { background: var(--color-3-dark); }
 
+/* which run's proposals the whole tree is showing */
+.ctree__agents { display: flex; }
+
+.ctree__toolbar .ctree__agent { border-radius: 0; }
+.ctree__toolbar .ctree__agent:first-child { border-radius: 0.5rem 0 0 0.5rem; }
+.ctree__toolbar .ctree__agent:last-child {
+	border-radius: 0 0.5rem 0.5rem 0;
+	border-left  : none;
+}
+
+.ctree__toolbar .ctree__agent.is-active,
+.ctree__toolbar .ctree__agent.is-active:hover {
+	background  : var(--color-1);
+	color       : var(--color-btn-primary-text);
+	border-color: var(--color-1);
+}
+
 .ctree__status {
 	font-family: var(--font-1);
 	font-size  : calc(var(--text-xs) * 0.95);
