@@ -1,0 +1,304 @@
+digraph "CsSg_U1p.p_DM.Z2+3+4+5" {
+	rankdir=LR
+	root [label="See anything at XLZD?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes [label="See anything at IceCube-Gen2?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes [label="See anything at LZ?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes_yes [label="See a signal 10x above the XLZD limit?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes_yes_yes [label="2 pts, 2 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes_yes -> root_yes_yes_yes_yes [label=yes]
+	root_yes_yes_yes_no [label="3073 pts, 601 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes_yes -> root_yes_yes_yes_no [label=no]
+	root_yes_yes -> root_yes_yes_yes [label=yes]
+	root_yes_yes_no [label="See anything at DarkSide?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes_no_yes [label="2438 pts, 711 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes_no -> root_yes_yes_no_yes [label=yes]
+	root_yes_yes_no_no [label="1674 pts, 883 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes_no -> root_yes_yes_no_no [label=no]
+	root_yes_yes -> root_yes_yes_no [label=no]
+	root_yes -> root_yes_yes [label=yes]
+	root_yes_no [label="BR(h->inv) >= 0.001?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes [label="BR(h->inv) >= 0.0032?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes [label="See anything at DarkSide?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_yes [label="See anything at LZ?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_yes_yes [label="See a signal 10x above the XLZD limit?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_yes_yes_yes [label="47 pts, 47 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_yes_yes -> root_yes_no_yes_yes_yes_yes_yes [label=yes]
+	root_yes_no_yes_yes_yes_yes_no [label="303 pts, 288 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_yes_yes -> root_yes_no_yes_yes_yes_yes_no [label=no]
+	root_yes_no_yes_yes_yes -> root_yes_no_yes_yes_yes_yes [label=yes]
+	root_yes_no_yes_yes_yes_no [label="77 pts, 69 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_yes -> root_yes_no_yes_yes_yes_no [label=no]
+	root_yes_no_yes_yes -> root_yes_no_yes_yes_yes [label=yes]
+	root_yes_no_yes_yes_no [label="BR(h->inv) >= 0.032?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes [label="See anything at LZ?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_yes [label="See a signal 10x above the XLZD limit?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_yes_yes [label="27 pts, 27 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_yes -> root_yes_no_yes_yes_no_yes_yes_yes [label=yes]
+	root_yes_no_yes_yes_no_yes_yes_no [label="BR(h->inv) >= 0.1?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_yes_no_yes [label="1 pts, 1 region, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_yes_no -> root_yes_no_yes_yes_no_yes_yes_no_yes [label=yes]
+	root_yes_no_yes_yes_no_yes_yes_no_no [label="26 pts, 26 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_yes_no -> root_yes_no_yes_yes_no_yes_yes_no_no [label=no]
+	root_yes_no_yes_yes_no_yes_yes -> root_yes_no_yes_yes_no_yes_yes_no [label=no]
+	root_yes_no_yes_yes_no_yes -> root_yes_no_yes_yes_no_yes_yes [label=yes]
+	root_yes_no_yes_yes_no_yes_no [label="BR(h->inv) >= 0.1?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_no_yes [label="2 pts, 2 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_no -> root_yes_no_yes_yes_no_yes_no_yes [label=yes]
+	root_yes_no_yes_yes_no_yes_no_no [label="159 pts, 108 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_no -> root_yes_no_yes_yes_no_yes_no_no [label=no]
+	root_yes_no_yes_yes_no_yes -> root_yes_no_yes_yes_no_yes_no [label=no]
+	root_yes_no_yes_yes_no -> root_yes_no_yes_yes_no_yes [label=yes]
+	root_yes_no_yes_yes_no_no [label="BR(h->inv) >= 0.01?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_yes [label="See anything at LZ?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_yes_yes [label="See a signal 10x above the XLZD limit?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_yes_yes_yes [label="3 pts, 3 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_yes_yes -> root_yes_no_yes_yes_no_no_yes_yes_yes [label=yes]
+	root_yes_no_yes_yes_no_no_yes_yes_no [label="3 pts, 3 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_yes_yes -> root_yes_no_yes_yes_no_no_yes_yes_no [label=no]
+	root_yes_no_yes_yes_no_no_yes -> root_yes_no_yes_yes_no_no_yes_yes [label=yes]
+	root_yes_no_yes_yes_no_no_yes_no [label="70 pts, 65 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_yes -> root_yes_no_yes_yes_no_no_yes_no [label=no]
+	root_yes_no_yes_yes_no_no -> root_yes_no_yes_yes_no_no_yes [label=yes]
+	root_yes_no_yes_yes_no_no_no [label="See anything at LZ?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_no_yes [label="See a signal 10x above the XLZD limit?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_no_yes_yes [label="13 pts, 13 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_no_yes -> root_yes_no_yes_yes_no_no_no_yes_yes [label=yes]
+	root_yes_no_yes_yes_no_no_no_yes_no [label="33 pts, 31 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_no_yes -> root_yes_no_yes_yes_no_no_no_yes_no [label=no]
+	root_yes_no_yes_yes_no_no_no -> root_yes_no_yes_yes_no_no_no_yes [label=yes]
+	root_yes_no_yes_yes_no_no_no_no [label="106 pts, 81 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_no -> root_yes_no_yes_yes_no_no_no_no [label=no]
+	root_yes_no_yes_yes_no_no -> root_yes_no_yes_yes_no_no_no [label=no]
+	root_yes_no_yes_yes_no -> root_yes_no_yes_yes_no_no [label=no]
+	root_yes_no_yes_yes -> root_yes_no_yes_yes_no [label=no]
+	root_yes_no_yes -> root_yes_no_yes_yes [label=yes]
+	root_yes_no_yes_no [label="See anything at LZ?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_no_yes [label="See a signal 10x above the XLZD limit?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_no_yes_yes [label="47 pts, 45 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_no_yes -> root_yes_no_yes_no_yes_yes [label=yes]
+	root_yes_no_yes_no_yes_no [label="101 pts, 99 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_no_yes -> root_yes_no_yes_no_yes_no [label=no]
+	root_yes_no_yes_no -> root_yes_no_yes_no_yes [label=yes]
+	root_yes_no_yes_no_no [label="2050 pts, 1529 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_no -> root_yes_no_yes_no_no [label=no]
+	root_yes_no_yes -> root_yes_no_yes_no [label=no]
+	root_yes_no -> root_yes_no_yes [label=yes]
+	root_yes_no_no [label="See anything at DarkSide?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_no_yes [label="See anything at LZ?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_no_yes_yes [label="476 pts, 321 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_no_yes -> root_yes_no_no_yes_yes [label=yes]
+	root_yes_no_no_yes_no [label="572 pts, 445 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_no_yes -> root_yes_no_no_yes_no [label=no]
+	root_yes_no_no -> root_yes_no_no_yes [label=yes]
+	root_yes_no_no_no [label="See anything at Fermi15yr (WW)?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_no_no_yes [label="14 pts, 10 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_no_no -> root_yes_no_no_no_yes [label=yes]
+	root_yes_no_no_no_no [label="3155 pts, 2256 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_no_no -> root_yes_no_no_no_no [label=no]
+	root_yes_no_no -> root_yes_no_no_no [label=no]
+	root_yes_no -> root_yes_no_no [label=no]
+	root_yes -> root_yes_no [label=no]
+	root -> root_yes [label=yes]
+	root_no [label="See anything at IceCube-Gen2?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_yes [label="11140 pts, 3592 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no -> root_no_yes [label=yes]
+	root_no_no [label="BR(h->inv) >= 0.001?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_no_yes [label="BR(h->inv) >= 0.0032?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_no_yes_yes [label="BR(h->inv) >= 0.01?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes [label="BR(h->inv) >= 0.032?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes_yes [label="BR(h->inv) >= 0.1?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes_yes_yes [label="4 pts, 4 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes_yes -> root_no_no_yes_yes_yes_yes_yes [label=yes]
+	root_no_no_yes_yes_yes_yes_no [label="109 pts, 105 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes_yes -> root_no_no_yes_yes_yes_yes_no [label=no]
+	root_no_no_yes_yes_yes -> root_no_no_yes_yes_yes_yes [label=yes]
+	root_no_no_yes_yes_yes_no [label="431 pts, 303 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes -> root_no_no_yes_yes_yes_no [label=no]
+	root_no_no_yes_yes -> root_no_no_yes_yes_yes [label=yes]
+	root_no_no_yes_yes_no [label="1002 pts, 514 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no_yes_yes -> root_no_no_yes_yes_no [label=no]
+	root_no_no_yes -> root_no_no_yes_yes [label=yes]
+	root_no_no_yes_no [label="1139 pts, 643 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no_yes -> root_no_no_yes_no [label=no]
+	root_no_no -> root_no_no_yes [label=yes]
+	root_no_no_no [label="4049 pts, 2094 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no -> root_no_no_no [label=no]
+	root_no -> root_no_no [label=no]
+	root -> root_no [label=no]
+
+// LLM-suggested splits
+root_yes_yes_yes_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>LHCb + B-factory dark-photon<BR/>dimuon search<BR/>prompt ll peak, 0.2&lt;m&lt;70<BR/>GeV, epsilon &gt;~ 1e-3 ?<BR/>arXiv:1710.02867,<BR/>arXiv:1406.2980,<BR/>arXiv:1808.10567<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_yes_yes_no -> root_yes_yes_yes_no_lit [style=dashed, label="LLM split"];
+root_yes_yes_yes_no_lit_o0 [label="1804 pts, 14 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_yes_no_lit -> root_yes_yes_yes_no_lit_o0;
+root_yes_yes_yes_no_lit_o1_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>IceCube-Gen2 solar-neutrino<BR/>spectrometry<BR/>mean E(nu_mu) from Sun &gt; 100<BR/>GeV ?<BR/><B>Feasibility: possible</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_yes_yes_no_lit -> root_yes_yes_yes_no_lit_o1_novel0;
+root_yes_yes_yes_no_lit_o1_novel0_o0 [label="398 pts, 17 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_yes_no_lit_o1_novel0 -> root_yes_yes_yes_no_lit_o1_novel0_o0;
+root_yes_yes_yes_no_lit_o1_novel0_o1 [label="322 pts, 21 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_yes_no_lit_o1_novel0 -> root_yes_yes_yes_no_lit_o1_novel0_o1;
+root_yes_yes_no_yes_lit [label=<<B>LLM-Agent Literature Search</B><BR/>LHCb + B-factory dark-photon<BR/>dimuon search<BR/>prompt ll peak, 0.2&lt;m&lt;70<BR/>GeV, epsilon &gt;~ 1e-3 ?<BR/>arXiv:1710.02867,<BR/>arXiv:1406.2980,<BR/>arXiv:1808.10567<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_yes_no_yes -> root_yes_yes_no_yes_lit [style=dashed, label="LLM split"];
+root_yes_yes_no_yes_lit_o0 [label="714 pts, 12 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_no_yes_lit -> root_yes_yes_no_yes_lit_o0;
+root_yes_yes_no_yes_lit_o1_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>IceCube-Gen2 solar-neutrino<BR/>spectrometry<BR/>mean E(nu_mu) from Sun &gt; 100<BR/>GeV ?<BR/><B>Feasibility: possible</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_yes_no_yes_lit -> root_yes_yes_no_yes_lit_o1_novel0;
+root_yes_yes_no_yes_lit_o1_novel0_o0 [label="771 pts, 27 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_no_yes_lit_o1_novel0 -> root_yes_yes_no_yes_lit_o1_novel0_o0;
+root_yes_yes_no_yes_lit_o1_novel0_o1 [label="294 pts, 13 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_no_yes_lit_o1_novel0 -> root_yes_yes_no_yes_lit_o1_novel0_o1;
+root_yes_yes_no_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>LHCb + B-factory dark-photon<BR/>dimuon search<BR/>prompt ll peak, 0.2&lt;m&lt;70<BR/>GeV, epsilon &gt;~ 1e-3 ?<BR/>arXiv:1710.02867,<BR/>arXiv:1406.2980,<BR/>arXiv:1808.10567<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_yes_no_no -> root_yes_yes_no_no_lit [style=dashed, label="LLM split"];
+root_yes_yes_no_no_lit_o0 [label="165 pts, 11 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_no_no_lit -> root_yes_yes_no_no_lit_o0;
+root_yes_yes_no_no_lit_o1_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>IceCube-Gen2 solar-neutrino<BR/>spectrometry<BR/>mean E(nu_mu) from Sun &gt; 100<BR/>GeV ?<BR/><B>Feasibility: possible</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_yes_no_no_lit -> root_yes_yes_no_no_lit_o1_novel0;
+root_yes_yes_no_no_lit_o1_novel0_o0 [label="364 pts, 23 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_no_no_lit_o1_novel0 -> root_yes_yes_no_no_lit_o1_novel0_o0;
+root_yes_yes_no_no_lit_o1_novel0_o1 [label="314 pts, 18 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_no_no_lit_o1_novel0 -> root_yes_yes_no_no_lit_o1_novel0_o1;
+root_yes_no_yes_yes_yes_yes_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>Xenon recoil-spectrum WIMP-<BR/>mass fit<BR/>m_chi &lt; 80 GeV from recoil-<BR/>spectrum shape ?<BR/>arXiv:1606.07001<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_no_yes_yes_yes_yes_no -> root_yes_no_yes_yes_yes_yes_no_lit [style=dashed, label="LLM split"];
+root_yes_no_yes_yes_yes_yes_no_lit_o0 [label="6 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_yes_yes_no_lit -> root_yes_no_yes_yes_yes_yes_no_lit_o0;
+root_yes_no_yes_yes_yes_yes_no_lit_o1_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>100 TeV pp dilepton<BR/>resonance search<BR/>ll resonance 2-3 TeV, sigma<BR/>x BR &gt;~ 0.1 fb ?<BR/><B>Feasibility: possible</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_no_yes_yes_yes_yes_no_lit -> root_yes_no_yes_yes_yes_yes_no_lit_o1_novel0;
+root_yes_no_yes_yes_yes_yes_no_lit_o1_novel0_o0 [label="4 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_yes_yes_no_lit_o1_novel0 -> root_yes_no_yes_yes_yes_yes_no_lit_o1_novel0_o0;
+root_yes_no_yes_yes_yes_yes_no_lit_o1_novel0_o1 [label="10 pts, 3 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_yes_yes_no_lit_o1_novel0 -> root_yes_no_yes_yes_yes_yes_no_lit_o1_novel0_o1;
+root_yes_no_yes_yes_yes_yes_no_lit_o1_sub1 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>Ultra-luminosity low-mass<BR/>dimuon scan<BR/>dimuon peak ~22 GeV, epsilon<BR/>&gt; 5e-5 ?<BR/><B>Feasibility: speculative</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_no_yes_yes_yes_yes_no_lit -> root_yes_no_yes_yes_yes_yes_no_lit_o1_sub1;
+root_yes_no_yes_yes_yes_yes_no_lit_o1_sub1_o0 [label="4 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_yes_yes_no_lit_o1_sub1 -> root_yes_no_yes_yes_yes_yes_no_lit_o1_sub1_o0;
+root_yes_no_yes_yes_yes_yes_no_lit_o1_sub1_o1 [label="6 pts, 2 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_yes_yes_no_lit_o1_sub1 -> root_yes_no_yes_yes_yes_yes_no_lit_o1_sub1_o1;
+root_yes_no_yes_yes_yes_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>No existing measurement<BR/>reaches these regions<BR/>none (best candidate: dimuon<BR/>peak, epsilon &gt; 1e-3 — all<BR/>regions predict &lt; 1.5e-4)<BR/>arXiv:1710.02867<BR/><B>Status: No Split!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_no_yes_yes_yes_no -> root_yes_no_yes_yes_yes_no_lit [style=dashed, label="LLM split"];
+root_yes_no_yes_yes_yes_no_lit_o0_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>Dedicated forward dimuon<BR/>spectrometer<BR/>dimuon peak 10-30 GeV,<BR/>epsilon &gt; 1e-4 ?<BR/><B>Feasibility: unlikely</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_no_yes_yes_yes_no_lit -> root_yes_no_yes_yes_yes_no_lit_o0_novel0;
+root_yes_no_yes_yes_yes_no_lit_o0_novel0_o0 [label="5 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_yes_no_lit_o0_novel0 -> root_yes_no_yes_yes_yes_no_lit_o0_novel0_o0;
+root_yes_no_yes_yes_yes_no_lit_o0_novel0_o1 [label="6 pts, 2 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_yes_no_lit_o0_novel0 -> root_yes_no_yes_yes_yes_no_lit_o0_novel0_o1;
+root_yes_no_yes_yes_no_yes_no_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>No measurement: regions<BR/>differ only in dark self-<BR/>couplings<BR/>none (all regions: identical<BR/>MDM ~5 GeV, MZp ~1-2 GeV,<BR/>epsilon &lt;~ 1e-4)<BR/>arXiv:1406.2980<BR/><B>Status: No Split!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_no_yes_yes_no_yes_no_no -> root_yes_no_yes_yes_no_yes_no_no_lit [style=dashed, label="LLM split"];
+root_yes_no_yes_yes_no_yes_no_no_lit_o0_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>Halo-shape self-interaction<BR/>measurement<BR/>sigma/m &gt; 1e-6 cm^2/g ?<BR/><B>Feasibility: speculative</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_no_yes_yes_no_yes_no_no_lit -> root_yes_no_yes_yes_no_yes_no_no_lit_o0_novel0;
+root_yes_no_yes_yes_no_yes_no_no_lit_o0_novel0_o0 [label="50 pts, 11 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_no_yes_no_no_lit_o0_novel0 -> root_yes_no_yes_yes_no_yes_no_no_lit_o0_novel0_o0;
+root_yes_no_yes_yes_no_yes_no_no_lit_o0_novel0_o1 [label="14 pts, 2 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_no_yes_no_no_lit_o0_novel0 -> root_yes_no_yes_yes_no_yes_no_no_lit_o0_novel0_o1;
+root_yes_no_yes_yes_no_no_no_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>LHCb dark-photon dimuon<BR/>search<BR/>prompt dimuon peak, 11-17<BR/>GeV, epsilon &gt; 1e-3 ?<BR/>arXiv:1710.02867<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_no_yes_yes_no_no_no_no -> root_yes_no_yes_yes_no_no_no_no_lit [style=dashed, label="LLM split"];
+root_yes_no_yes_yes_no_no_no_no_lit_o0 [label="3 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_no_no_no_no_lit -> root_yes_no_yes_yes_no_no_no_no_lit_o0;
+root_yes_no_yes_yes_no_no_no_no_lit_o1_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>Merging-cluster self-<BR/>interaction bound<BR/>sigma/m &gt; 1e-6 cm^2/g ?<BR/><B>Feasibility: speculative</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_no_yes_yes_no_no_no_no_lit -> root_yes_no_yes_yes_no_no_no_no_lit_o1_novel0;
+root_yes_no_yes_yes_no_no_no_no_lit_o1_novel0_o0 [label="22 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_no_no_no_no_lit_o1_novel0 -> root_yes_no_yes_yes_no_no_no_no_lit_o1_novel0_o0;
+root_yes_no_yes_yes_no_no_no_no_lit_o1_novel0_o1 [label="3 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_no_no_no_no_lit_o1_novel0 -> root_yes_no_yes_yes_no_no_no_no_lit_o1_novel0_o1;
+root_yes_no_yes_no_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>LHCb + B-factory dark-photon<BR/>search<BR/>ll peak, 0.2&lt;m&lt;25 GeV,<BR/>epsilon &gt;~ 1e-3 ?<BR/>arXiv:1710.02867,<BR/>arXiv:1406.2980,<BR/>arXiv:1808.10567<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_no_yes_no_no -> root_yes_no_yes_no_no_lit [style=dashed, label="LLM split"];
+root_yes_no_yes_no_no_lit_o0 [label="215 pts, 20 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_no_no_lit -> root_yes_no_yes_no_no_lit_o0;
+root_yes_no_yes_no_no_lit_o1_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>Xe+Ar recoil-spectrum mass<BR/>fit<BR/>m_chi &lt; 80 GeV from recoil<BR/>shape ?<BR/><B>Feasibility: possible</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_no_yes_no_no_lit -> root_yes_no_yes_no_no_lit_o1_novel0;
+root_yes_no_yes_no_no_lit_o1_novel0_o0 [label="216 pts, 27 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_no_no_lit_o1_novel0 -> root_yes_no_yes_no_no_lit_o1_novel0_o0;
+root_yes_no_yes_no_no_lit_o1_novel0_o1 [label="176 pts, 39 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_no_no_lit_o1_novel0 -> root_yes_no_yes_no_no_lit_o1_novel0_o1;
+root_yes_no_no_yes_yes_lit [label=<<B>LLM-Agent Literature Search</B><BR/>LHCb dark-photon dimuon<BR/>search<BR/>prompt dimuon peak, 6-40<BR/>GeV, epsilon &gt; 1e-3 ?<BR/>arXiv:1710.02867<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_no_no_yes_yes -> root_yes_no_no_yes_yes_lit [style=dashed, label="LLM split"];
+root_yes_no_no_yes_yes_lit_o0_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>Halo-shape self-interaction<BR/>measurement<BR/>sigma/m &gt; 1e-6 cm^2/g ?<BR/><B>Feasibility: speculative</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_no_no_yes_yes_lit -> root_yes_no_no_yes_yes_lit_o0_novel0;
+root_yes_no_no_yes_yes_lit_o0_novel0_o0 [label="144 pts, 12 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_no_yes_yes_lit_o0_novel0 -> root_yes_no_no_yes_yes_lit_o0_novel0_o0;
+root_yes_no_no_yes_yes_lit_o0_novel0_o1 [label="28 pts, 8 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_no_yes_yes_lit_o0_novel0 -> root_yes_no_no_yes_yes_lit_o0_novel0_o1;
+root_yes_no_no_yes_yes_lit_o1 [label="4 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_no_yes_yes_lit -> root_yes_no_no_yes_yes_lit_o1;
+root_yes_no_no_yes_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>LHCb dark-photon dimuon<BR/>search<BR/>prompt dimuon peak, 10-60<BR/>GeV, epsilon &gt; 1e-3 ?<BR/>arXiv:1710.02867<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_no_no_yes_no -> root_yes_no_no_yes_no_lit [style=dashed, label="LLM split"];
+root_yes_no_no_yes_no_lit_o0 [label="130 pts, 9 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_no_yes_no_lit -> root_yes_no_no_yes_no_lit_o0;
+root_yes_no_no_yes_no_lit_o1_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>Xenon recoil-spectrum mass<BR/>fit<BR/>m_chi &gt; 200 GeV from recoil<BR/>shape ?<BR/><B>Feasibility: possible</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_no_no_yes_no_lit -> root_yes_no_no_yes_no_lit_o1_novel0;
+root_yes_no_no_yes_no_lit_o1_novel0_o0 [label="3 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_no_yes_no_lit_o1_novel0 -> root_yes_no_no_yes_no_lit_o1_novel0_o0;
+root_yes_no_no_yes_no_lit_o1_novel0_o1 [label="6 pts, 2 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_no_yes_no_lit_o1_novel0 -> root_yes_no_no_yes_no_lit_o1_novel0_o1;
+root_yes_no_no_yes_no_lit_o1_sub1 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>Extended-exposure recoil<BR/>mass fit<BR/>m_chi in 100-120 GeV band ?<BR/><B>Feasibility: unlikely</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_no_no_yes_no_lit -> root_yes_no_no_yes_no_lit_o1_sub1;
+root_yes_no_no_yes_no_lit_o1_sub1_o0 [label="3 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_no_yes_no_lit_o1_sub1 -> root_yes_no_no_yes_no_lit_o1_sub1_o0;
+root_yes_no_no_yes_no_lit_o1_sub1_o1 [label="3 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_no_yes_no_lit_o1_sub1 -> root_yes_no_no_yes_no_lit_o1_sub1_o1;
+root_yes_no_no_no_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>LHCb + B-factory dark-photon<BR/>search<BR/>ll peak, 0.2&lt;m&lt;70 GeV,<BR/>epsilon &gt;~ 1e-3 ?<BR/>arXiv:1710.02867,<BR/>arXiv:1406.2980<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_no_no_no_no -> root_yes_no_no_no_no_lit [style=dashed, label="LLM split"];
+root_yes_no_no_no_no_lit_o0 [label="585 pts, 26 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_no_no_no_lit -> root_yes_no_no_no_no_lit_o0;
+root_yes_no_no_no_no_lit_o1_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>Xenon recoil-spectrum mass<BR/>fit<BR/>m_chi &gt; 200 GeV from recoil<BR/>shape ?<BR/><B>Feasibility: possible</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_no_no_no_no_lit -> root_yes_no_no_no_no_lit_o1_novel0;
+root_yes_no_no_no_no_lit_o1_novel0_o0 [label="47 pts, 6 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_no_no_no_lit_o1_novel0 -> root_yes_no_no_no_no_lit_o1_novel0_o0;
+root_yes_no_no_no_no_lit_o1_novel0_o1 [label="382 pts, 83 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_no_no_no_lit_o1_novel0 -> root_yes_no_no_no_no_lit_o1_novel0_o1;
+root_no_yes_lit [label=<<B>LLM-Agent Literature Search</B><BR/>LHCb + B-factory dark-photon<BR/>search<BR/>ll peak, 0.2&lt;m&lt;70 GeV,<BR/>epsilon &gt;~ 1e-3 ?<BR/>arXiv:1710.02867,<BR/>arXiv:1406.2980,<BR/>arXiv:1808.10567<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_no_yes -> root_no_yes_lit [style=dashed, label="LLM split"];
+root_no_yes_lit_o0 [label="6666 pts, 110 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_yes_lit -> root_no_yes_lit_o0;
+root_no_yes_lit_o1_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>IceCube-Gen2 solar-neutrino<BR/>spectrometry<BR/>mean E(nu_mu) from Sun &gt; 100<BR/>GeV ?<BR/><B>Feasibility: possible</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_no_yes_lit -> root_no_yes_lit_o1_novel0;
+root_no_yes_lit_o1_novel0_o0 [label="172 pts, 34 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_yes_lit_o1_novel0 -> root_no_yes_lit_o1_novel0_o0;
+root_no_yes_lit_o1_novel0_o1 [label="958 pts, 104 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_yes_lit_o1_novel0 -> root_no_yes_lit_o1_novel0_o1;
+root_no_no_yes_yes_yes_yes_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>CRESST-III recoil-spectrum<BR/>endpoint<BR/>nuclear-recoil endpoint &gt;<BR/>150 eV ?<BR/>arXiv:1904.00498<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_no_no_yes_yes_yes_yes_no -> root_no_no_yes_yes_yes_yes_no_lit [style=dashed, label="LLM split"];
+root_no_no_yes_yes_yes_yes_no_lit_o0 [label="3 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_yes_yes_yes_yes_no_lit -> root_no_no_yes_yes_yes_yes_no_lit_o0;
+root_no_no_yes_yes_yes_yes_no_lit_o1 [label="3 pts, 1 region, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_yes_yes_yes_yes_no_lit -> root_no_no_yes_yes_yes_yes_no_lit_o1;
+root_no_no_yes_yes_yes_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>BaBar/Belle II dark-photon<BR/>searches (visible +<BR/>invisible)<BR/>e+e- -&gt; gamma Z', m&lt;10 GeV,<BR/>epsilon &gt; 1e-3 ?<BR/>arXiv:1406.2980,<BR/>arXiv:1702.03327,<BR/>arXiv:1808.10567<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_no_no_yes_yes_yes_no -> root_no_no_yes_yes_yes_no_lit [style=dashed, label="LLM split"];
+root_no_no_yes_yes_yes_no_lit_o0 [label="29 pts, 5 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_yes_yes_yes_no_lit -> root_no_no_yes_yes_yes_no_lit_o0;
+root_no_no_yes_yes_yes_no_lit_o1_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>Next-gen cryogenic recoil-<BR/>endpoint detector<BR/>nuclear-recoil endpoint &gt; 1<BR/>keV ?<BR/><B>Feasibility: possible</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_no_no_yes_yes_yes_no_lit -> root_no_no_yes_yes_yes_no_lit_o1_novel0;
+root_no_no_yes_yes_yes_no_lit_o1_novel0_o0 [label="76 pts, 12 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_yes_yes_yes_no_lit_o1_novel0 -> root_no_no_yes_yes_yes_no_lit_o1_novel0_o0;
+root_no_no_yes_yes_yes_no_lit_o1_novel0_o1 [label="47 pts, 7 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_yes_yes_yes_no_lit_o1_novel0 -> root_no_no_yes_yes_yes_no_lit_o1_novel0_o1;
+root_no_no_yes_yes_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>BaBar/Belle II dark-photon<BR/>searches (visible +<BR/>invisible)<BR/>e+e- -&gt; gamma Z', m&lt;10 GeV,<BR/>epsilon &gt; 1e-3 ?<BR/>arXiv:1406.2980,<BR/>arXiv:1702.03327,<BR/>arXiv:1808.10567<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_no_no_yes_yes_no -> root_no_no_yes_yes_no_lit [style=dashed, label="LLM split"];
+root_no_no_yes_yes_no_lit_o0 [label="40 pts, 8 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_yes_yes_no_lit -> root_no_no_yes_yes_no_lit_o0;
+root_no_no_yes_yes_no_lit_o1_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>Next-gen cryogenic recoil-<BR/>endpoint detector<BR/>nuclear-recoil endpoint &gt; 1<BR/>keV ?<BR/><B>Feasibility: possible</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_no_no_yes_yes_no_lit -> root_no_no_yes_yes_no_lit_o1_novel0;
+root_no_no_yes_yes_no_lit_o1_novel0_o0 [label="478 pts, 29 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_yes_yes_no_lit_o1_novel0 -> root_no_no_yes_yes_no_lit_o1_novel0_o0;
+root_no_no_yes_yes_no_lit_o1_novel0_o1 [label="9 pts, 2 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_yes_yes_no_lit_o1_novel0 -> root_no_no_yes_yes_no_lit_o1_novel0_o1;
+root_no_no_yes_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>BaBar/Belle II + LHCb dark-<BR/>photon searches<BR/>gamma + ll (or ll peak),<BR/>m&lt;60 GeV, epsilon &gt; 1e-3 ?<BR/>arXiv:1406.2980,<BR/>arXiv:1808.10567,<BR/>arXiv:1710.02867<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_no_no_yes_no -> root_no_no_yes_no_lit [style=dashed, label="LLM split"];
+root_no_no_yes_no_lit_o0 [label="234 pts, 18 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_yes_no_lit -> root_no_no_yes_no_lit_o0;
+root_no_no_yes_no_lit_o1_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>Next-gen cryogenic recoil-<BR/>endpoint detector<BR/>nuclear-recoil endpoint &gt; 1<BR/>keV ?<BR/><B>Feasibility: possible</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_no_no_yes_no_lit -> root_no_no_yes_no_lit_o1_novel0;
+root_no_no_yes_no_lit_o1_novel0_o0 [label="209 pts, 16 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_yes_no_lit_o1_novel0 -> root_no_no_yes_no_lit_o1_novel0_o0;
+root_no_no_yes_no_lit_o1_novel0_o1 [label="107 pts, 20 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_yes_no_lit_o1_novel0 -> root_no_no_yes_no_lit_o1_novel0_o1;
+root_no_no_no_lit [label=<<B>LLM-Agent Literature Search</B><BR/>LHCb + B-factory dark-photon<BR/>search<BR/>ll peak, 0.2&lt;m&lt;70 GeV,<BR/>epsilon &gt;~ 1e-3 ?<BR/>arXiv:1710.02867,<BR/>arXiv:1406.2980<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_no_no_no -> root_no_no_no_lit [style=dashed, label="LLM split"];
+root_no_no_no_lit_o0 [label="1737 pts, 66 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_no_lit -> root_no_no_no_lit_o0;
+root_no_no_no_lit_o1_novel0 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>CTA dwarf-galaxy gamma<BR/>cascade endpoint<BR/>gamma spectral endpoint &gt;<BR/>200 GeV ?<BR/><B>Feasibility: unlikely</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_no_no_no_lit -> root_no_no_no_lit_o1_novel0;
+root_no_no_no_lit_o1_novel0_o0 [label="278 pts, 53 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_no_lit_o1_novel0 -> root_no_no_no_lit_o1_novel0_o0;
+root_no_no_no_lit_o1_novel0_o1 [label="75 pts, 16 regions, 1\nlagrangian", shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_no_lit_o1_novel0 -> root_no_no_no_lit_o1_novel0_o1;
+}

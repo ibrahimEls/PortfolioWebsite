@@ -196,13 +196,17 @@ def outcome_branch(parent_id, child_id):
     if not child_id.startswith(parent_id + "_"):
         return ""
     suffix = child_id[len(parent_id) + 1:]
-    m = re.match(r'o(\d+)', suffix)
+    # an outcome child is named o<k> and nothing else; matching it loosely
+    # also swallows o0_novel0, which is a proposal, not an outcome
+    m = re.fullmatch(r'o(\d+)', suffix)
     if m:
         return "observed" if m.group(1) == "0" else "not observed"
     # a surviving outcome region that an agent then proposes to split
     # further: the same transition the dashed leaf -> lit edges represent.
-    # Proposals are named novelN or subN; both carry the same index.
-    if re.match(r'(?:novel|sub)\d+', suffix):
+    # Proposals are named novelN or subN; both carry the same index. A
+    # search that returned "No Split!" hangs its proposals straight off
+    # itself, and those keep the outcome they were made for in the name.
+    if re.fullmatch(r'(?:o\d+_)?(?:novel|sub)\d+', suffix):
         return "LLM split"
     return ""
 
@@ -535,6 +539,24 @@ def attach_reasoning(tree, by_leaf):
     return hits[0], len(target)
 
 
+def number_unnamed_outcomes(node):
+    """Number a many-way split the replies did not name.
+
+    The id-derived placeholder only has two values, so a three-way split
+    with no replies on hand ends up with two branches both reading "not
+    observed" and nothing to tell them apart.
+    """
+    kids = [c for c in node.get("children", [])
+            if re.fullmatch(re.escape(node["id"]) + r'_o(\d+)', c["id"])]
+    if len(kids) > 2 and all(c.get("branch") in ("observed", "not observed")
+                             for c in kids):
+        for c in kids:
+            k = int(c["id"].rsplit("_o", 1)[1])
+            c["branch"] = "outcome %d" % (k + 1)
+    for c in node.get("children", []):
+        number_unnamed_outcomes(c)
+
+
 def name_outcomes(node, labels):
     """Rename a proposal's outcome branches to what the agent called them."""
     for c in node.get("children", []):
@@ -701,6 +723,7 @@ def collect_run(run):
         title = best["title"] or next(
             (v["title"] for v in variants if v["title"]), None)
         got, want = attach_reasoning(best["tree"], responses.get(key, {}))
+        number_unnamed_outcomes(best["tree"])
         if key in text_trees:
             attach_models(best["tree"], text_trees[key])
         out[key] = {"tree": best["tree"], "stats": best["stats"],
@@ -772,10 +795,29 @@ def merge_nodes(items):
     return out
 
 
+def has_proposals(node):
+    for c in node.get("children", []):
+        if is_agent_child(c) or has_proposals(c):
+            return True
+    return False
+
+
 def merge_key(key, per_run, runs):
     """One published tree for a key, over whichever runs produced it."""
     items = [(r["slug"], r["label"], per_run[r["slug"]][key]["tree"])
              for r in runs if key in per_run[r["slug"]]]
+    # A run that proposed nothing for this key contributes only its copy of
+    # the analytic tree, and those exports are sometimes pruned figure
+    # excerpts. Drop it rather than let a 7-node excerpt either block the
+    # merge or stand in for the full 63-node tree.
+    contributors = [it for it in items if has_proposals(it[2])]
+    if contributors:
+        items = contributors
+    elif len(items) > 1:
+        items = [max(items, key=lambda it: len(skeleton(it[2])))]
+    # a tree nobody proposed on is credited to no agent, whichever run's
+    # analytic export happened to supply its structure
+    slugs = [s for s, _l, _t in contributors]
     if len(items) > 1:
         ref = skeleton(items[0][2])
         for slug, _label, tree in items[1:]:
@@ -784,7 +826,7 @@ def merge_key(key, per_run, runs):
                          "cannot be merged" % (key, slug, items[0][0]))
     tree = merge_nodes(items)
     annotate(tree)
-    return tree, [s for s, _l, _t in items]
+    return tree, slugs, [s for s, _l, _t in items]
 
 
 def main():
@@ -807,10 +849,10 @@ def main():
     print("\n=== merged ===")
     manifest = []
     for key in keys:
-        tree, slugs = merge_key(key, per_run, runs)
+        tree, slugs, source = merge_key(key, per_run, runs)
         acc = totals(tree, {"nodes": 0, "depth": 0, "_d": 0})
         acc.pop("_d")
-        title = next((per_run[s][key]["title"] for s in slugs
+        title = next((per_run[s][key]["title"] for s in source
                       if per_run[s][key]["title"]), None)
         disp = display_name(key)
         agents = [{"slug": r["slug"], "label": r["label"]}
@@ -830,7 +872,8 @@ def main():
         })
         print("  %-46s %4d nodes  %2d lit  %2d novel  <- %s"
               % (disp, acc["nodes"], acc.get("lit", 0), acc.get("novel", 0),
-                 ", ".join(slugs)))
+                 ", ".join(slugs) if slugs
+                 else "no proposals (%s)" % ", ".join(source)))
 
     manifest.sort(key=lambda m: -m["nodes"])
     with open(os.path.join(out_dir, "index.json"), "w") as fh:

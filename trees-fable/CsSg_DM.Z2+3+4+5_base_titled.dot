@@ -1,0 +1,21 @@
+digraph "CsSg_DM.Z2+3+4+5" {
+graph [label="Complex Scalar Singlet\n7,484 viable points", labelloc="t", labeljust="c", fontsize="20", fontname="Helvetica-Bold"];
+	rankdir=LR
+	root [label="BR(h->inv) >= 0.001?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes [label="BR(h->inv) >= 0.0032?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes [label="See anything at LZ?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes_yes [label="112 pts, 112 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes -> root_yes_yes_yes [label=yes]
+	root_yes_yes_no [label="See anything at DarkSide?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes_no_yes [label="82 pts, 80 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes_no -> root_yes_yes_no_yes [label=yes]
+	root_yes_yes_no_no [label="25 pts, 25 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes_no -> root_yes_yes_no_no [label=no]
+	root_yes_yes -> root_yes_yes_no [label=no]
+	root_yes -> root_yes_yes [label=yes]
+	root_yes_no [label="2071 pts, 2032 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes -> root_yes_no [label=no]
+	root -> root_yes [label=yes]
+	root_no [label="5194 pts, 4815 regions, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root -> root_no [label=no]
+}

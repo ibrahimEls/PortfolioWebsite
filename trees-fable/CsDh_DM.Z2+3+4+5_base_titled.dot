@@ -1,0 +1,17 @@
+digraph "CsDh_DM.Z2+3+4+5" {
+graph [label="Complex Scalar Doublet\n20,068 viable points", labelloc="t", labeljust="c", fontsize="20", fontname="Helvetica-Bold"];
+	rankdir=LR
+	root [label="See anything at XLZD?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes [label="See anything at DarkSide?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes [label="See anything at LZ?" fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes_yes [label="2422 pts, 1 region, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes -> root_yes_yes_yes [label=yes]
+	root_yes_yes_no [label="3706 pts, 1 region, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes -> root_yes_yes_no [label=no]
+	root_yes -> root_yes_yes [label=yes]
+	root_yes_no [label="4500 pts, 1 region, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes -> root_yes_no [label=no]
+	root -> root_yes [label=yes]
+	root_no [label="9440 pts, 1 region, 1 lagrangian" fillcolor=lightgrey shape=box style="rounded,filled"]
+	root -> root_no [label=no]
+}
