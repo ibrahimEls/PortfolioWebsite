@@ -105,19 +105,21 @@ reality}
 
 Answering this at scale is a mapping problem, and we argue that the paradigm that defines \alphago{} and modern LLMs, may be the key to successful mapping, when coupled with analytical computation and LLM-agents. We introduce \textbf{H}idden-sector \textbf{AI} for \textbf{T}estable \textbf{H}ypothesis \textbf{E}nu\textbf{M}eration, or \haithem{}, a framework that does just this, backronymed after a pioneer of the experimental method, Ibn Al-Haytham (965-1040 CE), whose work cemented controlled experiment as the arbiter of competing theory \cite{Sabra:1989optics,Ibn-al-haythem-reflect}.
 
-\haithem{} is composed of what we call a Large Lagrangian Model (LLaM), an autoregressive transformer pretrained from scratch on over 1 Billion Output Tokens from over $10,000$ specially tokenized Lagrangians, and fine-tuned in a live environment with reinforcement learning (RL). The LLaM is trained to play a battleship-style game over the parameter space of a theory it is given in order to find regions in that parameter space that can be the correct description of reality (in that no experiment we check rules them out).
-
-In addition to the LLaM, \haithem{} contains a decision tree construction that uses experimental observables that are yet to be measured as ways to differentiate viable regions the LLaM finds. We compute many observables analytically, and construct the tree based on bins on those observables. If the decision tree at a leaf node contains more than one set of viable regions, we have found more than one description of reality that share exactly the same \textit{signature} if all future experiments we consider were built and used. In this case, we employ LLM-agents to continue the splitting, asking them to search the literature or propose novel observables that can split two same-signature descriptions of reality.
-
 \interactive{tree}{\textbf{Walk the tree:} Answer what observables were found
 and find what Lagrangians survive. \textbf{Whole tree:} show the full tree,
 scroll to zoom, and click a node for its details.}
 
-% ----------------------------------------------------------------- method --
-\section{The Large Lagrangian Model}
+\haithem{} is composed of what we call a Large Lagrangian Model (LLaM), an autoregressive transformer pretrained from scratch on over 1 Billion Output Tokens from over $10,000$ specially tokenized Lagrangians, and fine-tuned in a live environment with reinforcement learning (RL). The LLaM is trained to play a battleship-style game over the parameter space of a theory it is given in order to find regions in that parameter space that can be the correct description of reality (in that no experiment we check rules them out).
+
+In addition to the LLaM, \haithem{} contains a decision tree construction that uses experimental observables that are yet to be measured as ways to differentiate viable regions the LLaM finds. We compute many observables analytically, and construct the tree based on bins on those observables. If the decision tree at a leaf node contains more than one set of viable regions, we have found more than one description of reality that share exactly the same \textit{signature} if all future experiments we consider were built and used. In this case, we employ LLM-agents to continue the splitting, asking them to search the literature or propose novel observables that can split two same-signature descriptions of reality.
+
+
 \interactive{alphazero}{Illustration of the similarities between \alphago{}
 and \alphazero{} and \haithem{}. Both search optimal moves conditioned on
 the current play turn and past actions.}
+% ----------------------------------------------------------------- method --
+\section{The Large Lagrangian Model}
+
 % \figplace{fig-lagrangian-tokens}{Tokenization of an example Lagrangian. Each
 % dark-sector field is embedded into its own field token, while the symmetry
 % content and per-field summaries (dashed) are embedded into a single global

@@ -254,26 +254,6 @@
                                     competing theory<sup class="post-cite"><a href="#ref-2">2</a>,<a href="#ref-3">3</a></sup>.
                                 </p>
 
-                                <p>
-                                    <span class="smallcaps">hAIthem</span> is composed of what we call a Large Lagrangian Model (LLaM), an autoregressive
-                                    transformer pretrained from scratch on over 1 Billion Output Tokens from over 10,000
-                                    specially tokenized Lagrangians, and fine-tuned in a live environment with reinforcement
-                                    learning (RL). The LLaM is trained to play a battleship-style game over the parameter
-                                    space of a theory it is given in order to find regions in that parameter space that can be the
-                                    correct description of reality (in that no experiment we check rules them out).
-                                </p>
-
-                                <p>
-                                    In addition to the LLaM, <span class="smallcaps">hAIthem</span> contains a decision tree construction that uses
-                                    experimental observables that are yet to be measured as ways to differentiate viable
-                                    regions the LLaM finds. We compute many observables analytically, and construct the tree
-                                    based on bins on those observables. If the decision tree at a leaf node contains more than one set of viable regions, we have
-                                    found more than one description of reality that share exactly the same <em>signature</em>
-                                    if all future experiments we consider were built and used. In this case, we employ
-                                    LLM-agents to continue the splitting, asking them to search the literature or propose
-                                    novel observables that can split two same-signature descriptions of reality.
-                                </p>
-
                                 <figure class="ctree" id="ctree"
                                         data-dir="haithem-assets/trees"
                                         data-default="global_tree">
@@ -331,7 +311,25 @@
                                     </figcaption>
                                 </figure>
 
-                                <h2>The Large Lagrangian Model</h2>
+                                <p>
+                                    <span class="smallcaps">hAIthem</span> is composed of what we call a Large Lagrangian Model (LLaM), an autoregressive
+                                    transformer pretrained from scratch on over 1 Billion Output Tokens from over 10,000
+                                    specially tokenized Lagrangians, and fine-tuned in a live environment with reinforcement
+                                    learning (RL). The LLaM is trained to play a battleship-style game over the parameter
+                                    space of a theory it is given in order to find regions in that parameter space that can be the
+                                    correct description of reality (in that no experiment we check rules them out).
+                                </p>
+
+                                <p>
+                                    In addition to the LLaM, <span class="smallcaps">hAIthem</span> contains a decision tree construction that uses
+                                    experimental observables that are yet to be measured as ways to differentiate viable
+                                    regions the LLaM finds. We compute many observables analytically, and construct the tree
+                                    based on bins on those observables. If the decision tree at a leaf node contains more than one set of viable regions, we have
+                                    found more than one description of reality that share exactly the same <em>signature</em>
+                                    if all future experiments we consider were built and used. In this case, we employ
+                                    LLM-agents to continue the splitting, asking them to search the literature or propose
+                                    novel observables that can split two same-signature descriptions of reality.
+                                </p>
 
                                 <figure class="embed-figure">
                                     <div class="embed-figure__frame" data-w="1400" data-h="720">
@@ -346,6 +344,7 @@
                                     </figcaption>
                                 </figure>
 
+                                <h2>The Large Lagrangian Model</h2>
 
                                 <!-- the tokenization figure is commented out in haithem-post.tex too -->
                                 <!--
