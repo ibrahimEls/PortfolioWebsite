@@ -169,6 +169,15 @@ dimensionality.}
 
 \pullquote{The Large Lagrangian Model finds what theories to consider, and the LLM-agent does the phenomenology there, both working at scale}
 
+We take all viable points the LLaM found for a Lagrangian, and
+grow a tree with them, where each node is one observable, and each leaf a distinct combination of signatures contains all viable points that share the same signatures. After growing the tree, we find leaves holding more than one region. We consider these degenerate in that is nothing we currently compute tells the theories in the leaf apart. 
+
+Breaking these degeneracies is the job of the LLM-agents, which can reason at scale (needed when we have hundreds of these leaves) . We hand these leaves to an LLM-agent in two stages. First, we ask for a literature search, where the agent must find an existing or
+planned measurement outside what we compute that separates the regions. It must then verify every reference it cites on arXiv, and say whether its proposal succeeded to break the degeneracy.
+
+If nothing published splits the leaf, or splits only part of it, the agent moves to the second stage, which is to propose a new observable. It does so and rates how feasible the new observable is.
+
+
 %\section{Next Steps}
 
 % ----------------------------------------------------------- on the shelf --

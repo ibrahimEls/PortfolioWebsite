@@ -2551,6 +2551,12 @@ button.btn--pill {
 	padding-top: var(--vspace-1_5);
 }
 
+/* the post header closes on the collaborators line, which needs less room
+   under it than a page that closes on a title */
+.s-pageheader--post {
+	padding-bottom: var(--vspace-1);
+}
+
 .post > *:first-child { margin-top: 0; }
 
 .s-pagecontent .pageintro {
@@ -5385,6 +5391,9 @@ button.btn--pill {
 	margin-left : 50%;
 	transform   : translateX(-50%);
 }
+
+/* the opening figure runs at three quarters of that */
+.embed-figure { width: min(94.5rem, 69vw); }
 
 .embed-figure figcaption,
 .static-figure figcaption {

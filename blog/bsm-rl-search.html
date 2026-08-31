@@ -112,7 +112,7 @@
 
         <section id="content" class="s-content">
 
-               <section class="s-pageheader pageheader">
+               <section class="s-pageheader pageheader s-pageheader--post">
                     <div class="row">
                         <div class="column xl-12">
                             <h1 class="page-title page-title--post">
@@ -153,6 +153,43 @@
                         <div class="column xl-12">
 
                             <article class="post">
+
+                                <figure class="embed-figure">
+                                    <div class="embed-figure__frame" data-w="1400" data-h="720">
+                                        <iframe src="haithem-assets/alphazero-parameter-space.html"
+                                                title="AlphaZero-style parameter-space search"
+                                                scrolling="no"></iframe>
+                                    </div>
+                                    <figcaption>
+                                        Illustration of the similarities between <span class="smallcaps">AlphaGo</span> and <span class="smallcaps">AlphaZero</span> and
+                                        <span class="smallcaps">hAIthem</span>. Both search optimal moves conditioned on the current play turn
+                                        and past actions.
+                                    </figcaption>
+                                </figure>
+
+                                <p class="post-byline">by Ibrahim Elsharkawy, last edited August 2026</p>
+
+                                <p>
+                                    The current state of the search for beyond standard model (BSM) physics is one of experimental
+                                    drought and theoretical abundance. No new elementary particle has been confirmed since the Higgs
+                                    in 2012, and many dedicated experiments across high-energy physics (including the Large Hadron
+                                    Collider) have found little significant deviation from the Standard Model across thousands of
+                                    observables. Despite this, over the same period, the number of BSM descriptions has grown
+                                    significantly<sup class="post-cite"><a href="#ref-1">1</a></sup>.
+                                </p>
+
+                                <p>
+                                    This is to say, there is an overabundance of ways to describe reality, but not enough
+                                    experimental probes that can tell these scenarios apart. This state of physics thus motivates
+                                    asking (and potentially automating) a different question,
+                                </p>
+
+                                <blockquote class="post-quote post-quote--arrow">
+                                    <p>&ldquo;What is the best description of reality&rdquo;</p>
+                                    <span class="post-quote__arrow" aria-hidden="true">&rArr;</span>
+                                    <p>&ldquo;What <em>set of descriptions</em> are consistent with current data and
+                                       <em>what future observables</em> distinguish them&rdquo;</p>
+                                </blockquote>
 
                                 <figure class="ps3d" id="ps3d"
                                         data-dir="haithem-assets/param-space"
@@ -218,40 +255,25 @@
                                     </figcaption>
                                 </figure>
 
-                                <p class="post-byline">by Ibrahim Elsharkawy, last edited August 2026</p>
-
                                 <p>
-                                    The current state of the search for beyond standard model (BSM) physics is one of
-                                    experimental drought and theoretical abundance. No new elementary particle has been
-                                    confirmed since the Higgs in 2012, and many dedicated experiments across high-energy
-                                    physics (including the Large Hadron Collider) have found little significant deviation
-                                    from the Standard Model across thousands of observables. Despite this, over the same
-                                    period, the number of BSM descriptions has
-                                    grown significantly<sup class="post-cite"><a href="#ref-1">1</a></sup>.
-                                </p>
-
-                                <p>
-                                    This is to say, there is an overabundance of ways to describe reality, but not enough
-                                    experimental probes that can tell these scenarios apart. This state of physics thus
-                                    motivates asking (and potentially automating) a different question,
-                                </p>
-
-                                <blockquote class="post-quote post-quote--arrow">
-                                    <p>&ldquo;What is the best description of reality&rdquo;</p>
-                                    <span class="post-quote__arrow" aria-hidden="true">&rArr;</span>
-                                    <p>&ldquo;What <em>set of descriptions</em> are consistent with current data and
-                                       <em>what future observables</em> distinguish them&rdquo;</p>
-                                </blockquote>
-
-                                <p>
-                                    Answering this at scale is a mapping problem, and we argue that the paradigm that defines
-                                    <span class="smallcaps">AlphaGo</span> and modern LLMs, may be the key to successful mapping, when coupled with
-                                    analytical computation and LLM-agents. We introduce <strong>H</strong>idden-sector
+                                    Answering this at scale is a mapping problem, and we argue that the paradigm that defines <span
+                                    class="smallcaps">AlphaGo</span> and modern LLMs, may be the key to successful mapping, when
+                                    coupled with analytic computation and LLM-agents. We introduce <strong>H</strong>idden-sector
                                     <strong>AI</strong> for <strong>T</strong>estable <strong>H</strong>ypothesis
-                                    <strong>E</strong>nu<strong>M</strong>eration, or <span class="smallcaps">hAIthem</span>, a framework that does just
-                                    this, backronymed after a pioneer of the experimental method, Ibn Al-Haytham
-                                    (965&ndash;1040 CE), whose work cemented controlled experiment as the arbiter of
-                                    competing theory<sup class="post-cite"><a href="#ref-2">2</a>,<a href="#ref-3">3</a></sup>.
+                                    <strong>E</strong>nu<strong>M</strong>eration, or <span class="smallcaps">hAIthem</span>, a
+                                    framework that does just this, backronymed after a pioneer of the experimental method, Ibn
+                                    Al-Haytham (965-1040 CE), whose work cemented controlled experiment as the arbiter of competing
+                                    theory<sup class="post-cite"><a href="#ref-2">2</a>,<a href="#ref-3">3</a></sup>.
+                                </p>
+
+                                <p>
+                                    <span class="smallcaps">hAIthem</span> is composed of what we call a Large Lagrangian Model
+                                    (LLaM), an autoregressive transformer pretrained from scratch on over 1 Billion Output Tokens
+                                    from over 10,000 specially tokenized Lagrangians, and fine-tuned in a live environment with
+                                    reinforcement learning (RL). The LLaM is trained to play a battleship-style game with limited
+                                    turns and probes per turn over the parameter space of a theory it is given in order to find
+                                    regions in that parameter space that can be the correct description of reality (in that no
+                                    experiment we check rules them out).
                                 </p>
 
                                 <figure class="ctree" id="ctree"
@@ -312,53 +334,18 @@
                                 </figure>
 
                                 <p>
-                                    <span class="smallcaps">hAIthem</span> is composed of what we call a Large Lagrangian Model (LLaM), an autoregressive
-                                    transformer pretrained from scratch on over 1 Billion Output Tokens from over 10,000
-                                    specially tokenized Lagrangians, and fine-tuned in a live environment with reinforcement
-                                    learning (RL). The LLaM is trained to play a battleship-style game over the parameter
-                                    space of a theory it is given in order to find regions in that parameter space that can be the
-                                    correct description of reality (in that no experiment we check rules them out).
+                                    In addition to the LLaM, <span class="smallcaps">hAIthem</span> contains a decision tree
+                                    construction that uses experimental observables that are yet to be measured as ways to
+                                    differentiate viable regions the LLaM finds. We compute many observables analytically, and
+                                    construct the tree based on bins on those observables. If the decision tree at a leaf node
+                                    contains more than one set of viable regions, we have found more than one description of reality
+                                    that share exactly the same <em>signature</em> if all future experiments we consider were built
+                                    and used. In this case, we employ LLM-agents to continue the splitting, asking them to search
+                                    the literature or propose novel observables that can split two same-signature descriptions of
+                                    reality.
                                 </p>
-
-                                <p>
-                                    In addition to the LLaM, <span class="smallcaps">hAIthem</span> contains a decision tree construction that uses
-                                    experimental observables that are yet to be measured as ways to differentiate viable
-                                    regions the LLaM finds. We compute many observables analytically, and construct the tree
-                                    based on bins on those observables. If the decision tree at a leaf node contains more than one set of viable regions, we have
-                                    found more than one description of reality that share exactly the same <em>signature</em>
-                                    if all future experiments we consider were built and used. In this case, we employ
-                                    LLM-agents to continue the splitting, asking them to search the literature or propose
-                                    novel observables that can split two same-signature descriptions of reality.
-                                </p>
-
-                                <figure class="embed-figure">
-                                    <div class="embed-figure__frame" data-w="1400" data-h="720">
-                                        <iframe src="haithem-assets/alphazero-parameter-space.html"
-                                                title="AlphaZero-style parameter-space search"
-                                                scrolling="no"></iframe>
-                                    </div>
-                                    <figcaption>
-                                        Illustration of the similarities between <span class="smallcaps">AlphaGo</span> and <span class="smallcaps">AlphaZero</span> and
-                                        <span class="smallcaps">hAIthem</span>. Both search optimal moves conditioned on the current play turn
-                                        and past actions.
-                                    </figcaption>
-                                </figure>
 
                                 <h2>The Large Lagrangian Model</h2>
-
-                                <!-- the tokenization figure is commented out in haithem-post.tex too -->
-                                <!--
-                                <figure class="static-figure">
-                                    <img src="haithem-assets/figures/fig-lagrangian-tokens.png"
-                                         alt="A Lagrangian's fields encoded into per-field tokens plus a global token">
-                                    <figcaption>
-                                        Tokenization of an example Lagrangian. Each dark-sector field is embedded
-                                        into its own field token, while the symmetry content and per-field
-                                        summaries (dashed) are embedded into a single global Lagrangian token.
-                                        <a href="haithem-assets/pdf/fig-lagrangian-tokens.pdf">PDF</a>
-                                    </figcaption>
-                                </figure>
-                                -->
 
                                 <figure class="static-figure static-figure--wide">
                                     <img src="haithem-assets/figures/fig-token-architecture-pretrain.png"
@@ -369,23 +356,56 @@
                                     </figcaption>
                                 </figure>
 
-                                <!-- the autoregressive sampling figure is commented out in haithem-post.tex too -->
-                                <!--
-                                <figure class="static-figure static-figure--wide">
-                                    <img src="haithem-assets/figures/fig-ar-sampling.png"
-                                         alt="Autoregressive sampling of each parameter from a Beta policy">
-                                    <figcaption>
-                                        A depiction of autoregressive sampling. Each parameter is drawn from a
-                                        model forward pass and fed back as context for the next forward pass for
-                                        the next parameter. The mode chooses the beta distribution or differential
-                                        evolution style policy once per probe and fixes the choice for all
-                                        parameter dimensions.
-                                        <a href="haithem-assets/pdf/fig-ar-sampling.pdf">PDF</a>
-                                    </figcaption>
-                                </figure>
-                                -->
+                                <p>
+                                    We let the search for regions in parameter space not excluded by experiment be akin to a
+                                    single-player game of battleship. The board is defined by a Lagrangian, some set experimental
+                                    cuts, the parameter space ranges, and a budget of turns the agent has to do the search, with a
+                                    fixed number of &ldquo;shots&rdquo; per turn. The ships the LLaM looks for are connected regions
+                                    that are both <em>viable</em>, in that they are not ruled out, and <em>testable</em>, in that
+                                    some experiment is predicted to probe them. Their number, shape and location are unknown, and
+                                    the agent is rewarded in training for finding them efficiently.
+                                </p>
+
+                                <p>
+                                    The Large Lagrangian Model that is trained to learn how to play this game is created with an
+                                    autoregressive in parameter space transformer whose tokens are Lagrangians and their
+                                    phenomenology. Each episode, it is given one Lagrangian and a budget of between 5 and 50 turns.
+                                    On every turn it proposes four distributions over that theory's parameter space and the shots
+                                    for that turn are drawn from them. The outcome of the current turn is given to the LLaM for it
+                                    to use for the next turn(s).
+                                </p>
+
+                                <p>
+                                    The model takes as input three things. The tokenized Lagrangian, the viability configuration
+                                    (which experimental cuts are active), what ranges the agent can search in, and how many turns it
+                                    has left. It also takes an encoding of the search so far, where 64 learned tokens cross-attend
+                                    over every probe taken across the game. This set up lets each proposal depend on what the
+                                    previous turns revealed.
+                                </p>
+
+                                <p>
+                                    Each of the four heads outputs a Beta distribution over every parameter. Independent Betas
+                                    cannot express correlations between parameters, so we sample them autoregressively, with masses
+                                    first, then couplings, then kinetic mixing, with each drawn value fed back causally for the next
+                                    parameter.
+                                </p>
+
+                                <p>
+                                    Training in a live environment alone proved intractable as the model grew. We therefore
+                                    pretrained offline on roughly a billion output tokens drawn from 10,000 distinct Lagrangians.
+                                    The pretraining task is a perturbation of the real RL game, and we fine-tune with Proximal
+                                    Policy Optimization (PPO) in a live environment. We build and train two sizes of the LLaM, one
+                                    4.4M (small) and one 42.5M parameters (medium).
+                                </p>
 
                                 <h3>Benchmarking the Large Lagrangian Model</h3>
+
+                                <p>
+                                    Below are benchmarks of the LLaM against a Differential Evolution (DE) baseline. The LLaM finds
+                                    more viable points than DE, especially with small number of probes. The LLaM also does well with
+                                    increasing Lagrangian parameter dimension, while DE collapses, as is expected with the curse of
+                                    dimensionality.
+                                </p>
 
                                 <figure class="static-figure">
                                     <img src="haithem-assets/figures/total-viable-count-vs-budget-summed-over-21-benchmark-lagrangians.png"
@@ -409,20 +429,6 @@
                                     </figcaption>
                                 </figure>
 
-                                <!-- the diversity benchmark figure is commented out in haithem-post.tex too -->
-                                <!--
-                                <figure class="static-figure static-figure--wide">
-                                    <img src="haithem-assets/figures/diversity-benchmark.png"
-                                         alt="Distinct signature classes and regions per 100 viable points by method">
-                                    <figcaption>
-                                        Diversity benchmark. Distinct experimental-signature classes discovered
-                                        (that is, the number of decision tree leaf nodes, solid, left axis) and
-                                        viable regions found per 100 viable points.
-                                        <a href="haithem-assets/pdf/diversity-benchmark.pdf">PDF</a>
-                                    </figcaption>
-                                </figure>
-                                -->
-
                                 <h2>Building the Decision Tree</h2>
 
                                 <blockquote class="post-quote">
@@ -430,41 +436,27 @@
                                        the phenomenology there, both working at scale&rdquo;</p>
                                 </blockquote>
 
-                                <!-- Additional materials is on the shelf; the same section is commented
-                                     out in haithem-post.tex. Uncomment both together to bring the
-                                     downloads picker back, along with the downloads.js script tag at
-                                     the foot of the page. -->
-                                <!--
-                                <h2>Additional materials</h2>
-
                                 <p>
-                                    Pick a Lagrangian class for its decision tree at full resolution, and for
-                                    the raw replies the literature-search agents gave when they proposed the
-                                    splits in it.
+                                    We take all viable points the LLaM found for a Lagrangian, and grow a tree with them, where each
+                                    node is one observable, and each leaf is a distinct combination of signatures, holding every
+                                    viable point that shares them. After growing the tree, we find leaves holding more than one
+                                    region. We consider these degenerate, in that nothing we currently compute tells the theories in
+                                    the leaf apart.
                                 </p>
 
-                                <div class="dl-pick" id="dl-pick" data-dir="haithem-assets/downloads">
-                                    <div class="combo dl-pick__combo">
-                                        <button type="button" class="combo__btn"
-                                                aria-haspopup="listbox" aria-expanded="false">
-                                            <span class="combo__name"></span>
-                                            <span class="combo__meta"></span>
-                                        </button>
-                                        <ul class="combo__list" role="listbox" hidden></ul>
-                                    </div>
+                                <p>
+                                    Breaking these degeneracies is the job of the LLM-agents, which can reason at scale (needed when
+                                    we have hundreds of these leaves). We hand these leaves to an LLM-agent in two stages. First, we
+                                    ask for a literature search, where the agent must find an existing or planned measurement
+                                    outside what we compute that separates the regions. It must then verify every reference it cites
+                                    on arXiv, and say whether its proposal succeeded to break the degeneracy.
+                                </p>
 
-                                    <div class="dl-pick__files">
-                                        <a class="dl-pick__file dl-pick__file--pdf" download>
-                                            <span class="dl-pick__kind">Decision tree</span>
-                                            <span class="dl-pick__note"></span>
-                                        </a>
-                                        <a class="dl-pick__file dl-pick__file--docs" download>
-                                            <span class="dl-pick__kind">Agent responses</span>
-                                            <span class="dl-pick__note"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                                -->
+                                <p>
+                                    If nothing published splits the leaf, or splits only part of it, the agent moves to the second
+                                    stage, which is to propose a new observable. It does so and rates how feasible the new
+                                    observable is.
+                                </p>
 
                                 <h2 id="references">References</h2>
 
