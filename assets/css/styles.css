@@ -4411,11 +4411,14 @@ button.btn--pill {
    reference list, and sits a step smaller than the rest of the page */
 .post p {
 	max-width    : none;
-	margin-bottom: var(--vspace-0_5);
+	margin-bottom: var(--vspace-0_25);
 }
 
+/* 16px, with half the leading and half the gap between paragraphs: the
+   line box carried 0.5em of extra space, so 1.25 halves it */
 .post > p {
-	font-size: calc(var(--text-sm) * 0.8);
+	font-size  : 1.6rem;
+	line-height: 1.25;
 }
 
 .post h2 {
