@@ -59,7 +59,8 @@
                 var meta = 'PDF ' + size(it.pdfSize)
                          + (it.responses ? ' · ' + replies(it.responsesFiles)
                                          : '');
-                return { value: it.name, html: it.display, meta: meta };
+                return { value: it.name, html: it.display, meta: meta,
+                         group: it.runLabel };
             });
             combo.change(show);
             combo.set(rows, rows[0].value);

@@ -12,7 +12,13 @@ Labels come in two flavours: a plain quoted string, or a graphviz HTML
 label using <B> and <BR/>. Both are parsed into structured fields so the
 page can render a detail panel instead of a wall of text.
 
-Usage:  python3 tools/build_tree_data.py <src_dir> <out_dir>
+Every run scans the same points, so the runs share an analytic tree and
+differ only in what their agents proposed once the standard experiments
+run out. One invocation reads them all and publishes a single tree per
+Lagrangian class, with each run's proposals hanging off the leaf they
+were made at and tagged by run.
+
+Usage:  python3 tools/build_tree_data.py <out_dir> <slug:Label:src_dir>...
 """
 
 import html
@@ -183,8 +189,9 @@ def outcome_branch(parent_id, child_id):
     """Read an LLM node's outcome from the child id.
 
     Edges out of an LLM node carry no label in the DOT; the branch is only
-    encoded in the child's id suffix, _o0 or _o1, which are the two answers
-    to the criterion the agent proposed.
+    encoded in the child's id suffix, _o0 or _o1. That says nothing about
+    what the answers mean, so this is only a placeholder: name_outcomes()
+    replaces it with the agent's own names wherever the replies are on hand.
     """
     if not child_id.startswith(parent_id + "_"):
         return ""
@@ -444,14 +451,49 @@ def load_responses(resp_dir):
                 if not lid:
                     continue
                 bucket[lid] = {
-                    "lit": (leaf.get("lit_review") or {}).get("reasoning"),
-                    "novel": [n.get("reasoning") for n in leaf.get("novel", [])],
+                    "lit": proposal(leaf.get("lit_review")),
+                    "novel": [proposal(n) for n in leaf.get("novel", [])],
                 }
     return out, repaired
 
 
+# What the agent said about a proposal, in the order the panel shows it.
+# The later runs explain the observable before justifying it; the earlier
+# ones jump straight to the justification, so a field is carried only when
+# the run actually produced it.
+NOTE_FIELDS = [("what_this_is", "what"),
+               ("reasoning", "reasoning"),
+               ("feasibility", "feasibility")]
+
+
+def note(d):
+    out = {}
+    for src, dst in NOTE_FIELDS:
+        v = (d.get(src) or "").strip()
+        if v:
+            out[dst] = v
+    return out or None
+
+
+def proposal(d):
+    """One agent proposal: its commentary and the names of its outcomes.
+
+    The DOT only encodes an outcome as _o0, _o1, _o2 in the child id, which
+    says nothing about what those answers mean and collides as soon as a
+    proposal has more than two. The agent named them, so take the names
+    from here and let them override the guess.
+    """
+    if not d:
+        return None
+    labels = [(o.get("label") or "").strip()
+              for o in (d.get("outcomes") or [])]
+    if not any(labels):
+        labels = []
+    return {"note": note(d), "outcomes": labels}
+
+
 def attach_reasoning(tree, by_leaf):
-    """Put each reasoning on the node it belongs to, matching by node id."""
+    """Put each agent note on the node it belongs to, matching by node id."""
     ids = []
 
     def collect(n):
@@ -480,13 +522,27 @@ def attach_reasoning(tree, by_leaf):
     hits = [0]
 
     def apply(n):
-        if n["id"] in target:
-            n["reasoning"] = target[n["id"]]
+        hit = target.get(n["id"])
+        if hit:
+            if hit.get("note"):
+                n["notes"] = hit["note"]
+            if hit.get("outcomes"):
+                name_outcomes(n, hit["outcomes"])
             hits[0] += 1
         for c in n.get("children", []):
             apply(c)
     apply(tree)
     return hits[0], len(target)
+
+
+def name_outcomes(node, labels):
+    """Rename a proposal's outcome branches to what the agent called them."""
+    for c in node.get("children", []):
+        m = re.match(r'^%s_o(\d+)$' % re.escape(node["id"]), c["id"])
+        if m:
+            k = int(m.group(1))
+            if k < len(labels) and labels[k]:
+                c["branch"] = labels[k]
 
 
 def annotate(node):
@@ -528,7 +584,7 @@ def totals(node, acc):
 
 def group_key(stem):
     """Variants of one model share a key, so only the best is published."""
-    return re.sub(r'_(base|llm)_titled$', '', stem)
+    return re.sub(r'_(base|llm)(_titled)?$', '', stem)
 
 
 # Field-content names, matching the paper's table of benchmark classes.
@@ -584,24 +640,39 @@ def display_name(key):
     syms = symmetries(key)
     return name + (", " + ", ".join(syms) if syms else "")
 
+def parse_run(spec):
+    """A run is one scan of the whole pipeline: "slug:Label:src_dir"."""
+    slug, label, src = spec.split(":", 2)
+    return {"slug": slug, "label": label, "src": src}
 
-def main():
-    src_dir, out_dir = sys.argv[1], sys.argv[2]
-    os.makedirs(out_dir, exist_ok=True)
-    responses, repaired = load_responses(os.path.join(src_dir, "responses"))
+
+def dot_files(src):
+    """The DOT files of a run, wherever that run's exporter put them."""
+    found = []
+    for base, _dirs, files in os.walk(src):
+        if "responses" in base.split(os.sep):
+            continue
+        found += [os.path.join(base, f) for f in files if f.endswith(".dot")]
+    return sorted(found)
+
+def collect_run(run):
+    """Parse one run's trees; returns {key: {tree, stats, title}}."""
+    src = run["src"]
+    print("\n=== %s (%s) ===" % (run["label"], src))
+    responses, repaired = load_responses(os.path.join(src, "responses"))
     text_trees = {}
-    for fn in os.listdir(src_dir):
-        if fn.endswith("_no_llm.text"):
-            text_trees[fn[:-len("_no_llm.text")]] = parse_text_tree(
-                os.path.join(src_dir, fn))
+    for base, _dirs, files in os.walk(src):
+        for fn in files:
+            if fn.endswith("_no_llm.text"):
+                key = fn[:-len("_no_llm.text")]
+                text_trees[key] = parse_text_tree(os.path.join(base, fn))
     if repaired:
         print("recovered truncated JSON in:", ", ".join(repaired), "\n")
 
     parsed = []
-    for fn in sorted(os.listdir(src_dir)):
-        if not fn.endswith(".dot"):
-            continue
-        nodes, edges, title = parse_dot(os.path.join(src_dir, fn))
+    for path in dot_files(src):
+        fn = os.path.basename(path)
+        nodes, edges, title = parse_dot(path)
         if not nodes:
             print("skip (no nodes):", fn)
             continue
@@ -623,42 +694,154 @@ def main():
     for p in parsed:
         groups.setdefault(p["key"], []).append(p)
 
-    manifest = []
+    out = {}
     print("\nselected:")
     for key, variants in groups.items():
         best = max(variants, key=lambda v: (v["llm"] > 0, v["stats"]["nodes"]))
-        # a sibling variant may carry the human-readable graph title
         title = best["title"] or next(
             (v["title"] for v in variants if v["title"]), None)
-        acc = best["stats"]
         got, want = attach_reasoning(best["tree"], responses.get(key, {}))
         if key in text_trees:
             attach_models(best["tree"], text_trees[key])
+        out[key] = {"tree": best["tree"], "stats": best["stats"],
+                    "title": title}
+        print("  %-46s <- %-38s %s%s"
+              % (display_name(key), best["stem"] + ".dot",
+                 "(has LLM)" if best["llm"] else "",
+                 "  reasoning %d/%d" % (got, want) if want else ""))
+    return out
+
+
+# --- merging the runs --------------------------------------------------
+#
+# Every run scans the same points, so the analytic part of a tree - the
+# chain of yes/no answers to the experiments already in the pipeline - is
+# the same in all of them. What differs is what each run's agents proposed
+# once those questions run out. So the published tree carries one analytic
+# skeleton with every run's proposals hanging off the leaf they were made
+# at, tagged by which run made them, and the walk offers one branch per
+# run at that point instead of a single unlabelled "follow the agent".
+
+
+def is_agent_child(child):
+    return child.get("branch") == "LLM split"
+
+
+def analytic_kids(node):
+    return [c for c in node.get("children", []) if not is_agent_child(c)]
+
+
+def skeleton(node):
+    """The analytic spine, as (id, pts) pairs, for cross-run comparison."""
+    out = [(node["id"], node.get("pts"))]
+    for c in analytic_kids(node):
+        out += skeleton(c)
+    return out
+
+
+def tag_subtree(node, slug, label):
+    """Mark a proposal subtree with the run that produced it.
+
+    Ids are namespaced at the same time: the runs name their agent nodes
+    identically (root_no_no_yes_lit in both), so without this the viewer
+    would key two different proposals to one node.
+    """
+    node["agent"] = slug
+    node["agentLabel"] = label
+    node["id"] = slug + "::" + node["id"]
+    for c in node.get("children", []):
+        tag_subtree(c, slug, label)
+
+
+def merge_nodes(items):
+    """items: [(slug, label, node)], the same analytic node in each run."""
+    _slug0, _label0, n0 = items[0]
+    out = dict((k, v) for k, v in n0.items() if k != "children")
+    kids = []
+    for i, _c0 in enumerate(analytic_kids(n0)):
+        kids.append(merge_nodes([(s, l, analytic_kids(n)[i])
+                                 for s, l, n in items]))
+    for slug, label, n in items:
+        for c in n.get("children", []):
+            if is_agent_child(c):
+                c = json.loads(json.dumps(c))       # the runs keep their own
+                tag_subtree(c, slug, label)
+                kids.append(c)
+    if kids:
+        out["children"] = kids
+    return out
+
+
+def merge_key(key, per_run, runs):
+    """One published tree for a key, over whichever runs produced it."""
+    items = [(r["slug"], r["label"], per_run[r["slug"]][key]["tree"])
+             for r in runs if key in per_run[r["slug"]]]
+    if len(items) > 1:
+        ref = skeleton(items[0][2])
+        for slug, _label, tree in items[1:]:
+            if skeleton(tree) != ref:
+                sys.exit("%s: %s's analytic tree differs from %s's; the runs "
+                         "cannot be merged" % (key, slug, items[0][0]))
+    tree = merge_nodes(items)
+    annotate(tree)
+    return tree, [s for s, _l, _t in items]
+
+
+def main():
+    if len(sys.argv) < 3:
+        sys.exit(__doc__.strip())
+    out_dir, specs = sys.argv[1], sys.argv[2:]
+    os.makedirs(out_dir, exist_ok=True)
+    runs = [parse_run(s) for s in specs]
+
+    per_run = {}
+    for run in runs:
+        per_run[run["slug"]] = collect_run(run)
+
+    keys = []
+    for run in runs:
+        for key in per_run[run["slug"]]:
+            if key not in keys:
+                keys.append(key)
+
+    print("\n=== merged ===")
+    manifest = []
+    for key in keys:
+        tree, slugs = merge_key(key, per_run, runs)
+        acc = totals(tree, {"nodes": 0, "depth": 0, "_d": 0})
+        acc.pop("_d")
+        title = next((per_run[s][key]["title"] for s in slugs
+                      if per_run[s][key]["title"]), None)
         disp = display_name(key)
-        out_name = key.replace(".", "_") + ".json"
-        with open(os.path.join(out_dir, out_name), "w") as fh:
+        agents = [{"slug": r["slug"], "label": r["label"]}
+                  for r in runs if r["slug"] in slugs]
+        base = key.replace(".", "_") + ".json"
+        with open(os.path.join(out_dir, base), "w") as fh:
             json.dump({"name": key, "display": disp, "group": group_of(key),
-                       "sourceTitle": title, "tree": best["tree"],
-                       "stats": acc}, fh, separators=(",", ":"))
+                       "sourceTitle": title, "agents": agents,
+                       "tree": tree, "stats": acc},
+                      fh, separators=(",", ":"))
         manifest.append({
             "name": key, "display": disp, "group": group_of(key),
-            "file": out_name,
+            "file": base, "agents": agents,
             "nodes": acc["nodes"], "depth": acc["depth"],
             "leaves": acc.get("leaf", 0), "lit": acc.get("lit", 0),
             "novel": acc.get("novel", 0),
         })
-        print("  %-46s <- %-38s %s%s"
-              % (disp, best["stem"] + ".dot",
-                 "(has LLM)" if best["llm"] else "",
-                 "  reasoning %d/%d" % (got, want) if want else ""))
+        print("  %-46s %4d nodes  %2d lit  %2d novel  <- %s"
+              % (disp, acc["nodes"], acc.get("lit", 0), acc.get("novel", 0),
+                 ", ".join(slugs)))
 
     manifest.sort(key=lambda m: -m["nodes"])
     with open(os.path.join(out_dir, "index.json"), "w") as fh:
-        json.dump({"trees": manifest}, fh, separators=(",", ":"))
-    print("\n%d tree(s) published, %.1f KB total"
-          % (len(manifest),
-             sum(os.path.getsize(os.path.join(out_dir, f))
-                 for f in os.listdir(out_dir)) / 1e3))
+        json.dump({"trees": manifest, "runs":
+                   [{"slug": r["slug"], "label": r["label"]} for r in runs]},
+                  fh, separators=(",", ":"))
+
+    total = sum(os.path.getsize(os.path.join(b, f))
+                for b, _d, fs in os.walk(out_dir) for f in fs)
+    print("\n%d tree(s) published from %d run(s), %.1f KB total"
+          % (len(manifest), len(runs), total / 1e3))
 
 
 if __name__ == "__main__":

@@ -127,7 +127,8 @@ drag to pan, scroll to zoom, and click a node for its details. Blue nodes are
 standard experimental probes, gold are literature searches proposed by the
 agents, orange are newly proposed observables, and grey nodes are surviving
 regions. Dashed links mark where the agents split a region the standard probes
-had left whole.}
+had left whole. Where the standard probes run out, two sets of agents were
+asked what to measure next, so the walk offers both and you can follow either.}
 
 % ----------------------------------------------------------------- method --
 \section{How the agent sees a Lagrangian}
@@ -185,10 +186,9 @@ raw replies the literature-search agents gave when they proposed the splits in
 it.
 
 \datalist{Built at page load from
-\texttt{haithem-assets/downloads/index.json}: a dropdown of the same eleven
-trees the explorer carries, and two buttons under it, the tree as a PDF and
-the agent transcripts as one Markdown file. The transcripts button greys out
-on the seven trees the agents were never run on. Nothing to write here, it
-updates itself when the downloads are rebuilt.}
+\texttt{haithem-assets/downloads/index.json}: a dropdown grouped by agent run,
+and two buttons under it, the tree as a PDF and the agent transcripts as one
+Markdown file. The transcripts button greys out where that run produced none.
+Nothing to write here, it updates itself when the downloads are rebuilt.}
 
 \end{document}

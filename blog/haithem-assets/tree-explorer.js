@@ -360,10 +360,60 @@
         modal.querySelector('.ctree__modal-close').focus();
     }
 
+    /* What the agent wrote about a proposal, split into tabs.
+
+       The later runs explain the observable before justifying it and argue
+       the feasibility separately; the earlier ones only ever produced the
+       justification. Tabs are built from whichever parts the run actually
+       carries, so an older tree simply shows fewer of them. */
+    var TABS = [['what', 'What is this'],
+                ['reasoning', 'Reasoning'],
+                ['feasibility', 'Feasibility reasoning']];
+
+    function notesBody(notes) {
+        var have = TABS.filter(function (t) { return notes[t[0]]; });
+        if (!have.length) return '';
+        if (have.length === 1) return paragraphs(notes[have[0][0]]);
+
+        var tabs = have.map(function (t, i) {
+            return '<button type="button" class="ctree__tab'
+                + (i ? '' : ' is-active') + '" data-panel="' + t[0] + '">'
+                + esc(t[1]) + '</button>';
+        }).join('');
+        var panels = have.map(function (t, i) {
+            return '<div class="ctree__panel" data-panel="' + t[0] + '"'
+                + (i ? ' hidden' : '') + '>' + paragraphs(notes[t[0]])
+                + '</div>';
+        }).join('');
+        return '<div class="ctree__tabs" role="tablist">' + tabs + '</div>'
+             + panels;
+    }
+
+    function wireTabs() {
+        var body = modal && modal.querySelector('.ctree__modal-body');
+        if (!body) return;
+        var tabs = body.querySelectorAll('.ctree__tab');
+        Array.prototype.forEach.call(tabs, function (b) {
+            b.addEventListener('click', function () {
+                var want = b.getAttribute('data-panel');
+                Array.prototype.forEach.call(tabs, function (o) {
+                    o.classList.toggle('is-active',
+                        o.getAttribute('data-panel') === want);
+                });
+                Array.prototype.forEach.call(
+                    body.querySelectorAll('.ctree__panel'), function (p) {
+                        p.hidden = p.getAttribute('data-panel') !== want;
+                    });
+            });
+        });
+    }
+
     function openReasoning(n) {
-        if (!n.reasoning) return;
+        var body = n.notes ? notesBody(n.notes) : '';
+        if (!body) return;
         openModal(n.kind || 'LLM agent', n.label || '', n.criterion || '',
-                  paragraphs(n.reasoning));
+                  body);
+        wireTabs();
     }
 
     /* Which Lagrangians survive at a region, by name rather than by count. */
@@ -452,7 +502,7 @@
     }
 
     function reasoningButton(n) {
-        return n.reasoning
+        return n.notes
             ? '<button type="button" class="ctree__why">View reasoning</button>'
             : '';
     }
@@ -481,6 +531,10 @@
 
     function detailRows(n) {
         var rows = [statLine(n)];
+        if (n.agentLabel) {
+            rows.push('<p class="ctree__crit"><strong>Proposed by</strong> '
+                      + esc(n.agentLabel) + '</p>');
+        }
         if (n.status) {
             rows.push('<p class="ctree__crit"><strong>Status</strong> '
                       + n.status + '</p>');
@@ -496,6 +550,9 @@
                         + '" target="_blank" rel="noopener">arXiv:' + r + '</a>';
                 }).join('<br>') + '</p>');
         }
+        // openDetail already wires this up; without it the agent's own
+        // account of a node is unreachable from the whole tree
+        rows.push(reasoningButton(n));
         return rows.join('');
     }
 
@@ -517,14 +574,22 @@
         if (b === 'observed') return 'Observed';
         if (b === 'not observed') return 'Not observed';
         if (b === 'llm split') {
-            // Following the agent is a single decision, taken at the
-            // literature search. Where a region carries several competing
-            // proposals there is a real choice, so name them.
+            // Where the standard experiments run out, each run's agents
+            // proposed their own way onward, so the choice is which run to
+            // follow. Where a region carries several competing proposals
+            // from one run there is a further choice, so name them.
+            var who = child.agentLabel;
             if (child.type === 'novel') {
                 var t = child.label || 'Proposal ' + (i + 1);
-                return t.length > 42 ? t.slice(0, 41).trim() + '…' : t;
+                if (t.length > 42) t = t.slice(0, 41).trim() + '…';
+                return who ? who + ': ' + t : t;
             }
-            return 'Follow LLM-agent';
+            return who ? 'Follow ' + who + '-agent split' : 'Follow LLM-agent';
+        }
+        // the agents name their own outcomes, and those names are the only
+        // thing separating a three-way split into distinct answers
+        if (child.branch) {
+            return child.branch.charAt(0).toUpperCase() + child.branch.slice(1);
         }
         return 'Option ' + (i + 1);
     }

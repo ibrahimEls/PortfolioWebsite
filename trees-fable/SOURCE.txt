@@ -1,0 +1,6 @@
+SCAN=scan-f1c1zn5-su2-singlet+doublet+triplet-lor-scalar+majorana+dirac-u1p-b50
+Fable rerun of the global tree; per-model trees not exported yet.
+
+global_tree_no_llm.text is carried over from the opus run: the two runs
+scan the same points, and their no-LLM base trees agree leaf for leaf
+(40 leaves, 62,551 points), so the same leaf composition table applies.

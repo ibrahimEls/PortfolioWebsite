@@ -5153,6 +5153,41 @@ button.btn--pill {
 	padding   : var(--vspace-1) var(--vspace-1_5) var(--vspace-1_5);
 }
 
+/* tabs across the agent's own commentary on a proposal */
+.ctree__tabs {
+	display      : flex;
+	flex-wrap    : wrap;
+	gap          : 0.4rem;
+	margin-bottom: var(--vspace-0_75);
+	border-bottom: 1px solid var(--color-gray-3);
+}
+
+.ctree__tab {
+	margin        : 0;
+	padding       : 0 1.2rem;
+	height        : 3.2rem;
+	line-height   : 3.2rem;
+	font-family   : var(--font-1);
+	font-size     : calc(var(--text-xs) * 0.95);
+	font-weight   : 600;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color         : var(--color-text-light);
+	background    : transparent;
+	border        : none;
+	border-bottom : 2px solid transparent;
+	border-radius : 0;
+	cursor        : pointer;
+	transition    : color 0.15s ease, border-color 0.15s ease;
+}
+
+.ctree__tab:hover { color: var(--color-1-dark); }
+
+.ctree__tab.is-active {
+	color        : var(--color-1-dark);
+	border-color : var(--color-1);
+}
+
 .ctree__modal-body p {
 	max-width    : 72ch;
 	font-size    : var(--text-sm);
@@ -5352,6 +5387,24 @@ button.btn--pill {
 	background: var(--color-1-lightest);
 	box-shadow: inset 2px 0 0 var(--color-1);
 }
+
+/* a section label, not a choice */
+.combo__list li.combo__group {
+	margin-top    : 0.6rem;
+	padding       : 0.3rem 0.7rem;
+	font-family   : var(--font-1);
+	font-size     : calc(var(--text-xs) * 0.9);
+	font-weight   : 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color         : var(--color-text-light);
+	border-radius : 0;
+	border-bottom : 1px solid var(--color-gray-3);
+	cursor        : default;
+}
+
+.combo__list li.combo__group:first-child { margin-top: 0; }
+.combo__list li.combo__group:hover { background: none; }
 
 @media screen and (max-width: 700px) {
 	.combo__btn { width: 100%; }

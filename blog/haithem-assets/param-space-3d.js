@@ -369,11 +369,12 @@
                 value = row.value;
                 name.innerHTML = row.html;
                 if (meta) meta.innerHTML = row.meta || '';
-                Array.prototype.forEach.call(list.children, function (li) {
-                    li.setAttribute('aria-selected',
-                        String(li.getAttribute('data-value')) === String(value)
-                            ? 'true' : 'false');
-                });
+                Array.prototype.forEach.call(
+                    list.querySelectorAll('[data-value]'), function (li) {
+                        li.setAttribute('aria-selected',
+                            String(li.getAttribute('data-value'))
+                                === String(value) ? 'true' : 'false');
+                    });
                 open(false);
                 if (!quiet && onPick) onPick(value);
             },
@@ -381,7 +382,18 @@
             set: function (rows, initial) {
                 api.rows = rows;
                 list.innerHTML = '';
+                var group = null;
                 rows.forEach(function (r) {
+                    // a row may open a new section; the header is a label,
+                    // not an option, so it stays out of the listbox roles
+                    if (r.group && r.group !== group) {
+                        group = r.group;
+                        var h = document.createElement('li');
+                        h.className = 'combo__group';
+                        h.setAttribute('role', 'presentation');
+                        h.textContent = group;
+                        list.appendChild(h);
+                    }
                     var li = document.createElement('li');
                     li.setAttribute('role', 'option');
                     li.setAttribute('data-value', r.value);
