@@ -15,6 +15,7 @@
 %    \lead{...}           -> the opening paragraph, set larger
 %    \interactive{key}{}  -> a live figure, keys listed below
 %    \figplace{file}{}{}  -> a static figure from haithem-assets/figures
+%    figrow environment   -> the figures inside share one row on the page
 %    \pullquote{...}      -> a large centred quote between sections
 %    \pullquote[b]{a}     -> two of them, "a" then an arrow then "b"
 %    \wide                -> as the last argument, breaks the figure out of
@@ -63,6 +64,10 @@
                     title={Figure: \texttt{#2}\ifx\relax#1\relax\else\ (#1)\fi}]
   \emph{Caption:} #3
   \end{tcolorbox}}
+
+% the figures inside share one row on the page; on paper they simply follow
+% one another
+\newenvironment{figrow}{}{}
 
 % a large centred quote. \pullquote{one} on its own, or \pullquote[after]{before}
 % for the two-part form with an arrow between them
@@ -127,11 +132,11 @@ In addition to the LLaM, \haithem{} contains a decision tree construction that u
 % Lagrangian token.}
 
 \figplace[wide]{fig-token-architecture-pretrain}{The Large Lagrangian Model.}
-We let the search for region in parameter space not excluded by experiment be akin to a single-player game of battleship. The board is defined by a Lagrangian, some set experimental
+We let the search for regions in parameter space not excluded by experiment be akin to a single-player game of battleship. The board is defined by a Lagrangian, some set experimental
 cuts, the parameter space ranges, and a budget of turns the agent has to do the search, with a fixed number of “shots” per turn. The ships the LLaM looks for are connected regions that are both \textit{viable}, in that they are not ruled out, and \textit{testable}, in that some experiment is predicted to probe them. Their number, shape and location are unknown, and the agent is rewarded in training for finding them efficiently.
 
 The Large Lagrangian Model that is trained to learn how to play this game is created with an autoregressive in parameter space transformer whose tokens are Lagrangians and their phenomenology.  Each episode, it is given one Lagrangian and a budget of between 5 and 50 turns. 
-On every turn it proposes four distributions over that theory's parameter space and some the set shots for that turn is drawn from them. The outcome of the current turn is given to the LLaM for it to use for the next turn(s).
+On every turn it proposes four distributions over that theory's parameter space and the shots for that turn are drawn from them. The outcome of the current turn is given to the LLaM for it to use for the next turn(s).
 
 The model takes as input three things. The tokenized Lagrangian, the viability configuration (which experimental cuts are active), what ranges the agent can search in, and how many turns it has left. It also takes an encoding of the search so far, where 64 learned tokens
 cross-attend over every probe taken across the game. This set up lets each proposal depend on what the previous turns revealed.
@@ -148,9 +153,10 @@ Training in a live environment alone proved intractable as the model grew. We th
 
 % ---------------------------------------------------------------- results --
 \subsection{Benchmarking the Large Lagrangian Model}
-Below are benchmarks of the LLaM against a Differential Evolution (DE) baseline. The LLaM finds more viable points than DE, esspeicaly with small number of probes. The LLaM also does well with increasing Lagrangian parameter dimension, while DE collapses, as is expected with the curse of dimensionality.
+Below are benchmarks of the LLaM against a Differential Evolution (DE) baseline. The LLaM finds more viable points than DE, especially with small number of probes. The LLaM also does well with increasing Lagrangian parameter dimension, while DE collapses, as is expected with the curse of dimensionality.
 
 
+\begin{figrow}
 \figplace{total-viable-count-vs-budget-summed-over-21-benchmark-lagrangians}{%
 Total number of viable points found as a function of search budget, summed
 over 21 benchmark Lagrangians.}
@@ -160,6 +166,7 @@ benchmark Lagrangian as a function of the Lagrangian parameter-space dimension
 $d$. The LLaM becomes \textit{more} effective as the dimension grows, while
 Differential Evolution collapses, as is expected with the curse of
 dimensionality.}
+\end{figrow}
 
 % \figplace[wide]{diversity-benchmark}{Diversity benchmark. Distinct
 % experimental-signature classes discovered (that is, the number of decision
@@ -168,10 +175,10 @@ dimensionality.}
 
 \section{Building the Decision Tree}
 
-\pullquote{The Large Lagrangian Model finds what theories to consider, and the LLM-agent does the phenomenology there, both working at scale}
+\pullquote{The Large Lagrangian Model finds \emph{what theories to consider}, and the \emph{LLM-agent does the phenomenology there}, both working at scale}
 
 We take all viable points the LLaM found for a Lagrangian, and
-grow a tree with them, where each node is one observable, and each leaf a distinct combination of signatures contains all viable points that share the same signatures. After growing the tree, we find leaves holding more than one region. We consider these degenerate in that is nothing we currently compute tells the theories in the leaf apart. 
+grow a tree with them, where each node is one observable, and each leaf defines a distinct combination of signatures and contains all viable points that share the same signatures. After growing the tree, we find leaves holding more than one region. We consider these degenerate in that is nothing we currently compute tells the theories in the leaf apart. 
 
 Breaking these degeneracies is the job of the LLM-agents, which can reason at scale (needed when we have hundreds of these leaves) . We hand these leaves to an LLM-agent in two stages. First, we ask for a literature search, where the agent must find an existing or
 planned measurement outside what we compute that separates the regions. It must then verify every reference it cites on arXiv, and say whether its proposal succeeded to break the degeneracy.

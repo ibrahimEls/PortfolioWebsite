@@ -4484,13 +4484,14 @@ button.btn--pill {
 /* a large quote standing on its own between sections, set in a soft panel
    so it reads as a break in the prose rather than another paragraph */
 .post-quote {
-	margin       : var(--vspace-2) 0;
-	padding      : var(--vspace-1_25) var(--vspace-1_5);
+	width        : 80%;
+	margin       : var(--vspace-2) auto;
+	padding      : calc(var(--vspace-1_25) * 0.8) calc(var(--vspace-1_5) * 0.8);
 	border       : none;
-	border-radius: 1.8rem;
+	border-radius: 1.44rem;
 	background   : var(--color-1-lightest);
 	font-family  : var(--font-2);
-	font-size    : var(--text-lg);
+	font-size    : calc(var(--text-lg) * 0.9);
 	line-height  : 1.35;
 	color        : var(--color-text-dark);
 	text-align   : center;
@@ -4513,12 +4514,12 @@ button.btn--pill {
 	gap            : var(--vspace-0_5) var(--vspace-1);
 }
 
-.post-quote--arrow p { flex: 1 1 24rem; }
+.post-quote--arrow p { flex: 1 1 20rem; }
 
 .post-quote__arrow {
 	flex       : none;
 	font-family: var(--font-1);
-	font-size  : calc(var(--text-xxl) * 1.4);
+	font-size  : calc(var(--text-xxl) * 1.12);
 	line-height: 1;
 	color      : var(--color-1);
 }
@@ -5394,6 +5395,23 @@ button.btn--pill {
 
 /* the opening figure runs at 0.85 of that */
 .embed-figure { width: min(107.1rem, 78.2vw); }
+
+/* two figures sharing a row, held to the interactive blocks' width */
+.figure-row {
+	display              : grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap                  : var(--vspace-1);
+	align-items          : start;
+	width                : min(126rem, 92vw);
+	margin               : var(--vspace-1_5) 0 var(--vspace-1_5) 50%;
+	transform            : translateX(-50%);
+}
+
+.figure-row .static-figure { margin: 0; }
+
+@media screen and (max-width: 800px) {
+	.figure-row { grid-template-columns: 1fr; }
+}
 
 .embed-figure figcaption,
 .static-figure figcaption {
