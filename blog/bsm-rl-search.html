@@ -193,13 +193,13 @@
 
                                 <p>
                                     Answering this at scale is a mapping problem, and we argue that the paradigm that defines <span
-                                    class="smallcaps">AlphaGo</span> and modern LLMs, may be the key to successful mapping, when
+                                    class="smallcaps">AlphaGo</span> and modern LLMs may be the key to successful mapping, when
                                     coupled with analytic computation and LLM-agents. We introduce <strong>H</strong>idden-sector
                                     <strong>AI</strong> for <strong>T</strong>estable <strong>H</strong>ypothesis
                                     <strong>E</strong>nu<strong>M</strong>eration, or <span class="smallcaps">hAIthem</span>, a
                                     framework that does just this, backronymed after a pioneer of the experimental method, Ibn
-                                    Al-Haytham (965-1040 CE), whose work cemented controlled experiment as the arbiter of competing
-                                    theory<sup class="post-cite"><a href="#ref-2">2</a>,<a href="#ref-3">3</a></sup>.
+                                    Al-Haytham (965&ndash;1040 CE), whose work cemented controlled experiment as the arbiter of
+                                    competing theory<sup class="post-cite"><a href="#ref-2">2</a>,<a href="#ref-3">3</a></sup>.
                                 </p>
 
                                 <figure class="ps3d" id="ps3d"
@@ -270,9 +270,9 @@
                                     <span class="smallcaps">hAIthem</span> is composed of what we call a Large Lagrangian Model
                                     (LLaM), an autoregressive transformer pretrained from scratch on over 1 Billion Output Tokens
                                     from over 10,000 specially tokenized Lagrangians, and fine-tuned in a live environment with
-                                    reinforcement learning (RL). The LLaM is trained to play a battleship-style game with limited
-                                    turns and probes per turn over the parameter space of a theory it is given in order to find
-                                    regions in that parameter space that can be the correct description of reality (in that no
+                                    reinforcement learning (RL). The LLaM is trained to play a battleship-style game (with limited
+                                    turns and limited probes per turn) over the parameter space of a theory. Its goal is to find
+                                    regions in that parameter space that can be the correct description of reality (that is, no
                                     experiment we check rules them out).
                                 </p>
 
@@ -337,12 +337,12 @@
                                     In addition to the LLaM, <span class="smallcaps">hAIthem</span> contains a decision tree
                                     construction that uses experimental observables that are yet to be measured as ways to
                                     differentiate viable regions the LLaM finds. We compute many observables analytically, and
-                                    construct the tree based on bins on those observables. If the decision tree at a leaf node
+                                    construct the tree based on bins of those observables. If the decision tree at a leaf node
                                     contains more than one set of viable regions, we have found more than one description of reality
-                                    that share exactly the same <em>signature</em> if all future experiments we consider were built
-                                    and used. In this case, we employ LLM-agents to continue the splitting, asking them to search
-                                    the literature or propose novel observables that can split two same-signature descriptions of
-                                    reality.
+                                    that share exactly the same <em>signature</em> (if all future experiments we consider were
+                                    built). In this case, we employ LLM-agents to continue the splitting, asking them to search the
+                                    literature or propose novel observables that can split the set of parameter space regions over a
+                                    set of Lagrangians that share the same signature.
                                 </p>
 
                                 <h2>The Large Lagrangian Model</h2>
@@ -357,34 +357,34 @@
                                 </figure>
 
                                 <p>
-                                    We let the search for regions in parameter space not excluded by experiment be akin to a
-                                    single-player game of battleship. The board is defined by a Lagrangian, some set experimental
-                                    cuts, the parameter space ranges, and a budget of turns the agent has to do the search, with a
-                                    fixed number of &ldquo;shots&rdquo; per turn. The ships the LLaM looks for are connected regions
-                                    that are both <em>viable</em>, in that they are not ruled out, and <em>testable</em>, in that
-                                    some experiment is predicted to probe them. Their number, shape and location are unknown, and
-                                    the agent is rewarded in training for finding them efficiently.
+                                    We let the search for regions in high-dimensional parameter space not excluded by experiment be
+                                    akin to a single-player game of battleship. The board is defined by a Lagrangian, some set of
+                                    experimental cuts, the parameter space ranges, and a budget of turns the agent has to do the
+                                    search, with a fixed number of &ldquo;shots&rdquo; per turn. The ships the LLaM looks for are
+                                    connected regions that are both <em>viable</em>, in that they are not ruled out, and
+                                    <em>testable</em>, in that some experiment is predicted to probe them. Their number, shape and
+                                    location are unknown, and the agent is rewarded in training for finding them efficiently.
                                 </p>
 
                                 <p>
-                                    The Large Lagrangian Model that is trained to learn how to play this game is created with an
-                                    autoregressive in parameter space transformer whose tokens are Lagrangians and their
-                                    phenomenology. Each episode, it is given one Lagrangian and a budget of between 5 and 50 turns.
-                                    On every turn it proposes four distributions over that theory's parameter space and the shots
-                                    for that turn are drawn from them. The outcome of the current turn is given to the LLaM for it
-                                    to use for the next turn(s).
+                                    The Large Lagrangian Model is trained to learn how to play this game and is an autoregressive
+                                    (in parameter space dimension) transformer whose tokens are Lagrangians and their phenomenology.
+                                    Each episode, it is given one Lagrangian and a budget of between 5 and 50 turns. On every turn
+                                    it proposes four distributions over that theory's parameter space and the shots for that turn
+                                    are drawn from them. The outcome of the current turn is given to the LLaM for it to use for the
+                                    next turn(s).
                                 </p>
 
                                 <p>
-                                    The model takes as input three things. The tokenized Lagrangian, the viability configuration
-                                    (which experimental cuts are active), what ranges the agent can search in, and how many turns it
-                                    has left. It also takes an encoding of the search so far, where 64 learned tokens cross-attend
-                                    over every probe taken across the game. This set up lets each proposal depend on what the
-                                    previous turns revealed.
+                                    The model takes a few inputs: the tokenized Lagrangian, the viability configuration (which
+                                    experimental cuts are active), what ranges the agent can search in, and how many turns it has
+                                    left. It also takes an encoding of the search so far, where 64 learned tokens cross-attend over
+                                    every probe shot in the game. This lets each proposal depend on what the previous turns
+                                    revealed.
                                 </p>
 
                                 <p>
-                                    Each of the four heads outputs a Beta distribution over every parameter. Independent Betas
+                                    Each of the four proposed distributions is a Beta distribution per parameter. Independent Betas
                                     cannot express correlations between parameters, so we sample them autoregressively, with masses
                                     first, then couplings, then kinetic mixing, with each drawn value fed back causally for the next
                                     parameter.
@@ -402,33 +402,33 @@
 
                                 <p>
                                     Below are benchmarks of the LLaM against a Differential Evolution (DE) baseline. The LLaM finds
-                                    more viable points than DE, especially with small number of probes. The LLaM also does well with
-                                    increasing Lagrangian parameter dimension, while DE collapses, as is expected with the curse of
-                                    dimensionality.
+                                    more viable points than DE, especially with a small number of probes. The LLaM also does well
+                                    with increasing Lagrangian parameter dimension, while DE collapses, as is expected with the
+                                    curse of dimensionality.
                                 </p>
 
                                 <div class="figure-row">
-                                    <figure class="static-figure">
-                                        <img src="haithem-assets/figures/total-viable-count-vs-budget-summed-over-21-benchmark-lagrangians.png"
-                                             alt="Total viable points found against probe budget for each method">
-                                        <figcaption>
-                                            Total number of viable points found as a function of search budget,
-                                            summed over 21 benchmark Lagrangians.
-                                            <a href="haithem-assets/pdf/total-viable-count-vs-budget-summed-over-21-benchmark-lagrangians.pdf">PDF</a>
-                                        </figcaption>
-                                    </figure>
+                                        <figure class="static-figure">
+                                            <img src="haithem-assets/figures/total-viable-count-vs-budget-summed-over-21-benchmark-lagrangians.png"
+                                                 alt="Total viable points found against probe budget for each method">
+                                            <figcaption>
+                                                Total number of viable points found as a function of search budget,
+                                                summed over 21 benchmark Lagrangians.
+                                                <a href="haithem-assets/pdf/total-viable-count-vs-budget-summed-over-21-benchmark-lagrangians.pdf">PDF</a>
+                                            </figcaption>
+                                        </figure>
 
-                                    <figure class="static-figure">
-                                        <img src="haithem-assets/figures/mean-viable-per-lagrangian.png"
-                                             alt="Mean viable points per Lagrangian against parameter-space dimension">
-                                        <figcaption>
-                                            Mean number of viable points per benchmark Lagrangian as a function of the
-                                            Lagrangian parameter-space dimension <em>d</em>. The LLaM becomes
-                                            <em>more</em> effective as the dimension grows, while Differential
-                                            Evolution collapses, as is expected with the curse of dimensionality.
-                                            <a href="haithem-assets/pdf/mean-viable-per-lagrangian.pdf">PDF</a>
-                                        </figcaption>
-                                    </figure>
+                                        <figure class="static-figure">
+                                            <img src="haithem-assets/figures/mean-viable-per-lagrangian.png"
+                                                 alt="Mean viable points per Lagrangian against parameter-space dimension">
+                                            <figcaption>
+                                                Mean number of viable points per benchmark Lagrangian as a function of the
+                                                Lagrangian parameter-space dimension <em>d</em>. The LLaM becomes
+                                                <em>more</em> effective as the dimension grows, while Differential
+                                                Evolution collapses, as is expected with the curse of dimensionality.
+                                                <a href="haithem-assets/pdf/mean-viable-per-lagrangian.pdf">PDF</a>
+                                            </figcaption>
+                                        </figure>
                                 </div>
 
                                 <h2>Building the Decision Tree</h2>
@@ -440,18 +440,18 @@
 
                                 <p>
                                     We take all viable points the LLaM found for a Lagrangian, and grow a tree with them, where each
-                                    node is one observable, and each leaf defines a distinct combination of signatures
-                                    and contains all viable points that share the same signatures. After growing the tree, we find leaves holding more than one
-                                    region. We consider these degenerate, in that nothing we currently compute tells the theories in
-                                    the leaf apart.
+                                    node is one observable, and each leaf defines a distinct combination of signatures and contains
+                                    all viable points that share the same signatures. After growing the tree, we find leaves holding
+                                    more than one region. We consider these degenerate, in that nothing we currently compute tells
+                                    the theories in the leaf apart.
                                 </p>
 
                                 <p>
-                                    Breaking these degeneracies is the job of the LLM-agents, which can reason at scale (needed when
-                                    we have hundreds of these leaves). We hand these leaves to an LLM-agent in two stages. First, we
+                                    Breaking these degeneracies is the job of LLM-agents, which can reason at scale (needed when we
+                                    have hundreds of these leaves). We hand these leaves to an LLM-agent in two stages. First, we
                                     ask for a literature search, where the agent must find an existing or planned measurement
                                     outside what we compute that separates the regions. It must then verify every reference it cites
-                                    on arXiv, and say whether its proposal succeeded to break the degeneracy.
+                                    on arXiv, and say whether its proposal succeeded in breaking the degeneracy.
                                 </p>
 
                                 <p>
