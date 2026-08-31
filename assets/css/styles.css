@@ -4423,16 +4423,19 @@ button.btn--pill {
 	margin-bottom: var(--vspace-0_5);
 }
 
-/* a large quote standing on its own between sections */
+/* a large quote standing on its own between sections, set in a soft panel
+   so it reads as a break in the prose rather than another paragraph */
 .post-quote {
-	margin     : var(--vspace-2) 0;
-	padding    : 0;
-	border     : none;
-	font-family: var(--font-2);
-	font-size  : var(--text-lg);
-	line-height: 1.35;
-	color      : var(--color-text-dark);
-	text-align : center;
+	margin       : var(--vspace-2) 0;
+	padding      : var(--vspace-1_25) var(--vspace-1_5);
+	border       : none;
+	border-radius: 1.8rem;
+	background   : var(--color-1-lightest);
+	font-family  : var(--font-2);
+	font-size    : var(--text-lg);
+	line-height  : 1.35;
+	color        : var(--color-text-dark);
+	text-align   : center;
 }
 
 .post-quote p {
@@ -4457,7 +4460,7 @@ button.btn--pill {
 .post-quote__arrow {
 	flex       : none;
 	font-family: var(--font-1);
-	font-size  : var(--text-xl);
+	font-size  : calc(var(--text-xxl) * 1.4);
 	line-height: 1;
 	color      : var(--color-1);
 }
