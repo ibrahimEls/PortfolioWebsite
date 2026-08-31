@@ -4417,11 +4417,11 @@ button.btn--pill {
 	margin-bottom: var(--vspace-0_25);
 }
 
-/* 16px, with half the leading and half the gap between paragraphs: the
-   line box carried 0.5em of extra space, so 1.25 halves it */
+/* 16px prose. The gap between lines is the leading, 0.25em of it, now
+   a quarter wider again at 0.3125em */
 .post > p {
 	font-size  : 1.6rem;
-	line-height: 1.25;
+	line-height: 1.3125;
 }
 
 .post h2 {
@@ -4583,12 +4583,9 @@ button.btn--pill {
 	background   : #fff;
 }
 
-/* the bundled figure's shape, flattened to 0.8 of its height */
 .ps3d__plot {
-	width       : 100%;
-	height      : auto;
-	aspect-ratio: 1400 / 576;
-	min-height  : 32rem;
+	width : 100%;
+	height: 50rem;
 }
 
 .ps3d__bar {
