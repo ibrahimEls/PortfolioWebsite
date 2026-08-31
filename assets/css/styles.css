@@ -4407,9 +4407,15 @@ button.btn--pill {
 	padding       : 0.25rem 0.9rem;
 }
 
+/* prose runs the full column, the same width as the quotes and the
+   reference list, and sits a step smaller than the rest of the page */
 .post p {
-	max-width    : 72rem;
+	max-width    : none;
 	margin-bottom: var(--vspace-0_5);
+}
+
+.post > p {
+	font-size: calc(var(--text-sm) * 0.8);
 }
 
 .post h2 {
@@ -4449,7 +4455,7 @@ button.btn--pill {
 .post-refs {
 	margin      : var(--vspace-1) 0 var(--vspace-1_5);
 	padding-left: 2.4rem;
-	font-size   : var(--text-sm);
+	font-size   : calc(var(--text-sm) * 0.8);
 	line-height : 1.55;
 	color       : var(--color-text-light);
 }
