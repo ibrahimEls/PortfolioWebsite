@@ -4571,10 +4571,12 @@ button.btn--pill {
 	background   : #fff;
 }
 
+/* the plot area keeps the same shape as the bundled figure above it */
 .ps3d__plot {
-	width     : 100%;
-	height    : 60rem;
-	min-height: 40rem;
+	width       : 100%;
+	height      : auto;
+	aspect-ratio: 1400 / 720;
+	min-height  : 40rem;
 }
 
 .ps3d__bar {
@@ -5363,7 +5365,9 @@ button.btn--pill {
 /* these figures are drawn wider than the reading column, so let them
    break out of it rather than clipping or scrolling inside it */
 .embed-figure,
-.static-figure--wide {
+.static-figure--wide,
+.ps3d,
+.ctree {
 	width       : min(126rem, 92vw);
 	margin-left : 50%;
 	transform   : translateX(-50%);
