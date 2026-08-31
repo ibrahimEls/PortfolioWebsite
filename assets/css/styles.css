@@ -4484,8 +4484,8 @@ button.btn--pill {
 /* a large quote standing on its own between sections, set in a soft panel
    so it reads as a break in the prose rather than another paragraph */
 .post-quote {
-	width        : 80%;
-	margin       : var(--vspace-2) auto;
+	width        : 100%;
+	margin       : var(--vspace-2) 0;
 	padding      : calc(var(--vspace-1_25) * 0.8) calc(var(--vspace-1_5) * 0.8);
 	border       : none;
 	border-radius: 1.44rem;
