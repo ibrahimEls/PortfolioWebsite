@@ -169,7 +169,22 @@
                                     </figcaption>
                                 </figure>
 
-                                <p>Intro text</p>
+                                <p>
+                                    The current state of the search for beyond standard model (BSM) physics is one of
+                                    experimental drought and theoretical abundance. No new elementary particle has been
+                                    confirmed since the Higgs in 2012, and many dedicated experiments (including the Large
+                                    Hadron Collider) across high-energy physics have found little significant deviation from
+                                    the Standard Model results across thousands of observables. Despite this, over the same
+                                    period, the number of BSM descriptions has
+                                    <a href="https://inspirehep.net/literature/1696831" target="_blank" rel="noopener">grown
+                                    significantly</a>.
+                                </p>
+
+                                <p>
+                                    This is to say, there is an overabundance of ways to describe reality, but not enough
+                                    experimental probes that can tell these scenarios apart. This state of physics thus
+                                    motivates asking (and potentially automating) a different question,
+                                </p>
 
                                 <blockquote class="post-quote post-quote--arrow">
                                     <p>&ldquo;What is the best description of reality&rdquo;</p>
@@ -178,7 +193,47 @@
                                        what future observables distinguish them&rdquo;</p>
                                 </blockquote>
 
+                                <p>
+                                    Answering this at scale is a mapping problem, and we argue that the paradigm that defines
+                                    AlphaGo and modern LLMs, may be the key to successful mapping, when coupled with
+                                    analytical computation and LLM-agents. We introduce <strong>H</strong>idden-sector
+                                    <strong>AI</strong> for <strong>T</strong>estable <strong>H</strong>ypothesis
+                                    <strong>E</strong>nu<strong>M</strong>eration, or hAIthem, a framework that does just
+                                    this, backronymed after a pioneer of the experimental method, Ibn Al-Haytham
+                                    (965&ndash;1040 CE), whose work cemented controlled experiment as the arbiter of
+                                    competing theory.
+                                </p>
+
+                                <p>
+                                    hAIthem is composed of what we call a Large Lagrangian Model (LLaM), an autoregressive
+                                    transformer pretrained from scratch on over 1 Billion Output Tokens from over 10,000
+                                    specially tokenized Lagrangians, and fine-tuned in a live environment with reinforcement
+                                    learning (RL). The LLaM is trained to play a battleship-style game over the parameter
+                                    space of a theory it is given and to find regions in that parameter space that can be the
+                                    correct description of reality (in that no experiment we check rules them out).
+                                </p>
+
+                                <p>
+                                    In addition to the LLaM, hAIthem contains a decision tree construction that uses
+                                    experimental observables that are yet to be measured as ways to differentiate viable
+                                    regions the LLaM finds. We compute many observables analytically, and construct the tree
+                                    based on bins on those observables.
+                                </p>
+
+                                <p>
+                                    If the decision tree at a leaf node contains more than one set of viable regions, we have
+                                    found more than one description of reality that share exactly the same <em>signature</em>
+                                    if all future experiments we consider were built and used. In this case, we employ
+                                    LLM-agents to continue the splitting, asking them to search the literature or propose
+                                    novel observables that can split two same-signature descriptions of reality.
+                                </p>
+
                                 <h2>The Parameter Space Search Problem</h2>
+
+                                <p>
+                                    Watch a trained Large Lagrangian Model play the battleship-like search over parameter
+                                    space.
+                                </p>
 
                                 <figure class="ps3d" id="ps3d"
                                         data-dir="haithem-assets/param-space"
@@ -384,11 +439,9 @@
                                 <h2>Building the Decision Tree</h2>
 
                                 <blockquote class="post-quote">
-                                    <p>&ldquo;The LLaM finds where to look, and LLM-Agents do the
-                                       phenomenology there, both working at scale&rdquo;</p>
+                                    <p>&ldquo;The LLaM finds what theories to consider, and LLM-Agents does
+                                       the phenomenology there, both working at scale&rdquo;</p>
                                 </blockquote>
-
-                                <h2>Next Steps</h2>
 
                                 <!-- Additional materials is on the shelf; the same section is commented
                                      out in haithem-post.tex. Uncomment both together to bring the

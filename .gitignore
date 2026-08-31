@@ -12,3 +12,6 @@ netlify
 3d-vid-info/
 __pycache__/
 *.pyc
+
+# paper drafts dropped in the repo root to read from, never published
+/DarkAMBer*.pdf
