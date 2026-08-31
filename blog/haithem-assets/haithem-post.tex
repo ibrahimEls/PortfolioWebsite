@@ -17,6 +17,7 @@
 %    \figplace{file}{}{}  -> a static figure from haithem-assets/figures
 %    figrow environment   -> the figures inside share one row on the page
 %    \pullquote{...}      -> a large centred quote between sections
+%    \pullquote*{...}     -> the same panel without the quotation marks
 %    \pullquote[b]{a}     -> two of them, "a" then an arrow then "b"
 %    \wide                -> as the last argument, breaks the figure out of
 %                            the text column (for very wide diagrams)
@@ -71,10 +72,17 @@
 
 % a large centred quote. \pullquote{one} on its own, or \pullquote[after]{before}
 % for the two-part form with an arrow between them
-\newcommand{\pullquote}[2][]{%
+\makeatletter
+\newcommand{\pullquote}{\@ifstar\pq@bare\pq@quoted}
+\newcommand{\pq@quoted}[2][]{%
   \begin{center}\itshape\large
   ``#2''\ifx\relax#1\relax\else\ $\Rightarrow$\ ``#1''\fi
   \end{center}}
+\newcommand{\pq@bare}[2][]{%
+  \begin{center}\itshape\large
+  #2\ifx\relax#1\relax\else\ $\Rightarrow$\ #1\fi
+  \end{center}}
+\makeatother
 
 % the downloads picker at the foot of the post
 \newcommand{\datalist}[1]{%
@@ -175,7 +183,7 @@ dimensionality.}
 
 \section{Building the Decision Tree}
 
-\pullquote{The Large Lagrangian Model finds \emph{what theories to consider}, and the \emph{LLM-agent does the phenomenology there}, both working at scale}
+\pullquote*{The Large Lagrangian Model finds \emph{what theories to consider}, and the \emph{LLM-agent does the phenomenology there}, both working at scale}
 
 We take all viable points the LLaM found for a Lagrangian, and
 grow a tree with them, where each node is one observable, and each leaf defines a distinct combination of signatures and contains all viable points that share the same signatures. After growing the tree, we find leaves holding more than one region. We consider these degenerate in that is nothing we currently compute tells the theories in the leaf apart. 
