@@ -154,8 +154,6 @@
 
                             <article class="post">
 
-                                <p class="post-byline">by Ibrahim Elsharkawy last edited August 2026</p>
-
                                 <figure class="embed-figure">
                                     <div class="embed-figure__frame" data-w="1400" data-h="720">
                                         <iframe src="haithem-assets/alphazero-parameter-space.html"
@@ -163,21 +161,22 @@
                                                 scrolling="no"></iframe>
                                     </div>
                                     <figcaption>
-                                        Illustration of the similarities between AlphaGo and AlphaZero and
-                                        hAIthem. Both search optimal moves conditioned on the current play turn
+                                        Illustration of the similarities between <span class="smallcaps">AlphaGo</span> and <span class="smallcaps">AlphaZero</span> and
+                                        <span class="smallcaps">hAIthem</span>. Both search optimal moves conditioned on the current play turn
                                         and past actions.
                                     </figcaption>
                                 </figure>
 
+                                <p class="post-byline">by Ibrahim Elsharkawy last edited August 2026</p>
+
                                 <p>
                                     The current state of the search for beyond standard model (BSM) physics is one of
                                     experimental drought and theoretical abundance. No new elementary particle has been
-                                    confirmed since the Higgs in 2012, and many dedicated experiments (including the Large
-                                    Hadron Collider) across high-energy physics have found little significant deviation from
-                                    the Standard Model results across thousands of observables. Despite this, over the same
+                                    confirmed since the Higgs in 2012, and many dedicated experiments across high-energy
+                                    physics (including the Large Hadron Collider) have found little significant deviation
+                                    from the Standard Model across thousands of observables. Despite this, over the same
                                     period, the number of BSM descriptions has
-                                    <a href="https://inspirehep.net/literature/1696831" target="_blank" rel="noopener">grown
-                                    significantly</a>.
+                                    grown significantly<sup class="post-cite"><a href="#ref-1">1</a></sup>.
                                 </p>
 
                                 <p>
@@ -195,33 +194,29 @@
 
                                 <p>
                                     Answering this at scale is a mapping problem, and we argue that the paradigm that defines
-                                    AlphaGo and modern LLMs, may be the key to successful mapping, when coupled with
+                                    <span class="smallcaps">AlphaGo</span> and modern LLMs, may be the key to successful mapping, when coupled with
                                     analytical computation and LLM-agents. We introduce <strong>H</strong>idden-sector
                                     <strong>AI</strong> for <strong>T</strong>estable <strong>H</strong>ypothesis
-                                    <strong>E</strong>nu<strong>M</strong>eration, or hAIthem, a framework that does just
+                                    <strong>E</strong>nu<strong>M</strong>eration, or <span class="smallcaps">hAIthem</span>, a framework that does just
                                     this, backronymed after a pioneer of the experimental method, Ibn Al-Haytham
                                     (965&ndash;1040 CE), whose work cemented controlled experiment as the arbiter of
-                                    competing theory.
+                                    competing theory<sup class="post-cite"><a href="#ref-2">2</a>,<a href="#ref-3">3</a></sup>.
                                 </p>
 
                                 <p>
-                                    hAIthem is composed of what we call a Large Lagrangian Model (LLaM), an autoregressive
+                                    <span class="smallcaps">hAIthem</span> is composed of what we call a Large Lagrangian Model (LLaM), an autoregressive
                                     transformer pretrained from scratch on over 1 Billion Output Tokens from over 10,000
                                     specially tokenized Lagrangians, and fine-tuned in a live environment with reinforcement
                                     learning (RL). The LLaM is trained to play a battleship-style game over the parameter
-                                    space of a theory it is given and to find regions in that parameter space that can be the
+                                    space of a theory it is given in order to find regions in that parameter space that can be the
                                     correct description of reality (in that no experiment we check rules them out).
                                 </p>
 
                                 <p>
-                                    In addition to the LLaM, hAIthem contains a decision tree construction that uses
+                                    In addition to the LLaM, <span class="smallcaps">hAIthem</span> contains a decision tree construction that uses
                                     experimental observables that are yet to be measured as ways to differentiate viable
                                     regions the LLaM finds. We compute many observables analytically, and construct the tree
-                                    based on bins on those observables.
-                                </p>
-
-                                <p>
-                                    If the decision tree at a leaf node contains more than one set of viable regions, we have
+                                    based on bins on those observables. If the decision tree at a leaf node contains more than one set of viable regions, we have
                                     found more than one description of reality that share exactly the same <em>signature</em>
                                     if all future experiments we consider were built and used. In this case, we employ
                                     LLM-agents to continue the splitting, asking them to search the literature or propose
@@ -368,6 +363,8 @@
 
                                 <h2>The Large Lagrangian Model</h2>
 
+                                <!-- the tokenization figure is commented out in haithem-post.tex too -->
+                                <!--
                                 <figure class="static-figure">
                                     <img src="haithem-assets/figures/fig-lagrangian-tokens.png"
                                          alt="A Lagrangian's fields encoded into per-field tokens plus a global token">
@@ -378,6 +375,7 @@
                                         <a href="haithem-assets/pdf/fig-lagrangian-tokens.pdf">PDF</a>
                                     </figcaption>
                                 </figure>
+                                -->
 
                                 <figure class="static-figure static-figure--wide">
                                     <img src="haithem-assets/figures/fig-token-architecture-pretrain.png"
@@ -388,6 +386,8 @@
                                     </figcaption>
                                 </figure>
 
+                                <!-- the autoregressive sampling figure is commented out in haithem-post.tex too -->
+                                <!--
                                 <figure class="static-figure static-figure--wide">
                                     <img src="haithem-assets/figures/fig-ar-sampling.png"
                                          alt="Autoregressive sampling of each parameter from a Beta policy">
@@ -400,6 +400,7 @@
                                         <a href="haithem-assets/pdf/fig-ar-sampling.pdf">PDF</a>
                                     </figcaption>
                                 </figure>
+                                -->
 
                                 <h3>Benchmarking the Large Lagrangian Model</h3>
 
@@ -425,6 +426,8 @@
                                     </figcaption>
                                 </figure>
 
+                                <!-- the diversity benchmark figure is commented out in haithem-post.tex too -->
+                                <!--
                                 <figure class="static-figure static-figure--wide">
                                     <img src="haithem-assets/figures/diversity-benchmark.png"
                                          alt="Distinct signature classes and regions per 100 viable points by method">
@@ -435,6 +438,7 @@
                                         <a href="haithem-assets/pdf/diversity-benchmark.pdf">PDF</a>
                                     </figcaption>
                                 </figure>
+                                -->
 
                                 <h2>Building the Decision Tree</h2>
 
@@ -479,6 +483,26 @@
                                 </div>
                                 -->
 
+                                <h2 id="references">References</h2>
+
+                                <ol class="post-refs">
+                                    <li id="ref-1">
+                                        G. Bertone and T. M. P. Tait, <em>A new era in the search for dark matter</em>,
+                                        Nature <strong>562</strong> (2018) 51&ndash;56.
+                                        <a href="https://arxiv.org/abs/1810.01668" target="_blank" rel="noopener">arXiv:1810.01668</a>
+                                    </li>
+                                    <li id="ref-2">
+                                        Ibn al-Haytham, <em>The Optics of Ibn al-Haytham, Books I&ndash;III: On Direct
+                                        Vision</em>, translated with introduction and commentary by A. I. Sabra, 2 vols.,
+                                        Studies of the Warburg Institute Vol. 40, Warburg Institute, University of London,
+                                        London (1989). ISBN 0-85481-072-2.
+                                    </li>
+                                    <li id="ref-3">
+                                        J. Al-Khalili, <em>In retrospect: Book of Optics</em>, Nature
+                                        <strong>518</strong> (2015) 164&ndash;165.
+                                        <a href="https://doi.org/10.1038/518164a" target="_blank" rel="noopener">doi:10.1038/518164a</a>
+                                    </li>
+                                </ol>
                                 <p class="post-draft-note">
                                     <strong>Draft:</strong> the body text is still to be written; the figures
                                     and section order are in place.

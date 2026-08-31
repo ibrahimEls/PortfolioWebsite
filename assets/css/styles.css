@@ -4408,7 +4408,8 @@ button.btn--pill {
 }
 
 .post p {
-	max-width: 72rem;
+	max-width    : 72rem;
+	margin-bottom: var(--vspace-0_5);
 }
 
 .post h2 {
@@ -4421,6 +4422,45 @@ button.btn--pill {
 	font-size    : var(--text-lg);
 	margin-top   : var(--vspace-1_5);
 	margin-bottom: var(--vspace-0_5);
+}
+
+/* project and system names, the page's answer to \textsc in the source */
+.smallcaps {
+	font-variant  : small-caps;
+	font-weight   : 700;
+	font-size     : 1.06em;
+	letter-spacing: 0.02em;
+}
+
+/* a citation marker pointing into the references at the foot of the post */
+.post-cite {
+	font-size  : 0.72em;
+	font-weight: 600;
+	margin-left: 0.1em;
+}
+
+.post-cite a {
+	color : var(--color-1-dark);
+	border: none;
+}
+
+.post-cite a:hover { text-decoration: underline; }
+
+.post-refs {
+	margin      : var(--vspace-1) 0 var(--vspace-1_5);
+	padding-left: 2.4rem;
+	font-size   : var(--text-sm);
+	line-height : 1.55;
+	color       : var(--color-text-light);
+}
+
+.post-refs li { margin-bottom: var(--vspace-0_5); }
+
+/* the reference a marker was just clicked to reach */
+.post-refs li:target {
+	background   : var(--color-1-lightest);
+	border-radius: 0.5rem;
+	box-shadow   : 0 0 0 0.8rem var(--color-1-lightest);
 }
 
 /* a large quote standing on its own between sections, set in a soft panel
