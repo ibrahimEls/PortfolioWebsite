@@ -5194,6 +5194,10 @@ button.btn--pill {
 	border-color : var(--color-1);
 }
 
+/* the tab body is prose, so it takes the whole panel; the name is kept
+   clear of .ctree__panel, which is the fixed-width walk sidebar */
+.ctree__tabpanel { width: 100%; }
+
 .ctree__modal-body p {
 	max-width    : 72ch;
 	font-size    : var(--text-sm);

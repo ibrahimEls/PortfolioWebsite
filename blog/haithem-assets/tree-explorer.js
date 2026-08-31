@@ -381,7 +381,7 @@
                 + esc(t[1]) + '</button>';
         }).join('');
         var panels = have.map(function (t, i) {
-            return '<div class="ctree__panel" data-panel="' + t[0] + '"'
+            return '<div class="ctree__tabpanel" data-panel="' + t[0] + '"'
                 + (i ? ' hidden' : '') + '>' + paragraphs(notes[t[0]])
                 + '</div>';
         }).join('');
@@ -401,7 +401,7 @@
                         o.getAttribute('data-panel') === want);
                 });
                 Array.prototype.forEach.call(
-                    body.querySelectorAll('.ctree__panel'), function (p) {
+                    body.querySelectorAll('.ctree__tabpanel'), function (p) {
                         p.hidden = p.getAttribute('data-panel') !== want;
                     });
             });

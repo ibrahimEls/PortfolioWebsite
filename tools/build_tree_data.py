@@ -629,10 +629,13 @@ def symmetries(key):
 
 
 def group_of(key):
-    """Trees spanning several Zn assignments cover several Lagrangians."""
-    if key == "global_tree" or len(symmetries(key)) > 1:
-        return "many"
-    return "per"
+    """Only the aggregate tree spans more than one Lagrangian.
+
+    A key naming several Zn assignments is still a single Lagrangian: the
+    symmetry assignments produce identical theories, which is why one tree
+    covers them all.
+    """
+    return "many" if key == "global_tree" else "per"
 
 
 def display_name(key):
