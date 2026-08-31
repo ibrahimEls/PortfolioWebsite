@@ -4684,11 +4684,15 @@ button.btn--pill {
 	color      : var(--color-1-dark);
 }
 
-.ps3d figcaption {
-	margin-top : var(--vspace-0_5);
-	font-size  : var(--text-sm);
-	line-height: 1.55;
-	color      : var(--color-text-light);
+/* the card's own padding closes these figures, so the caption does not
+   add a second gap underneath it */
+.ps3d figcaption,
+.ctree figcaption {
+	margin-top   : var(--vspace-0_5);
+	margin-bottom: 0;
+	font-size    : var(--text-sm);
+	line-height  : 1.55;
+	color        : var(--color-text-light);
 }
 
 @media screen and (max-width: 600px) {
