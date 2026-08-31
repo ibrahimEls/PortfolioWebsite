@@ -12,6 +12,33 @@
    "responsesFiles": 14
   },
   {
+   "name": "fable:CsSg_U1p.p_DM.Z2+3+4+5",
+   "display": "Complex Scalar Singlet + U(1)\u2032 (p), Z\u2082, Z\u2083, Z\u2084, Z\u2085",
+   "run": "fable",
+   "runLabel": "Fable",
+   "responses": "fable/responses/CsSg_U1p_p_DM_Z2-3-4-5.md",
+   "responsesSize": 54304,
+   "responsesFiles": 1
+  },
+  {
+   "name": "fable:CsSg_U1p.p_DM.Z2",
+   "display": "Complex Scalar Singlet + U(1)\u2032 (p), Z\u2082",
+   "run": "fable",
+   "runLabel": "Fable",
+   "responses": "fable/responses/CsSg_U1p_p_DM_Z2.md",
+   "responsesSize": 34197,
+   "responsesFiles": 1
+  },
+  {
+   "name": "fable:CsSg_DM.Z2+3+4+5",
+   "display": "Complex Scalar Singlet, Z\u2082, Z\u2083, Z\u2084, Z\u2085",
+   "run": "fable",
+   "runLabel": "Fable",
+   "responses": "fable/responses/CsSg_DM_Z2-3-4-5.md",
+   "responsesSize": 24256,
+   "responsesFiles": 1
+  },
+  {
    "name": "opus:global_tree",
    "display": "All Dark-Singlet Lagrangians",
    "run": "opus",

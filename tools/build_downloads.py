@@ -80,19 +80,25 @@ def main():
         for t in trees:
             key = t["name"]
             src = find_pdf(key, roots)
-            if not src:
-                missing.append("%s/%s: no PDF" % (run, key))
+            parts = find_responses(key, resp_dir)
+            # a run earns a row on either artifact: the transcripts can land
+            # before the tree has been rendered, and the picker greys out
+            # whichever side is missing
+            if not src and not parts:
+                missing.append("%s/%s: nothing" % (run, key))
                 continue
-            rel = "%s/trees/%s.pdf" % (run, slug_for(key))
-            os.makedirs(os.path.dirname(os.path.join(out_dir, rel)),
-                        exist_ok=True)
-            shutil.copyfile(src, os.path.join(out_dir, rel))
 
             row = {"name": run + ":" + key, "display": t["display"],
-                   "run": run, "runLabel": run_label,
-                   "pdf": rel, "pdfSize": os.path.getsize(src)}
+                   "run": run, "runLabel": run_label}
 
-            parts = find_responses(key, resp_dir)
+            if src:
+                rel = "%s/trees/%s.pdf" % (run, slug_for(key))
+                os.makedirs(os.path.dirname(os.path.join(out_dir, rel)),
+                            exist_ok=True)
+                shutil.copyfile(src, os.path.join(out_dir, rel))
+                row["pdf"] = rel
+                row["pdfSize"] = os.path.getsize(src)
+
             if parts:
                 text = bundle(parts)
                 rrel = "%s/responses/%s.md" % (run, slug_for(key))
@@ -103,8 +109,9 @@ def main():
                 row["responsesSize"] = len(text.encode())
                 row["responsesFiles"] = len(parts)
             items.append(row)
-            print("%-6s %-34s %7d B  %s"
-                  % (run, key, row["pdfSize"],
+            print("%-6s %-34s %9s  %s"
+                  % (run, key,
+                     "%d B" % row["pdfSize"] if src else "no PDF",
                      "%d replies" % row["responsesFiles"]
                      if parts else "no replies"))
 

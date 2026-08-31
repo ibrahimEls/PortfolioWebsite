@@ -30,9 +30,21 @@
         var it = byName[name];
         if (!it) return;
 
-        pdf.href = DIR + '/' + it.pdf;
-        pdf.querySelector('.dl-pick__note').textContent =
-            'PDF · ' + size(it.pdfSize);
+        // a run can have one artifact without the other: the transcripts
+        // often land before the tree has been rendered
+        var drawn = !!it.pdf;
+        pdf.classList.toggle('is-empty', !drawn);
+        if (drawn) {
+            pdf.href = DIR + '/' + it.pdf;
+            pdf.removeAttribute('aria-disabled');
+            pdf.querySelector('.dl-pick__note').textContent =
+                'PDF · ' + size(it.pdfSize);
+        } else {
+            pdf.removeAttribute('href');
+            pdf.setAttribute('aria-disabled', 'true');
+            pdf.querySelector('.dl-pick__note').textContent =
+                'not rendered yet';
+        }
 
         // only the trees the agents were actually run on carry transcripts
         var has = !!it.responses;
@@ -56,9 +68,10 @@
         .then(function (idx) {
             var rows = idx.items.map(function (it) {
                 byName[it.name] = it;
-                var meta = 'PDF ' + size(it.pdfSize)
-                         + (it.responses ? ' · ' + replies(it.responsesFiles)
-                                         : '');
+                var bits = [];
+                if (it.pdf) bits.push('PDF ' + size(it.pdfSize));
+                if (it.responses) bits.push(replies(it.responsesFiles));
+                var meta = bits.join(' · ');
                 return { value: it.name, html: it.display, meta: meta,
                          group: it.runLabel };
             });
