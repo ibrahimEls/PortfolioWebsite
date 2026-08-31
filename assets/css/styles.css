@@ -2545,10 +2545,13 @@ button.btn--pill {
 }
 
 /* the post header already closes with its tags and collaborators, so the
-   body does not need the full page gap under it */
+   body does not need the full page gap under it, and whatever leads the
+   post does not stack its own margin on top of that */
 .s-pagecontent--post {
 	padding-top: var(--vspace-1_5);
 }
+
+.post > *:first-child { margin-top: 0; }
 
 .s-pagecontent .pageintro {
 	margin-bottom: var(--vspace-2_5);
