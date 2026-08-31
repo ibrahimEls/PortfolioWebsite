@@ -154,81 +154,7 @@
 
                             <article class="post">
 
-                                <figure class="embed-figure">
-                                    <div class="embed-figure__frame" data-w="1400" data-h="720">
-                                        <iframe src="haithem-assets/alphazero-parameter-space.html"
-                                                title="AlphaZero-style parameter-space search"
-                                                scrolling="no"></iframe>
-                                    </div>
-                                    <figcaption>
-                                        Illustration of the similarities between <span class="smallcaps">AlphaGo</span> and <span class="smallcaps">AlphaZero</span> and
-                                        <span class="smallcaps">hAIthem</span>. Both search optimal moves conditioned on the current play turn
-                                        and past actions.
-                                    </figcaption>
-                                </figure>
-
-                                <p class="post-byline">by Ibrahim Elsharkawy last edited August 2026</p>
-
-                                <p>
-                                    The current state of the search for beyond standard model (BSM) physics is one of
-                                    experimental drought and theoretical abundance. No new elementary particle has been
-                                    confirmed since the Higgs in 2012, and many dedicated experiments across high-energy
-                                    physics (including the Large Hadron Collider) have found little significant deviation
-                                    from the Standard Model across thousands of observables. Despite this, over the same
-                                    period, the number of BSM descriptions has
-                                    grown significantly<sup class="post-cite"><a href="#ref-1">1</a></sup>.
-                                </p>
-
-                                <p>
-                                    This is to say, there is an overabundance of ways to describe reality, but not enough
-                                    experimental probes that can tell these scenarios apart. This state of physics thus
-                                    motivates asking (and potentially automating) a different question,
-                                </p>
-
-                                <blockquote class="post-quote post-quote--arrow">
-                                    <p>&ldquo;What is the best description of reality&rdquo;</p>
-                                    <span class="post-quote__arrow" aria-hidden="true">&rArr;</span>
-                                    <p>&ldquo;What set of descriptions are consistent with current data and
-                                       what future observables distinguish them&rdquo;</p>
-                                </blockquote>
-
-                                <p>
-                                    Answering this at scale is a mapping problem, and we argue that the paradigm that defines
-                                    <span class="smallcaps">AlphaGo</span> and modern LLMs, may be the key to successful mapping, when coupled with
-                                    analytical computation and LLM-agents. We introduce <strong>H</strong>idden-sector
-                                    <strong>AI</strong> for <strong>T</strong>estable <strong>H</strong>ypothesis
-                                    <strong>E</strong>nu<strong>M</strong>eration, or <span class="smallcaps">hAIthem</span>, a framework that does just
-                                    this, backronymed after a pioneer of the experimental method, Ibn Al-Haytham
-                                    (965&ndash;1040 CE), whose work cemented controlled experiment as the arbiter of
-                                    competing theory<sup class="post-cite"><a href="#ref-2">2</a>,<a href="#ref-3">3</a></sup>.
-                                </p>
-
-                                <p>
-                                    <span class="smallcaps">hAIthem</span> is composed of what we call a Large Lagrangian Model (LLaM), an autoregressive
-                                    transformer pretrained from scratch on over 1 Billion Output Tokens from over 10,000
-                                    specially tokenized Lagrangians, and fine-tuned in a live environment with reinforcement
-                                    learning (RL). The LLaM is trained to play a battleship-style game over the parameter
-                                    space of a theory it is given in order to find regions in that parameter space that can be the
-                                    correct description of reality (in that no experiment we check rules them out).
-                                </p>
-
-                                <p>
-                                    In addition to the LLaM, <span class="smallcaps">hAIthem</span> contains a decision tree construction that uses
-                                    experimental observables that are yet to be measured as ways to differentiate viable
-                                    regions the LLaM finds. We compute many observables analytically, and construct the tree
-                                    based on bins on those observables. If the decision tree at a leaf node contains more than one set of viable regions, we have
-                                    found more than one description of reality that share exactly the same <em>signature</em>
-                                    if all future experiments we consider were built and used. In this case, we employ
-                                    LLM-agents to continue the splitting, asking them to search the literature or propose
-                                    novel observables that can split two same-signature descriptions of reality.
-                                </p>
-
-                                <h2>The Parameter Space Search Problem</h2>
-
-                                <p>
-                                    Watch a trained Large Lagrangian Model play the battleship-like search over parameter
-                                    space.
-                                </p>
+                                <p class="post-byline">by Ibrahim Elsharkawy, last edited August 2026</p>
 
                                 <figure class="ps3d" id="ps3d"
                                         data-dir="haithem-assets/param-space"
@@ -289,7 +215,8 @@
                                     <p class="ps3d__status">Loading&hellip;</p>
 
                                     <figcaption>
-                                        Drag to rotate, scroll to zoom, and press play to watch the LLaM-search
+                                        Watch a trained Large Lagrangian Model play the battleship-like search over
+                                        parameter space. Drag to rotate, scroll to zoom, and press play to watch the LLaM-search
                                         for each turn. Grey points are excluded probes, red rings are the probes
                                         proposed on the current turn, and gold marks parameter points that
                                         survive every constraint. The shells are the policy heads, the models&rsquo;
@@ -297,7 +224,59 @@
                                     </figcaption>
                                 </figure>
 
-                                <h2>Phenomenological Taxonomy with Decision Trees</h2>
+                                <p>
+                                    The current state of the search for beyond standard model (BSM) physics is one of
+                                    experimental drought and theoretical abundance. No new elementary particle has been
+                                    confirmed since the Higgs in 2012, and many dedicated experiments across high-energy
+                                    physics (including the Large Hadron Collider) have found little significant deviation
+                                    from the Standard Model across thousands of observables. Despite this, over the same
+                                    period, the number of BSM descriptions has
+                                    grown significantly<sup class="post-cite"><a href="#ref-1">1</a></sup>.
+                                </p>
+
+                                <p>
+                                    This is to say, there is an overabundance of ways to describe reality, but not enough
+                                    experimental probes that can tell these scenarios apart. This state of physics thus
+                                    motivates asking (and potentially automating) a different question,
+                                </p>
+
+                                <blockquote class="post-quote post-quote--arrow">
+                                    <p>&ldquo;What is the best description of reality&rdquo;</p>
+                                    <span class="post-quote__arrow" aria-hidden="true">&rArr;</span>
+                                    <p>&ldquo;What set of descriptions are consistent with current data and
+                                       what future observables distinguish them&rdquo;</p>
+                                </blockquote>
+
+                                <p>
+                                    Answering this at scale is a mapping problem, and we argue that the paradigm that defines
+                                    <span class="smallcaps">AlphaGo</span> and modern LLMs, may be the key to successful mapping, when coupled with
+                                    analytical computation and LLM-agents. We introduce <strong>H</strong>idden-sector
+                                    <strong>AI</strong> for <strong>T</strong>estable <strong>H</strong>ypothesis
+                                    <strong>E</strong>nu<strong>M</strong>eration, or <span class="smallcaps">hAIthem</span>, a framework that does just
+                                    this, backronymed after a pioneer of the experimental method, Ibn Al-Haytham
+                                    (965&ndash;1040 CE), whose work cemented controlled experiment as the arbiter of
+                                    competing theory<sup class="post-cite"><a href="#ref-2">2</a>,<a href="#ref-3">3</a></sup>.
+                                </p>
+
+                                <p>
+                                    <span class="smallcaps">hAIthem</span> is composed of what we call a Large Lagrangian Model (LLaM), an autoregressive
+                                    transformer pretrained from scratch on over 1 Billion Output Tokens from over 10,000
+                                    specially tokenized Lagrangians, and fine-tuned in a live environment with reinforcement
+                                    learning (RL). The LLaM is trained to play a battleship-style game over the parameter
+                                    space of a theory it is given in order to find regions in that parameter space that can be the
+                                    correct description of reality (in that no experiment we check rules them out).
+                                </p>
+
+                                <p>
+                                    In addition to the LLaM, <span class="smallcaps">hAIthem</span> contains a decision tree construction that uses
+                                    experimental observables that are yet to be measured as ways to differentiate viable
+                                    regions the LLaM finds. We compute many observables analytically, and construct the tree
+                                    based on bins on those observables. If the decision tree at a leaf node contains more than one set of viable regions, we have
+                                    found more than one description of reality that share exactly the same <em>signature</em>
+                                    if all future experiments we consider were built and used. In this case, we employ
+                                    LLM-agents to continue the splitting, asking them to search the literature or propose
+                                    novel observables that can split two same-signature descriptions of reality.
+                                </p>
 
                                 <figure class="ctree" id="ctree"
                                         data-dir="haithem-assets/trees"
@@ -362,6 +341,20 @@
                                 </figure>
 
                                 <h2>The Large Lagrangian Model</h2>
+
+                                <figure class="embed-figure">
+                                    <div class="embed-figure__frame" data-w="1400" data-h="720">
+                                        <iframe src="haithem-assets/alphazero-parameter-space.html"
+                                                title="AlphaZero-style parameter-space search"
+                                                scrolling="no"></iframe>
+                                    </div>
+                                    <figcaption>
+                                        Illustration of the similarities between <span class="smallcaps">AlphaGo</span> and <span class="smallcaps">AlphaZero</span> and
+                                        <span class="smallcaps">hAIthem</span>. Both search optimal moves conditioned on the current play turn
+                                        and past actions.
+                                    </figcaption>
+                                </figure>
+
 
                                 <!-- the tokenization figure is commented out in haithem-post.tex too -->
                                 <!--
@@ -443,7 +436,7 @@
                                 <h2>Building the Decision Tree</h2>
 
                                 <blockquote class="post-quote">
-                                    <p>&ldquo;The LLaM finds what theories to consider, and LLM-Agents does
+                                    <p>&ldquo;The Large Lagrangian Model finds what theories to consider, and LLM-Agents does
                                        the phenomenology there, both working at scale&rdquo;</p>
                                 </blockquote>
 
@@ -504,8 +497,7 @@
                                     </li>
                                 </ol>
                                 <p class="post-draft-note">
-                                    <strong>Draft:</strong> the body text is still to be written; the figures
-                                    and section order are in place.
+                                    <strong>Draft:</strong> the body text is still being written.
                                 </p>
 
                             </article>

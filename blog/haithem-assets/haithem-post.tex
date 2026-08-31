@@ -81,19 +81,24 @@
 \posttitle{The Search for (Non-Excluded) Beyond Standard Model Physics is an RL Problem}
 \postdate{August 2026}
 \posttags{Large Lagrangian Models; Dark Matter; Reinforcement Learning; LLM Agents}
-\postbyline{by Ibrahim Elsharkawy last edited August 2026}
+\postbyline{by Ibrahim Elsharkawy, last edited August 2026}
 
 \begin{document}
 \maketitle
 \noindent\textbf{Tags:} \theposttags
 
 % ---------------------------------------------------------------- opening --
-\interactive{alphazero}{Illustration of the similarities between \alphago{}
-and \alphazero{} and \haithem{}. Both search optimal moves conditioned on
-the current play turn and past actions.}
-
-% the byline sits under the opening figure, not in the page header
+% the byline opens the body, not the page header
 \noindent\textit{\thepostbyline}\par\medskip
+
+
+\interactive{param3d}{Watch a trained Large Lagrangian Model play the battleship-like search over parameter space. 
+Drag to rotate, scroll to zoom, and press play to watch
+the LLaM-search for each turn. Grey points are excluded probes, red rings are
+the probes proposed on the current turn, and gold marks parameter points that
+survive every constraint. The shells are the policy heads, the models'
+``flashlights''.}
+
 
 The current state of the search for beyond standard model (BSM) physics is one of experimental drought and theoretical abundance. No new elementary particle has been confirmed since the Higgs in 2012, and many dedicated experiments across high-energy physics (including the Large Hadron Collider) have found little significant deviation from the Standard Model across thousands of observables. Despite this, over the same period, the number of BSM descriptions has grown significantly \cite{Bertone:2018krk}. 
 
@@ -108,19 +113,6 @@ Answering this at scale is a mapping problem, and we argue that the paradigm tha
 
 In addition to the LLaM, \haithem{} contains a decision tree construction that uses experimental observables that are yet to be measured as ways to differentiate viable regions the LLaM finds. We compute many observables analytically, and construct the tree based on bins on those observables. If the decision tree at a leaf node contains more than one set of viable regions, we have found more than one description of reality that share exactly the same \textit{signature} if all future experiments we consider were built and used. In this case, we employ LLM-agents to continue the splitting, asking them to search the literature or propose novel observables that can split two same-signature descriptions of reality.
 
-% ------------------------------------------------------------------ setup --
-\section{The Parameter Space Search Problem}
-Watch a trained Large Lagrangian Model play the battleship-like search over parameter space.
-
-\interactive{param3d}{Drag to rotate, scroll to zoom, and press play to watch
-the LLaM-search for each turn. Grey points are excluded probes, red rings are
-the probes proposed on the current turn, and gold marks parameter points that
-survive every constraint. The shells are the policy heads, the models'
-``flashlights''.}
-
-\section{Phenomenological Taxonomy with Decision Trees}
-
-
 \interactive{tree}{\textbf{Walk the tree:} Answer what observables were found
 and find what Lagrangians survive. \textbf{Whole tree:} show the full tree,
 drag to pan, scroll to zoom, and click a node for its details. Blue nodes are
@@ -131,7 +123,9 @@ agents split a region the standard probes had left whole.}
 
 % ----------------------------------------------------------------- method --
 \section{The Large Lagrangian Model}
-
+\interactive{alphazero}{Illustration of the similarities between \alphago{}
+and \alphazero{} and \haithem{}. Both search optimal moves conditioned on
+the current play turn and past actions.}
 % \figplace{fig-lagrangian-tokens}{Tokenization of an example Lagrangian. Each
 % dark-sector field is embedded into its own field token, while the symmetry
 % content and per-field summaries (dashed) are embedded into a single global
@@ -165,7 +159,7 @@ dimensionality.}
 
 \section{Building the Decision Tree}
 
-\pullquote{The LLaM finds what theories to consider, and LLM-Agents does the phenomenology there, both working at scale}
+\pullquote{The Large Lagrangian Model finds what theories to consider, and LLM-Agents does the phenomenology there, both working at scale}
 
 %\section{Next Steps}
 
