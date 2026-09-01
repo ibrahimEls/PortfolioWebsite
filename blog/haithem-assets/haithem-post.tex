@@ -128,7 +128,7 @@ battleship-like search over parameter space.}
 and find what Lagrangians survive. \textbf{Whole tree:} show the full tree,
 scroll to zoom, and click a node for its details.}
 
-In addition to the LLaM, \haithem{} contains a decision tree construction that uses experimental observables that are yet to be measured as ways to differentiate viable regions the LLaM finds. We compute many observables analytically, and construct the tree based on bins of those observables. If the decision tree at a leaf node contains more than one set of viable regions, we have found more than one description of reality that share exactly the same \textit{signature} (if all future experiments we consider were built). In this case, we employ LLM-agents to continue the splitting, asking them to search the literature or propose novel observables that can split the set of parameter space regions over a set of Lagrangians that share the same signature.
+In addition to the LLaM, \haithem{} contains a decision tree construction that uses experimental observables that are yet to be measured as ways to differentiate viable regions the LLaM finds. We compute many observables analytically, and construct the tree based on bins of those observables. If the decision tree at a leaf node contains more than one set of viable regions, we have found more than one description of reality that shares exactly the same \textit{signature} (if all future experiments we consider were built). In this case, we employ LLM-agents to continue the splitting, asking them to search the literature or propose novel observables that can split the set of parameter space regions over a set of Lagrangians that share the same signature.
 
 % ----------------------------------------------------------------- method --
 \section{The Large Lagrangian Model}
@@ -146,7 +146,7 @@ cuts, the parameter space ranges, and a budget of turns the agent has to do the 
 The Large Lagrangian Model is trained to learn how to play this game and is an autoregressive (in parameter space dimension) transformer whose tokens are Lagrangians and their phenomenology.  Each episode, it is given one Lagrangian and a budget of between 5 and 50 turns. 
 On every turn it proposes four distributions over that theory's parameter space and the shots for that turn are drawn from them. The outcome of the current turn is given to the LLaM for it to use for the next turn(s).
 
-The model takes a few inputs: the tokenized Lagrangian, the viability configuration (which experimental cuts are active), what ranges the agent can search in, and how many turns it has left. It also takes an encoding of the search so far, where 64 learned tokens
+The model takes a few inputs, the tokenized Lagrangian, the viability configuration (which experimental cuts are active), what ranges the agent can search in, and how many turns it has left. It also takes an encoding of the search so far, where 64 learned tokens
 cross-attend over every probe shot in the game. This lets each proposal depend on what the previous turns revealed.
 
 Each of the four proposed distributions is a Beta distribution per parameter. Independent Betas cannot express correlations between parameters, so

@@ -339,7 +339,7 @@
                                     differentiate viable regions the LLaM finds. We compute many observables analytically, and
                                     construct the tree based on bins of those observables. If the decision tree at a leaf node
                                     contains more than one set of viable regions, we have found more than one description of reality
-                                    that share exactly the same <em>signature</em> (if all future experiments we consider were
+                                    that shares exactly the same <em>signature</em> (if all future experiments we consider were
                                     built). In this case, we employ LLM-agents to continue the splitting, asking them to search the
                                     literature or propose novel observables that can split the set of parameter space regions over a
                                     set of Lagrangians that share the same signature.
@@ -376,7 +376,7 @@
                                 </p>
 
                                 <p>
-                                    The model takes a few inputs: the tokenized Lagrangian, the viability configuration (which
+                                    The model takes a few inputs, the tokenized Lagrangian, the viability configuration (which
                                     experimental cuts are active), what ranges the agent can search in, and how many turns it has
                                     left. It also takes an encoding of the search so far, where 64 learned tokens cross-attend over
                                     every probe shot in the game. This lets each proposal depend on what the previous turns
