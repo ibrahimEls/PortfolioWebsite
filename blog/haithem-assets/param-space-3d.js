@@ -22,6 +22,9 @@
     var DEFAULT_N = root.getAttribute('data-default') || '6';
 
     var COL = { excluded: '#8d9196', current: '#ff3b3b', viable: '#f5b301' };
+    // legend entries the reader has switched off, by label
+    var hidden = {};
+    function shown(name) { return hidden[name] ? false : true; }
     var HEAD_COLORS = ['#3b6ea5', '#12a4a4', '#7d55c7', '#c2571a'];
     var SPHERE_U = 26, SPHERE_V = 15;
 
@@ -154,11 +157,13 @@
 
         traces.push({
             type: 'scatter3d', mode: 'markers', showlegend: false,
+            visible: shown('Excluded probes'),
             x: ex[0], y: ex[1], z: ex[2], hoverinfo: 'skip',
             marker: { size: 1.8, color: COL.excluded, opacity: 0.35 }
         });
         traces.push({
             type: 'scatter3d', mode: 'markers', showlegend: false,
+            visible: shown('Viable points'),
             x: vi[0], y: vi[1], z: vi[2], hoverinfo: 'skip',
             marker: {
                 size: 3.4, color: COL.viable, symbol: 'diamond', opacity: 0.95,
@@ -167,6 +172,7 @@
         });
         traces.push({
             type: 'scatter3d', mode: 'markers', showlegend: false,
+            visible: shown('Current-turn probes'),
             x: cu[0], y: cu[1], z: cu[2], hoverinfo: 'skip',
             marker: {
                 size: 4.2, symbol: 'circle-open', opacity: 0.9,
@@ -195,6 +201,7 @@
                 var e = ellipsoid(c[0], c[1], c[2], rr[0], rr[1], rr[2]);
                 traces.push({
                     type: 'surface', x: e.x, y: e.y, z: e.z,
+                    visible: shown('Policy heads'),
                     showscale: false, hoverinfo: 'skip',
                     opacity: D.alphas[L],
                     colorscale: [[0, col], [1, col]],
@@ -218,6 +225,7 @@
                 type: 'scatter3d', mode: 'markers', name: e[0],
                 x: [null], y: [null], z: [null], hoverinfo: 'skip',
                 showlegend: true,
+                visible: hidden[e[0]] ? 'legendonly' : true,
                 marker: {
                     size: 13, color: e[1], symbol: e[2], opacity: e[3],
                     line: { color: e[2] === 'circle-open' ? e[1] : '#ffffff',
@@ -264,6 +272,17 @@
                 modeBarButtonsToRemove: ['toImage'], displaylogo: false
             });
             drawn = true;
+            /* The legend is drawn by empty proxy traces, so Plotly's own
+               toggle would only hide those. Take the click ourselves and
+               switch the traces the entry stands for. */
+            plot.on('plotly_legendclick', function (ev) {
+                var name = (ev.data[ev.curveNumber] || {}).name;
+                if (!name) return false;
+                hidden[name] = !hidden[name];
+                render(+slider.value);
+                return false;
+            });
+            plot.on('plotly_legenddoubleclick', function () { return false; });
         } else {
             Plotly.react(plot, traces, layout());
         }
