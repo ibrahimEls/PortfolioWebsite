@@ -15,3 +15,6 @@ __pycache__/
 
 # paper drafts dropped in the repo root to read from, never published
 /DarkAMBer*.pdf
+
+# video generator: a local tool, not part of the published site
+tools/ps3d-video.html
