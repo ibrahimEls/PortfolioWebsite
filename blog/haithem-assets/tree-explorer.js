@@ -652,23 +652,62 @@
         while (path.length && autoSkip(cursor)) cursor = path.pop();
     }
 
+    /* An OR node carries a second proposal in the same tree node. The
+       walk draws that as its own box, stacked under the main one behind a
+       bold OR, so the choice reads as two distinct options. */
+    function altWalkData(n) {
+        var a = n.alt;
+        return { id: n.id + '::alt', type: 'novel', kind: a.kind,
+                 label: a.label, criterion: a.criterion, refs: a.refs,
+                 status: a.status, feasibility: a.feasibility };
+    }
+
     function drawWalkTree() {
         var kids = cursor.children || [];
         var stub = { data: cursor, x: 0, y: 0 };
-        var nodes = [stub];
-        var spacing = 132;
-        kids.forEach(function (c, i) {
-            nodes.push({
-                data: landingNode(c), branchOf: c,
-                x: (i - (kids.length - 1) / 2) * spacing, y: 430
-            });
+        stub.box = box(stub.data, WK);
+        var nodes = [stub], branches = [], pairs = [];
+        var ORGAP = 46;
+
+        function addAlt(entry) {
+            if (!entry.data.alt) return null;
+            var e = { data: altWalkData(entry.data), y: entry.y };
+            e.box = box(e.data, WK);
+            e.x = entry.x + entry.box.h / 2 + ORGAP + e.box.h / 2;
+            nodes.push(e);
+            pairs.push([entry, e]);
+            return e;
+        }
+        addAlt(stub);
+
+        // one slot per branch, sized to hold an OR pair when there is one
+        var slots = kids.map(function (c) {
+            var main = { data: landingNode(c), branchOf: c, y: 430 };
+            main.box = box(main.data, WK);
+            var size = 132;
+            if (main.data.alt) {
+                size = main.box.h + ORGAP
+                     + box(altWalkData(main.data), WK).h + 40;
+            }
+            return { main: main, size: size };
         });
-        nodes.forEach(function (d) { d.box = box(d.data, WK); });
+        var total = slots.reduce(function (t, e) { return t + e.size; }, 0);
+        var at = -total / 2;
+        slots.forEach(function (e) {
+            var main = e.main;
+            main.x = main.data.alt
+                ? at + 20 + main.box.h / 2
+                : at + e.size / 2;
+            nodes.push(main);
+            branches.push(main);
+            addAlt(main);
+            at += e.size;
+        });
 
         walkSvg.selectAll('*').remove();
         var g = walkSvg.append('g');
         g.append('g').attr('fill', 'none').selectAll('path')
-            .data(nodes.slice(1)).enter().append('path')
+            .data(branches).enter().append('path')
             .attr('stroke', function (d) {
                 return (d.branchOf || d.data).dashed ? '#c9a227' : '#c3c8cd';
             })
@@ -680,7 +719,7 @@
                 return linkPath({ source: stub, target: d });
             });
         // branch labels sit on the connector
-        g.append('g').selectAll('text').data(nodes.slice(1)).enter()
+        g.append('g').selectAll('text').data(branches).enter()
             .append('text')
             .attr('x', function (d) { return (stub.y + d.y) / 2; })
             .attr('y', function (d) { return (stub.x + d.x) / 2 - 8; })
@@ -690,9 +729,29 @@
             .text(function (d, i) {
                 return branchLabel(d.branchOf || d.data, i);
             });
+        // the OR connector between a proposal and its alternative
+        pairs.forEach(function (pr) {
+            var a = pr[0], b = pr[1];
+            var top = a.x + a.box.h / 2, bot = b.x - b.box.h / 2;
+            g.append('path')
+                .attr('fill', 'none')
+                .attr('stroke', '#d1762c').attr('stroke-width', 1.6)
+                .attr('stroke-dasharray', '5 3')
+                .attr('d', 'M' + a.y + ',' + top + 'L' + a.y + ',' + bot);
+            g.append('text')
+                .attr('x', a.y).attr('y', (top + bot) / 2 + 5)
+                .attr('text-anchor', 'middle')
+                .attr('font-size', 15).attr('font-weight', 800)
+                .attr('fill', '#d1762c')
+                .attr('stroke', '#fff').attr('stroke-width', 6)
+                .attr('paint-order', 'stroke')
+                .text('OR');
+        });
         drawBoxes(g.append('g'), nodes, WK, null);
 
-        var xs = d3.extent(nodes, function (d) { return d.x; });
+        var xs = d3.extent(nodes.map(function (d) {
+            return [d.x - d.box.h / 2, d.x + d.box.h / 2];
+        }).flat());
         var pad = 90;
         if (kids.length === 0) {
             // a lone terminal node: centre it rather than leaving it adrift
@@ -705,7 +764,7 @@
         walkSvg.attr('viewBox',
             [-170, xs[0] - pad, 800, (xs[1] - xs[0]) + pad * 2].join(' '))
             .style('height',
-                Math.min(Math.max((xs[1] - xs[0]) + pad * 2, 260), 460) + 'px');
+                Math.min(Math.max((xs[1] - xs[0]) + pad * 2, 260), 560) + 'px');
     }
 
     function renderWalk() {
@@ -795,6 +854,28 @@
                             + '" target="_blank" rel="noopener">arXiv:' + r
                             + '</a>';
                     }).join('<br>') + '</p>';
+            }
+            if (cursor.alt) {
+                var al = cursor.alt;
+                extra += '<p class="ctree__crit ctree__or"><strong>OR, the'
+                    + ' agent\'s novel alternative:</strong></p>'
+                    + '<p class="ctree__q">' + esc(al.label || '')
+                    + (al.criterion
+                        ? '<br><em>' + esc(al.criterion) + '</em>' : '')
+                    + '</p>';
+                if (al.feasibility) {
+                    extra += '<p class="ctree__crit"><strong>Feasibility'
+                        + '</strong> ' + esc(al.feasibility) + '</p>';
+                }
+                if (al.refs && al.refs.length) {
+                    extra += '<p class="ctree__crit"><strong>References'
+                        + '</strong><br>'
+                        + al.refs.map(function (r) {
+                            return '<a href="https://arxiv.org/abs/' + r
+                                + '" target="_blank" rel="noopener">arXiv:'
+                                + r + '</a>';
+                        }).join('<br>') + '</p>';
+                }
             }
             extra += reasoningButton(cursor);
             // a region the standard probes stopped at, which an agent then
