@@ -4508,8 +4508,17 @@ button.btn--pill {
 	font-family  : var(--font-2);
 	font-size    : calc(var(--text-lg) * 0.9);
 	line-height  : 1.35;
-	color        : var(--color-text-dark);
+	color        : var(--color-text);
 	text-align   : center;
+}
+
+/* the noun each question turns on. The display serif ships one weight,
+   so the emphasis is carried by size, a darker ink and a hairline
+   stroke rather than by font-weight, which would only synthesise. */
+.post-quote__key {
+	font-size          : 1.14em;
+	color              : var(--color-text-dark);
+	-webkit-text-stroke: 0.4px currentColor;
 }
 
 .post-quote p {
