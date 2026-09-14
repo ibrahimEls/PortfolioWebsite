@@ -4464,6 +4464,21 @@ button.btn--pill {
 
 .post-cite a:hover { text-decoration: underline; }
 
+/* the numbered split types, set to match the prose around them */
+.post-steps {
+	margin      : 0 0 var(--vspace-0_5);
+	padding-left: 2.6rem;
+	font-size   : 1.6rem;
+	line-height : 1.25;
+}
+
+.post-steps li { margin-bottom: var(--vspace-0_25); }
+
+.post-steps li::marker {
+	color      : var(--color-1);
+	font-weight: 700;
+}
+
 .post-refs {
 	margin      : var(--vspace-1) 0 var(--vspace-1_5);
 	padding-left: 2.4rem;

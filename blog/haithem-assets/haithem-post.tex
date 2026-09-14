@@ -94,7 +94,7 @@
 \posttitle{The Search for (Non-Excluded) Beyond Standard Model Physics is an RL Problem}
 \postdate{August 2026}
 \posttags{Large Lagrangian Models; Dark Matter; Reinforcement Learning; LLM Agents}
-\postbyline{by Ibrahim Elsharkawy, last edited August 2026}
+\postbyline{by Ibrahim Elsharkawy, last edited September 2026}
 
 \begin{document}
 \maketitle
@@ -111,24 +111,32 @@ the current play turn and past actions.}
 
 The current state of the search for beyond standard model (BSM) physics is one of experimental drought and theoretical abundance. No new elementary particle has been confirmed since the Higgs in 2012, and many dedicated experiments across high-energy physics (including the Large Hadron Collider) have found little significant deviation from the Standard Model across thousands of observables. Despite this, over the same period, the number of BSM descriptions has grown significantly \cite{Bertone:2018krk}. 
 
-This is to say, there is an overabundance of ways to describe reality, but not enough experimental probes that can tell these scenarios apart. This state of physics thus motivates asking (and potentially automating) a different question,  
+This is to say, there is an overabundance of ways to describe reality, but not enough experimental probes that can tell these scenarios apart. This state of physics thus motivates asking (and potentially automating a search for the answer of) a different question,  
 
-\pullquote*[What \emph{set of descriptions} are consistent with current data and
-\emph{what future observables} distinguish them?]{What is the best description of
+% \pullquote*[What \emph{set of descriptions} are consistent with current data and
+% \emph{what unexplored observables} distinguish them?]{What is the best description of
+% reality?}
+
+\pullquote*[What are unexplored, realistic and relevant observables that distinguish descriptions?]{What is the best description of
 reality?}
 
-Answering this at scale is a mapping problem, and we argue that the paradigm that defines \alphago{} and modern LLMs may be the key to successful mapping, when coupled with analytic computation and LLM-agents. We introduce \textbf{H}idden-sector \textbf{AI} for \textbf{T}estable \textbf{H}ypothesis \textbf{E}nu\textbf{M}eration, or \haithem{}, a framework that does just this, backronymed after a pioneer of the experimental method, Ibn Al-Haytham (965-1040 CE), whose work cemented controlled experiment as the arbiter of competing theory \cite{Sabra:1989optics,Ibn-al-haythem-reflect}.
+Large Language Models (LLMs) may be able to propose useful observables that are efficient at disambiguating theories, but they currently struggle with open-ended questions and may be biased toward previously explored observables inspired by Lagrangians or regions of Lagrangian parameter space with high density in the literature
+
+We introduce \haithem{} (\textbf{H}idden-sector \textbf{AI} for \textbf{T}estable \textbf{H}ypothesis \textbf{E}nu\textbf{M}eration), a framework designed to make observable generation tractable, backronymed after a pioneer of the experimental method, Ibn Al-Haytham (965-1040 CE), whose work cemented controlled experiment as the arbiter of competing theory \cite{Sabra:1989optics,Ibn-al-haythem-reflect}. \haithem{} turns the task of signature generation into a competition between candidate signatures' ability and practicality for separating two or more descriptions of reality that satisfy current experimental constraints.
 
 \interactive{param3d}{Watch a trained Large Lagrangian Model play the
 battleship-like search over parameter space.}
 
-\haithem{} is composed of what we call a Large Lagrangian Model (LLaM), an autoregressive transformer pretrained from scratch on over 1 Billion Output Tokens from over $10,000$ specially tokenized Lagrangians, and fine-tuned in a live environment with reinforcement learning (RL). The LLaM is trained to play a battleship-style game (with limited turns and limited probes per turn) over the parameter space of a theory. Its goal is to find regions in that parameter space that can be the correct description of reality (that is, no experiment we check rules them out).
+To do so, \haithem{} is first composed of what we call a Large Lagrangian Model (LLaM), an autoregressive transformer pretrained from scratch on over 1 Billion Output Tokens from over $10,000$ specially tokenized Lagrangians, and fine-tuned in a live environment with reinforcement learning (RL). The LLaM is trained to play a battleship-style game (with limited turns and limited probes per turn) over the parameter space of a theory. Its goal is to find regions in that parameter space that can be the correct description of reality (that is, no experiment we check rules them out).
+
 
 \interactive{tree}{\textbf{Walk the tree:} Answer what observables were found
 and find what Lagrangians survive. \textbf{Whole tree:} show the full tree,
 scroll to zoom, and click a node for its details.}
 
-In addition to the LLaM, \haithem{} contains a decision tree construction that uses experimental observables that are yet to be measured as ways to differentiate viable regions the LLaM finds. We compute many observables analytically, and construct the tree based on bins of those observables. If the decision tree at a leaf node contains more than one set of viable regions, we have found more than one description of reality that shares exactly the same \textit{signature} (if all future experiments we consider were built). In this case, we employ LLM-agents to continue the splitting, asking them to search the literature or propose novel observables that can split the set of parameter space regions over a set of Lagrangians that share the same signature.
+With a set of non-excluded regions found by the LLaM, \haithem{} constructs a decision tree that generates the competition between candidate signatures. The decision tree is built by using analytically computed experimental observables as ways to differentiate viable regions the LLaM finds. We compute many observables and construct the tree based on bins of those observables. If the decision tree at a leaf node contains more than one set of viable regions, we have found more than one description of reality that shares exactly the same \textit{signature} given the experiments we consider. In this case, we turn the degeneracy into a question and employ an LLM-agent to continue the splitting, asking it to search the literature or propose observables that can split the leaf.
+
+This approach stands in contrast to open-endedly querying an LLM about what observables may test a class of models. In that case, the language model will tend to give answers as vague as the question, and likely biased toward signatures well established in the literature. On the other hand, a tree construction turns breaking degenerate leaves (leaves with more than one parameter-space region that share every experimental signature we compute) into a particular task with specific Lagrangians and specific parameter values (masses, couplings, etc.). The LLM must give sharp binary verdicts as to what and how degenerate regions differ in its proposal. Additionally, it is forced to think beyond observables already analytically computed earlier in the tree and is allowed null answers (no signature found). We further find that the decision tree formulation leads to a natural grouping of Lagrangian-viable regions into experimentally distinguishable classes. 
 
 % ----------------------------------------------------------------- method --
 \section{The Large Lagrangian Model}
@@ -141,12 +149,12 @@ In addition to the LLaM, \haithem{} contains a decision tree construction that u
 
 \figplace[wide]{fig-token-architecture-pretrain}{The Large Lagrangian Model.}
 We let the search for regions in high-dimensional parameter space not excluded by experiment be akin to a single-player game of battleship. The board is defined by a Lagrangian, some set of experimental
-cuts, the parameter space ranges, and a budget of turns the agent has to do the search, with a fixed number of “shots” per turn. The ships the LLaM looks for are connected regions that are both \textit{viable}, in that they are not ruled out, and \textit{testable}, in that some experiment is predicted to probe them. Their number, shape and location are unknown, and the agent is rewarded in training for finding them efficiently.
+cuts, the parameter space ranges, and a budget of turns the agent has to do the search, with a fixed number of “shots” per turn. The ships the LLaM looks for are connected regions that are both \textit{viable}, in that they are not ruled out, and \textit{testable}, in that some experiment is predicted to probe them. Their number, shape, and location are unknown, and the agent is rewarded in training for finding them efficiently.
 
 The Large Lagrangian Model is trained to learn how to play this game and is an autoregressive (in parameter space dimension) transformer whose tokens are Lagrangians and their phenomenology.  Each episode, it is given one Lagrangian and a budget of between 5 and 50 turns. 
-On every turn it proposes four distributions over that theory's parameter space and the shots for that turn are drawn from them. The outcome of the current turn is given to the LLaM for it to use for the next turn(s).
+On every turn it proposes four distributions over that theory's parameter space, and the shots for that turn are drawn from them. The outcome of the current turn is given to the LLaM for it to use for the next turn(s).
 
-The model takes a few inputs, the tokenized Lagrangian, the viability configuration (which experimental cuts are active), what ranges the agent can search in, and how many turns it has left. It also takes an encoding of the search so far, where 64 learned tokens
+The model takes a few inputs: the tokenized Lagrangian, the viability configuration (which experimental cuts are active), what ranges the agent can search in, and how many turns it has left. It also takes an encoding of the search so far, where 64 learned tokens
 cross-attend over every probe shot in the game. This lets each proposal depend on what the previous turns revealed.
 
 Each of the four proposed distributions is a Beta distribution per parameter. Independent Betas cannot express correlations between parameters, so
@@ -188,13 +196,31 @@ dimensionality.}
 We take all viable points the LLaM found for a Lagrangian, and
 grow a tree with them, where each node is one observable, and each leaf defines a distinct combination of signatures and contains all viable points that share the same signatures. After growing the tree, we find leaves holding more than one region. We consider these degenerate, in that nothing we currently compute tells the theories in the leaf apart. 
 
-Breaking these degeneracies is the job of LLM-agents, which can reason at scale (needed when we have hundreds of these leaves). We hand these leaves to an LLM-agent in two stages. First, we ask for a literature search, where the agent must find an existing or
-planned measurement outside what we compute that separates the regions. It must then verify every reference it cites on arXiv, and say whether its proposal succeeded in breaking the degeneracy.
+Breaking these degeneracies is the job of LLM-agents, which can reason at scale.  We hand these leaves to an LLM agent and ask it to attempt to split the degeneracy, one LLM-agent call per leaf. The agent is asked to extend the tree with new binary splits until either all degeneracies have been split, a max LLM-depth is reached (we use a max LLM-depth of 4), or a proposed node is judged to be practically impossible to split. For adding binary splits, the agent has three choices for types of splits:
+\begin{enumerate}
+    \item A \textbf{Literature Split}: A published result for an observable whose current limits split the degenerate regions. For this kind of split, the LLM must cite the paper that is used, its reasoning for why this works, and a status \textsc{``Splits!"} or \textsc{``No Split"} that reports if the split was successful.
+    \item A \textbf{Literature Projection}: An experiment or limit that is planned or described in the literature whose projected sensitivity splits the regions. For this split, the LLM must cite the most relevant papers for this projection, must report its reasoning for this split, an approximate sensitivity improvement factor relative to the closest experiment already run, and must report a qualitative judgment on the feasibility of this split as a choice from five categories: \textsc{Reanalysis}, \textsc{Possible}, \textsc{Next Generation}, \textsc{Speculative}, and \textsc{Impossible}.
+    \item A \textbf{Novel Observable}: An experiment or limit that has not been proposed in the literature that may be capable of splitting the regions. The LLM agent must report its reasoning for this split, the paper that is closest to its idea, and must report a qualitative judgment on the feasibility of this split as a choice from four categories: \textsc{Possible}, \textsc{New Experiment}, \textsc{Speculative}, and \textsc{Impossible}.
+\end{enumerate}
 
-If nothing published splits the leaf, or splits only part of it, the agent moves to the second stage, which is to propose a new observable. It does so and rates how feasible the new observable is.
+We enforce ordering rules for the proposal of these node choices. The first attempted split must be of type Literature Split to ensure the LLM searches what has already been done, and only after finding \textsc{``No Split"} is it permitted to propose other types. The agent then searches for \textbf{Literature Projection} nodes, and moves on to \textbf{Novel Observable} only if none are found. We also allow the LLM to propose alternatives. If a \textbf{Literature Projection} is qualitatively judged to be \textsc{Next Generation} or worse, the agent can propose a \textbf{Novel Observable} alternative with the same or better feasibility qualitative judgment.
+
+We further use ensembling, creating the full tree $N_{\rm repeat} = 5$ times and passing all trees through an aggregation LLM-agent pass, in which the agent chooses the best combination of observables from all runs. For all runs, tool use is enabled and set to web search and arXiv retrieval, which the agent must use to verify every reference it cites. 
 
 
-%\section{Next Steps}
+\section{What did we find?}
+As an initial test, we use our LLaM to scan through all single-dark-multiplet models our space allows and build our decision tree over the (small!) set. We find that degenerate leaves lead to the proposal of unapplied combinations of known observables.
+
+A specific example is a ``Novel Alternative" titled \textit{``Paleo-detector Ca/O recoil-spectrum ratio"}. The agent is given two models indistinguishable by all experiments in tree and differ only by their dark matter mass. The agent recognizes that dark matter mass can be probed by looking at maximum energy deposition seen in direct detection experiments, which is a function of the mass and the maximum expected velocity of the particle. This maximum velocity is given by the galactic escape velocity. 
+
+The agent identifies two issues with the approach. First, this requires many detection events seen near the maximum velocity, which in turn requires a very large time (exposure) of the direct detection experiments, and secondly, the galactic escape velocity is a source of error. As a solution to the first, it proposes the use of paleo detectors. These are minerals found deep underground, protected from cosmic rays and high temperatures for billions of years. Disturbances of the crystal lattice of these detectors contain permanent records of nuclear recoil events throughout their lifetime from many sources of background, along with potential dark matter interactions. For the second issue, the agent proposes the use of a ratio of the maximum energy deposition for two different nuclei, and specifically proposes the calcium and oxygen in gypsum. The ratio of the two remains a function of the dark-matter mass, but the dependence on the galactic escape velocity cancels. 
+
+Both paleo detectors and the ratio of observables have been proposed before, but the combination for this context appears to be unexplored. The proposal requires an in-depth analysis of its realism, but its existence motivates \haithem{}.
+
+
+\section{Next Steps}
+
+This work opens the door to large-scale searches for unexplored observables across different classes of dark matter and broader BSM Lagrangians. Since combinatorics grows quickly, such scans would require a large quantity of compute and potentially intelligent Lagrangian sampling strategies. The payoff, however, may be substantial. Such searches may reveal the value of different future and proposed observables/experiments in distinguishing between diverse dark matter and BSM models, and may help the community make better-informed scientific investments. 
 
 % ----------------------------------------------------------- on the shelf --
 % Additional materials is commented out on the page as well. Uncomment here
