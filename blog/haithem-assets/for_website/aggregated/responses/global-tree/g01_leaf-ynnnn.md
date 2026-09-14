@@ -1,0 +1,133 @@
+## Reasoning — leaf `root_yes_no_no_no_no` (8,837 pts, R0 + R1 + R2 + R3)
+
+**Fermi-LAT 6-yr dwarf-spheroidal stacking** (literature split). R1/R3 (secluded ss->Z'Z'->4f): sigmav ~ 1e-27 to 2.4e-26 cm^3/s (g'^4/(16 pi M^2), g'=0.086-0.31, M=100-300 GeV for R3; R1's secluded majority similar). R0/R2 (Higgs portal, alpha1~1e-3): sigmav ~ 1e-29 to 1e-30 cm^3/s. The published limits (~1e-26 at 100 GeV rising to ~5e-26 at 300 GeV, for bb) sit a factor 2-5 above the R1/R3 predictions once the softer 4-body cascade spectrum is accounted for, and exclude only scattered upper-edge points of no whole unit. Existing data does NOT split these regions: the bb/tautau templates are mismatched to the Z'Z' four-body cascade, and even the matched sensitivity would sit a factor ~2-5 above most of R1/R3. Dominant systematic: dwarf J-factor (dark-matter density profile) uncertainties, ~0.3-0.4 dex.
+
+**Fermi-LAT 15-yr dwarf recast, dark-photon cascade template** (literature projection on R0 + R1 + R2 + R3). R3 predicts s-wave sigmav(ss->Z'Z') ~ 1e-27 to 2.4e-26 cm^3/s with the g' >~ 0.2 bulk near thermal; R1's secluded majority (MZp < MDM) is comparable. R0/R2 predict sigmav ~ 1e-29 to 1e-30 cm^3/s (alpha1^2 suppression), unobservable at any foreseeable indirect-detection sensitivity. Marginal caveats: the low-g' sub-thermal tail of R3 and the ~5% non-secluded (MZp > MDM) fraction of R1 would also read 'not seen'; the split captures the bulk of each unit, not every point. A next-generation alternative separating the same groups - the Xe-vs-Ar per-nucleon cross-section ratio (photon-like Z' exchange couples to Z^2, Higgs portal to A^2, a ~20% rate-ratio effect) at an ARGO-scale argon detector - is strictly less feasible than this reanalysis and is noted here rather than added as a split. Today-experiment: Fermi-LAT 6-yr dwarf stack, sigmav(bb) limit ~1e-26 cm^3/s at 100 GeV, ~5e-26 at 300 GeV, and weaker against 4-body cascades. Required: ~(1-2)e-26 cm^3/s in the cascade channel across 100-300 GeV. Gain: matched cascade template (~1.5x) plus 15 vs 6 years of already-recorded data (~2x, quasi-background-free signal-limited scaling) = factor ~3; no new data or hardware. Dominant systematic: dwarf J-factors.
+
+**Dark-quartic fingerprint via DM self-scattering** (novel observable on R1 + R3). R3's parameter box is nested inside R1's in EVERY shared parameter (M_DM, M_Z', alpha1, eps, g', even quartics), and its operator set is a subset of R1's: the discriminating operators (odd quartics alpha3 si*sr^3, alpha5 si^3*sr) enter no SM-coupled vertex, generate no mass splitting (the dark scalar has no vev), and first appear in dark 2->2 self-scattering, at sigma_self/m up to ~2e-10 cm^2/g for R1 (quartics O(10)) versus ~1e-16-1e-10 for R3 - overlapping ranges, so even a perfect measurement separates them only statistically. The seemingly stronger Z'-exchange channel closes on this branch: relic viability pins the secluded-channel dark coupling to g' ~ 0.1-0.3 in both units (larger g' with a light Z' means 1e2-1e4 x thermal annihilation - underabundant and already excluded by the dwarf data below), capping sigma/m at <= ~1e-4 cm^2/g identically for R1 and R3; R1's large-g' points (up to 12.57) are confined to M_Z' > M_DM, where sigma/m <~ 1e-6 cm^2/g. The null direction is irreducible in principle by parametric containment; the yes-outcome records what a (physically unreachable) measurement WOULD favor. Closest existing technique: merging-cluster offset analyses, bounding sigma/m <~ 0.5-1 cm^2/g, with a baryonic-feedback systematic floor near 0.1 cm^2/g. Required: ~1e-11 cm^2/g - a >= 1e10 improvement in an astrophysical observable with no instrument concept; historically one order of magnitude here takes a decade. Blocked by a hard floor and by the overlap of the two predictions themselves; rated impossible - this node documents WHY the R1/R3 degeneracy cannot be broken, in either direction.
+
+**WIMP mass from the nuclear-recoil spectrum** (literature projection on R0 + R2). R0 and R2 are both pure Higgs-portal WIMPs with lambda_hS ~ 2e-3, identical isospin structure (f_n/f_p = 1), identical spectrum shape at fixed mass, identical invisible annihilation (~1e-30-1e-29 cm^3/s), and no accessible second state (R0's complex partner is split by ~0.3 GeV, four orders above the ~100 keV inelastic window, and carries no Higgs coupling). The ONLY difference is the mass: R0 predicts 97.4 +- 0.5 GeV, R2 predicts 94.9 +- 0.2 GeV, with an empty gap at 96.0 GeV. On xenon the spectral scale E_0 = 2 mu^2 v^2/m_Xe differs by only 2.3% between the hypotheses because the reduced mass saturates near m_Xe. A measurement at 96-99 GeV selects R0; 93-96 GeV selects R2. Marginal by construction: percent-level mass reconstruction is required. Today-experiment: LZ (4.2 t-yr, limits only); published multi-target forecasts (Pato et al.) give sigma(m)/m ~ 20-50% at 100 GeV with 1e2-1e3 events. Required: <= 1.3% so the two 1-sigma bands are disjoint - improvement factor ~25 in fractional mass resolution, i.e. ~600x more events (~1e5 t-yr of xenon) at sqrt(N) scaling. Blocked harder by systematics: v_esc = 528 +- 25 km/s (5%) and the f(v) shape enter the spectrum in the same combination mu^2 v^2 as the mass, flooring single-target reconstruction near 10% at any exposure. Rated impossible on that floor, not on cost; the improvement factor alone would understate the obstruction. A paleo-detector two-target endpoint ratio E_max(Xe)/E_max(O) was considered as a cheaper alternative and set aside. (i) Xenon is a noble gas and occurs in no mineral, so no paleo-detector has a xenon target; the alternative conflated XLZD's xenon with a mineral. (ii) The mass lever arm of such a ratio lives in the heavy nucleus (d ln(mu^2/m_N)/d ln m_DM ~ 1.1 for A ~ 130 vs 0.27 for O), but for m_DM ~ 95 GeV the heavy-target kinematic endpoint (E_max ~ 310 keV at v_max = v_esc + v_E ~ 776 km/s) sits at q ~ 280 MeV, qR ~ 8.5-8.8, i.e. beyond the second Helm zero with F^2 ~ 2e-4 -- the endpoint is unpopulated at any exposure, for xenon, barium or any other A >~ 130 target. The heaviest nucleus whose endpoint survives coherence loss at this mass is calcium (qR ~ 2.9, F^2 ~ 0.1), and a Ca/O ratio in one mineral shifts by only +0.76% between 94.9 and 97.4 GeV (S/O: +0.53%), requiring ~0.3% endpoint precision on a vanishing tail -- impossible-class for this 2.6% gap. No alternative rated better than 'impossible' therefore exists for R0 vs R2; the projection stands alone.
+```json
+{
+  "model": "combined",
+  "leaves": [
+    {
+      "leaf_id": "root_yes_no_no_no_no",
+      "lit_search_note": "Existing data checked: Fermi-LAT 6-yr dwarf stack (limits ~1e-26 cm^3/s bb at 100 GeV, ~5e-26 at 300 GeV, weaker by 2-5x for 4-body cascades - a factor 2-5 above R1/R3's secluded predictions, kept as the lit record); LHCb prompt+displaced A'->mumu, BaBar gamma-A', NA64 (eps reach ~1e-3 visible / 1e-4 below 1 GeV, while R1/R3 extend to eps ~ 1e-6 and R1 to M_Z' = 10 TeV - removes corners, no whole unit); beam dumps/far detectors (ctau <= 2 cm at the eps floor - no acceptance); LEP/LHC EW precision (bites only eps >~ 3e-2); Planck CMB injection (p_ann floor orders above all units at these masses; portal units also p-wave-irrelevant since their portal channel is s-wave but 1e-30); AMS-02 antiprotons (propagation systematics cover the signal range); cluster self-interaction (<0.47 cm^2/g, 3+ orders above any relic-consistent prediction here); Higgs signal strengths (alpha1 <= 8e-3 invisible). Nothing existing partitions any pair of units.",
+      "splits": [
+        {
+          "kind": "lit",
+          "attach_to": "leaf",
+          "name": "Fermi-LAT 6-yr dwarf-spheroidal stacking",
+          "observable": "sigmav(bb) < 1e-26 cm^3/s at ~100 GeV ?",
+          "what_this_is": "The Fermi Large Area Telescope is a gamma-ray satellite; this analysis stacks its data on dwarf spheroidal galaxies, small dark-matter-dominated satellites of the Milky Way with almost no ordinary gamma-ray sources. It is the cleanest existing probe of dark matter annihilating into standard-model particles today. It matters here because two of the four regions are dark-U(1)' models whose annihilation rate today is near the thermal benchmark, while the other two are feeble Higgs-portal models annihilating a thousand times slower.",
+          "refs": [
+            "arXiv:1503.02641"
+          ],
+          "reasoning": "R1/R3 (secluded ss->Z'Z'->4f): sigmav ~ 1e-27 to 2.4e-26 cm^3/s (g'^4/(16 pi M^2), g'=0.086-0.31, M=100-300 GeV for R3; R1's secluded majority similar). R0/R2 (Higgs portal, alpha1~1e-3): sigmav ~ 1e-29 to 1e-30 cm^3/s. The published limits (~1e-26 at 100 GeV rising to ~5e-26 at 300 GeV, for bb) sit a factor 2-5 above the R1/R3 predictions once the softer 4-body cascade spectrum is accounted for, and exclude only scattered upper-edge points of no whole unit.",
+          "feasibility": "Existing data does NOT split these regions: the bb/tautau templates are mismatched to the Z'Z' four-body cascade, and even the matched sensitivity would sit a factor ~2-5 above most of R1/R3. Dominant systematic: dwarf J-factor (dark-matter density profile) uncertainties, ~0.3-0.4 dex.",
+          "outcomes": [
+            {
+              "label": "no split",
+              "regions": [
+                "R0",
+                "R1",
+                "R2",
+                "R3"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit_projection",
+          "attach_to": "R0+R1+R2+R3",
+          "name": "Fermi-LAT 15-yr dwarf recast, dark-photon cascade template",
+          "observable": "sigmav(Z'Z'->4f) > 2e-26 cm^3/s ?",
+          "what_this_is": "A re-analysis of gamma-ray data the Fermi satellite has already recorded from dwarf galaxies, refitted with the photon spectrum produced when two dark-matter particles annihilate into a pair of dark photons that each decay to a pair of charged standard-model particles (a four-body cascade), instead of the standard two-body templates. It is most sensitive to exactly the secluded annihilation the dark-U(1)' regions predict. A detection tags the dark-U(1)' models; a null result leaves the feeble Higgs-portal models.",
+          "refs": [
+            "arXiv:1503.02641",
+            "arXiv:1503.01773"
+          ],
+          "reasoning": "R3 predicts s-wave sigmav(ss->Z'Z') ~ 1e-27 to 2.4e-26 cm^3/s with the g' >~ 0.2 bulk near thermal; R1's secluded majority (MZp < MDM) is comparable. R0/R2 predict sigmav ~ 1e-29 to 1e-30 cm^3/s (alpha1^2 suppression), unobservable at any foreseeable indirect-detection sensitivity. Marginal caveats: the low-g' sub-thermal tail of R3 and the ~5% non-secluded (MZp > MDM) fraction of R1 would also read 'not seen'; the split captures the bulk of each unit, not every point. A next-generation alternative separating the same groups - the Xe-vs-Ar per-nucleon cross-section ratio (photon-like Z' exchange couples to Z^2, Higgs portal to A^2, a ~20% rate-ratio effect) at an ARGO-scale argon detector - is strictly less feasible than this reanalysis and is noted here rather than added as a split.",
+          "feasibility": "Today-experiment: Fermi-LAT 6-yr dwarf stack, sigmav(bb) limit ~1e-26 cm^3/s at 100 GeV, ~5e-26 at 300 GeV, and weaker against 4-body cascades. Required: ~(1-2)e-26 cm^3/s in the cascade channel across 100-300 GeV. Gain: matched cascade template (~1.5x) plus 15 vs 6 years of already-recorded data (~2x, quasi-background-free signal-limited scaling) = factor ~3; no new data or hardware. Dominant systematic: dwarf J-factors.",
+          "feasibility_rating": "reanalysis",
+          "improvement_factor": 3,
+          "outcomes": [
+            {
+              "label": "seen",
+              "regions": [
+                "R1",
+                "R3"
+              ]
+            },
+            {
+              "label": "not seen",
+              "regions": [
+                "R0",
+                "R2"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "novel",
+          "attach_to": "R1+R3",
+          "name": "Dark-quartic fingerprint via DM self-scattering",
+          "observable": "sigma_self/m > 1e-11 cm^2/g ?",
+          "what_this_is": "A measurement of how strongly dark-matter particles scatter off each other, inferred from the internal structure and collision dynamics of galaxy clusters and halos. Self-scattering is the only process that feels the dark sector's pure self-couplings, and here the ONLY operators distinguishing the pooled Z2+3+4+5 dark-U(1)' family from the Z2-only family are quartic self-couplings among the two components of the dark scalar, which touch no standard-model particle at all. This node documents that the required sensitivity is about ten orders of magnitude beyond any astrophysical capability - the honest record of why these two regions cannot be told apart.",
+          "why_novel": "Self-interaction bounds in the literature target strongly self-interacting dark matter (sigma/m ~ 0.1-1 cm^2/g) as a small-scale-structure solution; using precision self-scattering at the 1e-11 cm^2/g level as a spectroscopic fingerprint of the quartic-coupling structure of a weak-scale dark scalar has no literature counterpart. Closest work is the cluster-merger bound itself.",
+          "refs": [
+            "arXiv:0704.0261"
+          ],
+          "reasoning": "R3's parameter box is nested inside R1's in EVERY shared parameter (M_DM, M_Z', alpha1, eps, g', even quartics), and its operator set is a subset of R1's: the discriminating operators (odd quartics alpha3 si*sr^3, alpha5 si^3*sr) enter no SM-coupled vertex, generate no mass splitting (the dark scalar has no vev), and first appear in dark 2->2 self-scattering, at sigma_self/m up to ~2e-10 cm^2/g for R1 (quartics O(10)) versus ~1e-16-1e-10 for R3 - overlapping ranges, so even a perfect measurement separates them only statistically. The seemingly stronger Z'-exchange channel closes on this branch: relic viability pins the secluded-channel dark coupling to g' ~ 0.1-0.3 in both units (larger g' with a light Z' means 1e2-1e4 x thermal annihilation - underabundant and already excluded by the dwarf data below), capping sigma/m at <= ~1e-4 cm^2/g identically for R1 and R3; R1's large-g' points (up to 12.57) are confined to M_Z' > M_DM, where sigma/m <~ 1e-6 cm^2/g. The null direction is irreducible in principle by parametric containment; the yes-outcome records what a (physically unreachable) measurement WOULD favor.",
+          "feasibility": "Closest existing technique: merging-cluster offset analyses, bounding sigma/m <~ 0.5-1 cm^2/g, with a baryonic-feedback systematic floor near 0.1 cm^2/g. Required: ~1e-11 cm^2/g - a >= 1e10 improvement in an astrophysical observable with no instrument concept; historically one order of magnitude here takes a decade. Blocked by a hard floor and by the overlap of the two predictions themselves; rated impossible - this node documents WHY the R1/R3 degeneracy cannot be broken, in either direction.",
+          "feasibility_rating": "impossible",
+          "outcomes": [
+            {
+              "label": "yes",
+              "regions": [
+                "R1"
+              ]
+            },
+            {
+              "label": "no",
+              "regions": [
+                "R3"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit_projection",
+          "attach_to": "R0+R2",
+          "name": "WIMP mass from the nuclear-recoil spectrum",
+          "observable": "m_DM > 96.0 GeV, resolved to +-1 GeV ?",
+          "what_this_is": "Once a direct-detection experiment has recorded actual dark-matter events, the energy spectrum of the recoiling nuclei carries information about the dark-matter mass. This is a fit to the shape of that spectrum, ideally combining targets. It is the only observable separating the two remaining regions, because the real and complex scalar singlets here are physically identical apart from disjoint mass windows two and a half percent apart - and the fit is floored by our ignorance of the local dark-matter velocity distribution, which is why this final degeneracy is documented as irreducible by conventional means.",
+          "refs": [
+            "arXiv:2410.17036",
+            "arXiv:1012.3458"
+          ],
+          "reasoning": "R0 and R2 are both pure Higgs-portal WIMPs with lambda_hS ~ 2e-3, identical isospin structure (f_n/f_p = 1), identical spectrum shape at fixed mass, identical invisible annihilation (~1e-30-1e-29 cm^3/s), and no accessible second state (R0's complex partner is split by ~0.3 GeV, four orders above the ~100 keV inelastic window, and carries no Higgs coupling). The ONLY difference is the mass: R0 predicts 97.4 +- 0.5 GeV, R2 predicts 94.9 +- 0.2 GeV, with an empty gap at 96.0 GeV. On xenon the spectral scale E_0 = 2 mu^2 v^2/m_Xe differs by only 2.3% between the hypotheses because the reduced mass saturates near m_Xe. A measurement at 96-99 GeV selects R0; 93-96 GeV selects R2. Marginal by construction: percent-level mass reconstruction is required.",
+          "feasibility": "Today-experiment: LZ (4.2 t-yr, limits only); published multi-target forecasts (Pato et al.) give sigma(m)/m ~ 20-50% at 100 GeV with 1e2-1e3 events. Required: <= 1.3% so the two 1-sigma bands are disjoint - improvement factor ~25 in fractional mass resolution, i.e. ~600x more events (~1e5 t-yr of xenon) at sqrt(N) scaling. Blocked harder by systematics: v_esc = 528 +- 25 km/s (5%) and the f(v) shape enter the spectrum in the same combination mu^2 v^2 as the mass, flooring single-target reconstruction near 10% at any exposure. Rated impossible on that floor, not on cost; the improvement factor alone would understate the obstruction. A paleo-detector two-target endpoint ratio E_max(Xe)/E_max(O) was considered as a cheaper alternative and set aside. (i) Xenon is a noble gas and occurs in no mineral, so no paleo-detector has a xenon target; the alternative conflated XLZD's xenon with a mineral. (ii) The mass lever arm of such a ratio lives in the heavy nucleus (d ln(mu^2/m_N)/d ln m_DM ~ 1.1 for A ~ 130 vs 0.27 for O), but for m_DM ~ 95 GeV the heavy-target kinematic endpoint (E_max ~ 310 keV at v_max = v_esc + v_E ~ 776 km/s) sits at q ~ 280 MeV, qR ~ 8.5-8.8, i.e. beyond the second Helm zero with F^2 ~ 2e-4 -- the endpoint is unpopulated at any exposure, for xenon, barium or any other A >~ 130 target. The heaviest nucleus whose endpoint survives coherence loss at this mass is calcium (qR ~ 2.9, F^2 ~ 0.1), and a Ca/O ratio in one mineral shifts by only +0.76% between 94.9 and 97.4 GeV (S/O: +0.53%), requiring ~0.3% endpoint precision on a vanishing tail -- impossible-class for this 2.6% gap. No alternative rated better than 'impossible' therefore exists for R0 vs R2; the projection stands alone.",
+          "feasibility_rating": "impossible",
+          "improvement_factor": 25,
+          "outcomes": [
+            {
+              "label": "heavier",
+              "regions": [
+                "R0"
+              ]
+            },
+            {
+              "label": "lighter",
+              "regions": [
+                "R2"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```

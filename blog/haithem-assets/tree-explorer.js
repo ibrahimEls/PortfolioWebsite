@@ -23,7 +23,8 @@
 
     var TYPE = {
         probe: { fill: '#e3eefb', stroke: '#5b8db8', label: 'Experimental probe' },
-        lit:   { fill: '#fdf3d4', stroke: '#c9a227', label: 'LLM literature search' },
+        lit:   { fill: '#fdf3d4', stroke: '#c9a227', label: 'LLM literature split' },
+        proj:  { fill: '#e4f2df', stroke: '#61995a', label: 'LLM literature projection' },
         novel: { fill: '#fde6d2', stroke: '#d1762c', label: 'LLM novel observable' },
         leaf:  { fill: '#eceef0', stroke: '#9aa1a8', label: 'Surviving region' }
     };
@@ -37,7 +38,6 @@
     var ask     = root.querySelector('.ctree__ask');
     var modeBtns = root.querySelectorAll('.ctree__mode');
     var btnFit = root.querySelector('.ctree__fit');
-    var agentBar = root.querySelector('.ctree__agents');
 
     var svg = d3.select(svgEl);
     var gRoot = svg.append('g');
@@ -47,7 +47,6 @@
 
     var data = null, rootNode = null, zoom = null, mode = 'walk';
     var cursor = null, path = [];
-    var shownAgent = null;
 
     // --- text metrics ------------------------------------------------------
 
@@ -271,50 +270,6 @@
 
     // --- overview ----------------------------------------------------------
 
-    /* The whole tree carries every run's proposals at once, which is far
-       too much to read side by side, so the overview shows one run's at a
-       time. Analytic nodes are untagged and always shown; a proposal is
-       tagged all the way down, so filtering at the graft point is enough. */
-    function overviewChildren(d) {
-        var kids = d.children || [];
-        if (!shownAgent) return kids;
-        return kids.filter(function (c) {
-            return !c.agent || c.agent === shownAgent;
-        });
-    }
-
-    function buildOverviewRoot() {
-        rootNode = d3.hierarchy(data.tree, overviewChildren);
-    }
-
-    function buildAgentBar() {
-        if (!agentBar) return;
-        agentBar.innerHTML = '';
-        var agents = (data && data.agents) || [];
-        agentBar.hidden = agents.length < 2;
-        if (agents.length < 2) return;
-        agents.forEach(function (a) {
-            var b = document.createElement('button');
-            b.type = 'button';
-            b.className = 'ctree__agent'
-                + (a.slug === shownAgent ? ' is-active' : '');
-            b.textContent = a.label;
-            b.setAttribute('data-agent', a.slug);
-            b.addEventListener('click', function () {
-                if (shownAgent === a.slug) return;
-                shownAgent = a.slug;
-                Array.prototype.forEach.call(agentBar.children, function (o) {
-                    o.classList.toggle('is-active',
-                        o.getAttribute('data-agent') === shownAgent);
-                });
-                buildOverviewRoot();
-                updateOverview();
-                setTimeout(fit, 30);
-            });
-            agentBar.appendChild(b);
-        });
-    }
-
     function layoutOverview() {
         d3.tree().nodeSize([56, 300])(rootNode);
         rootNode.each(function (d) { d.box = box(d.data, OV); });
@@ -413,49 +368,65 @@
        justification. Tabs are built from whichever parts the run actually
        carries, so an older tree simply shows fewer of them. */
     var TABS = [['what', 'What is this'],
+                ['why', 'Why novel'],
                 ['reasoning', 'Reasoning'],
                 ['feasibility', 'Feasibility reasoning']];
 
-    function notesBody(notes) {
+    function notesBody(notes, prefix) {
+        prefix = prefix || '';
         var have = TABS.filter(function (t) { return notes[t[0]]; });
         if (!have.length) return '';
         if (have.length === 1) return paragraphs(notes[have[0][0]]);
 
         var tabs = have.map(function (t, i) {
             return '<button type="button" class="ctree__tab'
-                + (i ? '' : ' is-active') + '" data-panel="' + t[0] + '">'
-                + esc(t[1]) + '</button>';
+                + (i ? '' : ' is-active') + '" data-panel="'
+                + prefix + t[0] + '">' + esc(t[1]) + '</button>';
         }).join('');
         var panels = have.map(function (t, i) {
-            return '<div class="ctree__tabpanel" data-panel="' + t[0] + '"'
-                + (i ? ' hidden' : '') + '>' + paragraphs(notes[t[0]])
-                + '</div>';
+            return '<div class="ctree__tabpanel" data-panel="'
+                + prefix + t[0] + '"' + (i ? ' hidden' : '') + '>'
+                + paragraphs(notes[t[0]]) + '</div>';
         }).join('');
-        return '<div class="ctree__tabs" role="tablist">' + tabs + '</div>'
-             + panels;
+        return '<div class="ctree__tabgroup">'
+             + '<div class="ctree__tabs" role="tablist">' + tabs + '</div>'
+             + panels + '</div>';
     }
 
     function wireTabs() {
         var body = modal && modal.querySelector('.ctree__modal-body');
         if (!body) return;
-        var tabs = body.querySelectorAll('.ctree__tab');
-        Array.prototype.forEach.call(tabs, function (b) {
-            b.addEventListener('click', function () {
-                var want = b.getAttribute('data-panel');
-                Array.prototype.forEach.call(tabs, function (o) {
-                    o.classList.toggle('is-active',
-                        o.getAttribute('data-panel') === want);
-                });
-                Array.prototype.forEach.call(
-                    body.querySelectorAll('.ctree__tabpanel'), function (p) {
-                        p.hidden = p.getAttribute('data-panel') !== want;
+        // a node with an OR-alternative carries two tab groups, each
+        // switching only its own panels
+        Array.prototype.forEach.call(
+            body.querySelectorAll('.ctree__tabgroup'), function (grp) {
+            var tabs = grp.querySelectorAll('.ctree__tab');
+            Array.prototype.forEach.call(tabs, function (b) {
+                b.addEventListener('click', function () {
+                    var want = b.getAttribute('data-panel');
+                    Array.prototype.forEach.call(tabs, function (o) {
+                        o.classList.toggle('is-active',
+                            o.getAttribute('data-panel') === want);
                     });
+                    Array.prototype.forEach.call(
+                        grp.querySelectorAll('.ctree__tabpanel'),
+                        function (p) {
+                            p.hidden = p.getAttribute('data-panel') !== want;
+                        });
+                });
             });
         });
     }
 
     function openReasoning(n) {
         var body = n.notes ? notesBody(n.notes) : '';
+        if (n.altNotes) {
+            body += '<p class="ctree__crit ctree__or"><strong>OR, the'
+                + ' agent\'s novel alternative'
+                + (n.alt && n.alt.label ? ': ' + esc(n.alt.label) : '')
+                + '</strong></p>'
+                + notesBody(n.altNotes, 'alt-');
+        }
         if (!body) return;
         openModal(n.kind || 'LLM agent', n.label || '', n.criterion || '',
                   body);
@@ -575,12 +546,8 @@
         return '<ul class="ctree__facts">' + out.join('') + '</ul>';
     }
 
-    function detailRows(n) {
-        var rows = [statLine(n)];
-        if (n.agentLabel) {
-            rows.push('<p class="ctree__crit"><strong>Proposed by</strong> '
-                      + esc(n.agentLabel) + '</p>');
-        }
+    function cardRows(n) {
+        var rows = [];
         if (n.status) {
             rows.push('<p class="ctree__crit"><strong>Status</strong> '
                       + n.status + '</p>');
@@ -595,6 +562,20 @@
                     return '<a href="https://arxiv.org/abs/' + r
                         + '" target="_blank" rel="noopener">arXiv:' + r + '</a>';
                 }).join('<br>') + '</p>');
+        }
+        return rows.join('');
+    }
+
+    function detailRows(n) {
+        var rows = [statLine(n), cardRows(n)];
+        if (n.alt) {
+            rows.push('<p class="ctree__crit ctree__or"><strong>OR,'
+                + ' the agent\'s novel alternative:</strong></p>');
+            rows.push('<p class="ctree__crit"><strong>'
+                + esc(n.alt.label || '') + '</strong>'
+                + (n.alt.criterion ? '<br>' + esc(n.alt.criterion) : '')
+                + '</p>');
+            rows.push(cardRows(n.alt));
         }
         // openDetail already wires this up; without it the agent's own
         // account of a node is unreachable from the whole tree
@@ -620,17 +601,15 @@
         if (b === 'observed') return 'Observed';
         if (b === 'not observed') return 'Not observed';
         if (b === 'llm split') {
-            // Where the standard experiments run out, each run's agents
-            // proposed their own way onward, so the choice is which run to
-            // follow. Where a region carries several competing proposals
-            // from one run there is a further choice, so name them.
-            var who = child.agentLabel;
+            // Where a region carries several competing proposals there is
+            // a real choice, so name them; otherwise following the agent
+            // is a single decision.
             if (child.type === 'novel') {
                 var t = child.label || 'Proposal ' + (i + 1);
                 if (t.length > 42) t = t.slice(0, 41).trim() + '…';
-                return who ? who + ': ' + t : t;
+                return t;
             }
-            return who ? 'Follow ' + who + '-agent split' : 'Follow LLM-agent';
+            return 'Follow LLM-agent';
         }
         // the agents name their own outcomes, and those names are the only
         // thing separating a three-way split into distinct answers
@@ -890,10 +869,7 @@
     function render(payload) {
         data = payload;
         // the whole-tree view opens on the whole tree, fitted to the frame
-        var agents = payload.agents || [];
-        shownAgent = agents.length > 1 ? agents[0].slug : null;
-        buildAgentBar();
-        buildOverviewRoot();
+        rootNode = d3.hierarchy(payload.tree);
         cursor = payload.tree;
         path = [];
         advanceTo(payload.tree);
@@ -901,7 +877,8 @@
         var a = payload.tree.agg || {};
         status.textContent = a.pts.toLocaleString() + ' points, ' + s.nodes
             + ' nodes, depth ' + s.depth + ', '
-            + ((s.lit || 0) + (s.novel || 0)) + ' LLM-proposed nodes';
+            + ((s.lit || 0) + (s.proj || 0) + (s.novel || 0))
+            + ' LLM-proposed nodes';
         svg.call(zoom.transform, d3.zoomIdentity);
         setMode(mode);
     }

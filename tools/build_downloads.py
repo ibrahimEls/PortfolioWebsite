@@ -35,7 +35,12 @@ def find_pdf(key, roots):
         hits = [p for p in pdfs
                 if os.path.basename(p) == "global_tree_llm.pdf"]
     else:
-        hits = [p for p in pdfs if "[" + key + "]" in os.path.basename(p)]
+        # renders are named either <key>_llm_tree.pdf or, in older
+        # exports, "... [<key>]_llm_tree.pdf"
+        hits = [p for p in pdfs
+                if os.path.basename(p) in (key + "_llm_tree.pdf",
+                                           key + "_tree.pdf")
+                or "[" + key + "]" in os.path.basename(p)]
     llm = [p for p in hits if p.endswith("_llm_tree.pdf")]
     pick = llm or hits
     if not pick:
@@ -48,6 +53,12 @@ def find_responses(key, resp_dir):
     resp_dir = os.path.expanduser(resp_dir)
     if key == "global_tree":
         return sorted(glob.glob(os.path.join(resp_dir, "global-tree", "*.md")))
+    # one card per leaf, named <model>__<path>.md; older exports used a
+    # single <model>.md
+    per = sorted(glob.glob(os.path.join(resp_dir, "per-model",
+                                        key + "__*.md")))
+    if per:
+        return per
     one = os.path.join(resp_dir, "per-model", key + ".md")
     return [one] if os.path.exists(one) else []
 

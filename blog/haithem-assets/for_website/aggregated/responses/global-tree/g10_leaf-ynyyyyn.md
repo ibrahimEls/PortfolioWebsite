@@ -1,0 +1,142 @@
+## Reasoning — leaf `root_yes_no_yes_yes_yes_yes_no` (426 pts, R0 + R1 + R2 + R3 + R4)
+
+**Existing dark-photon searches (BaBar + LHCb dimuon)** (literature split). R0 is the only unit with a second neutral gauge boson; R1-R4 predict exactly zero dilepton bumps off the Z pole at any luminosity. R0 predicts a prompt resonance at m(ll) = MZp (its Z' decays within cm everywhere in the scan) with rate proportional to eps^2, but its viable box spans eps in [1e-6, 0.1] and MZp in [1, 1e4] GeV while published sensitivity stops at sigma.BR ~ few fb (eps ~ 1e-3) below 70 GeV. The observed null is therefore the predicted outcome of all five units: no split. Two things make this record worth its node: (i) in R0's untouched corner (heavy MZp, or tiny eps and gD) the Lagrangian reduces exactly to R1-R3's, which is why no null result can ever remove R0 from this leaf -- the degeneracy is confirmable but not excludable; (ii) the scan's viability filter applied no low-mass dark-photon bound, so a free recast of these published limits onto R0's (MZp, eps) plane already prunes its eps >~ 1e-3, MZp <~ 70 GeV corner and sharpens the projection below, without splitting the unit. Data published (BaBar visible A' -> ll; LHCb prompt A' -> mumu, most stringent for 10.6-70 GeV); the result does NOT split: every unit is consistent with the null because R0's mixing range extends three decades below reach and R1-R4 predict nothing. Dominant systematic in these searches -- the smooth dimuon continuum shape -- is irrelevant at region level; the limitation is coverage of R0's decoupling corner, which produces no signal by construction.
+
+**LHCb Upgrade II + Belle II dark-photon scan** (literature projection on R0 + R1 + R2 + R3 + R4). R1-R4: identically zero at any sensitivity -- no second U(1) exists in those Lagrangians. R0: for the sub-volume with 1 < MZp < 70 GeV (~46% of its log-prior) and eps >~ 1e-4..3e-4, sigma(pp -> A'X).BR(mumu) is ~0.05 fb to tens of fb at LHCb, and e+e- -> gamma A' is fb-scale at Belle II below ~8 GeV -- a detectable bump whose position measures MZp directly. ONE-SIDED and stated: 'seen' is decisive for R0 (no other unit can fire it), while 'not seen' does not exclude R0's decoupled corners (eps -> 1e-6, or MZp in the 70 GeV-10 TeV half) -- R0 contains the exact observational limit of R1-R3, so this leaf's Lagrangian degeneracy is confirmable but never fully excludable; R0 is assigned to 'seen' per the kinematic-window rule. Runner-up considered for this slot: a Fermi+LSST stacked-dwarf search with a Z'Z' cascade template (also rated possible, factor ~4) would fire on R0's s-wave secluded corner at (0.5-2)e-26 cm3/s, but its 1-4x margin is the same size as its factor-2 J-factor systematic and a detection would not measure MZp, so the dimuon scan is kept. Today-experiments: LHCb Run 2 prompt A'->mumu at 5.5 fb-1 (sigma.BR sensitivity ~ few fb over 1-70 GeV) and BaBar (eps ~ 1e-3 below 10 GeV). Projections: inclusive LHCb search at 15-300 fb-1 through Upgrade II reaches eps^2 ~ 1e-7..1e-8; Belle II at 50 ab-1 reaches eps ~ 3e-4 below ~8 GeV. In the observable itself, background-limited sqrt(L) scaling from ~6 to 300 fb-1 gives ~7x, plus software-trigger and PID gains: factor ~10 in sigma.BR, to ~0.5 fb. LHCb Upgrade II is within the approved LHCb program and Belle II is running -- no new facility. Dominant systematic: modeling the smooth Drell-Yan and meson-decay dimuon continuum under a narrow peak, plus vetoed SM-resonance windows.
+
+**Higgs-factory invisible width vs sigma_SI** (literature projection on R1 + R2 + R3 + R4). Parameter-free ratio test. For a scalar Higgs portal at fixed (lambda, m): sigma_SI per particle is identical for real and complex scalars, while Gamma(h->inv) is 2x for the complex case -- either both components couple (two final states), or only sr couples and quartic-mediated equilibration puts ~half the local density in the non-scattering si, halving the DD rate per unit width; both readings give the same factor 2. Predicted values at the leaf's measured sigma_SI (~5e-48 to 5e-47 cm^2, consistent with lambda ~ 0.0022 at m ~ 92 GeV) and m in [91.6, 94.9] GeV: R1, R2, R3 sit at ~2x the published real-scalar-portal BR(h->inv) translation; R4 sits at ~1x. The 5% mass spread between regions shifts the ratio by < 10%, negligible against the factor 2. Marginality: within BR bin 0.0032-0.01, the test is 2-5 sigma near the top and marginal at the bottom. Not a refinement of the catalog's BR thresholds: the discrimination lives in the correlation with sigma_SI, not a finer BR cut. No novel alternative at rating 'possible' was found (annual modulation, directionality, ID flux normalization all fail or need catalog observables), so none is reported. Today: ATLAS combination BR(h->inv) < 0.107 at 95% CL (2301.10731). Required: absolute BR_inv measurement at the (1-2)e-3 level to resolve factor 2 inside the 0.32-1% bin; FCC-ee/ILC project sigma(BR_inv) ~ 0.1-0.2% (1905.03764). Factor ~ 0.107/0.003 ~ 35; statistics-limited sqrt(L) scaling at the lepton collider assumed. Dominant systematic: the local DM density rho_0 (+-20-30%) normalizing sigma_SI, comparable to the factor 2 -- Gaia-era vertical-kinematics determinations reduce it toward +-10%, preserving the test. Requires a new e+e- facility: next generation.
+
+**DM self-interaction from cluster halo shapes** (literature projection on R1 + R2 + R3). R1, R2 and R3 have the same Lagrangian, masses agreeing to 0.8% and portal couplings agreeing to 15%. They differ only in the quartic self-couplings among the dark scalars, which connect to nothing in the Standard Model. For a contact quartic lambda, sigma/m = lambda^2/(128 pi m^3) = 6e-11 cm^2/g at lambda = 10 and m = 94.5 GeV. Predicted values: R1 has the s_r^4 combination alpha2+alpha7+alpha12 bounded below at ~2.3, giving sigma/m >~ 3e-12 cm^2/g and up to ~6e-10; R2 spans 0.15-10 in the same combination, giving 3e-14 to 6e-11; R3 spans 0.05-10 with its s_i self-couplings pinned tiny (alpha6 <= 0.007, alpha11 <= 0.06, alpha7 at the 1e-3 floor), giving 1e-14 to 6e-11. MARGINAL AND ONE-SIDED, flagged: only R1 carries a guaranteed floor, so only a measured value below 3e-12 cm^2/g would exclude it; the upper ranges of all three overlap, and R2 and R3 are not separated from each other by this or by any other observable I could construct. Nothing is chained below this node. Today-experiment: the Bullet Cluster 1E 0657-56 dark-matter/gas offset and numerical simulations give sigma/m < ~1 cm^2/g (arXiv:0704.0261), with cluster-merger and halo-shape ensembles now reaching ~0.2 cm^2/g (reviewed in arXiv:1705.02358). Required: 3e-12 cm^2/g. Factor ~1e11. No scaling from exposure or luminosity applies - this is an astrophysical dynamical measurement, and the relevant scattering rate in a cluster core at 1e-12 cm^2/g corresponds to far less than one scattering per particle per Hubble time, so no system anywhere in the observable Universe responds to it. That is a hard floor, not a funding limitation, which is why the rating is impossible even though a factor of 1e11 could in other contexts be argued down. Dominant systematic in the existing measurement: the degeneracy between self-interaction and the assumed merger geometry and infall velocity, which is what limits current bounds to a factor of a few - entirely irrelevant at the level required here. I looked for a better-rated novel alternative on the same partition (dark-sector 4->2 number-changing freeze-out, which is suppressed by lambda^4/m^8 and utterly negligible at 94 GeV; low-scale dark Landau-pole phenomenology, which is not an observable; and bosonic-dark-matter neutron-star collapse, which is void because every quartic here far exceeds the ~1e-15 repulsive coupling that halts collapse) and found none.
+```json
+{
+  "model": "combined",
+  "leaves": [
+    {
+      "leaf_id": "root_yes_no_yes_yes_yes_yes_no",
+      "lit_search_note": "Existing data checked and non-splitting: BaBar/LHCb dark-photon dimuon nulls (recorded as the lit node; R0 spans eps down to 1e-6, three decades below reach); Fermi-LAT 14-yr dwarf stack (R0's loudest s-wave secluded corner sits at ~1x the ~1-2e-26 cm3/s limit, pure-portal units 20-50x below -> no unit excluded); Planck p_ann < 3.2e-28 cm3/s/GeV (all predictions below; portal units by 3-4 decades); LEP/EWPO kinetic-mixing fits (bite only eps >~ 1e-2 near m_Z, interior to R0); LHC Higgs-coupling fits and mono-jet/VBF+MET (alpha1^2 ~ 6e-6, invisible); Xe/Ar isospin ratio (returns isoscalar for every unit: the Z'-mediated vertex is off-diagonal, hence inelastic with a ~GeV splitting and kinematically closed, so no Z' elastic amplitude exists); cluster self-interaction bounds (~10 orders above every prediction); SN1987A/Neff (void, M_Zp >= 1 GeV); displaced/far-detector searches (void, c*tau <= 2 cm everywhere in the scan).",
+      "splits": [
+        {
+          "kind": "lit",
+          "attach_to": "leaf",
+          "name": "Existing dark-photon searches (BaBar + LHCb dimuon)",
+          "observable": "narrow prompt l+l- resonance, 0.2-70 GeV, sigma.BR >~ 2 fb ?",
+          "what_this_is": "BaBar (an electron-positron collider experiment) and LHCb (a forward detector at the Large Hadron Collider) have already searched their recorded data for a new short-lived particle decaying to an electron or muon pair, which would appear as a narrow bump in the dilepton mass spectrum -- the classic signature of a 'dark photon' that mixes slightly with the ordinary photon. Exactly one of the five surviving dark-matter models contains such a particle, so these are the sharpest existing data that could have separated them. Both searches saw nothing, and because the surviving points of that one model extend to mixings a thousand times below today's reach, the null result is consistent with every model here.",
+          "refs": [
+            "arXiv:1406.2980",
+            "arXiv:1710.02867",
+            "arXiv:1910.06926"
+          ],
+          "reasoning": "R0 is the only unit with a second neutral gauge boson; R1-R4 predict exactly zero dilepton bumps off the Z pole at any luminosity. R0 predicts a prompt resonance at m(ll) = MZp (its Z' decays within cm everywhere in the scan) with rate proportional to eps^2, but its viable box spans eps in [1e-6, 0.1] and MZp in [1, 1e4] GeV while published sensitivity stops at sigma.BR ~ few fb (eps ~ 1e-3) below 70 GeV. The observed null is therefore the predicted outcome of all five units: no split. Two things make this record worth its node: (i) in R0's untouched corner (heavy MZp, or tiny eps and gD) the Lagrangian reduces exactly to R1-R3's, which is why no null result can ever remove R0 from this leaf -- the degeneracy is confirmable but not excludable; (ii) the scan's viability filter applied no low-mass dark-photon bound, so a free recast of these published limits onto R0's (MZp, eps) plane already prunes its eps >~ 1e-3, MZp <~ 70 GeV corner and sharpens the projection below, without splitting the unit.",
+          "feasibility": "Data published (BaBar visible A' -> ll; LHCb prompt A' -> mumu, most stringent for 10.6-70 GeV); the result does NOT split: every unit is consistent with the null because R0's mixing range extends three decades below reach and R1-R4 predict nothing. Dominant systematic in these searches -- the smooth dimuon continuum shape -- is irrelevant at region level; the limitation is coverage of R0's decoupling corner, which produces no signal by construction.",
+          "outcomes": [
+            {
+              "label": "no excess (observed)",
+              "regions": [
+                "R0",
+                "R1",
+                "R2",
+                "R3",
+                "R4"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit_projection",
+          "attach_to": "R0+R1+R2+R3+R4",
+          "name": "LHCb Upgrade II + Belle II dark-photon scan",
+          "observable": "narrow prompt l+l- resonance, 1-70 GeV, sigma.BR > 0.5 fb ?",
+          "what_this_is": "LHCb's upgraded detector will re-run its dark-photon bump hunt with about fifty times more collisions and a trigger that keeps every muon pair, while Belle II in Japan scans the 1-10 GeV window in electron-positron collisions; together they push sensitivity to a new dilepton resonance roughly ten times deeper in rate. Such a resonance away from the Z pole can only be produced by the one model containing a dark U(1) gauge boson, so a bump anywhere in this window identifies that model outright and simultaneously measures the new boson's mass. This low-mass window is invisible to the high-mass LHC dilepton projection already in our catalog.",
+          "refs": [
+            "arXiv:1910.06926",
+            "arXiv:1603.08926",
+            "arXiv:1808.10567"
+          ],
+          "reasoning": "R1-R4: identically zero at any sensitivity -- no second U(1) exists in those Lagrangians. R0: for the sub-volume with 1 < MZp < 70 GeV (~46% of its log-prior) and eps >~ 1e-4..3e-4, sigma(pp -> A'X).BR(mumu) is ~0.05 fb to tens of fb at LHCb, and e+e- -> gamma A' is fb-scale at Belle II below ~8 GeV -- a detectable bump whose position measures MZp directly. ONE-SIDED and stated: 'seen' is decisive for R0 (no other unit can fire it), while 'not seen' does not exclude R0's decoupled corners (eps -> 1e-6, or MZp in the 70 GeV-10 TeV half) -- R0 contains the exact observational limit of R1-R3, so this leaf's Lagrangian degeneracy is confirmable but never fully excludable; R0 is assigned to 'seen' per the kinematic-window rule. Runner-up considered for this slot: a Fermi+LSST stacked-dwarf search with a Z'Z' cascade template (also rated possible, factor ~4) would fire on R0's s-wave secluded corner at (0.5-2)e-26 cm3/s, but its 1-4x margin is the same size as its factor-2 J-factor systematic and a detection would not measure MZp, so the dimuon scan is kept.",
+          "feasibility": "Today-experiments: LHCb Run 2 prompt A'->mumu at 5.5 fb-1 (sigma.BR sensitivity ~ few fb over 1-70 GeV) and BaBar (eps ~ 1e-3 below 10 GeV). Projections: inclusive LHCb search at 15-300 fb-1 through Upgrade II reaches eps^2 ~ 1e-7..1e-8; Belle II at 50 ab-1 reaches eps ~ 3e-4 below ~8 GeV. In the observable itself, background-limited sqrt(L) scaling from ~6 to 300 fb-1 gives ~7x, plus software-trigger and PID gains: factor ~10 in sigma.BR, to ~0.5 fb. LHCb Upgrade II is within the approved LHCb program and Belle II is running -- no new facility. Dominant systematic: modeling the smooth Drell-Yan and meson-decay dimuon continuum under a narrow peak, plus vetoed SM-resonance windows.",
+          "feasibility_rating": "possible",
+          "improvement_factor": 10,
+          "outcomes": [
+            {
+              "label": "bump seen",
+              "regions": [
+                "R0"
+              ]
+            },
+            {
+              "label": "not seen",
+              "regions": [
+                "R1",
+                "R2",
+                "R3",
+                "R4"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit_projection",
+          "attach_to": "R1+R2+R3+R4",
+          "name": "Higgs-factory invisible width vs sigma_SI",
+          "observable": "BR(h->inv) >= 1.5x real-scalar-portal value at measured sigma_SI ?",
+          "what_this_is": "A future electron-positron 'Higgs factory' (FCC-ee or ILC) would measure the fraction of Higgs bosons decaying invisibly to per-mille precision, far beyond the LHC. Comparing that number with the dark-matter scattering rate already seen in the underground xenon and argon detectors tests how many dark particles share the Higgs coupling: a complex scalar (two degrees of freedom) gives twice the invisible width per unit of scattering cross section that a real scalar (one degree of freedom) gives. That factor of two is exactly what separates the complex-scalar regions from the real-scalar region here.",
+          "refs": [
+            "arXiv:2301.10731",
+            "arXiv:1905.03764"
+          ],
+          "reasoning": "Parameter-free ratio test. For a scalar Higgs portal at fixed (lambda, m): sigma_SI per particle is identical for real and complex scalars, while Gamma(h->inv) is 2x for the complex case -- either both components couple (two final states), or only sr couples and quartic-mediated equilibration puts ~half the local density in the non-scattering si, halving the DD rate per unit width; both readings give the same factor 2. Predicted values at the leaf's measured sigma_SI (~5e-48 to 5e-47 cm^2, consistent with lambda ~ 0.0022 at m ~ 92 GeV) and m in [91.6, 94.9] GeV: R1, R2, R3 sit at ~2x the published real-scalar-portal BR(h->inv) translation; R4 sits at ~1x. The 5% mass spread between regions shifts the ratio by < 10%, negligible against the factor 2. Marginality: within BR bin 0.0032-0.01, the test is 2-5 sigma near the top and marginal at the bottom. Not a refinement of the catalog's BR thresholds: the discrimination lives in the correlation with sigma_SI, not a finer BR cut. No novel alternative at rating 'possible' was found (annual modulation, directionality, ID flux normalization all fail or need catalog observables), so none is reported.",
+          "feasibility": "Today: ATLAS combination BR(h->inv) < 0.107 at 95% CL (2301.10731). Required: absolute BR_inv measurement at the (1-2)e-3 level to resolve factor 2 inside the 0.32-1% bin; FCC-ee/ILC project sigma(BR_inv) ~ 0.1-0.2% (1905.03764). Factor ~ 0.107/0.003 ~ 35; statistics-limited sqrt(L) scaling at the lepton collider assumed. Dominant systematic: the local DM density rho_0 (+-20-30%) normalizing sigma_SI, comparable to the factor 2 -- Gaia-era vertical-kinematics determinations reduce it toward +-10%, preserving the test. Requires a new e+e- facility: next generation.",
+          "feasibility_rating": "next generation",
+          "improvement_factor": 35,
+          "outcomes": [
+            {
+              "label": "2x (complex)",
+              "regions": [
+                "R1",
+                "R2",
+                "R3"
+              ]
+            },
+            {
+              "label": "1x (real)",
+              "regions": [
+                "R4"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit_projection",
+          "attach_to": "R1+R2+R3",
+          "name": "DM self-interaction from cluster halo shapes",
+          "observable": "sigma_self/m >= 3e-12 cm^2/g ?",
+          "what_this_is": "If dark-matter particles scatter off each other, colliding galaxy clusters and the shapes of dark-matter haloes are altered: the dark matter lags behind or is puffed into a rounder shape. Comparing the offset between the dark matter and the hot gas in merging clusters, and the ellipticity of relaxed haloes, bounds the self-scattering cross-section per unit dark-matter mass. It is the only observable that responds to interactions purely internal to the dark sector, which is the only thing that distinguishes these three candidates.",
+          "refs": [
+            "arXiv:0704.0261",
+            "arXiv:1705.02358"
+          ],
+          "reasoning": "R1, R2 and R3 have the same Lagrangian, masses agreeing to 0.8% and portal couplings agreeing to 15%. They differ only in the quartic self-couplings among the dark scalars, which connect to nothing in the Standard Model. For a contact quartic lambda, sigma/m = lambda^2/(128 pi m^3) = 6e-11 cm^2/g at lambda = 10 and m = 94.5 GeV. Predicted values: R1 has the s_r^4 combination alpha2+alpha7+alpha12 bounded below at ~2.3, giving sigma/m >~ 3e-12 cm^2/g and up to ~6e-10; R2 spans 0.15-10 in the same combination, giving 3e-14 to 6e-11; R3 spans 0.05-10 with its s_i self-couplings pinned tiny (alpha6 <= 0.007, alpha11 <= 0.06, alpha7 at the 1e-3 floor), giving 1e-14 to 6e-11. MARGINAL AND ONE-SIDED, flagged: only R1 carries a guaranteed floor, so only a measured value below 3e-12 cm^2/g would exclude it; the upper ranges of all three overlap, and R2 and R3 are not separated from each other by this or by any other observable I could construct. Nothing is chained below this node.",
+          "feasibility": "Today-experiment: the Bullet Cluster 1E 0657-56 dark-matter/gas offset and numerical simulations give sigma/m < ~1 cm^2/g (arXiv:0704.0261), with cluster-merger and halo-shape ensembles now reaching ~0.2 cm^2/g (reviewed in arXiv:1705.02358). Required: 3e-12 cm^2/g. Factor ~1e11. No scaling from exposure or luminosity applies - this is an astrophysical dynamical measurement, and the relevant scattering rate in a cluster core at 1e-12 cm^2/g corresponds to far less than one scattering per particle per Hubble time, so no system anywhere in the observable Universe responds to it. That is a hard floor, not a funding limitation, which is why the rating is impossible even though a factor of 1e11 could in other contexts be argued down. Dominant systematic in the existing measurement: the degeneracy between self-interaction and the assumed merger geometry and infall velocity, which is what limits current bounds to a factor of a few - entirely irrelevant at the level required here. I looked for a better-rated novel alternative on the same partition (dark-sector 4->2 number-changing freeze-out, which is suppressed by lambda^4/m^8 and utterly negligible at 94 GeV; low-scale dark Landau-pole phenomenology, which is not an observable; and bosonic-dark-matter neutron-star collapse, which is void because every quartic here far exceeds the ~1e-15 repulsive coupling that halts collapse) and found none.",
+          "feasibility_rating": "impossible",
+          "improvement_factor": 100000000000,
+          "outcomes": [
+            {
+              "label": "seen",
+              "regions": [
+                "R1"
+              ]
+            },
+            {
+              "label": "not seen",
+              "regions": [
+                "R2",
+                "R3"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```

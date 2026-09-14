@@ -1,51 +1,53 @@
 #!/usr/bin/env python3
-"""Convert the constraint-tree DOT files into JSON for the web viewer.
+"""Convert the exported constraint-tree DOT files into JSON for the viewer.
+
+The source is the for_website export of the aggregated LLM run: DOT files
+under dot/, and the agents' commentary as clean JSON under json/, keyed by
+leaf id with one splits[] entry per proposal node.
 
 Node type is carried by fillcolor in the DOT:
     lightblue   standard experimental probe (a yes/no question)
-    gold        LLM-agent literature search
+    gold        LLM-agent literature split over existing data
+    palegreen   LLM-agent literature projection (a planned measurement)
     orange      LLM-agent novel observable proposal
     lightgrey   leaf reached through standard probes
     lightyellow leaf reached through an LLM branch
 
-Labels come in two flavours: a plain quoted string, or a graphviz HTML
-label using <B> and <BR/>. Both are parsed into structured fields so the
-page can render a detail panel instead of a wall of text.
+Proposal nodes are named <leaf>_s<k>, matching splits[k] of that leaf's
+card, and their outcome leaves <split>_o<j>. Two projection nodes carry an
+OR-alternative drawn as a second card in the same box.
 
-Every run scans the same points, so the runs share an analytic tree and
-differ only in what their agents proposed once the standard experiments
-run out. One invocation reads them all and publishes a single tree per
-Lagrangian class, with each run's proposals hanging off the leaf they
-were made at and tagged by run.
+Usage:  python3 tools/build_tree_data.py <src_dir> <out_dir> \
+            [<key>=<no_llm.text> ...]
 
-Usage:  python3 tools/build_tree_data.py <out_dir> <slug:Label:src_dir>...
+The optional key=table arguments attach per-leaf Lagrangian compositions
+(the "Which Lagrangians" buttons) from a composition table whose base tree
+must match the exported one.
 """
-
 import html
 import json
 import os
 import re
 import sys
-
 TYPE_BY_COLOR = {
     "lightblue": "probe",
     "gold": "lit",
+    "palegreen": "proj",
     "orange": "novel",
     "lightgrey": "leaf",
     "lightyellow": "leaf",
 }
-
 NODE_RE = re.compile(r'^\s*([A-Za-z0-9_]+)\s*\[(.*)\]\s*;?\s*$')
 EDGE_RE = re.compile(
     r'^\s*([A-Za-z0-9_]+)\s*->\s*([A-Za-z0-9_]+)\s*(?:\[(.*)\])?\s*;?\s*$')
 LEAF_RE = re.compile(
     r'([\d,]+)\s*pts?,\s*([\d,]+)\s*regions?,\s*([\d,]+)\s*lagrangians?')
-ARXIV_RE = re.compile(r'arXiv:\s*([\d.]+)')
-
-
+ARXIV_RE = re.compile(r'arXiv:\s*([a-z\-]+/\d{7}|[\d.]+)')
 def split_label(attrs):
     """Pull the label out of an attribute blob; returns (text, is_html)."""
-    m = re.search(r'label=<(.*)>\s*(?:,|$)', attrs, re.S)
+    # the closer can be followed by a comma, the end, or just the next
+    # space-separated attribute, depending on which tool wrote the dot
+    m = re.search(r'label=<(.*)>\s*(?:,|$|(?=\w+=))', attrs, re.S)
     if m:
         return m.group(1), True
     m = re.search(r'label="((?:[^"\\]|\\.)*)"', attrs, re.S)
@@ -62,7 +64,7 @@ def html_lines(raw):
     for p in parts:
         bold = bool(re.search(r'<B>', p, re.I))
         text = re.sub(r'<[^>]+>', '', p)
-        text = html.unescape(text).strip()
+        text = html.unescape(text).replace('\u200a', '').strip()
         if text:
             out.append((text, bold))
     return out
@@ -79,46 +81,24 @@ def join_wrapped(lines):
         else:
             out += " " + t
     return out
+# a second proposal drawn in the same box, separated by an OR row
+OR_ROW = re.compile(r'</TD>\s*</TR>\s*<HR/>\s*<TR>\s*<TD>\s*<B>\s*OR\s*'
+                    r'</B>\s*</TD>\s*</TR>\s*<HR/>\s*<TR>\s*<TD>', re.I)
+
+# a reference line in a label; the id can wrap across a line break, so the
+# continuation chunk is matched on its own too. Refs are re-attached from
+# the export's JSON, which carries them unbroken.
+REF_LINE = re.compile(r'arXiv:|^[a-z\-]{2,10}/\d{6,7},?$')
 
 
-def parse_node(nid, attrs):
-    color = (re.search(r'fillcolor=([A-Za-z0-9#"]+)', attrs) or [None, ""])[1]
-    color = color.strip('"')
-    ntype = TYPE_BY_COLOR.get(color, "probe")
-    raw, is_html = split_label(attrs)
-
-    node = {"id": nid, "type": ntype}
-
-    if not is_html:
-        text = raw.replace("\\n", " ").strip()
-        m = LEAF_RE.search(text)
-        if m and ntype == "leaf":
-            node["pts"] = int(m.group(1).replace(",", ""))
-            node["regions"] = int(m.group(2).replace(",", ""))
-            node["lagrangians"] = int(m.group(3).replace(",", ""))
-            node["label"] = text
-        else:
-            node["label"] = text
-            if ntype == "leaf":
-                node["type"] = "probe"
-        return node
-
-    lines = html_lines(raw)
-    if not lines:
-        node["label"] = ""
-        return node
-
-    node["kind"] = lines[0][0]                 # the bold header
+def parse_card(lines):
+    """One agent card: bold kind header, title, criterion and verdicts."""
+    card = {"kind": lines[0][0]}
     body = [t for t, b in lines[1:] if not b]
     tail = [t for t, b in lines[1:] if b]      # Status:/Feasibility:
 
-    refs = []
-    keep = []
-    for t in body:
-        if ARXIV_RE.search(t):
-            refs += ARXIV_RE.findall(t)
-        else:
-            keep.append(t)
+    keep = [t for t in body if not REF_LINE.search(t)]
+
     # The criterion is the trailing question. It can wrap over several DOT
     # lines, so anchor on the first line carrying a comparison operator
     # (arrows removed first, since '->' in a decay chain is not a compare)
@@ -140,19 +120,54 @@ def parse_node(nid, attrs):
         else:
             break
     title, crit = keep[:cut], keep[cut:]
-    node["label"] = join_wrapped(title) or node["kind"]
+    card["label"] = join_wrapped(title) or card["kind"]
     if crit:
-        node["criterion"] = join_wrapped(crit)
-    if refs:
-        node["refs"] = refs
+        card["criterion"] = join_wrapped(crit)
     for t in tail:
         if t.lower().startswith("status"):
-            node["status"] = t.split(":", 1)[1].strip()
+            card["status"] = t.split(":", 1)[1].strip()
         elif t.lower().startswith("feasibility"):
-            node["feasibility"] = t.split(":", 1)[1].strip()
+            card["feasibility"] = t.split(":", 1)[1].strip()
+    return card
+
+
+def parse_node(nid, attrs):
+    color = (re.search(r'fillcolor=([A-Za-z0-9#"]+)', attrs) or [None, ""])[1]
+    color = color.strip('"')
+    ntype = TYPE_BY_COLOR.get(color, "probe")
+    raw, is_html = split_label(attrs)
+
+    node = {"id": nid, "type": ntype}
+
+    if is_html and OR_ROW.search(raw):
+        main_raw, alt_raw = OR_ROW.split(raw, 1)
+        node.update(parse_card(html_lines(main_raw)))
+        node["alt"] = parse_card(html_lines(alt_raw))
+        return node
+
+    if is_html:
+        lines = html_lines(raw)
+        if not lines:
+            node["label"] = ""
+            return node
+        if any(b for _t, b in lines):
+            node.update(parse_card(lines))
+            return node
+        text = join_wrapped([t for t, _b in lines])
+    else:
+        text = raw.replace("\\n", " ").strip()
+
+    m = LEAF_RE.search(text)
+    if m and ntype == "leaf":
+        node["pts"] = int(m.group(1).replace(",", ""))
+        node["regions"] = int(m.group(2).replace(",", ""))
+        node["lagrangians"] = int(m.group(3).replace(",", ""))
+        node["label"] = text
+    else:
+        node["label"] = text
+        if ntype == "leaf":
+            node["type"] = "probe"
     return node
-
-
 def parse_dot(path):
     nodes, edges = {}, []
     title = None
@@ -183,34 +198,23 @@ def parse_dot(path):
 
 
 BRANCH_ORDER = {"yes": 0, "observed": 0, "no": 1, "not observed": 1}
-
-
 def outcome_branch(parent_id, child_id):
-    """Read an LLM node's outcome from the child id.
+    """Read a branch from the child id where the DOT edge carries no label.
 
-    Edges out of an LLM node carry no label in the DOT; the branch is only
-    encoded in the child's id suffix, _o0 or _o1. That says nothing about
-    what the answers mean, so this is only a placeholder: name_outcomes()
-    replaces it with the agent's own names wherever the replies are on hand.
+    Proposal nodes are named <leaf>_s<k>; entering one is following the
+    agent, wherever the edge starts from. An outcome child extends its
+    split's id with _o<j>; that placeholder branch is renamed later from
+    the outcome labels in the export's JSON.
     """
+    if re.search(r'_s\d+$', child_id):
+        return "LLM split"
     if not child_id.startswith(parent_id + "_"):
         return ""
     suffix = child_id[len(parent_id) + 1:]
-    # an outcome child is named o<k> and nothing else; matching it loosely
-    # also swallows o0_novel0, which is a proposal, not an outcome
     m = re.fullmatch(r'o(\d+)', suffix)
     if m:
         return "observed" if m.group(1) == "0" else "not observed"
-    # a surviving outcome region that an agent then proposes to split
-    # further: the same transition the dashed leaf -> lit edges represent.
-    # Proposals are named novelN or subN; both carry the same index. A
-    # search that returned "No Split!" hangs its proposals straight off
-    # itself, and those keep the outcome they were made for in the name.
-    if re.fullmatch(r'(?:o\d+_)?(?:novel|sub)\d+', suffix):
-        return "LLM split"
     return ""
-
-
 def build_tree(nodes, edges):
     kids = {}
     has_parent = set()
@@ -251,8 +255,6 @@ _RS = {"s": "Scalar", "m": "Majorana", "d": "Dirac", "v": "Vector"}
 _RR = {"Sg": "Singlet", "Dh": "Doublet", "Dz": "Doublet",
        "Tr": "Triplet", "Tc": "Triplet"}
 _FTOK = re.compile(r"^(\d*)([RC])([smdv])(Sg|Dh|Dz|Tr|Tc)$")
-
-
 def readable_model_id(mid, with_count=True, with_orders=True):
     """Human-readable name for a merged model id, with or without a ':N'
     count suffix."""
@@ -383,89 +385,9 @@ def attach_models(tree, by_leaf):
         for c in n.get("children", []):
             walk(c, inherited)
     walk(tree, None)
-
-
-def salvage_json(s):
-    """Close a JSON blob that was cut off mid-object.
-
-    One response file is truncated at source, so rather than dropping it
-    entirely we trim to the last complete value and balance the brackets.
-    """
-    def scan(text):
-        depth, in_str, esc, last = [], False, False, None
-        for i, ch in enumerate(text):
-            if in_str:
-                if esc:
-                    esc = False
-                elif ch == '\\':
-                    esc = True
-                elif ch == '"':
-                    in_str = False
-                continue
-            if ch == '"':
-                in_str = True
-            elif ch in '{[':
-                depth.append(ch)
-            elif ch in '}]':
-                if depth:
-                    depth.pop()
-                last = i
-        return depth, last
-
-    _, last = scan(s)
-    if last is None:
-        return None
-    head = s[:last + 1]
-    depth, _ = scan(head)
-    return head + ''.join('}' if c == '{' else ']' for c in reversed(depth))
-
-
-def load_responses(resp_dir):
-    """reasoning keyed by tree name -> leaf_id -> {'lit':…, 'novel':[…]}."""
-    out, repaired = {}, []
-    if not os.path.isdir(resp_dir):
-        return out, repaired
-    sources = [("global_tree", os.path.join(resp_dir, "global-tree")),
-               (None, os.path.join(resp_dir, "per-model"))]
-    for fixed_name, folder in sources:
-        if not os.path.isdir(folder):
-            continue
-        # only the top level; the *-old / stale-* subfolders are superseded
-        for fn in sorted(os.listdir(folder)):
-            if not fn.endswith(".md"):
-                continue
-            path = os.path.join(folder, fn)
-            blocks = re.findall(r'```json\s*(.*?)```', open(path).read(), re.S)
-            if not blocks:
-                continue
-            try:
-                data = json.loads(blocks[-1])
-            except ValueError:
-                fixed = salvage_json(blocks[-1])
-                try:
-                    data = json.loads(fixed)
-                    repaired.append(fn)
-                except (ValueError, TypeError):
-                    print("  [warn] unreadable JSON in", fn)
-                    continue
-            tree = fixed_name or fn[:-3]
-            bucket = out.setdefault(tree, {})
-            for leaf in data.get("leaves", []):
-                lid = leaf.get("leaf_id")
-                if not lid:
-                    continue
-                bucket[lid] = {
-                    "lit": proposal(leaf.get("lit_review")),
-                    "novel": [proposal(n) for n in leaf.get("novel", [])],
-                }
-    return out, repaired
-
-
 # What the agent said about a proposal, in the order the panel shows it.
-# The later runs explain the observable before justifying it; the earlier
-# ones jump straight to the justification, so a field is carried only when
-# the run actually produced it.
 NOTE_FIELDS = [("what_this_is", "what"),
+               ("why_novel", "why"),
                ("reasoning", "reasoning"),
                ("feasibility", "feasibility")]
 
@@ -479,66 +401,67 @@ def note(d):
     return out or None
 
 
-def proposal(d):
-    """One agent proposal: its commentary and the names of its outcomes.
+def clean_refs(refs):
+    return [r.replace("arXiv:", "").strip() for r in refs]
 
-    The DOT only encodes an outcome as _o0, _o1, _o2 in the child id, which
-    says nothing about what those answers mean and collides as soon as a
-    proposal has more than two. The agent named them, so take the names
-    from here and let them override the guess.
-    """
-    if not d:
-        return None
-    labels = [(o.get("label") or "").strip()
-              for o in (d.get("outcomes") or [])]
-    if not any(labels):
-        labels = []
-    return {"note": note(d), "outcomes": labels}
+
+def load_responses(src):
+    """Leaf payloads keyed tree -> leaf_id, from the export's json/ tree."""
+    out = {}
+    gdir = os.path.join(src, "json", "global-tree")
+    if os.path.isdir(gdir):
+        for fn in sorted(os.listdir(gdir)):
+            if not fn.endswith(".json"):
+                continue
+            data = json.load(open(os.path.join(gdir, fn)))
+            for leaf in data.get("leaves", []):
+                out.setdefault("global_tree", {})[leaf["leaf_id"]] = leaf
+    pdir = os.path.join(src, "json", "per-model")
+    if os.path.isdir(pdir):
+        for fn in sorted(os.listdir(pdir)):
+            if not fn.endswith(".json"):
+                continue
+            data = json.load(open(os.path.join(pdir, fn)))
+            for leaf in data.get("leaves", []):
+                out.setdefault(fn[:-5], {})[leaf["leaf_id"]] = leaf
+    return out
 
 
 def attach_reasoning(tree, by_leaf):
-    """Put each agent note on the node it belongs to, matching by node id."""
-    ids = []
+    """Attach each split's commentary to its node, <leaf>_s<index>."""
+    index = {}
 
     def collect(n):
-        ids.append(n["id"])
+        index[n["id"]] = n
         for c in n.get("children", []):
             collect(c)
     collect(tree)
-    idset = set(ids)
 
-    target = {}
-    for lid, r in by_leaf.items():
-        if r.get("lit") and lid + "_lit" in idset:
-            target[lid + "_lit"] = r["lit"]
-        for k, text in enumerate(r.get("novel") or []):
-            if not text:
+    hits, want = 0, 0
+    for lid, leaf in by_leaf.items():
+        for k, sp in enumerate(leaf.get("splits", [])):
+            want += 1
+            n = index.get("%s_s%d" % (lid, k))
+            if n is None:
                 continue
-            # the DOT names these <leaf>_lit_o<outcome>_novel<k>, or _sub<k>
-            # for the later proposals on the same outcome; the outcome index
-            # varies, so find the id that exists rather than guess it
-            pat = re.compile(r'^%s_lit_o\d+_(?:novel|sub)%d$'
-                             % (re.escape(lid), k))
-            hit = next((i for i in ids if pat.match(i)), None)
-            if hit:
-                target[hit] = text
-
-    hits = [0]
-
-    def apply(n):
-        hit = target.get(n["id"])
-        if hit:
-            if hit.get("note"):
-                n["notes"] = hit["note"]
-            if hit.get("outcomes"):
-                name_outcomes(n, hit["outcomes"])
-            hits[0] += 1
-        for c in n.get("children", []):
-            apply(c)
-    apply(tree)
-    return hits[0], len(target)
-
-
+            hits += 1
+            nt = note(sp)
+            if nt:
+                n["notes"] = nt
+            if sp.get("refs"):
+                n["refs"] = clean_refs(sp["refs"])
+            labels = [(o.get("label") or "").strip()
+                      for o in sp.get("outcomes", [])]
+            if any(labels):
+                name_outcomes(n, labels)
+            alt = sp.get("proposed_novel_alternative")
+            if alt and n.get("alt") is not None:
+                if alt.get("refs"):
+                    n["alt"]["refs"] = clean_refs(alt["refs"])
+                antt = note(alt)
+                if antt:
+                    n["altNotes"] = antt
+    return hits, want
 def number_unnamed_outcomes(node):
     """Number a many-way split the replies did not name.
 
@@ -664,230 +587,85 @@ def display_name(key):
             name += " (" + m.group(1) + ")"
     syms = symmetries(key)
     return name + (", " + ", ".join(syms) if syms else "")
+def main():
+    if len(sys.argv) < 3:
+        sys.exit(__doc__.strip())
+    src, out_dir = sys.argv[1], sys.argv[2]
+    tables = {}
+    for spec in sys.argv[3:]:
+        key, path = spec.split("=", 1)
+        tables[key] = parse_text_tree(path)
+    os.makedirs(out_dir, exist_ok=True)
 
-def parse_run(spec):
-    """A run is one scan of the whole pipeline: "slug:Label:src_dir"."""
-    slug, label, src = spec.split(":", 2)
-    return {"slug": slug, "label": label, "src": src}
-
-
-def dot_files(src):
-    """The DOT files of a run, wherever that run's exporter put them."""
-    found = []
-    for base, _dirs, files in os.walk(src):
-        if "responses" in base.split(os.sep):
-            continue
-        found += [os.path.join(base, f) for f in files if f.endswith(".dot")]
-    return sorted(found)
-
-def collect_run(run):
-    """Parse one run's trees; returns {key: {tree, stats, title}}."""
-    src = run["src"]
-    print("\n=== %s (%s) ===" % (run["label"], src))
-    responses, repaired = load_responses(os.path.join(src, "responses"))
-    text_trees = {}
-    for base, _dirs, files in os.walk(src):
-        for fn in files:
-            if fn.endswith("_no_llm.text"):
-                key = fn[:-len("_no_llm.text")]
-                text_trees[key] = parse_text_tree(os.path.join(base, fn))
-    if repaired:
-        print("recovered truncated JSON in:", ", ".join(repaired), "\n")
+    responses = load_responses(src)
 
     parsed = []
-    for path in dot_files(src):
-        fn = os.path.basename(path)
-        nodes, edges, title = parse_dot(path)
-        if not nodes:
-            print("skip (no nodes):", fn)
-            continue
-        tree = build_tree(nodes, edges)
-        annotate(tree)
-        acc = totals(tree, {"nodes": 0, "depth": 0, "_d": 0})
-        acc.pop("_d")
-        stem = fn[:-4]
-        llm = acc.get("lit", 0) + acc.get("novel", 0)
-        parsed.append({"stem": stem, "key": group_key(stem), "title": title,
-                       "tree": tree, "stats": acc, "llm": llm})
-        print("%-42s %4d nodes  depth %2d  %3d leaves  %2d lit  %2d novel"
-              % (fn, acc["nodes"], acc["depth"], acc.get("leaf", 0),
-                 acc.get("lit", 0), acc.get("novel", 0)))
+    for base, _dirs, files in os.walk(src):
+        for fn in sorted(files):
+            if not fn.endswith(".dot"):
+                continue
+            nodes, edges, title = parse_dot(os.path.join(base, fn))
+            if not nodes:
+                print("skip (no nodes):", fn)
+                continue
+            tree = build_tree(nodes, edges)
+            annotate(tree)
+            acc = totals(tree, {"nodes": 0, "depth": 0, "_d": 0})
+            acc.pop("_d")
+            stem = fn[:-4]
+            llm = (acc.get("lit", 0) + acc.get("proj", 0)
+                   + acc.get("novel", 0))
+            parsed.append({"stem": stem, "key": group_key(stem),
+                           "title": title, "tree": tree, "stats": acc,
+                           "llm": llm})
+            print("%-46s %4d nodes  depth %2d  %3d leaves  %2d lit  %2d proj"
+                  "  %2d novel"
+                  % (fn, acc["nodes"], acc["depth"], acc.get("leaf", 0),
+                     acc.get("lit", 0), acc.get("proj", 0),
+                     acc.get("novel", 0)))
 
-    # One entry per model. Prefer the variant carrying LLM nodes; break ties
-    # on richness, so a pruned figure excerpt never hides the full tree.
+    # One entry per model. Prefer the variant carrying LLM nodes; break
+    # ties on richness, so a base render never hides the full tree.
     groups = {}
     for p in parsed:
         groups.setdefault(p["key"], []).append(p)
 
-    out = {}
+    manifest = []
     print("\nselected:")
     for key, variants in groups.items():
         best = max(variants, key=lambda v: (v["llm"] > 0, v["stats"]["nodes"]))
         title = best["title"] or next(
             (v["title"] for v in variants if v["title"]), None)
+        acc = best["stats"]
         got, want = attach_reasoning(best["tree"], responses.get(key, {}))
         number_unnamed_outcomes(best["tree"])
-        if key in text_trees:
-            attach_models(best["tree"], text_trees[key])
-        out[key] = {"tree": best["tree"], "stats": best["stats"],
-                    "title": title}
-        print("  %-46s <- %-38s %s%s"
-              % (display_name(key), best["stem"] + ".dot",
-                 "(has LLM)" if best["llm"] else "",
-                 "  reasoning %d/%d" % (got, want) if want else ""))
-    return out
-
-
-# --- merging the runs --------------------------------------------------
-#
-# Every run scans the same points, so the analytic part of a tree - the
-# chain of yes/no answers to the experiments already in the pipeline - is
-# the same in all of them. What differs is what each run's agents proposed
-# once those questions run out. So the published tree carries one analytic
-# skeleton with every run's proposals hanging off the leaf they were made
-# at, tagged by which run made them, and the walk offers one branch per
-# run at that point instead of a single unlabelled "follow the agent".
-
-
-def is_agent_child(child):
-    return child.get("branch") == "LLM split"
-
-
-def analytic_kids(node):
-    return [c for c in node.get("children", []) if not is_agent_child(c)]
-
-
-def skeleton(node):
-    """The analytic spine, as (id, pts) pairs, for cross-run comparison."""
-    out = [(node["id"], node.get("pts"))]
-    for c in analytic_kids(node):
-        out += skeleton(c)
-    return out
-
-
-def tag_subtree(node, slug, label):
-    """Mark a proposal subtree with the run that produced it.
-
-    Ids are namespaced at the same time: the runs name their agent nodes
-    identically (root_no_no_yes_lit in both), so without this the viewer
-    would key two different proposals to one node.
-    """
-    node["agent"] = slug
-    node["agentLabel"] = label
-    node["id"] = slug + "::" + node["id"]
-    for c in node.get("children", []):
-        tag_subtree(c, slug, label)
-
-
-def merge_nodes(items):
-    """items: [(slug, label, node)], the same analytic node in each run."""
-    _slug0, _label0, n0 = items[0]
-    out = dict((k, v) for k, v in n0.items() if k != "children")
-    kids = []
-    for i, _c0 in enumerate(analytic_kids(n0)):
-        kids.append(merge_nodes([(s, l, analytic_kids(n)[i])
-                                 for s, l, n in items]))
-    for slug, label, n in items:
-        for c in n.get("children", []):
-            if is_agent_child(c):
-                c = json.loads(json.dumps(c))       # the runs keep their own
-                tag_subtree(c, slug, label)
-                kids.append(c)
-    if kids:
-        out["children"] = kids
-    return out
-
-
-def has_proposals(node):
-    for c in node.get("children", []):
-        if is_agent_child(c) or has_proposals(c):
-            return True
-    return False
-
-
-def merge_key(key, per_run, runs):
-    """One published tree for a key, over whichever runs produced it."""
-    items = [(r["slug"], r["label"], per_run[r["slug"]][key]["tree"])
-             for r in runs if key in per_run[r["slug"]]]
-    # A run that proposed nothing for this key contributes only its copy of
-    # the analytic tree, and those exports are sometimes pruned figure
-    # excerpts. Drop it rather than let a 7-node excerpt either block the
-    # merge or stand in for the full 63-node tree.
-    contributors = [it for it in items if has_proposals(it[2])]
-    if contributors:
-        items = contributors
-    elif len(items) > 1:
-        items = [max(items, key=lambda it: len(skeleton(it[2])))]
-    # a tree nobody proposed on is credited to no agent, whichever run's
-    # analytic export happened to supply its structure
-    slugs = [s for s, _l, _t in contributors]
-    if len(items) > 1:
-        ref = skeleton(items[0][2])
-        for slug, _label, tree in items[1:]:
-            if skeleton(tree) != ref:
-                sys.exit("%s: %s's analytic tree differs from %s's; the runs "
-                         "cannot be merged" % (key, slug, items[0][0]))
-    tree = merge_nodes(items)
-    annotate(tree)
-    return tree, slugs, [s for s, _l, _t in items]
-
-
-def main():
-    if len(sys.argv) < 3:
-        sys.exit(__doc__.strip())
-    out_dir, specs = sys.argv[1], sys.argv[2:]
-    os.makedirs(out_dir, exist_ok=True)
-    runs = [parse_run(s) for s in specs]
-
-    per_run = {}
-    for run in runs:
-        per_run[run["slug"]] = collect_run(run)
-
-    keys = []
-    for run in runs:
-        for key in per_run[run["slug"]]:
-            if key not in keys:
-                keys.append(key)
-
-    print("\n=== merged ===")
-    manifest = []
-    for key in keys:
-        tree, slugs, source = merge_key(key, per_run, runs)
-        acc = totals(tree, {"nodes": 0, "depth": 0, "_d": 0})
-        acc.pop("_d")
-        title = next((per_run[s][key]["title"] for s in source
-                      if per_run[s][key]["title"]), None)
+        if key in tables:
+            attach_models(best["tree"], tables[key])
         disp = display_name(key)
-        agents = [{"slug": r["slug"], "label": r["label"]}
-                  for r in runs if r["slug"] in slugs]
-        base = key.replace(".", "_") + ".json"
-        with open(os.path.join(out_dir, base), "w") as fh:
+        out_name = key.replace(".", "_") + ".json"
+        with open(os.path.join(out_dir, out_name), "w") as fh:
             json.dump({"name": key, "display": disp, "group": group_of(key),
-                       "sourceTitle": title, "agents": agents,
-                       "tree": tree, "stats": acc},
-                      fh, separators=(",", ":"))
+                       "sourceTitle": title, "tree": best["tree"],
+                       "stats": acc}, fh, separators=(",", ":"))
         manifest.append({
             "name": key, "display": disp, "group": group_of(key),
-            "file": base, "agents": agents,
+            "file": out_name,
             "nodes": acc["nodes"], "depth": acc["depth"],
             "leaves": acc.get("leaf", 0), "lit": acc.get("lit", 0),
-            "novel": acc.get("novel", 0),
+            "proj": acc.get("proj", 0), "novel": acc.get("novel", 0),
         })
-        print("  %-46s %4d nodes  %2d lit  %2d novel  <- %s"
-              % (disp, acc["nodes"], acc.get("lit", 0), acc.get("novel", 0),
-                 ", ".join(slugs) if slugs
-                 else "no proposals (%s)" % ", ".join(source)))
+        print("  %-46s <- %-38s %s%s"
+              % (disp, best["stem"] + ".dot",
+                 "(has LLM)" if best["llm"] else "",
+                 "  reasoning %d/%d" % (got, want) if want else ""))
 
-    manifest.sort(key=lambda m: -m["nodes"])
+    manifest.sort(key=lambda m: (m["group"] != "many", -m["nodes"]))
     with open(os.path.join(out_dir, "index.json"), "w") as fh:
-        json.dump({"trees": manifest, "runs":
-                   [{"slug": r["slug"], "label": r["label"]} for r in runs]},
-                  fh, separators=(",", ":"))
-
-    total = sum(os.path.getsize(os.path.join(b, f))
-                for b, _d, fs in os.walk(out_dir) for f in fs)
-    print("\n%d tree(s) published from %d run(s), %.1f KB total"
-          % (len(manifest), len(runs), total / 1e3))
+        json.dump({"trees": manifest}, fh, separators=(",", ":"))
+    total = sum(os.path.getsize(os.path.join(out_dir, f))
+                for f in os.listdir(out_dir))
+    print("\n%d tree(s) published, %.1f KB total"
+          % (len(manifest), total / 1e3))
 
 
 if __name__ == "__main__":

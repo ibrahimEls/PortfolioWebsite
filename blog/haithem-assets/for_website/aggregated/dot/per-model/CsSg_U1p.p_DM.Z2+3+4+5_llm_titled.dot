@@ -1,0 +1,177 @@
+digraph "CsSg_U1p.p_DM.Z2+3+4+5" {
+graph [label="Complex Scalar Singlet + dark U(1)\n32,346 viable points", labelloc="t", labeljust="c", fontsize="20", fontname="Helvetica-Bold"];
+	node [fontname="DejaVu Serif"]
+	edge [fontname="DejaVu Serif"]
+	rankdir=LR
+	root [label=<See anything at XLZD?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes [label=<See anything at IceCube-Gen2?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes [label=<See anything at LZ?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes_yes [label=<See a signal 10× above the XLZD limit?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes_yes_yes [label=<2 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes_yes -> root_yes_yes_yes_yes [label=yes]
+	root_yes_yes_yes_no [label=<3073 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes_yes -> root_yes_yes_yes_no [label=no]
+	root_yes_yes -> root_yes_yes_yes [label=yes]
+	root_yes_yes_no [label=<See anything at DarkSide?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes_no_yes [label=<2438 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes_no -> root_yes_yes_no_yes [label=yes]
+	root_yes_yes_no_no [label=<1674 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes_no -> root_yes_yes_no_no [label=no]
+	root_yes_yes -> root_yes_yes_no [label=no]
+	root_yes -> root_yes_yes [label=yes]
+	root_yes_no [label=<BR(h→inv) ≥ 0.001?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes [label=<BR(h→inv) ≥ 0.0032?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes [label=<See anything at DarkSide?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_yes [label=<See anything at LZ?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_yes_yes [label=<See a signal 10× above the XLZD limit?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_yes_yes_yes [label=<47 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_yes_yes -> root_yes_no_yes_yes_yes_yes_yes [label=yes]
+	root_yes_no_yes_yes_yes_yes_no [label=<303 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_yes_yes -> root_yes_no_yes_yes_yes_yes_no [label=no]
+	root_yes_no_yes_yes_yes -> root_yes_no_yes_yes_yes_yes [label=yes]
+	root_yes_no_yes_yes_yes_no [label=<77 pts, 3 regions, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_yes -> root_yes_no_yes_yes_yes_no [label=no]
+	root_yes_no_yes_yes -> root_yes_no_yes_yes_yes [label=yes]
+	root_yes_no_yes_yes_no [label=<BR(h→inv) ≥ 0.032?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes [label=<See anything at LZ?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_yes [label=<See a signal 10× above the XLZD limit?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_yes_yes [label=<27 pts, 2 regions, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_yes -> root_yes_no_yes_yes_no_yes_yes_yes [label=yes]
+	root_yes_no_yes_yes_no_yes_yes_no [label=<BR(h→inv) ≥ 0.1?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_yes_no_yes [label=<1 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_yes_no -> root_yes_no_yes_yes_no_yes_yes_no_yes [label=yes]
+	root_yes_no_yes_yes_no_yes_yes_no_no [label=<26 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_yes_no -> root_yes_no_yes_yes_no_yes_yes_no_no [label=no]
+	root_yes_no_yes_yes_no_yes_yes -> root_yes_no_yes_yes_no_yes_yes_no [label=no]
+	root_yes_no_yes_yes_no_yes -> root_yes_no_yes_yes_no_yes_yes [label=yes]
+	root_yes_no_yes_yes_no_yes_no [label=<BR(h→inv) ≥ 0.1?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_no_yes [label=<2 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_no -> root_yes_no_yes_yes_no_yes_no_yes [label=yes]
+	root_yes_no_yes_yes_no_yes_no_no [label=<159 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_yes_no -> root_yes_no_yes_yes_no_yes_no_no [label=no]
+	root_yes_no_yes_yes_no_yes -> root_yes_no_yes_yes_no_yes_no [label=no]
+	root_yes_no_yes_yes_no -> root_yes_no_yes_yes_no_yes [label=yes]
+	root_yes_no_yes_yes_no_no [label=<BR(h→inv) ≥ 0.01?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_yes [label=<See anything at LZ?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_yes_yes [label=<See a signal 10× above the XLZD limit?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_yes_yes_yes [label=<3 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_yes_yes -> root_yes_no_yes_yes_no_no_yes_yes_yes [label=yes]
+	root_yes_no_yes_yes_no_no_yes_yes_no [label=<3 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_yes_yes -> root_yes_no_yes_yes_no_no_yes_yes_no [label=no]
+	root_yes_no_yes_yes_no_no_yes -> root_yes_no_yes_yes_no_no_yes_yes [label=yes]
+	root_yes_no_yes_yes_no_no_yes_no [label=<70 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_yes -> root_yes_no_yes_yes_no_no_yes_no [label=no]
+	root_yes_no_yes_yes_no_no -> root_yes_no_yes_yes_no_no_yes [label=yes]
+	root_yes_no_yes_yes_no_no_no [label=<See anything at LZ?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_no_yes [label=<See a signal 10× above the XLZD limit?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_no_yes_yes [label=<13 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_no_yes -> root_yes_no_yes_yes_no_no_no_yes_yes [label=yes]
+	root_yes_no_yes_yes_no_no_no_yes_no [label=<33 pts, 2 regions, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_no_yes -> root_yes_no_yes_yes_no_no_no_yes_no [label=no]
+	root_yes_no_yes_yes_no_no_no -> root_yes_no_yes_yes_no_no_no_yes [label=yes]
+	root_yes_no_yes_yes_no_no_no_no [label=<106 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_yes_no_no_no -> root_yes_no_yes_yes_no_no_no_no [label=no]
+	root_yes_no_yes_yes_no_no -> root_yes_no_yes_yes_no_no_no [label=no]
+	root_yes_no_yes_yes_no -> root_yes_no_yes_yes_no_no [label=no]
+	root_yes_no_yes_yes -> root_yes_no_yes_yes_no [label=no]
+	root_yes_no_yes -> root_yes_no_yes_yes [label=yes]
+	root_yes_no_yes_no [label=<See anything at LZ?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_no_yes [label=<See a signal 10× above the XLZD limit?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_yes_no_yes_yes [label=<47 pts, 2 regions, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_no_yes -> root_yes_no_yes_no_yes_yes [label=yes]
+	root_yes_no_yes_no_yes_no [label=<101 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_no_yes -> root_yes_no_yes_no_yes_no [label=no]
+	root_yes_no_yes_no -> root_yes_no_yes_no_yes [label=yes]
+	root_yes_no_yes_no_no [label=<2050 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_yes_no -> root_yes_no_yes_no_no [label=no]
+	root_yes_no_yes -> root_yes_no_yes_no [label=no]
+	root_yes_no -> root_yes_no_yes [label=yes]
+	root_yes_no_no [label=<See anything at DarkSide?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_no_yes [label=<See anything at LZ?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_no_yes_yes [label=<476 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_no_yes -> root_yes_no_no_yes_yes [label=yes]
+	root_yes_no_no_yes_no [label=<572 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_no_yes -> root_yes_no_no_yes_no [label=no]
+	root_yes_no_no -> root_yes_no_no_yes [label=yes]
+	root_yes_no_no_no [label=<See anything at Fermi15yr (WW)?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_no_no_no_yes [label=<14 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_no_no -> root_yes_no_no_no_yes [label=yes]
+	root_yes_no_no_no_no [label=<3155 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_no_no_no -> root_yes_no_no_no_no [label=no]
+	root_yes_no_no -> root_yes_no_no_no [label=no]
+	root_yes_no -> root_yes_no_no [label=no]
+	root_yes -> root_yes_no [label=no]
+	root -> root_yes [label=yes]
+	root_no [label=<See anything at IceCube-Gen2?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_yes [label=<11140 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no -> root_no_yes [label=yes]
+	root_no_no [label=<BR(h→inv) ≥ 0.001?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_no_yes [label=<BR(h→inv) ≥ 0.0032?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_no_yes_yes [label=<BR(h→inv) ≥ 0.01?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes [label=<BR(h→inv) ≥ 0.032?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes_yes [label=<BR(h→inv) ≥ 0.1?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes_yes_yes [label=<4 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes_yes -> root_no_no_yes_yes_yes_yes_yes [label=yes]
+	root_no_no_yes_yes_yes_yes_no [label=<109 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes_yes -> root_no_no_yes_yes_yes_yes_no [label=no]
+	root_no_no_yes_yes_yes -> root_no_no_yes_yes_yes_yes [label=yes]
+	root_no_no_yes_yes_yes_no [label=<431 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no_yes_yes_yes -> root_no_no_yes_yes_yes_no [label=no]
+	root_no_no_yes_yes -> root_no_no_yes_yes_yes [label=yes]
+	root_no_no_yes_yes_no [label=<1002 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no_yes_yes -> root_no_no_yes_yes_no [label=no]
+	root_no_no_yes -> root_no_no_yes_yes [label=yes]
+	root_no_no_yes_no [label=<1139 pts, 2 regions, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no_yes -> root_no_no_yes_no [label=no]
+	root_no_no -> root_no_no_yes [label=yes]
+	root_no_no_no [label=<4049 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_no_no -> root_no_no_no [label=no]
+	root_no -> root_no_no [label=no]
+	root -> root_no [label=no]
+
+// LLM-suggested splits
+root_no_no_yes_no_s0 [label=<<B>LLM-Agent Literature Split</B><BR/>LEP Z-pole invisible width<BR/>Γ(Z→invisible) excess &gt;<BR/>5 MeV ?<BR/>arXiv:hep-ex/0509008,<BR/>arXiv:1912.02067,<BR/>arXiv:1412.0018<BR/><B>Status: Splits!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_no_no_yes_no -> root_no_no_yes_no_s0 [style=dashed, label="LLM split"];
+root_no_no_yes_no_s0_o0 [label=<8 pts, 1 region, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_yes_no_s0 -> root_no_no_yes_no_s0_o0;
+root_no_no_yes_no_s0_o1 [label=<1127 pts, 1 region, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_no_no_yes_no_s0 -> root_no_no_yes_no_s0_o1;
+root_yes_no_yes_no_yes_yes_s0 [label=<<B>LLM-Agent Literature Split</B><BR/>Existing dark-photon<BR/>searches (BaBar, LHCb, CMS<BR/>scouting)<BR/>narrow dilepton resonance,<BR/>1–45 GeV, eps² ≳ 10⁻⁶ ?<BR/>arXiv:1406.2980,<BR/>arXiv:1910.06926,<BR/>arXiv:1912.04776<BR/><B>Status: No Split!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_no_yes_no_yes_yes -> root_yes_no_yes_no_yes_yes_s0 [style=dashed, label="LLM split"];
+root_yes_no_yes_no_yes_yes_s1 [label=<<B>LLM-Agent Literature Projection</B><BR/>Dimuon dark-photon scan<BR/>above 5.5 GeV (Belle II +<BR/>CMS scouting + LHCb Run 3)<BR/>narrow l+l- resonance with<BR/>m(ll) in 5.5–36 GeV at eps²<BR/>≳ 10⁻⁷ ?<BR/>arXiv:1406.2980,<BR/>arXiv:1912.04776,<BR/>arXiv:1808.10567<BR/><B>Feasibility: Possible (~10× today)</B>>, shape=box, style="rounded,filled", fillcolor=palegreen];
+root_yes_no_yes_no_yes_yes_s0 -> root_yes_no_yes_no_yes_yes_s1;
+root_yes_no_yes_no_yes_yes_s1_o0 [label=<6 pts, 1 region, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_no_yes_yes_s1 -> root_yes_no_yes_no_yes_yes_s1_o0;
+root_yes_no_yes_no_yes_yes_s1_o1 [label=<11 pts, 1 region, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_no_yes_yes_s1 -> root_yes_no_yes_no_yes_yes_s1_o1;
+root_yes_no_yes_yes_no_no_no_yes_no_s0 [label=<<B>LLM-Agent Literature Split</B><BR/>BaBar + LHCb dark-photon<BR/>dimuon searches<BR/>prompt m(μμ) peak, eps²<BR/>≳ 2×10⁻⁶, 0.2–70 GeV ?<BR/>arXiv:1406.2980,<BR/>arXiv:1910.06926<BR/><B>Status: No Split!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_no_yes_yes_no_no_no_yes_no -> root_yes_no_yes_yes_no_no_no_yes_no_s0 [style=dashed, label="LLM split"];
+root_yes_no_yes_yes_no_no_no_yes_no_s1 [label=<<B>LLM-Agent Literature Projection</B><BR/>XLZD recoil-spectrum dark-<BR/>matter mass fit<BR/>recoil-spectrum best-fit<BR/>M<SUB><FONT POINT-SIZE="9">&#8202;DM&#8202;</FONT></SUB> &lt; 50 GeV ?<BR/>arXiv:2410.17036,<BR/>arXiv:2410.17137<BR/><B>Feasibility: Next generation (~30× today)</B>>, shape=box, style="rounded,filled", fillcolor=palegreen];
+root_yes_no_yes_yes_no_no_no_yes_no_s0 -> root_yes_no_yes_yes_no_no_no_yes_no_s1;
+root_yes_no_yes_yes_no_no_no_yes_no_s1_o0 [label=<8 pts, 1 region, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_no_no_no_yes_no_s1 -> root_yes_no_yes_yes_no_no_no_yes_no_s1_o0;
+root_yes_no_yes_yes_no_no_no_yes_no_s1_o1 [label=<6 pts, 1 region, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_no_no_no_yes_no_s1 -> root_yes_no_yes_yes_no_no_no_yes_no_s1_o1;
+root_yes_no_yes_yes_no_yes_yes_yes_s0 [label=<<B>LLM-Agent Literature Split</B><BR/>BaBar/LHCb dark-photon<BR/>dimuon resonance search<BR/>σ(e+e- → γ A',<BR/>A'→μ μ) &gt; 1 fb for m =<BR/>1–3.4 GeV ?<BR/>arXiv:1406.2980,<BR/>arXiv:1910.06926<BR/><B>Status: No Split!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_no_yes_yes_no_yes_yes_yes -> root_yes_no_yes_yes_no_yes_yes_yes_s0 [style=dashed, label="LLM split"];
+root_yes_no_yes_yes_no_yes_yes_yes_s1 [label=<<B>LLM-Agent Literature Projection</B><BR/>LHCb Run 3–4 inclusive dark-<BR/>photon scan above 1.7 GeV<BR/>A'→μμ resonance with<BR/>m(μμ) = 1.7–3.4 GeV at<BR/>eps² ≥ 10⁻⁹ ?<BR/>arXiv:1910.06926,<BR/>arXiv:1603.08926<BR/><B>Feasibility: Possible (~10× today)</B>>, shape=box, style="rounded,filled", fillcolor=palegreen];
+root_yes_no_yes_yes_no_yes_yes_yes_s0 -> root_yes_no_yes_yes_no_yes_yes_yes_s1;
+root_yes_no_yes_yes_no_yes_yes_yes_s1_o0 [label=<5 pts, 1 region, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_no_yes_yes_yes_s1 -> root_yes_no_yes_yes_no_yes_yes_yes_s1_o0;
+root_yes_no_yes_yes_no_yes_yes_yes_s1_o1 [label=<17 pts, 1 region, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_no_yes_yes_yes_s1 -> root_yes_no_yes_yes_no_yes_yes_yes_s1_o1;
+root_yes_no_yes_yes_yes_no_s0 [label=<<B>LLM-Agent Literature Split</B><BR/>LHC Run-2 dimuon and<BR/>dilepton resonance scans<BR/>μμ/ee resonance peak,<BR/>10–200 GeV or 0.25–6 TeV ?<BR/>arXiv:1910.06926,<BR/>arXiv:1912.04776,<BR/>arXiv:1903.06248<BR/><B>Status: No Split!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_no_yes_yes_yes_no -> root_yes_no_yes_yes_yes_no_s0 [style=dashed, label="LLM split"];
+root_yes_no_yes_yes_yes_no_s1 [label=<<B>LLM-Agent Literature Projection</B><BR/>Fermi-LAT dwarf-stack<BR/>cascade-spectrum reanalysis<BR/>⟨σv⟩(DM DM → vector<BR/>pair → 4 fermions) ≥<BR/>1.5×10⁻²⁶ cm³/s at m ~ 93<BR/>GeV, cascade spectral<BR/>template ?<BR/>arXiv:1503.02641,<BR/>arXiv:1503.01773<BR/><B>Feasibility: Reanalysis (~2× today)</B>>, shape=box, style="rounded,filled", fillcolor=palegreen];
+root_yes_no_yes_yes_yes_no_s0 -> root_yes_no_yes_yes_yes_no_s1;
+root_yes_no_yes_yes_yes_no_s1_o0 [label=<29 pts, 2 regions, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_yes_no_s1 -> root_yes_no_yes_yes_yes_no_s1_o0;
+root_yes_no_yes_yes_yes_no_s1_o1 [label=<7 pts, 1 region, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_yes_no_s1 -> root_yes_no_yes_yes_yes_no_s1_o1;
+root_yes_no_yes_yes_yes_no_s2 [label=<<B>LLM-Agent Literature Projection</B><BR/>HL-LHC dimuon scouting +<BR/>LHCb Upgrade II, 21–24 GeV<BR/>σ·BR(pp → Z' → μμ)<BR/>≥ 0.3 fb at m(μμ) = 21–24<BR/>GeV ?<BR/>arXiv:1912.04776,<BR/>arXiv:1910.06926,<BR/>arXiv:1603.08926<BR/><B>Feasibility: Possible (~10× today)</B>>, shape=box, style="rounded,filled", fillcolor=palegreen];
+root_yes_no_yes_yes_yes_no_s1_o0 -> root_yes_no_yes_yes_yes_no_s2;
+root_yes_no_yes_yes_yes_no_s2_o0 [label=<8 pts, 1 region, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_yes_no_s2 -> root_yes_no_yes_yes_yes_no_s2_o0;
+root_yes_no_yes_yes_yes_no_s2_o1 [label=<21 pts, 1 region, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_no_yes_yes_yes_no_s2 -> root_yes_no_yes_yes_yes_no_s2_o1;
+}

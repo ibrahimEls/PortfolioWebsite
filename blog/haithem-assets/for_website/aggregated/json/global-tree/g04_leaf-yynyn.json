@@ -1,0 +1,92 @@
+{
+  "model": "combined",
+  "leaves": [
+    {
+      "leaf_id": "root_yes_yes_no_yes_no",
+      "lit_search_note": "Existing data checked: LEP Z-pole / e+e- kinetic-mixing fits (verified hep-ph/9710441, 1006.0973: eps <~ 3e-2 over 1 GeV-1 TeV; both surviving units 30-1000x below); Planck CMB energy injection p_ann (all units thermal-or-below secluded s-wave, ~5x under the 3.2e-28 bound); merging-cluster self-interaction (R1 ~1e-10 cm^2/g, R0 up to its unitarity-capped ~1e-5 cm^2/g corner, >= 5 orders below the ~1-2 cm^2/g bound -- no split, and the reason the dark-quartic axis is a hard floor); beam dumps and far detectors (MZp >= 1 GeV and ctau <= 2 cm at the eps floor: zero acceptance); Xe-vs-Ar isospin ratio, recoil shape, annual modulation, directionality, spin-dependent DD (all units are identical isoscalar Higgs-portal elastic scatterers; Z'-exchange DD is inelastic with a ~GeV splitting, closed); Fermi dwarf spheroidals (identical secluded thermal-level sigmav across units, below sensitivity); solar flux/sigma_SI closure (fails: quartic si-sr conversion conserves dark-quantum number, so all units share the Z'Z'->4f solar spectrum). Residual R0-vs-R1 axis after the tree: only the si-odd dark quartics (lambda_rrri, lambda_riii sums) differ; their sole observable is dark self-conversion at sigma/m ~ 1e-16 cm^2/g (exactly zero for Z2) against an astrophysical floor of ~0.5 cm^2/g -- physically irreducible, which is why the Belle II null branch cannot be improved upon.",
+      "splits": [
+        {
+          "kind": "lit",
+          "attach_to": "leaf",
+          "name": "Existing prompt dark-photon dilepton searches (BaBar, LHCb, CMS)",
+          "observable": "narrow prompt l+l- resonance, 0.21-200 GeV, eps^2 >= 1e-6 ?",
+          "what_this_is": "Three completed collider searches have already scanned recorded data for a narrow bump in the mass spectrum of electron or muon pairs: BaBar in electron-positron collisions below 10 GeV, and LHCb and CMS in proton-proton collisions up to 200 GeV. Such a bump is the classic signature of a dark photon, a new force carrier that talks to ordinary matter only through a tiny mixing with the photon. Every region in this leaf contains exactly such a particle; they differ in its mass and mixing strength, and one region generically predicts a bump that the data in hand would already show.",
+          "refs": [
+            "arXiv:1406.2980",
+            "arXiv:1910.06926",
+            "arXiv:1912.04776"
+          ],
+          "reasoning": "The Z' decays visibly with BR ~ 1 everywhere in this leaf (Z' -> DM DM is closed since MZp < 2*MDM >~ 630 GeV), with BR(mumu) ~ 0.1 above 10 GeV, so published dark-photon limits apply directly. Predicted values: R2 (MZp 5.4-121 GeV, entirely inside existing coverage; eps^2 spanning 2e-11 to 2.6e-3) has ~40% of its eps decades (eps >~ 1e-3) 10-1000x above published limits (eps = 0.05 at 20 GeV gives eps^2 = 2.5e-3 vs LHCb ~2e-6) and its log-median point within a factor of a few of the LHCb curve: a narrow peak already present in recorded data is its generic prediction. R1 predicts strictly nothing: eps^2 <= 2.6e-7 is >= 4x below the best curve in its 39-200 GeV overlap and its 200-300 GeV portion is uncovered. R0 straddles (excluded corner ~1/4-1/3 of log-volume) but its typical point (eps ~ 3e-4, mass often above 200 GeV) is invisible, so it shares the nothing branch. One-sided and statistical, stated plainly: a peak falsifies R1 outright and generically tags R2 rather than R0's corner, while a null does not exclude R2's low-eps tail (down to 4.4e-6) -- that tail is covered next-round by LHCb Upgrade II's approved eps^2 ~ 1e-8 scan (~30x today), which sits above this node's data and below nothing else in the tree. Distinct from the catalog's Z'-dilepton entry, which is the projected high-mass Drell-Yan sigma x BR recast, not these recorded low-mass prompt datasets.",
+          "feasibility": "Data already recorded and published; the split exists now but is soft-edged: sharp for R1 (never visible), statistical for R2's low-eps tail and R0's high-eps corner, both flagged. Dominant systematic: Drell-Yan/QED continuum shape under a narrow peak and dimuon mass-resolution modelling near the LHCb window edge.",
+          "outcomes": [
+            {
+              "label": "peak seen (or corner already excluded)",
+              "regions": [
+                "R2"
+              ]
+            },
+            {
+              "label": "nothing",
+              "regions": [
+                "R0",
+                "R1"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit",
+          "attach_to": "R0+R1",
+          "name": "LEP/LHC Z-Z' kinetic-mixing fit",
+          "observable": "epsilon >~ 1e-2 anywhere in 10-200 GeV ?",
+          "what_this_is": "LEP measured the Z boson's mass and couplings to per-mille precision, and CMS has scanned for extra dimuon resonances up to a few hundred GeV; together these existing datasets bound how strongly any new neutral force carrier may mix with the photon and Z. Such mixing would shift Z-pole observables and produce dimuon bumps. Both surviving regions predict mixing tens to thousands of times below these bounds, so the existing data cannot tell them apart; this node is the honest record of that.",
+          "refs": [
+            "arXiv:hep-ph/9710441",
+            "arXiv:1006.0973",
+            "arXiv:1912.04776"
+          ],
+          "reasoning": "LEP electroweak precision constrains epsilon >~ 3e-2 near MZ; CMS off-peak dimuon reaches epsilon ~1e-2 over 11.5-200 GeV. R1 predicts epsilon <= 5.1e-4 (log-median 2e-5): 20-1000x below reach. R0 predicts a typical epsilon ~3e-4: ~30x below reach; only its extreme sliver (epsilon ~0.1 near MZ) would register, far from the unit's typical point. Both regions land in 'unconstrained', so the existing precision data yields no split.",
+          "feasibility": "No: existing data sits 1.5-3 orders of magnitude above both regions' typical mixing in the coupling itself. Dominant systematic irrelevant at this distance from the predictions; the limitation is pure signal size, not measurement error.",
+          "outcomes": [
+            {
+              "label": "no discrimination",
+              "regions": [
+                "R0",
+                "R1"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit_projection",
+          "attach_to": "R0+R1",
+          "name": "Belle II gamma + dark-photon search, 50 ab^-1",
+          "observable": "e+e- -> gamma A'(->ll) peak, m(A') < 10 GeV, epsilon >= 3e-4 ?",
+          "what_this_is": "Belle II is an electron-positron collider experiment in Japan, running today, that can radiate a photon and produce a dark photon which decays to an electron or muon pair, seen as a narrow mass peak below 10 GeV. Its collision energy means it can only ever see a dark force carrier lighter than about 10 GeV, which is exactly what makes it decisive here: one region's Z' is guaranteed heavier than 39 GeV and so can never appear, while the other region's Z' mass range extends down to 1 GeV. A peak below 10 GeV therefore uniquely identifies the Lagrangian with the extra dark self-couplings.",
+          "refs": [
+            "arXiv:1406.2980",
+            "arXiv:1808.10567"
+          ],
+          "reasoning": "R1 predicts exactly zero signal, kinematically: MZp >= 38.9 GeV exceeds the ~10.2 GeV production endpoint at sqrt(s)=10.58 GeV, so any narrow ee/mumu peak below 10 GeV falsifies R1 outright. R0's MZp in [1,10] GeV, eps >= 3e-4 corner (~15-20% of its log-volume) predicts sigma(e+e- -> gamma A') ~ 0.01-0.1 fb at eps=1e-3, i.e. O(1000) events in 50 ab^-1 -> a clear detection, and a Lagrangian-level identification of the Z2+3+4+5 build. Marginality flagged: a null result leaves R0's bulk degenerate with R1; the outcome assignment records the positive discrimination direction, and the residual R0-R1 degeneracy is the quartic-sector one argued irreducible in the lit_search_note. Alternative considered: LHCb Upgrade II A'->mumu at eps^2 ~1e-7 in 10-70 GeV could positively detect R1's 39-70 GeV corner, but R1's eps^2 reaches only 2.6e-7 at its very edge - more marginal, later, and less kinematically clean, so it was kept out of the tree.",
+          "feasibility": "Today-experiment: BaBar (514 fb^-1), visible dark-photon reach eps ~1e-3 over 0.02-10.2 GeV. Required: eps ~3e-4, i.e. a factor ~10 in the signal-rate observable (proportional to eps^2), matching background-limited sqrt(L) scaling with the approved 50 ab^-1 Belle II dataset (sqrt(50/0.514) ~ 10). Belle II is running now and 50 ab^-1 is its design program - more running time, no new facility. Dominant systematic: irreducible QED gamma-ll continuum and peaking backgrounds at the J/psi and Upsilon masses (masked windows).",
+          "feasibility_rating": "possible",
+          "improvement_factor": 10,
+          "outcomes": [
+            {
+              "label": "seen",
+              "regions": [
+                "R0"
+              ]
+            },
+            {
+              "label": "not seen",
+              "regions": [
+                "R1"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

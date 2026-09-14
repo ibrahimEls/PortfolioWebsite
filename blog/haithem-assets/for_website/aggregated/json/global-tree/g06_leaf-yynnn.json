@@ -1,0 +1,64 @@
+{
+  "model": "combined",
+  "leaves": [
+    {
+      "leaf_id": "root_yes_yes_no_no_no",
+      "lit_search_note": "Existing probes checked: LHCb prompt A'->mumu (arXiv:1910.06926), BaBar visible gamma-A' (arXiv:1406.2980), CMS dimuon scouting 11.5-200 GeV (arXiv:1912.04776) -- all returned nulls that trim only the shared large-epsilon corner since R1's (M_Z', eps) box is a strict subset of R0's; LEP/EWPT kinetic-mixing fits (eps <~ 0.03 near m_Z) likewise cut identical corners; Fermi-LAT dwarf and H.E.S.S. Inner Galaxy soft-cascade limits sit ~5-10x above R1's relic-pinned 2-3e-26 cm^3/s; AMS-02 antiprotons (limit ~2e-25 cm^3/s at 500 GeV) sit a factor ~7 above R1 with factor 5-10 propagation systematics; Planck p_ann is ~50x too weak for 300-700 GeV s-wave; cluster self-interaction bounds miss by ~12 orders (sigma/m ~ 1e-12 cm^2/g); solar Z'-escape signatures are dead (eps >= 1e-6 gives c*tau <~ cm << R_sun); Z'-mediated inelastic DD is kinematically closed by the ~GeV portal-induced sr-si splitting in BOTH units. No recorded dataset assigns a unit.",
+      "splits": [
+        {
+          "kind": "lit",
+          "attach_to": "leaf",
+          "name": "Existing dark-photon dilepton searches (LHCb, BaBar, CMS)",
+          "observable": "narrow prompt ll resonance, 0.02-200 GeV, epsilon >~ 2e-4 ?",
+          "what_this_is": "The dark Z' boson in both regions mixes slightly with the photon, so it can be produced in particle collisions and decay to an electron or muon pair, appearing as a narrow bump in the pair's invariant-mass spectrum. LHCb and CMS at the Large Hadron Collider and the BaBar electron-positron experiment have already scanned masses from about 20 MeV to 200 GeV for exactly such bumps. Because the allowed Z' mass ranges of the two regions differ at their edges, this archival bump hunt is the natural first check -- and its recorded outcome everywhere is null.",
+          "refs": [
+            "arXiv:1910.06926",
+            "arXiv:1406.2980",
+            "arXiv:1912.04776"
+          ],
+          "reasoning": "R1 has M_Z' in [8.3, 165] GeV; R0 has M_Z' in [1, 933] GeV; both span epsilon = 1e-6 to 0.1. The recorded searches (LHCb prompt A'->mumu, 0.214-70 GeV, excluding eps >~ 2e-4; BaBar visible gamma+A', 0.02-10.2 GeV, eps >~ 1e-3; CMS dimuon scouting, 11.5-200 GeV, eps >~ 1e-3..1e-2) all returned null. A bump in an R0-exclusive window (below ~8 GeV) would already have tagged R0, but none was seen; and because R1's (M_Z', eps) box is a strict subset of R0's, the null itself removes only the shared large-epsilon corner of BOTH units identically. Predicted value in each region: no observable resonance (every surviving point sits below the published limits by construction). Status: No Split.",
+          "feasibility": "Existing, published data; it does NOT separate the units. The failure is structural -- total support overlap below 165 GeV plus an epsilon floor (1e-6) three orders of magnitude below any recorded reach -- not experimental. Dominant systematic in these searches is the smooth combinatorial dimuon continuum and the quarkonium veto windows, irrelevant to the null recorded here.",
+          "outcomes": [
+            {
+              "label": "no split",
+              "regions": [
+                "R0",
+                "R1"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit_projection",
+          "attach_to": "R0+R1",
+          "name": "LHCb-U2 + HL-LHC dilepton scan of the R0-exclusive Z' mass windows",
+          "observable": "narrow prompt ll resonance with m_ll in 1.1-8.0 GeV (eps >~ 7e-5) or 165-950 GeV (sigma.BR >~ 0.05 fb) ?",
+          "what_this_is": "LHCb's planned Upgrade II will collect roughly sixty times its current dataset and re-run its inclusive dark-photon bump hunt in the few-GeV dimuon mass range, while the High-Luminosity LHC's ATLAS and CMS will push the search for heavier dilepton resonances a factor of several deeper. The key quantity is not whether a bump exists but WHERE it sits: the pure-Z2 region can only ever host a Z' between about 8 and 165 GeV, while the merged Z2+3+4+5 region allows masses from 1 GeV up to nearly a TeV. A confirmed resonance below 8 GeV or above 165 GeV can therefore only come from the merged region, so its measured mass decides.",
+          "refs": [
+            "arXiv:1910.06926",
+            "arXiv:1808.08865",
+            "arXiv:1812.07831"
+          ],
+          "reasoning": "R1's viable Z' support is exactly [8.3, 165] GeV -- its gauge coupling is locked to the secluded thermal band (g' = 0.31-0.46 tracking sqrt(M_DM)), and the cluster contains no state outside that window -- so it predicts strictly zero signal in either exclusive window at any epsilon. R0 predicts, for its light corner, a narrow prompt dimuon peak anywhere in 1-8 GeV (outside the J/psi and psi(2S) vetoes) with sigma proportional to eps^2 and no invisible width (Z'->SS* closed since M_DM >= 317 GeV), visible for eps >~ 7e-5; and for its heavy corner a Drell-Yan resonance, e.g. M_Z' = 500 GeV with eps = 0.05 giving sigma.BR(ll) ~ 0.1-1 fb. About 56% of R0's log-mass range is exclusive (31% below 8.3 GeV, 25% above 165 GeV), so with the epsilon-visibility fraction folded in roughly a third of R0 fires YES. ONE-SIDED, stated plainly: a detection in either window is decisive for R0; a null only weakly favors R1, since true-R0 points in the shared 8.3-165 GeV window or with epsilon below reach follow the R1 branch, and there they differ from R1 only by the odd dark quartics (lambda_rrri, lambda_riii), four-dark-leg operators with no SM-visible vertex. The strongest follow-up on the null branch -- kept out of the tree only because this terminal carries one split and this scan is nearer -- is the CTA Galactic-halo search refit with a boosted-Z' four-fermion cascade template: R1's relic-pinned s-wave sigmav ~ 2-3e-26 cm^3/s in that soft spectrum, vs <~1e-27 for R0's bulk (p-wave Z'-portal, closed M_Z' > M_DM channel, or quartic-conversion-set relic), a next-generation, factor-~10 measurement whose 'seen' outcome would tag R1.",
+          "feasibility": "Today-experiments: LHCb Run-2 prompt A'->mumu (5.4 fb^-1, arXiv:1910.06926) reaches eps ~ 2e-4 across 1-8 GeV; ATLAS/CMS narrow-dilepton searches at ~140 fb^-1 reach sigma.BR ~ 0.3-1 fb near 500 GeV. Required: eps ~ 7e-5 (LHCb Upgrade II, 300 fb^-1: prompt search is background-limited, eps^2 limit scales as 1/sqrt(L), x7.5 in rate = x2.7-3 in eps) and sigma.BR ~ 0.05-0.2 fb in the 165-950 GeV window (3 ab^-1, background-limited sqrt(L) scaling: factor ~5 in sigma.BR). Quoted improvement_factor = 3, in epsilon for the primary low-mass window. Both machines are approved upgrades of running facilities -- no new facility -- hence 'possible'. Dominant systematics: prompt combinatorial dimuon background and charmonium veto regions (light window); Drell-Yan continuum modeling under a narrow peak (heavy window); the mass measurement itself is trivial once a bump is seen.",
+          "feasibility_rating": "possible",
+          "improvement_factor": 3,
+          "outcomes": [
+            {
+              "label": "resonance in exclusive window",
+              "regions": [
+                "R0"
+              ]
+            },
+            {
+              "label": "not seen",
+              "regions": [
+                "R1"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

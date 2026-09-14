@@ -1,0 +1,131 @@
+{
+  "model": "combined",
+  "leaves": [
+    {
+      "leaf_id": "root_yes_no_yes_yes_no_no_yes",
+      "lit_search_note": "Existing data checked: LHCb/CMS prompt dimuon is the only existing dataset that splits (used as split 1). Checked and not splitting: BaBar/Belle II (mass reach <10.6 GeV, below R1's window; needs eps>~1e-3, above R0's range); beam dumps E137/CHARM/NuCal/NA62 and all far detectors (Z' lifetime floor ctau<~2 cm, no acceptance); LEP/SLD electroweak fit (bounds only eps>~0.03-0.05 at TeV, grazing R2's box top - null for all units, no split); Fermi-LAT dwarfs (~2e-26 cm3/s at 93 GeV, exactly R0's thermal ceiling); AMS-02 antiprotons/positrons (O(1) propagation systematics, order short); Planck p_ann (~10x short for all units); (g-2)_mu (3 orders short); SN1987A/stellar cooling (M_Z'>=1 GeV too heavy); cluster self-interaction (10 orders short); precision Higgs fits (alpha1~0.002 gives sub-permille shifts).",
+      "splits": [
+        {
+          "kind": "lit",
+          "attach_to": "leaf",
+          "name": "LHCb/CMS prompt dark-photon dimuon search",
+          "observable": "narrow mumu resonance at 20-25 GeV, eps^2 >~ 1e-6 ?",
+          "what_this_is": "The LHCb and CMS detectors at the Large Hadron Collider record huge samples of muon pairs and scan the pair-mass spectrum for a narrow bump, which is how a new short-lived neutral boson decaying to two muons would appear. This is the most sensitive existing probe of a 'dark photon': a light Z' boson that talks to ordinary matter only through a small mixing with the photon. In region R1 the Z' sits at 21-24 GeV and, because the dark-matter particle is too heavy for the Z' to decay into, it must decay visibly to muons and other fermions -- so this search either sees it or rules the mixing range out; no other region has a visible resonance in this window.",
+          "refs": [
+            "arXiv:1910.06926",
+            "arXiv:1912.04776"
+          ],
+          "reasoning": "R1: MZp = 21-24 GeV with eps in [9.4e-5, 1.5e-2] (eps^2 in [8.8e-9, 2.4e-4]); Z'->DM DM is kinematically closed (MDM ~ 92 GeV > MZp/2), so BR(Z'->SM) = 1 with BR(mumu) ~ 10%. Published prompt-A' sensitivity at this mass is eps^2 ~ 1-2e-6 (LHCb 1910.06926; CMS 1912.04776 covers 11.5-45 GeV), so the upper ~half of R1's log-range in eps is visible or excluded with existing data, and LHCb Upgrade II (eps -> ~3e-4) covers most of the remainder. R0: eps^2 <= 3e-9, three orders below reach -- nothing. R2: MZp = 0.85-10 TeV, outside this window; its high-mass dilepton signal is the catalog's own recast, already applied and passed. R3/R4: no Z', exactly zero. Marginality: the low-eps tail of R1 (eps < ~3e-4) is not covered even by Upgrade II; as a unit R1 is still the only region that can fire.",
+          "feasibility": "Splits now for a large part of R1: the data are published, the analysis exists, and eps^2 down to ~1e-6 at 22 GeV is on the books. Dominant systematic is the smoothness of the Drell-Yan + heavy-flavour dimuon continuum used for the bump hunt, well controlled at this mass (away from the Upsilon region).",
+          "outcomes": [
+            {
+              "label": "seen",
+              "regions": [
+                "R1"
+              ]
+            },
+            {
+              "label": "not seen",
+              "regions": [
+                "R0",
+                "R2",
+                "R3",
+                "R4"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit_projection",
+          "attach_to": "R0+R2+R3+R4",
+          "name": "CTA Galactic-Centre cascade-continuum search",
+          "observable": "sigmav(93 GeV DM -> Zp Zp -> soft gamma continuum) >= 2e-27 cm^3/s ?",
+          "what_this_is": "The Cherenkov Telescope Array (CTA) is a new pair of gamma-ray observatories under construction in Chile and the Canary Islands. Its deepest program stares at the centre of our Galaxy, where dark matter is densest, looking for gamma rays from dark-matter annihilation. In the 'secluded' region R0, dark matter annihilates into a pair of light dark photons which then cascade into ordinary quarks and leptons, giving a smooth, soft gamma-ray continuum ending at the dark-matter mass - a signal the other regions, whose annihilation is throttled by a tiny Higgs-portal coupling or by velocity suppression, cannot produce.",
+          "refs": [
+            "arXiv:2007.16129",
+            "arXiv:1503.02641"
+          ],
+          "reasoning": "R0 is the only unit with an unsuppressed annihilation channel: SS*->Z'Z' is open for every point (MZp = 1-80 GeV < MDM >= 92 GeV) and s-wave, with g' up to 0.16; because the pooled Z2+3+4+5 rate is not relic-pinned, the present-day sigmav spans orders of magnitude up to the ~2e-26 cm^3/s thermal ceiling, with a featureless multi-step cascade spectrum cutting off at ~93 GeV. R3/R4 annihilate only through the portal with alpha1 ~ 0.002, giving sigmav ~ 1e-29 cm^3/s - invisible to any foreseeable instrument. R2's s-channel Z' exchange into SM fermions is both eps-suppressed and p-wave (v^2 ~ 1e-6 today), far below the 2e-27 cut. One-sided direction stated: the small-g'/underabundant tail of R0 (signal ~ f^2 sigmav) also lands in 'nothing', so the null branch does not exclude R0; the relic-dominant bulk is covered and a detected 93 GeV-endpoint soft continuum is unambiguous R0.",
+          "feasibility": "Today-experiment: Fermi-LAT 6-yr dwarf-spheroidal stacking, ~2e-26 cm^3/s for soft hadronic spectra at ~93 GeV - exactly at R0's ceiling, which is why no lit split exists on this axis. Required: ~2e-27 cm^3/s, a factor ~10 in sigmav, matching the published CTA Galactic-Centre projection at ~100 GeV (Einasto, 500h; background-limited, sensitivity ~ sqrt(t)). CTA is a funded next-generation facility under construction. Dominant systematic: the inner-halo density profile - a strongly cored profile costs up to an order of magnitude - plus Galactic diffuse-emission modeling. No novel 'possible'-rated alternative found: the only cheaper route is a Fermi cascade-template refit, which stalls at ~2e-26 (see improvement_attempts).",
+          "feasibility_rating": "next generation",
+          "improvement_factor": 10,
+          "outcomes": [
+            {
+              "label": "continuum seen",
+              "regions": [
+                "R0"
+              ]
+            },
+            {
+              "label": "nothing",
+              "regions": [
+                "R2",
+                "R3",
+                "R4"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit_projection",
+          "attach_to": "R2+R3+R4",
+          "name": "FCC-ee Tera-Z electroweak precision fit",
+          "observable": "delta sin^2(theta_eff) >= 1e-5 ?",
+          "what_this_is": "FCC-ee is a proposed circular electron-positron collider that would sit on the Z-boson resonance and record trillions of Z decays, measuring the Z's properties thousands of times more precisely than LEP did. A heavy Z' that kinetically mixes with the photon slightly distorts the Z's couplings through quantum mixing of the two bosons, shifting the effective weak mixing angle. Only the heavy, strongly-mixed Z' of region R2 can produce such a coherent shift; the ultra-feeble light Z' of R0 and the Z'-less singlets R3/R4 leave the Z pole untouched.",
+          "refs": [
+            "arXiv:1308.6176",
+            "arXiv:1412.0018"
+          ],
+          "reasoning": "Z-Z' kinetic mixing shifts sin^2(theta_eff) by ~ eps^2 (M_Z/M_Z')^2 x O(0.1-1). R2 (MZp = 0.85-10 TeV, eps = 1.9e-4 to 0.1) predicts ~1e-5 to 1e-4 at (eps=0.1, MZp=850 GeV), well above FCC-ee's ~5e-6 precision; the covered slice is eps >~ 0.04 x (MZp/TeV) - the top decade of R2's mixing range - while the low-eps/high-mass bulk (e.g. eps = 2e-4 at 10 TeV, shift ~1e-9) stays invisible. One-sided direction stated: a null does not exclude R2 as a unit; a coherent shift selects it uniquely, since R0 (eps <= 5.4e-5, light Z') predicts < 1e-9 and R3/R4 exactly zero. The current global fit only grazes eps >~ 0.03-0.05 at TeV masses, which is why no lit split exists on this axis (the viability filter applied no EWPT bound, so R2's extreme corner survives in the scan).",
+          "feasibility": "Today: sin^2(theta_eff) known to 1.6e-4 (LEP+SLD); FCC-ee Tera-Z projects ~5e-6 with ~6e12 Z decays - factor ~30 in the observable itself, statistics-rich with beam-energy calibration by resonant depolarization; the dominant systematic is the SM electroweak two-loop theory uncertainty, which must improve in parallel. A routinely-planned successor collider that must still be funded and built (data 2040s). No novel 'possible'-rated alternative found: every production or precision effect of this mostly-invisible multi-TeV Z' carries the same eps^2 suppression (see improvement_attempts).",
+          "feasibility_rating": "next generation",
+          "improvement_factor": 30,
+          "outcomes": [
+            {
+              "label": "shift seen",
+              "regions": [
+                "R2"
+              ]
+            },
+            {
+              "label": "no shift",
+              "regions": [
+                "R3",
+                "R4"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit_projection",
+          "attach_to": "R3+R4",
+          "name": "Dark-quartic self-interaction from halo structure",
+          "observable": "sigma_self/m >= 1e-11 cm^2/g ?",
+          "what_this_is": "When galaxy clusters collide, the dark-matter halos pass through each other; how much they drag and lag measures how strongly dark matter scatters off itself, and the round shapes of relaxed halos bound the same quantity. It is the relevant measurement here because the last two regions are identical in every coupling to ordinary matter and differ only in how strongly the dark scalar interacts with itself - couplings that touch no ordinary-matter field whatsoever. The predicted rate sits ten orders of magnitude below what any astrophysical system can register, so this node documents an irreducible degeneracy rather than a realistic measurement.",
+          "refs": [
+            "arXiv:0704.0261",
+            "arXiv:1705.02358"
+          ],
+          "reasoning": "R3 and R4 share identical SM-facing physics (alpha1 ~ 0.0019-0.0022, MDM ~ 95 GeV in both: identical sigma_SI, BR(h->inv), annihilation). Arguing with the physical sums per the duplicate-monomial structure: lambda_rrrr = alpha2+alpha7+alpha12 spans 0.12-10.2 in R3 vs 3.5-20 in R4, and lambda_iiii = alpha6+alpha11+alpha16 spans 3.3-20 in R3 vs 7.9-10 in R4 - R4's floor is higher in the sr sector, but BOTH sums overlap between the regions. These couplings enter only dark-dark 2->2 amplitudes: with sigma = lambda_eff^2/(64 pi s), s = 4 MDM^2, lambda_eff = 10 gives sigma/m ~ 3e-11 cm^2/g, lambda_eff = 3.5 gives ~4e-12, lambda_eff = 0.3 gives ~3e-14. So R4 predicts roughly 4e-12 to 3e-11 cm^2/g and R3 anywhere from ~1e-14 up to the same 3e-11 ceiling - the discriminator is marginal even in principle, and the quartics' early-universe sr<->si conversions are already integrated into the one measured relic number. The node documents that this residual dark-quartic degeneracy is physical.",
+          "feasibility": "Today-experiment: Bullet Cluster merger simulations and relaxed-halo shapes, sigma/m <~ 0.5-0.7 cm^2/g. Required: ~1e-11 cm^2/g, a factor ~5e10 in the cross-section-per-mass observable itself (not exposure). Rated impossible against a hard floor: at that level a 95 GeV particle at v ~ 1e-3 c scatters far less than once per Hubble time in any halo, no astrophysical system amplifies the effect, and no laboratory confines dark matter to see DM-DM scattering at all; the existing measurement is itself systematics-limited at ~0.1 cm^2/g by merger geometry and lensing mass reconstruction. Even a perfect measurement separates the regions only partially because both quartic-sum ranges overlap. No novel alternative at 'speculative' or better exists (see improvement_attempts); nothing is chained below this node.",
+          "feasibility_rating": "impossible",
+          "improvement_factor": 50000000000,
+          "outcomes": [
+            {
+              "label": "above cut (sr-quartics large)",
+              "regions": [
+                "R4"
+              ]
+            },
+            {
+              "label": "below cut",
+              "regions": [
+                "R3"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

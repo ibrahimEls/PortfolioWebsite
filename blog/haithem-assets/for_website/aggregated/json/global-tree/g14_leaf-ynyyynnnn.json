@@ -1,0 +1,90 @@
+{
+  "model": "combined",
+  "leaves": [
+    {
+      "leaf_id": "root_yes_no_yes_yes_yes_no_no_no_no",
+      "lit_search_note": "Checked: BaBar/LHCb/CMS-scouting dimuon archives (disjoint M_Z' windows 1-10.2 vs 17.2-22.7 GeV, but both units run to eps = 1e-6, two-plus decades below the eps^2 ~ 1e-6/1e-7 reach; cTau <= 2.7 cm keeps decays prompt, so LLP detectors cannot help); Planck p_ann (would bite only R0's lightest corner, bisecting R0 rather than separating the units, and is not even guaranteed since these pooled Z2+3+4+5 units are not relic-pinned); Fermi dwarfs / AMS-02 (present-day sigma-v not pinned for pooled units and the leaf sits below every catalog ID projection, so no disjoint prediction); electroweak precision (needs eps ~ 1e-2 at these Z' masses vs <= 1.4e-3 in the boxes); cluster self-interactions (alpha6 gap maps to sigma/m ~ 1e-12 to 1e-7 cm^2/g vs the ~0.1-1 cm^2/g astrophysical floor); finer BR(h->inv) (both units boxed into the identical 0.0032-0.01 bin by the path). Nothing existing splits R0 from R1.",
+      "splits": [
+        {
+          "kind": "lit",
+          "attach_to": "leaf",
+          "name": "BaBar + LHCb + CMS scouting dark-photon dimuon archive",
+          "observable": "narrow l+l- resonance, 1-25 GeV, at eps^2 >~ 1e-7 ?",
+          "what_this_is": "Collider experiments have already scanned the invariant-mass spectrum of lepton pairs for a narrow bump - the signature of a light dark-sector gauge boson (a 'dark photon') that mixes slightly with the ordinary photon and decays back to ordinary particles. BaBar covers bump masses of 0.02-10.2 GeV, LHCb is strongest at 10.6-30 GeV, and CMS trigger-level 'scouting' covers 11.5-45 GeV. This matters here because the two parameter regions predict such a boson at completely non-overlapping masses (1-10 GeV vs 17-23 GeV), so a bump at either mass would identify the region instantly - but both regions allow the mixing to be so small that no bump is visible, and none has been seen.",
+          "refs": [
+            "arXiv:1406.2980",
+            "arXiv:1910.06926",
+            "arXiv:1912.04776"
+          ],
+          "reasoning": "R0 predicts a Z' at 1.0-10.2 GeV, R1 at 17.2-22.7 GeV - fully disjoint windows, so a detected peak labels the unit uniquely. The Z' is fully visible in both units: the invisible channel Z' -> DM DM* needs M_Z' > 2 M_DM, and max(M_Z') = 10.2 GeV < 2 x 7.75 GeV = 15.5 GeV in R0 (22.7 << 123 GeV in R1), giving dark-photon-like decays with BR(mumu) ~ 10-30%. But every production rate scales as eps^2, and both units run from eps ~ 1e-3 down to 1e-6 (eps^2 = 1e-12), while the existing archive reaches only eps^2 ~ 1e-6 to 1e-7 (BaBar eps ~ 1e-4-1e-3 over R0's window; LHCb and CMS scouting eps ~ 1e-3 over R1's). At the floor the decays stay prompt (cTau = 2.7 cm at 1 GeV, 0.14 cm at 20 GeV), so displaced-vertex and far-detector searches gain nothing. 'No peak' is the honest prediction of the surviving bulk of BOTH units - recorded as No Split. Kept at the root because the data are free and in hand, and because any future peak (e.g. LHCb Upgrade II, which still falls ~1e4 short in eps^2 of the floor) would resolve the leaf by mass position alone, including the marginal high-mass R0 tail the split below cannot handle.",
+          "feasibility": "Existing published data; does NOT split. Only the top decade of each unit's eps range is probed, and the null there is shared; the remaining two-plus decades predict no signal in either unit. Dominant systematic in these searches is the smooth Drell-Yan/QED dimuon continuum under a narrow bump - irrelevant to the verdict, which is set by the eps^2 rate floor, not by systematics.",
+          "outcomes": [
+            {
+              "label": "no split",
+              "regions": [
+                "R0",
+                "R1"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit_projection",
+          "attach_to": "R0+R1",
+          "name": "XLZD nuclear-recoil spectrum mass fit",
+          "observable": "spectral fit of the xenon nuclear-recoil energy spectrum excludes m_DM > 45 GeV at 95% CL ?",
+          "what_this_is": "XLZD is the proposed next-generation liquid-xenon detector (60-tonne active target), the successor to LZ. This leaf's premise is that it SEES a dark-matter signal; beyond counting events, the energy distribution of the recoiling xenon nuclei encodes the dark-matter particle's mass, because a light particle can only give the heavy nucleus gentle kicks while a heavier one produces a harder, flatter spectrum. Fitting the shape of the guaranteed signal therefore weighs the dark-matter particle - exactly the axis separating these two regions, one spanning roughly 8-61 GeV and the other pinned at half the Higgs-boson mass, ~62 GeV.",
+          "refs": [
+            "arXiv:2410.17036",
+            "arXiv:2410.17137",
+            "arXiv:0805.1704"
+          ],
+          "reasoning": "R0 (M_DM = 7.75-60.9 GeV, log-space bulk well below ~45 GeV): on xenon the spectrum is crammed against threshold (<E_R> <~ 5-10 keVnr at M ~ 10-30 GeV, essentially nothing above ~25 keVnr); a fit to O(1e2) events returns a closed mass interval whose 95% upper edge lies below 45 GeV (e.g. ~30 +/- 8 GeV at true M = 30; Green arXiv:0805.1704). R1 (M_DM = 61.5-63.9 GeV, reduced mass ~41 GeV): a hard, flat spectrum extending to ~40 keVnr; the fit returns a lower bound near 45 GeV with a weak upper edge, because the shape depends on M only through the DM-Xe reduced mass, which saturates as M -> m_Xe = 122 GeV. Cut: fit excludes M_DM > 45 GeV -> R0; fails to -> R1. Marginality, stated honestly: R0 points in the sparse ~45-61 GeV tail are spectroscopically identical to the funnel - the 60.9 vs 61.5 GeV boundary is a hard kinematic floor (reduced-mass saturation) no target nucleus beats and no exposure fixes; for those points the only fallback is a future dimuon peak position (<= 10.2 GeV vs 17-23 GeV), documented at the root and not guaranteed. Corroboration for R1 comes free: a fitted mass consistent with m_h/2 = 62.6 GeV alongside the path's BR(h->inv) = 0.0032-0.01 despite the near-threshold phase-space suppression is the Higgs-funnel signature. OR-alternative (drawn on this node): the Ca/O recoil-spectrum ratio in a single paleo mineral, which places the same 45 GeV boundary without the v_0/v_esc systematic (predicted <= 1.17 for R0's bulk vs 1.50 for R1) rated 'new experiment', the same tier as this node, and attached because it removes this node's v_0/v_esc systematic.",
+          "feasibility": "Today-experiment: LZ, published 4.2 tonne-year search, limit 2.2e-48 cm^2 at 40 GeV - holding only ~1-4 signal events at this leaf's sigma_SI ~ (0.3-3)e-48 cm^2, far too few for a mass fit (which is why this is NOT a reanalysis: the fittable dataset is presupposed from XLZD, not recorded). Required: spectroscopy at sigma_SI down to the XLZD reach of 3e-49 cm^2, a factor ~7 in the cross-section observable, assuming near-background-free linear-in-exposure scaling (standard for xenon TPCs above the neutrino fog); XLZD at 200-1000 t-yr then collects ~30-250 events across the leaf's 1-10x band. LZ's remaining approved run gives a bright-end preview (~5-30 events for the brightest, lightest points) but cannot guarantee the 45-GeV discrimination across the band. Dominant systematic: the assumed halo velocity distribution (v_0, v_esc), shifting the fitted mass by ~10% - well inside the 45-vs-62 GeV gap being tested but part of why the fit degrades above ~50 GeV. No novel alternative at a strictly better ('possible') rating was found: the LZ-only fit, Belle II's one-sided kinematic tagger and the gamma-ray endpoint all fail.",
+          "feasibility_rating": "next generation",
+          "improvement_factor": 7,
+          "outcomes": [
+            {
+              "label": "light (fit < 45 GeV)",
+              "regions": [
+                "R0"
+              ]
+            },
+            {
+              "label": "heavy (fit allows ~62 GeV)",
+              "regions": [
+                "R1"
+              ]
+            }
+          ],
+          "proposed_novel_alternative": {
+            "name": "Paleo-detector Ca/O recoil-spectrum ratio (halo-independent mass)",
+            "observable": "E_max(Ca)/E_max(O) in gypsum tracks < 1.35 (Drees-Shan moment match) ?",
+            "what_this_is": "A paleo-detector is a mineral that has sat kilometres underground for up to a billion years: every nucleus knocked hard enough by a passing particle left a permanent damage trail in the crystal, so a single gram of it stores an exposure no tonne-scale detector can match. The recoil energies a dark-matter particle can give a nucleus stop at a maximum set by the fastest dark matter still bound to the Galaxy, and that maximum depends on the dark-matter mass through the nucleus mass and the reduced mass of the pair - so if the escape velocity were known, the end of the recoil spectrum would weigh the dark matter. It is not known well, especially over a billion years of Galactic history, but the ratio of the endpoints on two different nuclei recorded in the same crystal - here calcium and oxygen in gypsum - cancels the velocity entirely and depends on the dark-matter mass alone. Mass is almost the only thing that differs between these two regions, so a velocity-free mass measurement is exactly the right question.",
+            "why_novel": "Both ingredients exist separately. Comparing recoil spectra from two different targets to reconstruct the dark-matter mass without a halo model is an established idea (matching moments of the velocity distribution inferred from each target), and paleo minerals have been studied as dark-matter recorders, including mass reconstruction from a single mineral's track-length spectrum under an assumed halo; the closest paper analyses gypsum and halite that way but never forms this ratio. What has not been proposed is to take the two targets from ONE mineral: the calcium and oxygen recoil populations of gypsum share the same exposure time, age, readout, and radiogenic environment (neutrons from uranium and thorium decays in the surrounding rock strike both), so the systematics that plague a two-experiment comparison drop out along with the escape velocity. Calcium is the right heavy partner: for a 30-100 GeV particle its endpoint momentum transfer (qR of 2.5-2.9, Helm form factor squared 0.1-0.2) still leaves a populated spectrum, whereas the endpoint on barium or xenon sits past the second form-factor zero (qR ~ 8.5, F^2 ~ 2e-4) and is empty at any exposure. Attached at equal tier to the next-generation xenon spectral fit because it removes that fit's dominant systematic, the local velocity distribution, rather than repeating the fit more cheaply.",
+            "refs": [
+              "arXiv:2608.10105"
+            ],
+            "reasoning": "The largest recoil energy a dark-matter particle of mass m can deposit on nucleus N is E_max = v_esc^2 / alpha_N^2 with alpha_N^2 = m_N / (2 mu_N^2), mu_N the dark-matter-nucleus reduced mass. Taking the ratio for two nuclei in the same crystal gives E_max(Ca)/E_max(O) = alpha_O^2/alpha_Ca^2 = mu_Ca^2 m_O / (mu_O^2 m_Ca), a function of the nuclear masses and m only - the escape velocity and the shape of the velocity distribution cancel, so nothing about the Galaxy's assembly history enters. Because very few halo particles move near v_esc, the strict endpoint is starved of events; the same cancellation holds for the ratio of any velocity moment reconstructed from the two spectra, which uses every track and is the form actually fitted. Predicted values: R0's 8-35 GeV bulk gives 0.64-1.19 (the ratio passes through 1 near 23 GeV, where light dark matter starts depositing more on the heavier nucleus); R1 at 62-64 GeV gives 1.50-1.52. The cut at 1.35 corresponds to m ~ 46 GeV, the same boundary as the xenon spectral fit it accompanies, so the outcome groups are identical and so is the one-sidedness: R0's sparse 50-61 GeV tail, at 1.38-1.49, lands on the heavy side. Form factors do not spoil the comparison: over this mass range the calcium endpoint runs from 16 keV at 8 GeV to 200 keV at 64 GeV (qR up to ~2.5, F^2 >~ 0.2) and the oxygen endpoint from 24 to 130 keV with qR <~ 1 and F^2 ~ 0.8 throughout. What survives as a systematic is the calibration that converts each ion's track length into a recoil energy.",
+            "feasibility": "Closest existing technique: track-length spectroscopy of a single paleo mineral fitted under a fixed halo model, and two-target halo-independent mass reconstruction with conventional detectors; neither has been combined with the other. What must be built: a readout programme - nanometre-resolution imaging (helium-ion microscopy or X-ray nanotomography) of gram-scale samples of radiopure gypsum or calcite - and an ion-beam calibration of the calcium and oxygen track-length-versus-energy relations to the few-percent level, since range predictions for keV nuclei in minerals are only good to 10-20% today. Dominant systematics: (i) which nucleus made a given track - the recorded spectrum is the sum over Ca, S and O recoils and this proposal does not specify how the populations are separated, whether by a template fit to the combined spectrum or by secondary track properties, an idea that has been suggested but whose practicality is unstudied; (ii) the per-ion calibration, which replaces the halo systematic the method removes; (iii) radiogenic backgrounds - alpha-recoil nuclei from uranium and thorium and neutron-induced recoils - populating the same 50-300 keV band. Statistics are comparable to the xenon fit rather than far beyond it: at this leaf's cross section a 1 Gyr-old sample holds ~10-100 signal tracks per gram, so ~100 g read out at nanometre resolution gives O(1e3) tracks against XLZD's O(100) events - the gain is halo independence, not counts. Realistic obstacle: no one has yet shown that per-track nucleus identification works at this resolution, so the practicality of the observable is unproven. Rated 'new experiment': a dedicated readout programme with existing technology on a normal funding timescale, equal in tier to the next-generation xenon fit it is attached to.",
+            "feasibility_rating": "new experiment",
+            "outcomes": [
+              {
+                "label": "light (ratio below cut)",
+                "regions": [
+                  "R0"
+                ]
+              },
+              {
+                "label": "heavy (ratio above cut)",
+                "regions": [
+                  "R1"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

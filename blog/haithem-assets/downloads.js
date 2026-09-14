@@ -75,6 +75,12 @@
                 return { value: it.name, html: it.display, meta: meta,
                          group: it.runLabel };
             });
+            // a single run needs no group headers
+            var labels = {};
+            rows.forEach(function (r) { labels[r.group] = 1; });
+            if (Object.keys(labels).length < 2) {
+                rows.forEach(function (r) { delete r.group; });
+            }
             combo.change(show);
             combo.set(rows, rows[0].value);
             show(rows[0].value);

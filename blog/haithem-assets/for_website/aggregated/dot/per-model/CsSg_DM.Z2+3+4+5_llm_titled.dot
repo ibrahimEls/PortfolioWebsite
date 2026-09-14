@@ -1,0 +1,47 @@
+digraph "CsSg_DM.Z2+3+4+5" {
+graph [label="Complex Scalar Singlet\n7,484 viable points", labelloc="t", labeljust="c", fontsize="20", fontname="Helvetica-Bold"];
+	node [fontname="DejaVu Serif"]
+	edge [fontname="DejaVu Serif"]
+	rankdir=LR
+	root [label=<BR(h→inv) ≥ 0.001?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes [label=<BR(h→inv) ≥ 0.0032?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes [label=<See anything at LZ?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes_yes [label=<112 pts, 3 regions, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes -> root_yes_yes_yes [label=yes]
+	root_yes_yes_no [label=<See anything at DarkSide?> fillcolor=lightblue shape=box style="rounded,filled"]
+	root_yes_yes_no_yes [label=<82 pts, 2 regions, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes_no -> root_yes_yes_no_yes [label=yes]
+	root_yes_yes_no_no [label=<25 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes_yes_no -> root_yes_yes_no_no [label=no]
+	root_yes_yes -> root_yes_yes_no [label=no]
+	root_yes -> root_yes_yes [label=yes]
+	root_yes_no [label=<2071 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root_yes -> root_yes_no [label=no]
+	root -> root_yes [label=yes]
+	root_no [label=<5194 pts, 1 region, 1 lagrangian> fillcolor=lightgrey shape=box style="rounded,filled"]
+	root -> root_no [label=no]
+
+// LLM-suggested splits
+root_yes_yes_no_yes_s0 [label=<<B>LLM-Agent Literature Split</B><BR/>Merging-cluster DM self-<BR/>interaction bound<BR/>σ<SUB><FONT POINT-SIZE="9">&#8202;self&#8202;</FONT></SUB>/m &gt; 0.5 cm²/g at<BR/>v ~ 1000–4000 km/s ?<BR/>arXiv:astro-ph/0309303,<BR/>arXiv:1503.07675<BR/><B>Status: No Split!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_yes_no_yes -> root_yes_yes_no_yes_s0 [style=dashed, label="LLM split"];
+root_yes_yes_no_yes_s1 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>Dark-partner conversion<BR/>cross-section si si → si sr<BR/>σ(si si → si sr) &gt;<BR/>10⁻³⁵ cm² at sqrt(s) = 191<BR/>GeV ?<BR/>closest: arXiv:1705.02358<BR/><B>Feasibility: Impossible</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_yes_no_yes_s0 -> root_yes_yes_no_yes_s1;
+root_yes_yes_no_yes_s1_o0 [label=<6 pts, 1 region, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_no_yes_s1 -> root_yes_yes_no_yes_s1_o0;
+root_yes_yes_no_yes_s1_o1 [label=<7 pts, 1 region, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_no_yes_s1 -> root_yes_yes_no_yes_s1_o1;
+root_yes_yes_yes_s0 [label=<<B>LLM-Agent Literature Split</B><BR/>Cluster-merger dark-matter<BR/>self-interaction bound<BR/>σ<SUB><FONT POINT-SIZE="9">&#8202;self&#8202;</FONT></SUB>/m<SUB><FONT POINT-SIZE="9">&#8202;DM&#8202;</FONT></SUB> &gt; 0.47<BR/>cm²/g ?<BR/>arXiv:0704.0261,<BR/>arXiv:1503.07675<BR/><B>Status: No Split!</B>>, shape=box, style="rounded,filled", fillcolor=gold];
+root_yes_yes_yes -> root_yes_yes_yes_s0 [style=dashed, label="LLM split"];
+root_yes_yes_yes_s1 [label=<<B>LLM-Agent Literature Projection</B><BR/>XLZD rate vs FCC-ee<BR/>invisible-width consistency<BR/>σ<SUB><FONT POINT-SIZE="9">&#8202;SI&#8202;</FONT></SUB>(std halo) /<BR/>BR(h→inv) ≥ 2×10⁻⁴⁵ cm² ?<BR/>arXiv:2410.17137,<BR/>arXiv:1905.03764,<BR/>arXiv:2301.10731<BR/><B>Feasibility: Next generation (~50× today)</B>>, shape=box, style="rounded,filled", fillcolor=palegreen];
+root_yes_yes_yes_s0 -> root_yes_yes_yes_s1;
+root_yes_yes_yes_s1_o0 [label=<20 pts, 2 regions, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_yes_s1 -> root_yes_yes_yes_s1_o0;
+root_yes_yes_yes_s1_o1 [label=<9 pts, 1 region, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_yes_s1 -> root_yes_yes_yes_s1_o1;
+root_yes_yes_yes_s2 [label=<<B>LLM-Agent Novel Observable Proposal</B><BR/>Self-interaction erosion of<BR/>the Sgr A* dark-matter spike<BR/>Phi<SUB><FONT POINT-SIZE="9">&#8202;γ&#8202;</FONT></SUB>(E &gt; 10 GeV, Sgr A*<BR/>point source) ≥ 10⁻¹⁰ cm⁻²<BR/>s⁻¹ ?<BR/>closest: arXiv:astro-<BR/>ph/9906391<BR/><B>Feasibility: Speculative</B>>, shape=box, style="rounded,filled", fillcolor=orange];
+root_yes_yes_yes_s1_o0 -> root_yes_yes_yes_s2;
+root_yes_yes_yes_s2_o0 [label=<13 pts, 1 region, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_yes_s2 -> root_yes_yes_yes_s2_o0;
+root_yes_yes_yes_s2_o1 [label=<7 pts, 1 region, 1<BR/>lagrangian>, shape=box, style="rounded,filled", fillcolor=lightyellow];
+root_yes_yes_yes_s2 -> root_yes_yes_yes_s2_o1;
+}

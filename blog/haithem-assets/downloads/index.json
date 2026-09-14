@@ -1,164 +1,48 @@
 {
  "items": [
   {
-   "name": "fable:global_tree",
+   "name": "aggregated:global_tree",
    "display": "All Dark-Singlet Lagrangians",
-   "run": "fable",
-   "runLabel": "Fable",
-   "pdf": "fable/trees/global_tree.pdf",
-   "pdfSize": 90220,
-   "responses": "fable/responses/global_tree.md",
-   "responsesSize": 248460,
-   "responsesFiles": 14
+   "run": "aggregated",
+   "runLabel": "Aggregated",
+   "pdf": "aggregated/trees/global_tree.pdf",
+   "pdfSize": 83451,
+   "responses": "aggregated/responses/global_tree.md",
+   "responsesSize": 245574,
+   "responsesFiles": 16
   },
   {
-   "name": "fable:CsSg_U1p.p_DM.Z2+3+4+5",
+   "name": "aggregated:CsSg_U1p.p_DM.Z2+3+4+5",
    "display": "Complex Scalar Singlet + U(1)\u2032 (p), Z\u2082, Z\u2083, Z\u2084, Z\u2085",
-   "run": "fable",
-   "runLabel": "Fable",
-   "pdf": "fable/trees/CsSg_U1p_p_DM_Z2-3-4-5.pdf",
-   "pdfSize": 67191,
-   "responses": "fable/responses/CsSg_U1p_p_DM_Z2-3-4-5.md",
-   "responsesSize": 54304,
-   "responsesFiles": 1
+   "run": "aggregated",
+   "runLabel": "Aggregated",
+   "pdf": "aggregated/trees/CsSg_U1p_p_DM_Z2-3-4-5.pdf",
+   "pdfSize": 54910,
+   "responses": "aggregated/responses/CsSg_U1p_p_DM_Z2-3-4-5.md",
+   "responsesSize": 56373,
+   "responsesFiles": 5
   },
   {
-   "name": "fable:CsSg_U1p.p_DM.Z2",
+   "name": "aggregated:CsSg_U1p.p_DM.Z2",
    "display": "Complex Scalar Singlet + U(1)\u2032 (p), Z\u2082",
-   "run": "fable",
-   "runLabel": "Fable",
-   "pdf": "fable/trees/CsSg_U1p_p_DM_Z2.pdf",
-   "pdfSize": 49833,
-   "responses": "fable/responses/CsSg_U1p_p_DM_Z2.md",
-   "responsesSize": 34197,
+   "run": "aggregated",
+   "runLabel": "Aggregated",
+   "pdf": "aggregated/trees/CsSg_U1p_p_DM_Z2.pdf",
+   "pdfSize": 38556,
+   "responses": "aggregated/responses/CsSg_U1p_p_DM_Z2.md",
+   "responsesSize": 11904,
    "responsesFiles": 1
   },
   {
-   "name": "fable:CsDh_DM.Z2+3+4+5",
-   "display": "Complex Scalar Doublet, Z\u2082, Z\u2083, Z\u2084, Z\u2085",
-   "run": "fable",
-   "runLabel": "Fable",
-   "pdf": "fable/trees/CsDh_DM_Z2-3-4-5.pdf",
-   "pdfSize": 18197
-  },
-  {
-   "name": "fable:CsSg_DM.Z2+3+4+5",
+   "name": "aggregated:CsSg_DM.Z2+3+4+5",
    "display": "Complex Scalar Singlet, Z\u2082, Z\u2083, Z\u2084, Z\u2085",
-   "run": "fable",
-   "runLabel": "Fable",
-   "pdf": "fable/trees/CsSg_DM_Z2-3-4-5.pdf",
-   "pdfSize": 37508,
-   "responses": "fable/responses/CsSg_DM_Z2-3-4-5.md",
-   "responsesSize": 24256,
-   "responsesFiles": 1
-  },
-  {
-   "name": "fable:CsDh_U1p.m_DM.Z2+3+4+5",
-   "display": "Complex Scalar Doublet + U(1)\u2032 (m), Z\u2082, Z\u2083, Z\u2084, Z\u2085",
-   "run": "fable",
-   "runLabel": "Fable",
-   "pdf": "fable/trees/CsDh_U1p_m_DM_Z2-3-4-5.pdf",
-   "pdfSize": 17348
-  },
-  {
-   "name": "opus:global_tree",
-   "display": "All Dark-Singlet Lagrangians",
-   "run": "opus",
-   "runLabel": "Opus",
-   "pdf": "opus/trees/global_tree.pdf",
-   "pdfSize": 108924,
-   "responses": "opus/responses/global_tree.md",
-   "responsesSize": 252868,
-   "responsesFiles": 15
-  },
-  {
-   "name": "opus:CsSg_U1p.p_DM.Z2+3+4+5",
-   "display": "Complex Scalar Singlet + U(1)\u2032 (p), Z\u2082, Z\u2083, Z\u2084, Z\u2085",
-   "run": "opus",
-   "runLabel": "Opus",
-   "pdf": "opus/trees/CsSg_U1p_p_DM_Z2-3-4-5.pdf",
-   "pdfSize": 77179,
-   "responses": "opus/responses/CsSg_U1p_p_DM_Z2-3-4-5.md",
-   "responsesSize": 47674,
-   "responsesFiles": 1
-  },
-  {
-   "name": "opus:CsSg_U1p.p_DM.Z2",
-   "display": "Complex Scalar Singlet + U(1)\u2032 (p), Z\u2082",
-   "run": "opus",
-   "runLabel": "Opus",
-   "pdf": "opus/trees/CsSg_U1p_p_DM_Z2.pdf",
-   "pdfSize": 51164,
-   "responses": "opus/responses/CsSg_U1p_p_DM_Z2.md",
-   "responsesSize": 42244,
-   "responsesFiles": 1
-  },
-  {
-   "name": "opus:CsDh_DM.Z2+3+4+5",
-   "display": "Complex Scalar Doublet, Z\u2082, Z\u2083, Z\u2084, Z\u2085",
-   "run": "opus",
-   "runLabel": "Opus",
-   "pdf": "opus/trees/CsDh_DM_Z2-3-4-5.pdf",
-   "pdfSize": 19780
-  },
-  {
-   "name": "opus:CsSg_U1p.m_DM.Z2+3+4+5",
-   "display": "Complex Scalar Singlet + U(1)\u2032 (m), Z\u2082, Z\u2083, Z\u2084, Z\u2085",
-   "run": "opus",
-   "runLabel": "Opus",
-   "pdf": "opus/trees/CsSg_U1p_m_DM_Z2-3-4-5.pdf",
-   "pdfSize": 75678
-  },
-  {
-   "name": "opus:CsSg_U1p.m_DM.Z2",
-   "display": "Complex Scalar Singlet + U(1)\u2032 (m), Z\u2082",
-   "run": "opus",
-   "runLabel": "Opus",
-   "pdf": "opus/trees/CsSg_U1p_m_DM_Z2.pdf",
-   "pdfSize": 47549
-  },
-  {
-   "name": "opus:RsSg_DM.Z2+3+4+5",
-   "display": "Real Scalar Singlet, Z\u2082, Z\u2083, Z\u2084, Z\u2085",
-   "run": "opus",
-   "runLabel": "Opus",
-   "pdf": "opus/trees/RsSg_DM_Z2-3-4-5.pdf",
-   "pdfSize": 18637
-  },
-  {
-   "name": "opus:CsSg_DM.Z2+3+4+5",
-   "display": "Complex Scalar Singlet, Z\u2082, Z\u2083, Z\u2084, Z\u2085",
-   "run": "opus",
-   "runLabel": "Opus",
-   "pdf": "opus/trees/CsSg_DM_Z2-3-4-5.pdf",
-   "pdfSize": 38250,
-   "responses": "opus/responses/CsSg_DM_Z2-3-4-5.md",
-   "responsesSize": 15310,
-   "responsesFiles": 1
-  },
-  {
-   "name": "opus:Z3_CsSg_DM",
-   "display": "Complex Scalar Singlet, Z\u2083",
-   "run": "opus",
-   "runLabel": "Opus",
-   "pdf": "opus/trees/Z3_CsSg_DM.pdf",
-   "pdfSize": 37408
-  },
-  {
-   "name": "opus:Z2_CsSg_U1p.p_DM",
-   "display": "Complex Scalar Singlet + U(1)\u2032 (p), Z\u2082",
-   "run": "opus",
-   "runLabel": "Opus",
-   "pdf": "opus/trees/Z2_CsSg_U1p_p_DM.pdf",
-   "pdfSize": 34183
-  },
-  {
-   "name": "opus:CsDh_U1p.m_DM.Z2+3+4+5",
-   "display": "Complex Scalar Doublet + U(1)\u2032 (m), Z\u2082, Z\u2083, Z\u2084, Z\u2085",
-   "run": "opus",
-   "runLabel": "Opus",
-   "pdf": "opus/trees/CsDh_U1p_m_DM_Z2-3-4-5.pdf",
-   "pdfSize": 17348
+   "run": "aggregated",
+   "runLabel": "Aggregated",
+   "pdf": "aggregated/trees/CsSg_DM_Z2-3-4-5.pdf",
+   "pdfSize": 37300,
+   "responses": "aggregated/responses/CsSg_DM_Z2-3-4-5.md",
+   "responsesSize": 29484,
+   "responsesFiles": 2
   }
  ]
 }

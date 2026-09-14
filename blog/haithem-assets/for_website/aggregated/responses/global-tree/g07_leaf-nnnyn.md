@@ -1,0 +1,75 @@
+## Reasoning — leaf `root_no_no_no_yes_no` (1,158 pts, R0 + R1 + R2)
+
+**LEP Z-pole invisible width and electroweak fit** (literature split). Kinetic mixing eps with hypercharge induces Z-Z' mass mixing with angle theta = eps*tan(theta_W)*m_Z^2/(m_Z^2 - m_Z'^2). R2 (eps = 0.1, m_Z' = 60.1-60.45 GeV) gives theta = 0.1*0.546*8315/4715 = 0.096, theta^2 = 9.3e-3. Its Z' is very wide into dark matter: Gamma(Z'->chi chi*) = (g'^2/48pi) m_Z' (1-4 m_DM^2/m_Z'^2)^(3/2) = (130.2/150.8)*60*0.98 = 51 GeV, since g_U1p = 11.41 (alpha' = 10.4) and m_Z'/2 = 30 GeV >> m_DM = 3.494 GeV. Leaking through the mixing this predicts Delta Gamma(Z->inv) = theta^2 * 51 GeV ~ 470 MeV, against the LEP measurement Gamma_inv = 499.0 +/- 1.5 MeV: a 100% excess. The Z mass shift theta^2 (m_Z^2 - m_Z'^2)/(2 m_Z) ~ 240 MeV independently dwarfs the 2.1 MeV LEP uncertainty on m_Z, and eps = 0.1 at 60 GeV exceeds the standard electroweak-fit bound eps <~ 0.03 for a 10-100 GeV dark photon by a factor ~3 in eps (~10 in eps^2). R0 at its characteristic point (eps ~ 3e-4, m_Z' ~ 8 GeV, g' ~ 0.5, geometric means of its log-uniform ranges) gives theta ~ 1.8e-4 and Gamma(Z'->chi chi*) ~ 12 MeV, hence Delta Gamma(Z->inv) ~ 4e-7 MeV. R1 (eps <= 7.4e-6, m_Z' = 1 GeV) gives theta ~ 4e-6, and its Z' has no invisible channel at all because m_Z' = 1 GeV < 2 m_DM >= 2 GeV, so it perturbs only the visible Z widths at the theta^2 ~ 1.6e-11 level, Delta Gamma ~ 1e-7 MeV. Predicted values: R2 ~ 470 MeV, R0 ~ 4e-7 MeV, R1 ~ 1e-7 MeV, against a 3 MeV (2-sigma) experimental cut. Marginality: R0's bounding box does reach eps = 0.1 and m_Z' = 62.9 GeV, so from the log-uniform draws roughly 5% of its points (eps >~ 0.03, ~10%, times m_Z' >~ 10 GeV, ~44%) are also LEP-excluded; the region characterised by its median passes by six orders of magnitude while R2, which is pinned at the corner, fails by two to three. Yes - the existing data already splits, and very cleanly: R2 is excluded by roughly two orders of magnitude in the invisible width (and >30 sigma even if one is conservative by a factor of ten), while R0 and R1 are unobservable at the 1e-7 MeV level. This is LEP-I data taken in the 1990s and permanently frozen; there is no statistical question. The dominant systematic is theoretical rather than experimental: the kinetic-mixing convention (mixing with hypercharge versus with the photon changes theta by a factor tan(theta_W) ~ 0.55) and, more seriously, the fact that R2's Z' has Gamma/m ~ 0.85 so the narrow-resonance mixing formula is only indicative - but no reasonable treatment of an 85%-wide 60 GeV state that mixes at the 10% level can hide a sub-MeV effect. This is a different observable from the catalog's Z'-dilepton recast, which is a hadron-collider resonance search and correctly sees nothing: a 60 GeV, ~50 GeV-wide, invisibly-decaying Z' is buried under Drell-Yan.
+
+**Planck CMB energy injection at recombination** (literature split on R0 + R1). R1 is a textbook secluded WIMP (Pospelov-Ritz-Voloshin): m_DM = 1.0-1.40 GeV just above m_Z' = 1.0 GeV opens chi chi* -> Z'Z', s-wave for a scalar pair annihilating to two vectors. With alpha' = 5.8-7.7e-5, sigma v = pi alpha'^2/m^2 x (1-r^2)^(3/2)/(1-r^2/2)^2 ~ 5e-26 cm^3/s at the cluster midpoint (6e-26 at 1.4 GeV). This must be the relic-setting channel: R1's Z2 potential (s_r^4, s_r^2 s_i^2, s_i^4 only) has no number-changing dark self-interaction and the s-channel route is dead at eps ~ 1e-6, so the relic pins sigma v thermal for every point - confirmed empirically by the razor-thin g' band [0.027, 0.031]. Each Z' decays 100% visibly (invisible channel closed) with ctau ~ 0.4 mm-2 cm; with f_eff = 0.2-0.4, p_ann(R1) = 2e-27 to 3e-26 cm^3/s/GeV, a factor 6-90 above the Planck ceiling: excluded by data on disk. R0's bulk (~3/4 with m_Z' > m_DM) has the secluded channel closed; s-channel Z'* annihilation of scalar DM requires L = 1 (p-wave), suppressed by v^2 ~ 1e-16 at recombination -> p_ann <~ 1e-30; its relic rides the odd quartics alpha3 s_i s_r^3 and alpha5 s_i^3 s_r - genuine 3->1 number-changing vertices present only in the Z2+3+4+5 potential, injecting nothing visible; the shared Higgs portal at alpha1 ~ 1e-3 gives only p_ann ~ 2e-32. Predicted values: R1 ~ 2e-27 to 3e-26 (excluded), R0 <~ 1e-30 (allowed). The split thus lands on exactly the operator content distinguishing the two Lagrangians. Marginality, stated: R1 points with m_DM within a few percent of 1.00 GeV have the channel phase-space-throttled and would soften the exclusion (the bulk at 1.1-1.4 GeV is hit at full strength); the ~quarter of R0's log-volume with m_Z' < m_DM is s-wave like R1 and is impurity in the 'allowed' branch; and 'allowed' does not positively confirm R0. Existing data already splits: the Planck 2018 likelihood is published and final, and the two region-characteristic predictions straddle the bound by 6-90x (R1, over) versus 2+ orders (R0, under). Dominant systematic is f_eff for sub-GeV mixed ee/mumu/pion injection (factor ~2 from Slatyer's tables), far too small to bridge the margin. The one genuine model-dependence is the assumption of a symmetric thermal relic: an asymmetric R1 would evade the bound but would then lack any account of its abundance, since its Z2 potential offers no number-changing alternative. This is precisely where the catalog is blind: CTA/Fermi/IceCube have no reach at 1-1.4 GeV, and the CMB isolates the v -> 0 s-wave piece.
+```json
+{
+  "model": "combined",
+  "leaves": [
+    {
+      "leaf_id": "root_no_no_no_yes_no",
+      "lit_search_note": "Beyond the splits above, the following were checked and do not partition: visible dark-photon production searches (BaBar prompt eps ~ 1e-4-1e-3 at 1 GeV, LHCb displaced confined below ~0.35-0.5 GeV, E137/NuCal/CHARM dumps losing reach above ~0.5-0.7 GeV) cannot touch R1's eps <= 7.4e-6 at m_Z' = 1 GeV with ctau ~ 2-3 cm; CMS dimuon scouting at 60 GeV fails on R2 (BR(mumu) ~ 3e-5, Gamma/M ~ 0.85, no bump); DM self-interaction sigma/m <= 6e-5 cm^2/g vs ~0.1-1 cm^2/g astrophysical sensitivity (>= 1e4 short); SN1987A cooling Boltzmann-dead for a >= 1 GeV mediator; N_eff/BBN harmless (Z' lifetime ~ 1e-11 s); DM-electron scattering (SENSEI/DAMIC-M) 6+ orders below reach at R1's parameters; Lyman-alpha irrelevant for cold >= 1 GeV DM.",
+      "splits": [
+        {
+          "kind": "lit",
+          "attach_to": "leaf",
+          "name": "LEP Z-pole invisible width and electroweak fit",
+          "observable": "Delta Gamma(Z -> inv) <= 3 MeV ?",
+          "what_this_is": "LEP was an electron-positron collider at CERN that spent the 1990s producing millions of Z bosons and measuring the Z's mass and decay rates to about one part in a thousand, including how much of its decay rate goes into particles that leave no trace (the 'invisible width', which matches exactly three neutrino species). Any new neutral force carrier that mixes with the Z steals a little of the Z's identity, so if that new particle can decay into dark matter, some of the Z's decays become invisible too. Here one of the regions has a 60 GeV dark force carrier with a very large mixing and an enormous decay rate into dark matter, so it would have shifted the LEP numbers by a huge amount, while the other regions mix a thousand times more weakly and change nothing.",
+          "refs": [
+            "arXiv:hep-ex/0509008",
+            "arXiv:1006.0973",
+            "arXiv:1412.0018"
+          ],
+          "reasoning": "Kinetic mixing eps with hypercharge induces Z-Z' mass mixing with angle theta = eps*tan(theta_W)*m_Z^2/(m_Z^2 - m_Z'^2). R2 (eps = 0.1, m_Z' = 60.1-60.45 GeV) gives theta = 0.1*0.546*8315/4715 = 0.096, theta^2 = 9.3e-3. Its Z' is very wide into dark matter: Gamma(Z'->chi chi*) = (g'^2/48pi) m_Z' (1-4 m_DM^2/m_Z'^2)^(3/2) = (130.2/150.8)*60*0.98 = 51 GeV, since g_U1p = 11.41 (alpha' = 10.4) and m_Z'/2 = 30 GeV >> m_DM = 3.494 GeV. Leaking through the mixing this predicts Delta Gamma(Z->inv) = theta^2 * 51 GeV ~ 470 MeV, against the LEP measurement Gamma_inv = 499.0 +/- 1.5 MeV: a 100% excess. The Z mass shift theta^2 (m_Z^2 - m_Z'^2)/(2 m_Z) ~ 240 MeV independently dwarfs the 2.1 MeV LEP uncertainty on m_Z, and eps = 0.1 at 60 GeV exceeds the standard electroweak-fit bound eps <~ 0.03 for a 10-100 GeV dark photon by a factor ~3 in eps (~10 in eps^2). R0 at its characteristic point (eps ~ 3e-4, m_Z' ~ 8 GeV, g' ~ 0.5, geometric means of its log-uniform ranges) gives theta ~ 1.8e-4 and Gamma(Z'->chi chi*) ~ 12 MeV, hence Delta Gamma(Z->inv) ~ 4e-7 MeV. R1 (eps <= 7.4e-6, m_Z' = 1 GeV) gives theta ~ 4e-6, and its Z' has no invisible channel at all because m_Z' = 1 GeV < 2 m_DM >= 2 GeV, so it perturbs only the visible Z widths at the theta^2 ~ 1.6e-11 level, Delta Gamma ~ 1e-7 MeV. Predicted values: R2 ~ 470 MeV, R0 ~ 4e-7 MeV, R1 ~ 1e-7 MeV, against a 3 MeV (2-sigma) experimental cut. Marginality: R0's bounding box does reach eps = 0.1 and m_Z' = 62.9 GeV, so from the log-uniform draws roughly 5% of its points (eps >~ 0.03, ~10%, times m_Z' >~ 10 GeV, ~44%) are also LEP-excluded; the region characterised by its median passes by six orders of magnitude while R2, which is pinned at the corner, fails by two to three.",
+          "feasibility": "Yes - the existing data already splits, and very cleanly: R2 is excluded by roughly two orders of magnitude in the invisible width (and >30 sigma even if one is conservative by a factor of ten), while R0 and R1 are unobservable at the 1e-7 MeV level. This is LEP-I data taken in the 1990s and permanently frozen; there is no statistical question. The dominant systematic is theoretical rather than experimental: the kinetic-mixing convention (mixing with hypercharge versus with the photon changes theta by a factor tan(theta_W) ~ 0.55) and, more seriously, the fact that R2's Z' has Gamma/m ~ 0.85 so the narrow-resonance mixing formula is only indicative - but no reasonable treatment of an 85%-wide 60 GeV state that mixes at the 10% level can hide a sub-MeV effect. This is a different observable from the catalog's Z'-dilepton recast, which is a hadron-collider resonance search and correctly sees nothing: a 60 GeV, ~50 GeV-wide, invisibly-decaying Z' is buried under Drell-Yan.",
+          "outcomes": [
+            {
+              "label": "excluded",
+              "regions": [
+                "R2"
+              ]
+            },
+            {
+              "label": "allowed",
+              "regions": [
+                "R0",
+                "R1"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit",
+          "attach_to": "R0+R1",
+          "name": "Planck CMB energy injection at recombination",
+          "observable": "p_ann = f_eff <sigma v>/m_DM <= 3.2e-28 cm^3/s/GeV ?",
+          "what_this_is": "The cosmic microwave background is the light released when the universe became transparent about 380,000 years after the Big Bang, and the Planck satellite mapped it to exquisite precision. If dark matter particles were still annihilating into ordinary particles at that epoch, the injected energy would have partly re-ionised the gas and measurably blurred the map, so Planck caps the annihilation power per unit dark-matter mass. Because the dark matter was then moving at a hundred-millionth of the speed of light, only annihilation that survives at zero velocity counts - and the two remaining regions differ in exactly that property: the small pinned region must annihilate at full strength into visible particles at all times to explain its abundance, while the broad region's annihilation switches off in the cold early universe.",
+          "refs": [
+            "arXiv:1807.06209",
+            "arXiv:1506.03811",
+            "arXiv:0711.4866"
+          ],
+          "reasoning": "R1 is a textbook secluded WIMP (Pospelov-Ritz-Voloshin): m_DM = 1.0-1.40 GeV just above m_Z' = 1.0 GeV opens chi chi* -> Z'Z', s-wave for a scalar pair annihilating to two vectors. With alpha' = 5.8-7.7e-5, sigma v = pi alpha'^2/m^2 x (1-r^2)^(3/2)/(1-r^2/2)^2 ~ 5e-26 cm^3/s at the cluster midpoint (6e-26 at 1.4 GeV). This must be the relic-setting channel: R1's Z2 potential (s_r^4, s_r^2 s_i^2, s_i^4 only) has no number-changing dark self-interaction and the s-channel route is dead at eps ~ 1e-6, so the relic pins sigma v thermal for every point - confirmed empirically by the razor-thin g' band [0.027, 0.031]. Each Z' decays 100% visibly (invisible channel closed) with ctau ~ 0.4 mm-2 cm; with f_eff = 0.2-0.4, p_ann(R1) = 2e-27 to 3e-26 cm^3/s/GeV, a factor 6-90 above the Planck ceiling: excluded by data on disk. R0's bulk (~3/4 with m_Z' > m_DM) has the secluded channel closed; s-channel Z'* annihilation of scalar DM requires L = 1 (p-wave), suppressed by v^2 ~ 1e-16 at recombination -> p_ann <~ 1e-30; its relic rides the odd quartics alpha3 s_i s_r^3 and alpha5 s_i^3 s_r - genuine 3->1 number-changing vertices present only in the Z2+3+4+5 potential, injecting nothing visible; the shared Higgs portal at alpha1 ~ 1e-3 gives only p_ann ~ 2e-32. Predicted values: R1 ~ 2e-27 to 3e-26 (excluded), R0 <~ 1e-30 (allowed). The split thus lands on exactly the operator content distinguishing the two Lagrangians. Marginality, stated: R1 points with m_DM within a few percent of 1.00 GeV have the channel phase-space-throttled and would soften the exclusion (the bulk at 1.1-1.4 GeV is hit at full strength); the ~quarter of R0's log-volume with m_Z' < m_DM is s-wave like R1 and is impurity in the 'allowed' branch; and 'allowed' does not positively confirm R0.",
+          "feasibility": "Existing data already splits: the Planck 2018 likelihood is published and final, and the two region-characteristic predictions straddle the bound by 6-90x (R1, over) versus 2+ orders (R0, under). Dominant systematic is f_eff for sub-GeV mixed ee/mumu/pion injection (factor ~2 from Slatyer's tables), far too small to bridge the margin. The one genuine model-dependence is the assumption of a symmetric thermal relic: an asymmetric R1 would evade the bound but would then lack any account of its abundance, since its Z2 potential offers no number-changing alternative. This is precisely where the catalog is blind: CTA/Fermi/IceCube have no reach at 1-1.4 GeV, and the CMB isolates the v -> 0 s-wave piece.",
+          "outcomes": [
+            {
+              "label": "excluded",
+              "regions": [
+                "R1"
+              ]
+            },
+            {
+              "label": "allowed",
+              "regions": [
+                "R0"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```

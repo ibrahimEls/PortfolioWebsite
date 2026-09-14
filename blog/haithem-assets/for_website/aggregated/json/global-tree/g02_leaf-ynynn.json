@@ -1,0 +1,99 @@
+{
+  "model": "combined",
+  "leaves": [
+    {
+      "leaf_id": "root_yes_no_yes_no_no",
+      "lit_search_note": "Existing data checked: LHCb/BaBar dark-photon searches (split - used at root); LEP/SLD Z-pole fit (bites only eps >~ 0.03 x (M_Z'/TeV), the top sliver of R3/R0 - folded into the FCC-ee node); Planck p_ann (95 GeV units predict ~2e-31 cm3/s/GeV, a factor ~1e3 below the 3.2e-28 bound once the sub-relic alpha1 is used - no split; only R0's light secluded relic-pinned corner is brushed); Fermi-LAT line search (predictions ~1e-33 vs limit ~1e-28); AMS-02 antiprotons (sub-thermal rates, no reach); cluster self-interaction (contact quartic gives sigma/m ~ 1e-10 cm2/g); beam dumps and far detectors (no acceptance: c*tau <= 2 cm everywhere in the scan); precision Higgs couplings (alpha1 ~ 1e-3 portal invisible).",
+      "splits": [
+        {
+          "kind": "lit",
+          "attach_to": "leaf",
+          "name": "LHCb + BaBar light dark-photon search",
+          "observable": "prompt mumu (or monophoton+invisible) resonance, m(A') in 0.02-70 GeV ?",
+          "what_this_is": "BaBar (an electron-positron collider experiment, complete) and LHCb (a forward detector at the Large Hadron Collider) have already recorded and published searches for a light new gauge boson that mixes weakly with the photon: it would appear as a narrow bump in the invariant mass of muon pairs, or, if it decays invisibly to dark matter, as a single photon recoiling against nothing. These are the most sensitive existing probes of a dark photon lighter than about 70 GeV. Only region R0 can contain such a light dark force carrier - R3's is heavier than 359 GeV and R1/R2 have none at all - so a bump anywhere in this recorded data uniquely identifies R0.",
+          "refs": [
+            "arXiv:1910.06926",
+            "arXiv:1406.2980",
+            "arXiv:1702.03327"
+          ],
+          "reasoning": "R0 is the only unit with M_Zp reaching into [0.02, 70] GeV (its range is [1, 1e4] GeV, log-uniform, roughly half below ~100 GeV) with kinetic mixing up to eps = 0.1 - one to two decades above the published LHCb prompt A'->mumu exclusion (eps^2 down to ~1e-6 over 0.214-70 GeV) and the BaBar exclusions (visible 0.02-10.2 GeV; monophoton+invisible below ~8 GeV, which covers the case M_Zp > 2 M_DM with gU1p >> eps*e where the dimuon branching collapses). Predicted signal: R0 - a prompt narrow dimuon peak or monophoton excess for its eps >~ 1e-3, M_Zp <~ 70 GeV sub-volume (~20% of its log measure; existing nulls already carve part of it out, and Planck's p_ann bound independently brushes its lightest relic-pinned secluded corner, m <~ 15-20 GeV at thermal s-wave rates); R1 and R2 - exactly zero (no dark U(1) exists); R3 - exactly zero in this window (M_Zp >= 359 GeV). One-sided, stated plainly: a detection is decisive for R0; a null leaves R0's feeble-mixing and heavy-Z' remainder sharing the 'not seen' phenotype, and the burden passes down the chain.",
+          "feasibility": "Data fully in hand (BaBar complete; LHCb Run 1+2 published, Run 3 accumulating): the split is available today in the discovery direction, and existing nulls already exclude part of R0's box. Dominant systematic: smooth continuum-dimuon background modeling under a narrow peak and the masked vector-meson windows (rho/omega/phi, quarkonia) at LHCb; single-photon trigger efficiency at BaBar. The limitation is coverage, not measurement error.",
+          "outcomes": [
+            {
+              "label": "resonance seen",
+              "regions": [
+                "R0"
+              ]
+            },
+            {
+              "label": "not seen",
+              "regions": [
+                "R1",
+                "R2",
+                "R3"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit_projection",
+          "attach_to": "R1+R2+R3",
+          "name": "FCC-ee Tera-Z electroweak fit (Z-Z' kinetic mixing)",
+          "observable": "|delta sin^2(theta_eff)| > 5e-6 ?",
+          "what_this_is": "The proposed FCC-ee circular electron-positron collider would sit on the Z-boson resonance and record trillions of Z decays, measuring the Z's couplings roughly thirty times more precisely than the 1990s LEP experiments. A heavy dark gauge boson that mixes with the photon drags the measured weak mixing angle away from its Standard Model value through Z-Z' mixing, even when far too heavy to produce directly. Of the three remaining regions only R3 contains such a boson, so a coherent shift in the Z-pole fit tags it, while R1 and R2 predict exactly no shift.",
+          "refs": [
+            "arXiv:hep-ex/0509008",
+            "arXiv:1412.0018"
+          ],
+          "reasoning": "Kinetic mixing shifts Z-pole observables by ~eps^2 (m_Z/M_Zp)^2 x O(0.1-1). R1, R2: identically zero - no extra U(1) exists and the alpha1 ~ 1e-3 portal is far below electroweak-fit sensitivity. R3 (eps in [1.6e-4, 0.1], M_Zp in [359, 4065] GeV): delta sin^2(theta_eff) ranges from ~1e-9 at the feeble floor up to ~(1-10)e-4 at (eps = 0.1, M_Zp ~ 400 GeV). Against 5e-6 precision the detectable sub-volume is eps >~ 0.03-0.05 x (M_Zp/TeV) - i.e. eps >~ 0.011-0.018 at 359 GeV, rising past R3's eps ceiling of 0.1 for M_Zp >~ 2-3 TeV, so FCC-ee covers roughly the top half-decade of R3's mixing range at the lower half of its mass range and nothing beyond. One-sided and marginal, stated plainly: a shift can only be R3 (R0 was wholly assigned to the root split's discovery branch); an SM-like result honestly retains R1+R2 and most of R3's volume - and R3's feeble-eps tail is irreducible in principle, since with no dark Higgs the Z' is Stueckelberg-massive, every dark-sector observable scales as eps^2, and R3 connects continuously to the plain complex singlet R1 as eps -> 0 with all catalog observables fixed.",
+          "feasibility": "Today-experiment: the LEP/SLD Z-pole fit, delta sin^2(theta_eff) ~ 1.6e-4, bounding eps <~ 0.3-0.5 x (M_Zp/TeV) - which the scan's viability filter never applied, so R3's top corner is already in tension with existing data. Required: 5e-6 on the same observable, factor ~30, as projected for FCC-ee Tera-Z (statistics-dominated, sqrt(N) from 1.7e7 to ~5e12 Z's, saturated by beam-energy calibration and alpha_QED(m_Z) systematics, which the 5e-6 figure already folds in). A next-generation facility of a routinely designed kind, not yet funded. No strictly better-rated novel alternative found: Xe/Ar isospin ratios are void (Z'-mediated scattering is inelastic, kinematically closed), parity violation is blind to vector-like mixing, and DY-interference reanalyses reach only eps ~ 1e-2.",
+          "feasibility_rating": "next generation",
+          "improvement_factor": 30,
+          "outcomes": [
+            {
+              "label": "shift seen",
+              "regions": [
+                "R3"
+              ]
+            },
+            {
+              "label": "SM-like",
+              "regions": [
+                "R1",
+                "R2"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit_projection",
+          "attach_to": "R1+R2",
+          "name": "Gamma-ray annihilation-line centroid (DM mass spectroscopy)",
+          "observable": "E(gamma-gamma line) >= 95.0 GeV ?",
+          "what_this_is": "When two dark-matter particles in the Galactic halo annihilate directly into a pair of photons, each photon carries an energy exactly equal to the dark-matter mass, producing a razor-sharp line in the gamma-ray sky whose position weighs the particle to better than a percent. That is the one quantity that could tell these last two regions apart, because the complex singlet R1 predicts a mass of 95.3-97.0 GeV while the real singlet R2 predicts 93.7-94.8 GeV, and every other signature of these two Higgs-portal models is identical. This node records honestly that the required photon flux does not exist: the measurement is a thousand-fold too faint for any instrument that could be built in a century.",
+          "refs": [
+            "arXiv:1506.00013"
+          ],
+          "reasoning": "R1 predicts a line at E_gamma = M_DM in [95.31, 97.03] GeV, R2 in [93.65, 94.75] GeV - disjoint windows with a clean gap at 95.0 GeV, and a companion gamma-Z line at M(1 - m_Z^2/4M^2) ~ 72-75 GeV whose fractional separation (3.4% vs 2.1%) gives an even better lever arm plus an absolute-energy-scale cross-check. The rate kills it: the sigma_SI window on this path pins alpha1 = (1.1-1.9)e-3, a factor 13-24 below the relic-normalized portal coupling at 95 GeV, so sigma_v_tot ~ (0.4-1.2)e-28 cm3/s, and the off-shell-Higgs W-loop gives BR(gamma gamma) ~ 1.4e-5 at sqrt(s) ~ 190 GeV (Gamma_gg ~ 20 keV against Gamma_tot ~ 1.4 GeV) - hence sigma_v_gg ~ (0.5-1.6)e-33 cm3/s in both regions, ~1e5 below the Fermi-LAT Pass-8 line sensitivity (~1e-28 cm3/s at 95 GeV), and suppressed further as the square of any sub-dominant relic fraction. Real-vs-complex multiplicity carries no independent signature (the relic rescaling of sigma_v cancels against halo density-squared counting), and no other observable reads M_DM at sub-percent precision: xenon recoil spectra saturate for M >> m_Xe/2 with a +/-15-30 GeV halo-systematics floor, and collider pair production through a 1e-3 portal is hopeless. This node documents why the real-vs-complex singlet degeneracy in this leaf is irreducible; its outcomes record what the line would separate.",
+          "feasibility": "Today-experiment: Fermi-LAT Pass 8 line search, sigma_v_gg <~ 1e-28 cm3/s at ~95 GeV. Required: ~1e-33 cm3/s - factor ~1e5 in the observable - AND a sub-percent line-energy measurement (space-calorimeter resolution ~1%, absolute energy scale ~0.3%; air-Cherenkov arrays are floored at 5-7% by shower fluctuations). Even linear-in-exposure scaling for a near-background-free line search demands ~1e5 times the Fermi effective-area-times-time at percent resolution: far fewer than one signal photon per decade in any instrument conceivable within 100 years. Hard flux floor, hence impossible; no novel alternative at speculative or better exists (the centroid-as-mass-spectrometer reading itself is the same flux-starved measurement).",
+          "feasibility_rating": "impossible",
+          "improvement_factor": 100000,
+          "outcomes": [
+            {
+              "label": "line 95-97 GeV",
+              "regions": [
+                "R1"
+              ]
+            },
+            {
+              "label": "line 93-95 GeV",
+              "regions": [
+                "R2"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

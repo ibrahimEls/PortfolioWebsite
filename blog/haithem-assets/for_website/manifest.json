@@ -1,0 +1,1156 @@
+{
+ "run_label": "aggregated",
+ "built_from": "/global/u2/i/ibrahime/RL4DM/assets/llm-assets/scan-llm/scan-f1c1zn5-su2-singlet+doublet+triplet-lor-scalar+majorana+dirac-u1p-b50-agg2/trained",
+ "published_pdf": "/global/u2/i/ibrahime/RL4DM/out/pdf-plots/scan-llm-agg2/global_tree_llm_agg2.pdf",
+ "n_splits": 58,
+ "text_origin_counts": {
+  "verbatim": 15,
+  "agg2-scrubbed": 41,
+  "agg2-scrubbed+alt-rewritten": 2
+ },
+ "fields_never_drawn": [
+  "what_this_is",
+  "reasoning",
+  "feasibility",
+  "why_novel",
+  "lit_search_note",
+  "outcomes[].label"
+ ],
+ "splits": [
+  {
+   "scope": "global-tree",
+   "card": "g00_leaf-nny",
+   "leaf_id": "root_no_no_yes",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "Existing dark-photon, EWPT and CMB bounds",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "verbatim:v3",
+   "source_runs": [
+    "v3"
+   ],
+   "source_ids": [
+    "P6"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g00_leaf-nny",
+   "leaf_id": "root_no_no_yes",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "CTA GC+dwarfs, secluded Z'Z' cascade template",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v1"
+   ],
+   "source_ids": [
+    "P2"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g01_leaf-ynnnn",
+   "leaf_id": "root_yes_no_no_no_no",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "Fermi-LAT 6-yr dwarf-spheroidal stacking",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "verbatim:v3",
+   "source_runs": [
+    "v3"
+   ],
+   "source_ids": [
+    "P8"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g01_leaf-ynnnn",
+   "leaf_id": "root_yes_no_no_no_no",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "Fermi-LAT 15-yr dwarf recast, dark-photon cascade template",
+   "attach_to": "R0+R1+R2+R3",
+   "has_alternative": false,
+   "text_origin": "verbatim:v3",
+   "source_runs": [
+    "v3"
+   ],
+   "source_ids": [
+    "P9"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g01_leaf-ynnnn",
+   "leaf_id": "root_yes_no_no_no_no",
+   "split_index": 2,
+   "kind": "novel",
+   "name": "Dark-quartic fingerprint via DM self-scattering",
+   "attach_to": "R1+R3",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v3"
+   ],
+   "source_ids": [
+    "P10"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g01_leaf-ynnnn",
+   "leaf_id": "root_yes_no_no_no_no",
+   "split_index": 3,
+   "kind": "lit_projection",
+   "name": "WIMP mass from the nuclear-recoil spectrum",
+   "attach_to": "R0+R2",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P17"
+   ],
+   "edited_fields": [
+    "what_this_is",
+    "feasibility"
+   ]
+  },
+  {
+   "scope": "global-tree",
+   "card": "g02_leaf-ynynn",
+   "leaf_id": "root_yes_no_yes_no_no",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "LHCb + BaBar light dark-photon search",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v2"
+   ],
+   "source_ids": [
+    "P4"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g02_leaf-ynynn",
+   "leaf_id": "root_yes_no_yes_no_no",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "FCC-ee Tera-Z electroweak fit (Z-Z' kinetic mixing)",
+   "attach_to": "R1+R2+R3",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v2"
+   ],
+   "source_ids": [
+    "P5"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g02_leaf-ynynn",
+   "leaf_id": "root_yes_no_yes_no_no",
+   "split_index": 2,
+   "kind": "lit_projection",
+   "name": "Gamma-ray annihilation-line centroid (DM mass spectroscopy)",
+   "attach_to": "R1+R2",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v1",
+    "v2"
+   ],
+   "source_ids": [
+    "P3",
+    "P6"
+   ],
+   "edited_fields": [
+    "feasibility"
+   ]
+  },
+  {
+   "scope": "global-tree",
+   "card": "g03_leaf-nnnn",
+   "leaf_id": "root_no_no_no_no",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "Fermi-LAT dwarf stack, dark-photon cascade template",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P9"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g03_leaf-nnnn",
+   "leaf_id": "root_no_no_no_no",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "Full-mission Fermi dwarf refit, secluded Z'Z' cascade template",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v3",
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P6",
+    "P10"
+   ],
+   "edited_fields": [
+    "reasoning",
+    "feasibility"
+   ]
+  },
+  {
+   "scope": "global-tree",
+   "card": "g04_leaf-yynyn",
+   "leaf_id": "root_yes_yes_no_yes_no",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "Existing prompt dark-photon dilepton searches (BaBar, LHCb, CMS)",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v1",
+    "v2",
+    "v4"
+   ],
+   "source_ids": [
+    "P1",
+    "P4",
+    "P10"
+   ],
+   "edited_fields": [
+    "reasoning"
+   ]
+  },
+  {
+   "scope": "global-tree",
+   "card": "g04_leaf-yynyn",
+   "leaf_id": "root_yes_yes_no_yes_no",
+   "split_index": 1,
+   "kind": "lit",
+   "name": "LEP/LHC Z-Z' kinetic-mixing fit",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "verbatim:v1",
+   "source_runs": [
+    "v1"
+   ],
+   "source_ids": [
+    "P2"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g04_leaf-yynyn",
+   "leaf_id": "root_yes_yes_no_yes_no",
+   "split_index": 2,
+   "kind": "lit_projection",
+   "name": "Belle II gamma + dark-photon search, 50 ab^-1",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "verbatim:v4",
+   "source_runs": [
+    "v4"
+   ],
+   "source_ids": [
+    "P11"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g05_leaf-yynny",
+   "leaf_id": "root_yes_yes_no_no_yes",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "Existing LHCb/CMS prompt dark-photon dimuon scans",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v3"
+   ],
+   "source_ids": [
+    "P5"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g05_leaf-yynny",
+   "leaf_id": "root_yes_yes_no_no_yes",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "LHCb Upgrade II low-mass dimuon scan",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "verbatim:v3",
+   "source_runs": [
+    "v3"
+   ],
+   "source_ids": [
+    "P6"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g06_leaf-yynnn",
+   "leaf_id": "root_yes_yes_no_no_no",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "Existing dark-photon dilepton searches (LHCb, BaBar, CMS)",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v4"
+   ],
+   "source_ids": [
+    "P7"
+   ],
+   "edited_fields": [
+    "what_this_is"
+   ]
+  },
+  {
+   "scope": "global-tree",
+   "card": "g06_leaf-yynnn",
+   "leaf_id": "root_yes_yes_no_no_no",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "LHCb-U2 + HL-LHC dilepton scan of the R0-exclusive Z' mass windows",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v3",
+    "v4"
+   ],
+   "source_ids": [
+    "P6",
+    "P8"
+   ],
+   "edited_fields": [
+    "what_this_is",
+    "reasoning"
+   ]
+  },
+  {
+   "scope": "global-tree",
+   "card": "g07_leaf-nnnyn",
+   "leaf_id": "root_no_no_no_yes_no",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "LEP Z-pole invisible width and electroweak fit",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "verbatim:v5-opus",
+   "source_runs": [
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P10"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g07_leaf-nnnyn",
+   "leaf_id": "root_no_no_no_yes_no",
+   "split_index": 1,
+   "kind": "lit",
+   "name": "Planck CMB energy injection at recombination",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P11"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g08_leaf-ynnyn",
+   "leaf_id": "root_yes_no_no_yes_no",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "Dark-photon dimuon searches (LHCb, CMS scouting, BaBar)",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v1",
+    "v4"
+   ],
+   "source_ids": [
+    "P7",
+    "P1"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g08_leaf-ynnyn",
+   "leaf_id": "root_yes_no_no_yes_no",
+   "split_index": 1,
+   "kind": "lit",
+   "name": "AMS-02 cosmic-ray antiproton DM fit",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v3"
+   ],
+   "source_ids": [
+    "P5"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g08_leaf-ynnyn",
+   "leaf_id": "root_yes_no_no_yes_no",
+   "split_index": 2,
+   "kind": "lit_projection",
+   "name": "Fermi-LAT 15-yr + LSST dwarf stacking, secluded-cascade template",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "verbatim:v3",
+   "source_runs": [
+    "v3"
+   ],
+   "source_ids": [
+    "P6"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g09_leaf-ynnyy",
+   "leaf_id": "root_yes_no_no_yes_yes",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "Existing dark-photon dilepton searches (LHCb + CMS + BaBar)",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v2",
+    "v3"
+   ],
+   "source_ids": [
+    "P5",
+    "P3"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g09_leaf-ynnyy",
+   "leaf_id": "root_yes_no_no_yes_yes",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "Fermi-LAT 25-yr + LSST dwarf-spheroidal stack",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v1"
+   ],
+   "source_ids": [
+    "P2"
+   ],
+   "edited_fields": [
+    "what_this_is",
+    "reasoning"
+   ]
+  },
+  {
+   "scope": "global-tree",
+   "card": "g10_leaf-ynyyyyn",
+   "leaf_id": "root_yes_no_yes_yes_yes_yes_no",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "Existing dark-photon searches (BaBar + LHCb dimuon)",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v4",
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P14",
+    "P11"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g10_leaf-ynyyyyn",
+   "leaf_id": "root_yes_no_yes_yes_yes_yes_no",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "LHCb Upgrade II + Belle II dark-photon scan",
+   "attach_to": "R0+R1+R2+R3+R4",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v1",
+    "v3",
+    "v4"
+   ],
+   "source_ids": [
+    "P1",
+    "P8",
+    "P12"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g10_leaf-ynyyyyn",
+   "leaf_id": "root_yes_no_yes_yes_yes_yes_no",
+   "split_index": 2,
+   "kind": "lit_projection",
+   "name": "Higgs-factory invisible width vs sigma_SI",
+   "attach_to": "R1+R2+R3+R4",
+   "has_alternative": false,
+   "text_origin": "verbatim:v3",
+   "source_runs": [
+    "v3"
+   ],
+   "source_ids": [
+    "P9"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g10_leaf-ynyyyyn",
+   "leaf_id": "root_yes_no_yes_yes_yes_yes_no",
+   "split_index": 3,
+   "kind": "lit_projection",
+   "name": "DM self-interaction from cluster halo shapes",
+   "attach_to": "R1+R2+R3",
+   "has_alternative": false,
+   "text_origin": "verbatim:v5-opus",
+   "source_runs": [
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P17"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g11_leaf-ynyynny",
+   "leaf_id": "root_yes_no_yes_yes_no_no_yes",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "LHCb/CMS prompt dark-photon dimuon search",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "verbatim:v4",
+   "source_runs": [
+    "v4"
+   ],
+   "source_ids": [
+    "P13"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g11_leaf-ynyynny",
+   "leaf_id": "root_yes_no_yes_yes_no_no_yes",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "CTA Galactic-Centre cascade-continuum search",
+   "attach_to": "R0+R2+R3+R4",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v2"
+   ],
+   "source_ids": [
+    "P6"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g11_leaf-ynyynny",
+   "leaf_id": "root_yes_no_yes_yes_no_no_yes",
+   "split_index": 2,
+   "kind": "lit_projection",
+   "name": "FCC-ee Tera-Z electroweak precision fit",
+   "attach_to": "R2+R3+R4",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v3"
+   ],
+   "source_ids": [
+    "P11"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g11_leaf-ynyynny",
+   "leaf_id": "root_yes_no_yes_yes_no_no_yes",
+   "split_index": 3,
+   "kind": "lit_projection",
+   "name": "Dark-quartic self-interaction from halo structure",
+   "attach_to": "R3+R4",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v2",
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P20",
+    "P8"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g12_leaf-ynyynnn",
+   "leaf_id": "root_yes_no_yes_yes_no_no_no",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "Existing dark-photon, dwarf-galaxy and CMB data",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v1",
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P1",
+    "P10"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g12_leaf-ynyynnn",
+   "leaf_id": "root_yes_no_yes_yes_no_no_no",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "XLZD recoil-spectrum DM mass",
+   "attach_to": "R0+R1",
+   "has_alternative": true,
+   "text_origin": "agg2-scrubbed+alt-rewritten",
+   "source_runs": [
+    "v2",
+    "v3",
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P6",
+    "P4",
+    "P11"
+   ],
+   "edited_fields": [
+    "feasibility",
+    "alt/what_this_is",
+    "alt/why_novel",
+    "alt/reasoning",
+    "alt/feasibility"
+   ]
+  },
+  {
+   "scope": "global-tree",
+   "card": "g13_leaf-ynynyy",
+   "leaf_id": "root_yes_no_yes_no_yes_yes",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "Existing dark-photon searches: BaBar, LHCb, CMS scouting",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "verbatim:v1",
+   "source_runs": [
+    "v1"
+   ],
+   "source_ids": [
+    "P1"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g13_leaf-ynynyy",
+   "leaf_id": "root_yes_no_yes_no_yes_yes",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "LHCb Run 3-Run 4 dark-photon dimuon scan, 5.5-36 GeV",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v1"
+   ],
+   "source_ids": [
+    "P2"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g14_leaf-ynyyynnnn",
+   "leaf_id": "root_yes_no_yes_yes_yes_no_no_no_no",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "BaBar + LHCb + CMS scouting dark-photon dimuon archive",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v3",
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P5",
+    "P9"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g14_leaf-ynyyynnnn",
+   "leaf_id": "root_yes_no_yes_yes_yes_no_no_no_no",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "XLZD nuclear-recoil spectrum mass fit",
+   "attach_to": "R0+R1",
+   "has_alternative": true,
+   "text_origin": "agg2-scrubbed+alt-rewritten",
+   "source_runs": [
+    "v1",
+    "v2",
+    "v4"
+   ],
+   "source_ids": [
+    "P2",
+    "P4",
+    "P8"
+   ],
+   "edited_fields": [
+    "feasibility",
+    "alt/what_this_is",
+    "alt/why_novel",
+    "alt/reasoning",
+    "alt/feasibility"
+   ]
+  },
+  {
+   "scope": "global-tree",
+   "card": "g15_leaf-ynyyynyy",
+   "leaf_id": "root_yes_no_yes_yes_yes_no_yes_yes",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "BaBar + LHCb visible dark-photon searches",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "verbatim:v3",
+   "source_runs": [
+    "v3"
+   ],
+   "source_ids": [
+    "P5"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "global-tree",
+   "card": "g15_leaf-ynyyynyy",
+   "leaf_id": "root_yes_no_yes_yes_yes_no_yes_yes",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "HL-LHC h->invisible + dark-bremsstrahlung dimuon (mono-Z')",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v4"
+   ],
+   "source_ids": [
+    "P8"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_U1p.p_DM.Z2+3+4+5__ynyyyn",
+   "leaf_id": "root_yes_no_yes_yes_yes_no",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "LHC Run-2 dimuon and dilepton resonance scans",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v4",
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P13",
+    "P10"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_U1p.p_DM.Z2+3+4+5__ynyyyn",
+   "leaf_id": "root_yes_no_yes_yes_yes_no",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "Fermi-LAT dwarf-stack cascade-spectrum reanalysis",
+   "attach_to": "R0+R1+R2",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v4"
+   ],
+   "source_ids": [
+    "P11"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_U1p.p_DM.Z2+3+4+5__ynyyyn",
+   "leaf_id": "root_yes_no_yes_yes_yes_no",
+   "split_index": 2,
+   "kind": "lit_projection",
+   "name": "HL-LHC dimuon scouting + LHCb Upgrade II, 21-24 GeV",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v1",
+    "v4"
+   ],
+   "source_ids": [
+    "P12",
+    "P2"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_U1p.p_DM.Z2+3+4+5__ynyynyyy",
+   "leaf_id": "root_yes_no_yes_yes_no_yes_yes_yes",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "BaBar/LHCb dark-photon dimuon resonance search",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "verbatim:v5-opus",
+   "source_runs": [
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P9"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_U1p.p_DM.Z2+3+4+5__ynyynyyy",
+   "leaf_id": "root_yes_no_yes_yes_no_yes_yes_yes",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "LHCb Run 3-4 inclusive dark-photon scan above 1.7 GeV",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v3"
+   ],
+   "source_ids": [
+    "P6"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_U1p.p_DM.Z2+3+4+5__ynyynnnyn",
+   "leaf_id": "root_yes_no_yes_yes_no_no_no_yes_no",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "BaBar + LHCb dark-photon dimuon searches",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v2"
+   ],
+   "source_ids": [
+    "P3"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_U1p.p_DM.Z2+3+4+5__ynyynnnyn",
+   "leaf_id": "root_yes_no_yes_yes_no_no_no_yes_no",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "XLZD recoil-spectrum dark-matter mass fit",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v3",
+    "v4"
+   ],
+   "source_ids": [
+    "P8",
+    "P6"
+   ],
+   "edited_fields": [
+    "reasoning",
+    "feasibility"
+   ]
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_U1p.p_DM.Z2+3+4+5__ynynyy",
+   "leaf_id": "root_yes_no_yes_no_yes_yes",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "Existing dark-photon searches (BaBar, LHCb, CMS scouting)",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v4",
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P7",
+    "P9"
+   ],
+   "edited_fields": [
+    "what_this_is"
+   ]
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_U1p.p_DM.Z2+3+4+5__ynynyy",
+   "leaf_id": "root_yes_no_yes_no_yes_yes",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "Dimuon dark-photon scan above 5.5 GeV (Belle II + CMS scouting + LHCb Run 3)",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v3"
+   ],
+   "source_ids": [
+    "P6"
+   ],
+   "edited_fields": [
+    "reasoning"
+   ]
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_U1p.p_DM.Z2+3+4+5__nnyn",
+   "leaf_id": "root_no_no_yes_no",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "LEP Z-pole invisible width",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "verbatim:v5-opus",
+   "source_runs": [
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P6"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_DM.Z2+3+4+5__yyy",
+   "leaf_id": "root_yes_yes_yes",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "Cluster-merger dark-matter self-interaction bound",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P11"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_DM.Z2+3+4+5__yyy",
+   "leaf_id": "root_yes_yes_yes",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "XLZD rate vs FCC-ee invisible-width consistency",
+   "attach_to": "R0+R1+R2",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v1"
+   ],
+   "source_ids": [
+    "P2"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_DM.Z2+3+4+5__yyy",
+   "leaf_id": "root_yes_yes_yes",
+   "split_index": 2,
+   "kind": "novel",
+   "name": "Self-interaction erosion of the Sgr A* dark-matter spike",
+   "attach_to": "R0+R2",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P12"
+   ],
+   "edited_fields": [
+    "reasoning"
+   ]
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_DM.Z2+3+4+5__yyny",
+   "leaf_id": "root_yes_yes_no_yes",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "Merging-cluster DM self-interaction bound",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v3",
+    "v4"
+   ],
+   "source_ids": [
+    "P5",
+    "P7"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_DM.Z2+3+4+5__yyny",
+   "leaf_id": "root_yes_yes_no_yes",
+   "split_index": 1,
+   "kind": "novel",
+   "name": "Dark-partner conversion cross-section si si -> si sr",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v1",
+    "v2"
+   ],
+   "source_ids": [
+    "P4",
+    "P2"
+   ],
+   "edited_fields": []
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_U1p.p_DM.Z2__yyyy",
+   "leaf_id": "root_yes_yes_yes_yes",
+   "split_index": 0,
+   "kind": "lit",
+   "name": "Existing prompt-dimuon dark-photon searches (LHCb, CMS scouting, BaBar)",
+   "attach_to": "leaf",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v2",
+    "v5-opus"
+   ],
+   "source_ids": [
+    "P9",
+    "P3"
+   ],
+   "edited_fields": [
+    "what_this_is"
+   ]
+  },
+  {
+   "scope": "per-model",
+   "card": "CsSg_U1p.p_DM.Z2__yyyy",
+   "leaf_id": "root_yes_yes_yes_yes",
+   "split_index": 1,
+   "kind": "lit_projection",
+   "name": "LHCb Upgrade II prompt A' -> mumu scan below 38 GeV",
+   "attach_to": "R0+R1",
+   "has_alternative": false,
+   "text_origin": "agg2-scrubbed",
+   "source_runs": [
+    "v3"
+   ],
+   "source_ids": [
+    "P6"
+   ],
+   "edited_fields": [
+    "reasoning"
+   ]
+  }
+ ]
+}

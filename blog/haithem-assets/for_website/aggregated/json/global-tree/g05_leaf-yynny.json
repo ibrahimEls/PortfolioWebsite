@@ -1,0 +1,63 @@
+{
+  "model": "combined",
+  "leaves": [
+    {
+      "leaf_id": "root_yes_yes_no_no_yes",
+      "lit_search_note": "Existing data checked and found non-separating: LHCb prompt+displaced A'->mumu (arXiv:1910.06926, 0.214-70 GeV, eps^2 to ~1e-6 in its best windows) and CMS dimuon incl. scouting (arXiv:1912.04776, 11.5-200 GeV) trim the large-eps slice of BOTH units over the shared mass window; Fermi-LAT dwarf stack recast with a 4-body cascade template (limit ~(0.5-1)e-25 cm^3/s at 300-700 GeV, a factor 3-5 above R1's relic-pinned (2-3)e-26 prediction, R0 up to 5 orders below); AMS-02 antiprotons (effective cascade sensitivity ~1e-25 cm^3/s, systematics-limited); LEP/EWPO kinetic-mixing fits (eps <~ 0.03, straddled by both); Planck CMB injection (R1's f_eff*sigmav/m ~20x below the bound); BaBar/NA64/Belle II (touch only R0's sub-10 GeV tail below prompt reach - one-sided non-exclusion today); cluster self-interaction (sigma/m ~ 1e-12 cm^2/g, >=10 orders below any floor); solar-disk gammas from escaping mediators (closed: eps >= 1e-6 caps boosted decay lengths at ~m scale). Direct detection cannot separate by construction: the dark-U(1)' current is purely off-diagonal, so Z'-mediated recoil is inelastic by ~GeV and sigma_SI is pure Higgs portal with identical alpha1 boxes. Residue after the splits above: R0's secluded members (g' in [0.31,0.48], MZp < MDM, including its pooled Z2 builds) are physically identical to R1 and differ only by dark-sector-only odd quartics whose sole handle, DM self-scattering at sigma/m <~ 3e-11 cm^2/g, is >=1e10 below cluster sensitivity - irreducible.",
+      "splits": [
+        {
+          "kind": "lit",
+          "attach_to": "leaf",
+          "name": "Existing LHCb/CMS prompt dark-photon dimuon scans",
+          "observable": "prompt mumu resonance with eps^2 >~ 1e-6, m in 0.2-200 GeV ?",
+          "what_this_is": "The Large Hadron Collider experiments LHCb and CMS have already recorded billions of proton-proton collisions and scanned the invariant mass of muon pairs for a narrow bump: the signature of a new gauge boson (a 'dark photon' Z') that mixes slightly with the ordinary photon and so is produced in collisions and decays to muon pairs. This is the most sensitive existing probe of exactly the mass-versus-mixing plane where these two model regions differ, because everything else on this leaf - direct detection, the solar neutrino flux, Higgs decays - is already pinned to be identical between them. It must be checked first, and today it does not decide.",
+          "refs": [
+            "arXiv:1910.06926",
+            "arXiv:1912.04776"
+          ],
+          "reasoning": "Both regions are the same complex-scalar + dark-U(1)' model with the Higgs portal pinned to the same band by the XLZD/DarkSide-yes, LZ-no sandwich on this path; all separating power lives in (MZp, eps, g'). Existing limits: LHCb excludes eps^2 down to ~1e-6..1e-5 over 0.214-70 GeV; CMS down to ~1e-6..1e-4 over 11.5-200 GeV. Predicted signal in each region: R0 (eps in [1e-6, 0.1], MZp in [1, 986] GeV) has an already-excluded large-eps slice AND an untouched eps <~ 1e-4 bulk; R1 (eps in [7e-6, 0.1], MZp in [17.5, 285] GeV) likewise. Both supports straddle the current exclusion contour over the same overlapping mass window, so existing data carve both regions without assigning either wholly to one side. Status: No Split - but the sub-17.5 GeV mass window, where R0 alone can live, is exactly where the next node pushes deeper.",
+          "feasibility": "Does NOT split: the published exclusions cut through the interior of both regions identically; neither region is wholly excluded or wholly allowed. Dominant systematic in these searches is the huge prompt combinatorial dimuon background and the SM resonance vetoes (phi, J/psi, psi', Upsilon), which blind narrow mass slices but do not change the no-split verdict.",
+          "outcomes": [
+            {
+              "label": "no split",
+              "regions": [
+                "R0",
+                "R1"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit_projection",
+          "attach_to": "R0+R1",
+          "name": "LHCb Upgrade II low-mass dimuon scan",
+          "observable": "prompt A'->mumu peak, m_mumu < 17 GeV, eps^2 >~ 1e-8 ?",
+          "what_this_is": "LHCb is a detector at the Large Hadron Collider with exceptionally sharp mass resolution for muon pairs; its approved Upgrade II will collect roughly fifty times the current dataset and push the bump hunt for a dark photon decaying to two muons an order of magnitude deeper in the mixing parameter. It probes best exactly the light end of the dark-photon mass range, below about 17 GeV. That window is decisive here: one region's Z' boson can be that light, while the other region's Z' is always heavier than 17.5 GeV, so a confirmed peak below 17 GeV picks out the first region unambiguously.",
+          "refs": [
+            "arXiv:1910.06926",
+            "arXiv:1603.08926",
+            "arXiv:1808.08865"
+          ],
+          "reasoning": "Set-level asymmetry: R1's MZp support is bounded below at 17.5 GeV, so R1 predicts exactly zero resonance signal in the 1-17 GeV dimuon window at any eps. R0's MZp is log-distributed over [1, 986] GeV: ~40% of its log-mass prior lies below 17.5 GeV, and within that corner the Upgrade II reach eps^2 ~ 1e-7..1e-8 (eps >~ 1e-4) covers roughly the upper 60% of R0's log-eps prior, predicting a visible narrow prompt peak. This is the low-mass complement of the catalog's high-mass Drell-Yan Z'-dilepton recast, not a refinement of it. Marginal in one direction, stated honestly: R0 points with MZp > 17.5 GeV or eps < 1e-4 also yield 'no peak', so the 'none' branch is where R1 is assigned rather than proven; that residue is irreducible because R0's surviving secluded points reproduce R1's relic-pinned g' band [0.31, 0.48] (g' ~ sqrt(MDM), from ss* -> Z'Z' thermal freeze-out) and then differ only by unobservable dark quartics (sigma_self/m ~ 3e-12 cm^2/g vs ~1 cm^2/g cluster sensitivity).",
+          "feasibility": "Today-experiment: LHCb prompt A'->mumu on 5.5 fb^-1, eps^2 sensitivity ~1e-6 in its best sub-20-GeV windows. Required: eps^2 ~ 1e-7 over 1-17 GeV. Factor ~10 in eps^2, consistent with background-limited sqrt(L) scaling from 5.5 to 300 fb^-1 (sqrt(55) ~ 7) plus trigger and detector gains. Rated possible: Upgrade II is an approved upgrade of an operating experiment and the trigger-level-analysis bump-hunt technique is already demonstrated. Dominant systematic: prompt combinatorial background shape and the SM resonance vetoes (J/psi, psi', Upsilon), which blind narrow mass slices within the window.",
+          "feasibility_rating": "possible",
+          "improvement_factor": 10,
+          "outcomes": [
+            {
+              "label": "peak < 17 GeV",
+              "regions": [
+                "R0"
+              ]
+            },
+            {
+              "label": "none",
+              "regions": [
+                "R1"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

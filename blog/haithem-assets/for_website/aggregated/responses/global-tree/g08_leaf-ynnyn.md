@@ -1,0 +1,94 @@
+## Reasoning — leaf `root_yes_no_no_yes_no` (630 pts, R0 + R1)
+
+**Dark-photon dimuon searches (LHCb, CMS scouting, BaBar)** (literature split). Both units predict a possible narrow visible Z' resonance with sigma.BR proportional to eps^2. R0 spans MZp = 1-246.2 GeV with eps = 1e-6 to 0.1; R1 spans MZp = 2.2-145.8 GeV with eps = 1.1e-6 to 0.085 - nested entirely inside R0. LHCb's prompt A'->mumu scan excludes eps >~ 5e-4-1e-3 in patches from threshold to 70 GeV, CMS dimuon scouting excludes eps >~ 4e-3-2e-2 over 11.5-200 GeV, and BaBar covers below 10.2 GeV at eps >~ 1e-3: every exclusion carves the identical high-eps slice from BOTH regions, and no peak exists in the data, so no outcome of the existing datasets assigns the units to different sides. Two honest caveats for the future, not the present: a peak measured above 146 GeV would one-sidedly tag R0 (a valid kinematic window - but no such peak exists today), and in R0's MZp > 2*MDM corner the dimuon branching ratio collapses by ~g_D^2/(eps^2 e^2), so even there the current null is uninformative. Status: No Split. Data already on tape; does NOT split these regions - the verdict is structural (R1's (MZp, eps) box is a strict subset of R0's), not sensitivity-limited. Dominant systematic in the searches themselves is the smooth Drell-Yan/quarkonium continuum shape under a narrow peak, irrelevant to the no-split conclusion.
+
+**AMS-02 cosmic-ray antiproton DM fit** (literature split on R0 + R1). R1 (Z2) can only make the observed relic through secluded SS*->Z'Z' (the Higgs portal at alpha1 <= 0.011 gives sigma_v <~ 2e-27 cm^3/s, an order short), so relic pinning guarantees a present-day s-wave sigma_v ~ 2-3e-26 cm^3/s into Z'Z'->4f, ~55-60% hadronic, at every point. R0's characteristic configurations (closed channel MZp > MDM, or g' down to 0.043) predict ~0-1e-27, rising to the thermal value only in its R1-like corner. Published AMS-02 analyses limit bb-like channels to (1-3)e-26 cm^3/s at 100-300 GeV; the softer 4-body cascade spectrum weakens this by ~2x to roughly (2-6)e-26, which straddles R1's guaranteed band rather than cutting below it. Status: No Split - but it is the closest existing data, and it motivates the gamma-ray projection below, which shares the messenger physics with controllable systematics. No split from data in hand: the existing limit sits within a factor ~2 of R1's guaranteed band but cannot decisively exclude it, because the fit is dominated by correlated cosmic-ray propagation parameters, antiproton production cross-sections and solar modulation, which can absorb a thermal-strength cascade signal. Both regions remain allowed today.
+
+**Fermi-LAT 15-yr + LSST dwarf stacking, secluded-cascade template** (literature projection on R0 + R1). R1 predicts a guaranteed sigma_v ~ (1-5)e-26 cm^3/s into Z'Z'->4f (relic-pinned: g'=0.10,M=110 -> 1.2e-26; g'=0.2,M=200 -> 1.9e-26; g'=0.31,M=307 -> 4.6e-26); R0's distinguishing configurations (closed Z'Z' channel with MZp>MDM, or g' down to 0.043) predict ~0 to 1e-27 cm^3/s. The cascade softens the spectrum so 100-300 GeV DM emits mostly at 3-15 GeV, keeping Fermi (not CTA) the right instrument. Marginal in one direction only: R0's box contains an R1-like thermal corner, so a detection does not exclude R0 - but a null limit below 1e-26 excludes all of R1. This is the narrowest R1 prediction available; parameter nesting makes a two-sided split impossible in principle. Not the catalog's Fermi15yr(WW) node: different spectral template (two-step 4-body cascade vs direct WW) and enlarged LSST-era dwarf stack. Today-experiment: Fermi-LAT 6-yr combined dwarf search, limit ~1e-25 cm^3/s at 200 GeV for bb-like spectra. Required: ~1e-26 cm^3/s over 100-300 GeV. Factor ~10, matching the collaboration's published 15-yr + ~45-dwarf projection; scaling assumed sqrt(t) in exposure (background-limited at few GeV) times linear gain in stacked J-factor from LSST-discovered dwarfs. Dominant systematic: dwarf J-factors (~factor 2). Rated possible: Fermi has >17 yr of data in hand, Rubin/LSST is operating, no new hardware needed - only the dedicated cascade template analysis.
+```json
+{
+  "model": "combined",
+  "leaves": [
+    {
+      "leaf_id": "root_yes_no_no_yes_no",
+      "lit_search_note": "Existing data swept: dark-photon dimuon scans (LHCb 0.214-70 GeV, CMS scouting 11.5-200 GeV, BaBar <10.2 GeV) carve only the eps >~ 5e-4-1e-2 top slice identically from both nested units; muon g-2 reaches only eps >~ 1.5e-2 at low MZp and its cut is HVP-theory-limited; LEP/EWPT Z-Z' mixing bites only eps >~ 3e-2 near MZ; Planck p_ann sits an order above both units' thermal s-wave injection with no Sommerfeld rescue (alpha_D*MDM < MZp where channels are open); beam dumps and far detectors have zero acceptance (c*tau <= 2 cm at the eps=1e-6 floor); secluded solar gammas need eps <~ 1.5e-11, five orders below the scan floor; DM-electron scattering is (mu_e/mu_n)^2-suppressed to ~1e-54 cm^2; every DD handle (isospin ratio, modulation, spectral shape) is blind because both units share the numerically identical Higgs-portal alpha1 band and the Z' vertex is purely off-diagonal (inelastic, GeV-split, closed). AMS-02 antiprotons come closest - within ~2x of R1's guaranteed cascade band - and are kept as the second no-split record. Post-split residue, physical and irreducible: on the 'thermal signal' branch R0's Z2-identical open-secluded corner mimics R1 exactly, and the only Lagrangian-level difference - the parity-odd dark quartics alpha3*si*sr^3, alpha5*si^3*sr (physical sums lambda_rrri, lambda_riii) - feeds no SM-facing vertex; its unique observable, the inelastic fraction of DM self-scattering at sigma/m <~ 1e-9 cm^2/g, is >=1e9 below cluster-scale sensitivity and channel-tagging is beyond any gravitational probe (recorded here rather than as an impossible node).",
+      "splits": [
+        {
+          "kind": "lit",
+          "attach_to": "leaf",
+          "name": "Dark-photon dimuon searches (LHCb, CMS scouting, BaBar)",
+          "observable": "narrow mumu (or ee) resonance, 0.2-200 GeV, eps >~ 1e-3 ?",
+          "what_this_is": "Collider experiments have already combed their recorded data for a new short-lived particle decaying to a pair of muons or electrons, which would appear as a narrow bump on the smooth lepton-pair mass spectrum. That bump is the classic signature of a dark photon - a new gauge boson talking to ordinary matter only through a small kinetic mixing with the photon - and both regions here contain exactly such a particle. The recorded data, however, only reach mixing strengths at the very top of what either region predicts, so they cannot yet decide between them.",
+          "refs": [
+            "arXiv:1910.06926",
+            "arXiv:1912.04776",
+            "arXiv:1406.2980"
+          ],
+          "reasoning": "Both units predict a possible narrow visible Z' resonance with sigma.BR proportional to eps^2. R0 spans MZp = 1-246.2 GeV with eps = 1e-6 to 0.1; R1 spans MZp = 2.2-145.8 GeV with eps = 1.1e-6 to 0.085 - nested entirely inside R0. LHCb's prompt A'->mumu scan excludes eps >~ 5e-4-1e-3 in patches from threshold to 70 GeV, CMS dimuon scouting excludes eps >~ 4e-3-2e-2 over 11.5-200 GeV, and BaBar covers below 10.2 GeV at eps >~ 1e-3: every exclusion carves the identical high-eps slice from BOTH regions, and no peak exists in the data, so no outcome of the existing datasets assigns the units to different sides. Two honest caveats for the future, not the present: a peak measured above 146 GeV would one-sidedly tag R0 (a valid kinematic window - but no such peak exists today), and in R0's MZp > 2*MDM corner the dimuon branching ratio collapses by ~g_D^2/(eps^2 e^2), so even there the current null is uninformative. Status: No Split.",
+          "feasibility": "Data already on tape; does NOT split these regions - the verdict is structural (R1's (MZp, eps) box is a strict subset of R0's), not sensitivity-limited. Dominant systematic in the searches themselves is the smooth Drell-Yan/quarkonium continuum shape under a narrow peak, irrelevant to the no-split conclusion.",
+          "outcomes": [
+            {
+              "label": "no peak in existing data",
+              "regions": [
+                "R0",
+                "R1"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit",
+          "attach_to": "R0+R1",
+          "name": "AMS-02 cosmic-ray antiproton DM fit",
+          "observable": "sigma_v(hadronic cascades) < 5e-26 cm^3/s at m_DM 100-300 GeV ?",
+          "what_this_is": "The AMS-02 spectrometer on the International Space Station has measured the cosmic-ray antiproton flux to percent-level precision. Dark matter annihilating into a pair of dark Z' bosons that decay mostly to quarks would add a bump of antiprotons on top of the astrophysical background, so this is the existing dataset that comes closest to testing the one region whose relic abundance forces it to annihilate at full thermal strength into exactly such hadron-rich final states. It brushes that prediction without being able to confirm or exclude it.",
+          "refs": [
+            "arXiv:1610.03071",
+            "arXiv:1712.00002"
+          ],
+          "reasoning": "R1 (Z2) can only make the observed relic through secluded SS*->Z'Z' (the Higgs portal at alpha1 <= 0.011 gives sigma_v <~ 2e-27 cm^3/s, an order short), so relic pinning guarantees a present-day s-wave sigma_v ~ 2-3e-26 cm^3/s into Z'Z'->4f, ~55-60% hadronic, at every point. R0's characteristic configurations (closed channel MZp > MDM, or g' down to 0.043) predict ~0-1e-27, rising to the thermal value only in its R1-like corner. Published AMS-02 analyses limit bb-like channels to (1-3)e-26 cm^3/s at 100-300 GeV; the softer 4-body cascade spectrum weakens this by ~2x to roughly (2-6)e-26, which straddles R1's guaranteed band rather than cutting below it. Status: No Split - but it is the closest existing data, and it motivates the gamma-ray projection below, which shares the messenger physics with controllable systematics.",
+          "feasibility": "No split from data in hand: the existing limit sits within a factor ~2 of R1's guaranteed band but cannot decisively exclude it, because the fit is dominated by correlated cosmic-ray propagation parameters, antiproton production cross-sections and solar modulation, which can absorb a thermal-strength cascade signal. Both regions remain allowed today.",
+          "outcomes": [
+            {
+              "label": "no decisive excess or exclusion",
+              "regions": [
+                "R0",
+                "R1"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "lit_projection",
+          "attach_to": "R0+R1",
+          "name": "Fermi-LAT 15-yr + LSST dwarf stacking, secluded-cascade template",
+          "observable": "sigma_v(Z'Z'->4f) limit < 1e-26 cm^3/s at 100-300 GeV ?",
+          "what_this_is": "The Fermi Large Area Telescope is a gamma-ray satellite that stares at dwarf spheroidal galaxies - small, dark-matter-dominated satellites of the Milky Way with almost no ordinary gamma-ray emission, making them the cleanest places to look for dark-matter annihilation. Here two dark-matter particles annihilate into a pair of dark Z' bosons, each of which decays to quarks and leptons; the resulting two-step cascade produces a soft, broad gamma-ray spectrum peaking at a few GeV, right where Fermi is most sensitive. The Z2 region must produce this signal at full thermal strength to explain the relic abundance, while the characteristic configurations of the Z2+3+4+5 region predict far less, so pushing the dwarf limit below thermal strength cleanly separates them.",
+          "refs": [
+            "arXiv:1503.02641",
+            "arXiv:1605.02016"
+          ],
+          "reasoning": "R1 predicts a guaranteed sigma_v ~ (1-5)e-26 cm^3/s into Z'Z'->4f (relic-pinned: g'=0.10,M=110 -> 1.2e-26; g'=0.2,M=200 -> 1.9e-26; g'=0.31,M=307 -> 4.6e-26); R0's distinguishing configurations (closed Z'Z' channel with MZp>MDM, or g' down to 0.043) predict ~0 to 1e-27 cm^3/s. The cascade softens the spectrum so 100-300 GeV DM emits mostly at 3-15 GeV, keeping Fermi (not CTA) the right instrument. Marginal in one direction only: R0's box contains an R1-like thermal corner, so a detection does not exclude R0 - but a null limit below 1e-26 excludes all of R1. This is the narrowest R1 prediction available; parameter nesting makes a two-sided split impossible in principle. Not the catalog's Fermi15yr(WW) node: different spectral template (two-step 4-body cascade vs direct WW) and enlarged LSST-era dwarf stack.",
+          "feasibility": "Today-experiment: Fermi-LAT 6-yr combined dwarf search, limit ~1e-25 cm^3/s at 200 GeV for bb-like spectra. Required: ~1e-26 cm^3/s over 100-300 GeV. Factor ~10, matching the collaboration's published 15-yr + ~45-dwarf projection; scaling assumed sqrt(t) in exposure (background-limited at few GeV) times linear gain in stacked J-factor from LSST-discovered dwarfs. Dominant systematic: dwarf J-factors (~factor 2). Rated possible: Fermi has >17 yr of data in hand, Rubin/LSST is operating, no new hardware needed - only the dedicated cascade template analysis.",
+          "feasibility_rating": "possible",
+          "improvement_factor": 10,
+          "outcomes": [
+            {
+              "label": "thermal signal",
+              "regions": [
+                "R1"
+              ]
+            },
+            {
+              "label": "no signal",
+              "regions": [
+                "R0"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
