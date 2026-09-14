@@ -4516,9 +4516,9 @@ button.btn--pill {
    so the emphasis is carried by size, a darker ink and a hairline
    stroke rather than by font-weight, which would only synthesise. */
 .post-quote__key {
-	font-size          : 1.14em;
+	font-size          : 1.26em;
 	color              : var(--color-text-dark);
-	-webkit-text-stroke: 0.4px currentColor;
+	-webkit-text-stroke: 0.8px currentColor;
 }
 
 .post-quote p {
