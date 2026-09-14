@@ -4423,10 +4423,10 @@ button.btn--pill {
 	margin-bottom: var(--vspace-0_25);
 }
 
-/* 20px prose. The gap between lines is the leading, 0.3125em of it, so
+/* 18px prose. The gap between lines is the leading, 0.3125em of it, so
    it grows with the type rather than being set in pixels */
 .post > p {
-	font-size  : 2rem;
+	font-size  : 1.8rem;
 	line-height: 1.3125;
 }
 
@@ -4468,7 +4468,7 @@ button.btn--pill {
 .post-steps {
 	margin      : 0 0 var(--vspace-0_5);
 	padding-left: 2.6rem;
-	font-size   : 2rem;
+	font-size   : 1.8rem;
 	line-height : 1.3125;
 }
 
