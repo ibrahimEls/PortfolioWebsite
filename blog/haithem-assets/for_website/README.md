@@ -2,7 +2,8 @@
 
 Built by `scripts/export_for_website.py` from the aggregation run
 `assets/llm-assets/scan-llm/scan-f1c1zn5-su2-singlet+doublet+triplet-lor-scalar+majorana+dirac-u1p-b50-agg2/trained` (agg2: five repeat runs — v1–v4
-Fable, v5 Opus — adjudicated by one Fable pass).
+Fable, v5 Opus — adjudicated by one Fable pass, plus a follow-up LLM pass
+that revised the paleo nodes; that pass's transcript was not retained locally).
 
 `aggregated/` mirrors one run's layout:
 
