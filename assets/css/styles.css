@@ -4428,6 +4428,23 @@ button.btn--pill {
 .post > p {
 	font-size  : 1.8rem;
 	line-height: 1.3125;
+	text-indent: 1.5em;
+}
+
+/* \parindent, as the LaTeX source sets it: a new paragraph is marked by
+   its indent. The paragraph that opens a section has nothing above it to
+   be separated from, so it stays flush -- a figure or a pull quote
+   between the heading and the text does not make it a continuation */
+.post > p.post-byline,
+.post > p.post-byline + p,
+.post > p.post-draft-note,
+.post > h2 + p,
+.post > h3 + p,
+.post > h2 + figure + p,
+.post > h3 + figure + p,
+.post > h2 + blockquote + p,
+.post > h3 + blockquote + p {
+	text-indent: 0;
 }
 
 .post h2 {
