@@ -94,6 +94,19 @@
         return n.label || n.kind || '';
     }
 
+    // the alternative card carries no type of its own, so read it off the
+    // kind line the way the dot's fill colour was chosen
+    function altType(a) {
+        var k = (a.kind || '').toLowerCase();
+        return k.indexOf('novel') >= 0 ? 'novel'
+             : k.indexOf('projection') >= 0 ? 'proj' : 'lit';
+    }
+
+    // "LLM-Agent Novel Observable Proposal" is too wide for an overview box
+    function shortKind(k) {
+        return String(k || '').replace(/^LLM[- ]?Agent\s+/i, '');
+    }
+
     /* Box geometry for a node: text wrapped, box sized to fit it. When the
        node carries agent output (arXiv references, a status or feasibility
        verdict) those get their own rows and the box grows to hold them. */
@@ -127,6 +140,18 @@
             refRows.forEach(function (row) { w = Math.max(w, row.w); });
         }
 
+        // an OR node stacks both cards in one box, split by a rule and an
+        // "OR" badge, the way the rendered tree PDF draws them
+        var alt = null;
+        if (opt.showAlt && n.alt) {
+            var kf = '700 ' + opt.kindSize + 'px ' + opt.family;
+            var altLines = wrap(n.alt.label || '', opt.maxW, opt.maxLines, font);
+            altLines.forEach(function (l) { w = Math.max(w, measure(l, font)); });
+            alt = { lines: altLines, type: altType(n.alt),
+                    mainKind: shortKind(n.kind), altKind: shortKind(n.alt.kind) };
+            w = Math.max(w, measure(alt.mainKind, kf), measure(alt.altKind, kf));
+        }
+
         // a leaf that knows its composition carries a button to show it
         var btn = null;
         if (opt.showModels && n.models && n.models.length) {
@@ -143,9 +168,12 @@
         var h = lines.length * opt.lineH + opt.padY * 2
               + (meta ? (opt.metaLineH || 0) : 0)
               + refRows.length * (opt.refLineH || 0)
-              + (btn ? (opt.btnLineH || 0) : 0);
+              + (btn ? (opt.btnLineH || 0) : 0)
+              + (alt ? opt.kindLineH * 2 + opt.orLineH
+                       + alt.lines.length * opt.lineH : 0);
         return {
             lines: lines, font: font, meta: meta, refRows: refRows, btn: btn,
+            alt: alt,
             w: Math.min(Math.max(w + opt.padX * 2, opt.minW),
                         opt.maxW + opt.padX * 2),
             h: h
@@ -155,7 +183,8 @@
     var OV = { size: 14, weight: '500', family: 'Roboto Flex, sans-serif',
                maxW: 215, maxLines: 2, padX: 12, padY: 9, lineH: 17, minW: 90,
                showModels: true, btnSize: 11.5, btnLineH: 22, btnPadX: 9,
-               btnH: 17 };
+               btnH: 17, showAlt: true, kindSize: 11, kindLineH: 15,
+               orSize: 12, orLineH: 24 };
     var WK = { size: 16, weight: '500', family: 'Roboto Flex, sans-serif',
                maxW: 275, maxLines: 3, padX: 14, padY: 11, lineH: 21, minW: 120,
                showRefs: true, metaSize: 12.5, metaLineH: 19,
@@ -191,19 +220,40 @@
                 .attr('stroke-dasharray', collapsed ? '5 3' : null);
             // the button lives in its own group, so clear that too or a
             // redraw leaves the old pill behind with its label stripped
-            g2.selectAll('text, a, g.ctree__nodebtn').remove();
+            g2.selectAll('text, a, line, g.ctree__nodebtn').remove();
             // main label sits above any agent output, so lay out from the top
-            var y = -b.h / 2 + opt.padY + opt.lineH * 0.72;
-            b.lines.forEach(function (line) {
+            var top = -b.h / 2 + opt.padY;
+
+            function kindRow(text, yy, fill) {
                 g2.append('text')
                     .attr('text-anchor', 'middle')
-                    .attr('y', y)
-                    .attr('font-size', opt.size)
-                    .attr('font-weight', opt.weight)
-                    .attr('fill', '#22262a')
-                    .text(line);
-                y += opt.lineH;
-            });
+                    .attr('y', yy)
+                    .attr('font-size', opt.kindSize)
+                    .attr('font-weight', 700)
+                    .attr('fill', fill)
+                    .text(text);
+            }
+            function labelRows(rows, yy) {
+                rows.forEach(function (line) {
+                    g2.append('text')
+                        .attr('text-anchor', 'middle')
+                        .attr('y', yy)
+                        .attr('font-size', opt.size)
+                        .attr('font-weight', opt.weight)
+                        .attr('fill', '#22262a')
+                        .text(line);
+                    yy += opt.lineH;
+                });
+                return yy;
+            }
+
+            // an OR box names each card, or the reader cannot tell which
+            // half of it the two outgoing edges belong to
+            if (b.alt) {
+                kindRow(b.alt.mainKind, top + opt.kindLineH * 0.72, t.stroke);
+                top += opt.kindLineH;
+            }
+            var y = labelRows(b.lines, top + opt.lineH * 0.72);
             if (b.meta) {
                 g2.append('text')
                     .attr('text-anchor', 'middle')
@@ -254,6 +304,36 @@
                 });
                 y += opt.refLineH;
             });
+
+            if (b.alt) {
+                var at = TYPE[b.alt.type] || TYPE.novel;
+                var half = b.w / 2 - opt.padX * 0.6;
+                var mid = y - opt.lineH * 0.72 + opt.orLineH / 2;
+                var gap = measure('OR', '700 ' + opt.orSize + 'px ' + opt.family)
+                        / 2 + 7;
+                [[-half, -gap], [gap, half]].forEach(function (seg) {
+                    g2.append('line')
+                        .attr('x1', seg[0]).attr('x2', seg[1])
+                        .attr('y1', mid).attr('y2', mid)
+                        .attr('stroke', t.stroke)
+                        .attr('stroke-width', 1)
+                        .attr('stroke-opacity', 0.55);
+                });
+                g2.append('text')
+                    .attr('text-anchor', 'middle')
+                    .attr('y', mid + opt.orSize * 0.35)
+                    .attr('font-size', opt.orSize)
+                    .attr('font-weight', 700)
+                    .attr('letter-spacing', 0.6)
+                    .attr('fill', t.stroke)
+                    .text('OR');
+                y += opt.orLineH;
+                kindRow(b.alt.altKind, y - opt.lineH * 0.72
+                        + opt.kindLineH * 0.72, at.stroke);
+                y = labelRows(b.alt.lines,
+                              y - opt.lineH * 0.72 + opt.kindLineH
+                              + opt.lineH * 0.72);
+            }
         });
         return all;
     }
@@ -271,8 +351,11 @@
     // --- overview ----------------------------------------------------------
 
     function layoutOverview() {
-        d3.tree().nodeSize([56, 300])(rootNode);
         rootNode.each(function (d) { d.box = box(d.data, OV); });
+        d3.tree().nodeSize([56, 300]).separation(function (a, b) {
+            var base = a.parent === b.parent ? 1 : 2;
+            return Math.max(base, ((a.box.h + b.box.h) / 2 + 14) / 56);
+        })(rootNode);
     }
 
     function updateOverview() {
@@ -297,7 +380,11 @@
             openDetail(d.data);
         });
 
-        var xs = d3.extent(nodes, function (d) { return d.x; });
+        // measure from the box edges: an OR box is several times taller
+        // than the row spacing, so its centre is not its extent
+        var xs = d3.extent(nodes.map(function (d) {
+            return [d.x - d.box.h / 2, d.x + d.box.h / 2];
+        }).flat());
         var ys = d3.extent(nodes, function (d) { return d.y; });
         svg.attr('viewBox', [ys[0] - 140, xs[0] - 40,
                              ys[1] - ys[0] + 320, xs[1] - xs[0] + 80].join(' '))
