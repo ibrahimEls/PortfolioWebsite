@@ -24,33 +24,32 @@ MAX_POINTS = 9000             # cap on probe rows per Lagrangian
 # Lagrangian classes (ordered by parameter dimension d).
 FIELDS = {
     1:  "Z₃: Real Scalar Singlet",
-    2:  "Z₃: Real Majorana Singlet",
-    3:  "Z₃: Real Majorana Triplet",
-    4:  "Z₃: Complex Dirac Doublet",
-    5:  "Z₃: Complex Dirac Triplet",
+    2:  "Z₃: Majorana Singlet",
+    3:  "Z₃: Majorana Triplet",
+    4:  "Z₃: Dirac Doublet",
+    5:  "Z₃: Dirac Triplet",
     6:  "Z₃: Complex Scalar Doublet",
-    7:  "Z₃: 3× Real Majorana Singlet",
-    8:  "Z₃: Complex Dirac Singlet",
-    9:  "Z₃: Real Majorana Singlet + Complex Dirac Doublet",
+    7:  "Z₃: 3× Majorana Singlet",
+    8:  "Z₃: Dirac Singlet",
+    9:  "Z₃: Majorana Singlet + Dirac Doublet",
     10: "Z₃: Complex Scalar Singlet",
     11: "Z₃: Complex Scalar Singlet",
     12: "Z₅: Complex Scalar Singlet",
-    13: "Z₄: Complex Dirac Doublet + 3× Complex Scalar Singlet "
-        "+ 2× Real Majorana Doublet + 2× Complex Dirac Singlet",
-    14: "Z₄: Real Scalar Singlet + Real Majorana Singlet "
-        "+ Complex Dirac Singlet",
-    15: "Z₂: Complex Scalar Doublet + 4× Complex Dirac Singlet "
-        "+ 2× Complex Dirac Doublet",
-    16: "Z₄: 2× Real Majorana Doublet + 2× Complex Scalar Singlet "
+    13: "Z₄: Dirac Doublet + 3× Complex Scalar Singlet "
+        "+ 2× Dirac Doublet + Dirac Singlet + Dirac Singlet",
+    14: "Z₄: Real Scalar Singlet + Majorana Singlet + Dirac Singlet",
+    15: "Z₂: Complex Scalar Doublet + Dirac Singlet "
+        "+ 3× Dirac Singlet + 2× Dirac Doublet",
+    16: "Z₄: 2× Dirac Doublet + 2× Complex Scalar Singlet "
         "+ 3× Complex Scalar Doublet",
-    17: "Z₃: Complex Scalar Singlet + Complex Dirac Singlet "
-        "+ Real Scalar Singlet",
-    18: "Z₂: Real Majorana Singlet + Complex Scalar Singlet",
-    19: "Z₂: 4× Real Majorana Singlet + 2× Complex Scalar Singlet",
-    20: "Z₃: 2× Complex Scalar Singlet + 3× Real Majorana Singlet "
-        "+ 3× Complex Scalar Singlet",
-    21: "Z₅: 3× Complex Scalar Singlet + Real Majorana Doublet "
+    17: "Z₃: Complex Scalar Singlet + Dirac Singlet + Real Scalar Singlet",
+    18: "Z₂: Majorana Singlet + Complex Scalar Singlet",
+    19: "Z₂: 3× Majorana Singlet + Majorana Singlet "
         "+ 2× Complex Scalar Singlet",
+    20: "Z₃: 2× Complex Scalar Singlet + 3× Majorana Singlet "
+        "+ 3× Complex Scalar Singlet",
+    21: "Z₅: 2× Complex Scalar Singlet "
+        "+ 3× Complex Scalar Singlet + Dirac Doublet + Complex Scalar Singlet",
 }
 U1_PRIME = {8, 10, 13, 15, 16, 17}   # classes carrying a dark U(1)'
 
