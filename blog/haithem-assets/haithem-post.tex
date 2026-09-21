@@ -25,6 +25,10 @@
 %    \alphazero
 %    thebibliography      -> the References list at the foot of the page,
 %                            \cite keys become superscript links into it
+%    \indexcard            -> the card this post gets on blog.html, the
+%                            listing page. It is not part of the post; it
+%                            sits at the end of this file, after the
+%                            references, and is drawn last on paper too.
 %
 %  Interactive keys, do not rename:
 %    alphazero  the bundled AlphaZero parameter-space page
@@ -44,9 +48,9 @@
 \newcommand{\alphago}{\textbf{\textsc{AlphaGo}}}
 \newcommand{\alphazero}{\textbf{\textsc{AlphaZero}}}
 
-\newcommand{\posttitle}[1]{\title{#1}}
+\newcommand{\posttitle}[1]{\title{#1}\def\theposttitle{#1}}
 \newcommand{\posttags}[1]{\def\theposttags{#1}}
-\newcommand{\postdate}[1]{\date{#1}}
+\newcommand{\postdate}[1]{\date{#1}\def\thepostdate{#1}}
 \newcommand{\postbyline}[1]{\def\thepostbyline{#1}}
 
 % opening paragraph, rendered larger on the page
@@ -84,6 +88,29 @@
   \end{center}}
 \makeatother
 
+% the blog.html listing: the page's own heading, and the card this post
+% gets in the list. Everything here is text on that page, not on the post.
+\newcommand{\indexpretitle}[1]{\def\theindexpretitle{#1}}
+\newcommand{\indextitle}[1]{\def\theindextitle{#1}}
+\newcommand{\postexcerpt}[1]{\def\thepostexcerpt{#1}}
+\newcommand{\postthumbalt}[1]{\def\thepostthumbalt{#1}}
+\newcommand{\postmore}[1]{\def\thepostmore{#1}}
+
+\newcommand{\indexcard}{%
+  \begin{tcolorbox}[colback=green!4,colframe=green!45!black,
+                    title={Listing page: \texttt{blog.html}}]
+  \textbf{Page heading:} \theindexpretitle{} / \theindextitle
+
+  \medskip
+  \textbf{Card}\par
+  \textit{Date:} \thepostdate\par
+  \textit{Title:} \theposttitle\par
+  \textit{Excerpt:} \thepostexcerpt\par
+  \textit{Tags:} \theposttags\par
+  \textit{Link:} \thepostmore\par
+  \textit{Thumbnail alt text:} \thepostthumbalt
+  \end{tcolorbox}}
+
 % the downloads picker at the foot of the post
 \newcommand{\datalist}[1]{%
   \begin{tcolorbox}[colback=gray!6,colframe=gray!50,
@@ -95,6 +122,15 @@
 \postdate{September 2026}
 \posttags{Large Lagrangian Models; Dark Matter; Reinforcement Learning; LLM Agents}
 \postbyline{by Ibrahim Elsharkawy, last edited September 2026}
+
+\indexpretitle{Blog}
+\indextitle{Research Thoughts}
+\postexcerpt{Most of the parameter space of any beyond-the-Standard-Model
+theory is already dead. Framing the hunt for what survives as a search
+problem, and letting LLM agents propose the observables that carve it up.}
+\postmore{Read post $\rightarrow$}
+\postthumbalt{Viable points found by the search in a Lagrangian's parameter
+space}
 
 \begin{document}
 \maketitle
@@ -277,5 +313,10 @@ masters chess, shogi, and Go through self-play}, Science \textbf{362} (2018)
 \href{https://doi.org/10.1126/science.aar6404}{doi:10.1126/science.aar6404}.
 
 \end{thebibliography}
+
+% ----------------------------------------------------------- listing page --
+% Not part of the post. This is the text on blog.html: the heading of the
+% listing page and the card that links here.
+\indexcard
 
 \end{document}
