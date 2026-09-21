@@ -4270,12 +4270,18 @@ button.btn--pill {
 	gap           : var(--vspace-0_25);
 }
 
-/* the artwork is transparent, so it sits straight on the card instead of in
-   a framed box; a soft wash behind it keeps it from reading as loose debris */
+/* the artwork is transparent, so it is mounted like a plate: a pale wash
+   inside a hairline frame, with the art clipped to it so the hover push
+   happens inside the frame rather than over the card */
 .post-list__thumb {
 	position     : relative;
-	border-radius: 0.9rem;
-	padding      : 0.3rem 0.4rem;
+	border-radius: 1rem;
+	padding      : var(--vspace-0_5) var(--vspace-0_75);
+	background   : linear-gradient(168deg, #fff 30%, var(--color-1-lightest) 100%);
+	border       : 1px solid var(--color-gray-3);
+	box-shadow   : 0 2px 10px rgba(0, 0, 0, 0.05);
+	overflow     : hidden;
+	transition   : border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .post-list__thumb::before {
@@ -4284,8 +4290,14 @@ button.btn--pill {
 	inset        : 0;
 	border-radius: inherit;
 	background   : radial-gradient(115% 95% at 50% 45%,
-	               rgba(255, 255, 255, 0.9) 0%,
-	               rgba(255, 255, 255, 0) 70%);
+	               rgba(255, 255, 255, 0.95) 0%,
+	               rgba(255, 255, 255, 0) 72%);
+}
+
+.post-list__link:hover .post-list__thumb,
+.post-list__link:focus .post-list__thumb {
+	border-color: var(--color-1-lighter);
+	box-shadow  : 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* the tree is a wide detail crop, so it gets to bleed past the column edge
@@ -4437,7 +4449,6 @@ button.btn--pill {
    between the heading and the text does not make it a continuation */
 .post > p.post-byline,
 .post > p.post-byline + p,
-.post > p.post-draft-note,
 .post > h2 + p,
 .post > h3 + p,
 .post > h2 + figure + p,
@@ -4626,16 +4637,6 @@ button.btn--pill {
 
 .post .lead {
 	margin-bottom: var(--vspace-1_25);
-}
-
-.post-draft-note {
-	font-size    : var(--text-sm);
-	color        : var(--color-text-light);
-	background   : #fdf6e6;
-	border-left  : 3px solid var(--color-1);
-	border-radius: 0 0.6rem 0.6rem 0;
-	padding      : var(--vspace-0_75) var(--vspace-1);
-	margin-top   : var(--vspace-1_5);
 }
 
 .figure-placeholder {
@@ -5821,6 +5822,37 @@ sup { top: -0.45em; }
 	border-radius  : 0.9rem;
 	padding        : 0.3rem 1.1rem;
 	transition     : background 0.18s ease, transform 0.18s ease;
+}
+
+/* the code has nowhere to point yet: the same pill, outlined rather than
+   filled, with the promise under it */
+.post-meta__pending {
+	position: relative;
+	display : inline-flex;
+}
+
+.post-meta__link--pending {
+	color     : var(--color-1);
+	background: transparent;
+	border    : 1px dashed var(--color-1);
+	cursor    : default;
+}
+
+/* hung under the pill rather than stacked with it, so the pills in the
+   row still line up with one another */
+.post-meta__soon {
+	position      : absolute;
+	top           : 100%;
+	left          : 0;
+	right         : 0;
+	margin-top    : 0.2rem;
+	text-align    : center;
+	white-space   : nowrap;
+	font-family   : var(--font-1);
+	font-size     : calc(var(--text-xs) * 0.82);
+	font-style    : italic;
+	letter-spacing: 0.04em;
+	color         : var(--color-1-lighter);
 }
 
 .post-meta__link:hover,
