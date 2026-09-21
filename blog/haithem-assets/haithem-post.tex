@@ -125,9 +125,7 @@
 
 \indexpretitle{Blog}
 \indextitle{Research Thoughts}
-\postexcerpt{Most of the parameter space of any beyond-the-Standard-Model
-theory is already dead. Framing the hunt for what survives as a search
-problem, and letting LLM agents propose the observables that carve it up.}
+\postexcerpt{The search for Beyond-Standard-Model (BSM) physics is limited not by the supply of theory descriptions but by the lack of discriminating experimental observations. In such cases, exploring the space of testable model \textit{signatures} may help identify overlooked experimental observables. We introduce \haithem{}, a framework built to do just that, composed of Large Lagrangian Models and LLM-agents.}
 \postmore{Read post $\rightarrow$}
 \postthumbalt{Viable points found by the search in a Lagrangian's parameter
 space}
@@ -250,9 +248,23 @@ sample is buried for a billion years and particles interact with the crystal lat
 dark matter mass independent of the galactic escape velocity.}
 As an initial test, we use our LLaM to scan through all single-dark-multiplet models our space allows and build our decision tree over the (small!) set. We find that degenerate leaves lead to the proposal of unapplied combinations of known observables.
 
-A specific example is a ``Novel Alternative" titled \textit{``Paleo-detector Ca/O recoil-spectrum ratio"}. The agent is given two models indistinguishable by all experiments in tree and differ only by their dark matter mass. The agent recognizes that dark matter mass can be probed by looking at maximum energy deposition seen in direct detection experiments, which is a function of the mass and the maximum expected velocity of the particle. This maximum velocity is given by the galactic escape velocity. 
+One motivating example is a ``Novel Alternative" shown in two nodes in the global tree, titled \textit{``Paleo-detector Ca/O recoil-spectrum ratio"}. In both cases, the agent was in need of a precise measurement of the dark matter mass $m_\chi$.  The agent recognizes that \cite{Drees:2008bv}'s description of the expected maximum kinetic energy a dark matter particle deposits in a direct detection detector is a good probe for $m_\chi$ and is given by,
+\begin{equation}
+E_{\rm max} \sim v^2_{\rm esc} f(m_\chi)
+\end{equation}
+where $v_{\rm esc}$ is the galactic escape velocity of the dark matter particles, $ f(m_\chi)$ is some known function of the dark matter mass. Thus, a statistically robust measurement of $E_{\rm max}$ may be a precise probe of the dark matter mass if $v_{\rm esc}$ is known.
 
-The agent identifies two issues with the approach. First, this requires many detection events seen near the maximum velocity, which in turn requires a very large time (exposure) of the direct detection experiments, and secondly, the galactic escape velocity is a source of error. As a solution to the first, it proposes the use of paleo detectors. These are minerals found deep underground, protected from cosmic rays and high temperatures for billions of years. Disturbances of the crystal lattice of these detectors contain permanent records of nuclear recoil events throughout their lifetime from many sources of background, along with potential dark matter interactions. For the second issue, the agent proposes the use of a ratio of the maximum energy deposition for two different nuclei, and specifically proposes the calcium and oxygen in gypsum. The ratio of the two remains a function of the dark-matter mass, but the dependence on the galactic escape velocity cancels. 
+The challenge is that the exposure needed (the amount of time a detector is collecting data) for measuring such an observable is very large, requiring many dark matter detections near $v_{\rm esc}$.
+
+As a solution, the agent reaches for paleo detectors, minerals found deep underground, protected from cosmic rays and high temperatures for billions of years. Disturbances of the crystal lattice of these detectors contain permanent records of potential dark matter interactions \cite{Baum:2018tfw,Baum:2023cct,Baum:2021jak,Edwards:2018hcf,Drukier:2018pdy}.
+
+However, by the nature of their long exposure taking place throughout our galaxy's history, paleo detectors introduce much more uncertainty in the galactic escape velocity $v^2_{\rm esc}$. As a solution, the agent proposes the use of the ratio of two direct detection targets,
+\begin{equation}
+    \frac{E_{\rm max}^{N_1}}{E_{\rm max}^{N_2}} \equiv f(m_\chi)
+\end{equation}
+which removes $v^2_{\rm esc}$ dependency entirely.
+
+It further reasons that identifying a single mineral containing two sufficiently sensitive target nuclei would be ideal for controlling error. For example, neutrons from radioactive decays of surrounding elements. It identifies calcium and oxygen in gypsum as such a pair, inspired by recent work in \cite{Theodosopoulos:2026eym} (though they do not consider this observable).
 
 Both paleo detectors and the ratio of observables have been proposed before, but the combination for this context appears to be unexplored. The proposal requires an in-depth analysis of its realism, but its existence motivates \haithem{}.
 
@@ -311,6 +323,45 @@ D.~Silver \emph{et al.}, \emph{A general reinforcement learning algorithm that
 masters chess, shogi, and Go through self-play}, Science \textbf{362} (2018)
 1140--1144,
 \href{https://doi.org/10.1126/science.aar6404}{doi:10.1126/science.aar6404}.
+
+\bibitem{Drees:2008bv}
+M.~Drees and C.-L.~Shan, \emph{Model-Independent Determination of the WIMP Mass
+from Direct Dark Matter Detection Data}, JCAP \textbf{06} (2008) 012,
+\href{https://arxiv.org/abs/0803.4477}{arXiv:0803.4477}.
+
+\bibitem{Baum:2018tfw}
+S.~Baum, A.~K.~Drukier, K.~Freese, M.~G\'orski and P.~Stengel,
+\emph{Searching for Dark Matter with Paleo-Detectors}, Phys. Lett. B
+\textbf{803} (2020) 135325,
+\href{https://arxiv.org/abs/1806.05991}{arXiv:1806.05991}.
+
+\bibitem{Baum:2023cct}
+S.~Baum \emph{et al.}, \emph{Mineral detection of neutrinos and dark matter. A
+whitepaper}, Phys. Dark Univ. \textbf{41} (2023) 101245,
+\href{https://arxiv.org/abs/2301.07118}{arXiv:2301.07118}.
+
+\bibitem{Baum:2021jak}
+S.~Baum, T.~D.~P.~Edwards, K.~Freese and P.~Stengel, \emph{New Projections for
+Dark Matter Searches with Paleo-Detectors}, Instruments \textbf{5} (2021) 21,
+\href{https://arxiv.org/abs/2106.06559}{arXiv:2106.06559}.
+
+\bibitem{Edwards:2018hcf}
+T.~D.~P.~Edwards, B.~J.~Kavanagh, C.~Weniger, S.~Baum, A.~K.~Drukier,
+K.~Freese, M.~G\'orski and P.~Stengel, \emph{Digging for dark matter: Spectral
+analysis and discovery potential of paleo-detectors}, Phys. Rev. D \textbf{99}
+(2019) 043541, \href{https://arxiv.org/abs/1811.10549}{arXiv:1811.10549}.
+
+\bibitem{Drukier:2018pdy}
+A.~K.~Drukier, S.~Baum, K.~Freese, M.~G\'orski and P.~Stengel,
+\emph{Paleo-detectors: Searching for Dark Matter with Ancient Minerals},
+Phys. Rev. D \textbf{99} (2019) 043014,
+\href{https://arxiv.org/abs/1811.06844}{arXiv:1811.06844}.
+
+\bibitem{Theodosopoulos:2026eym}
+D.~P.~Theodosopoulos, K.~Freese, C.~Kelso and P.~Stengel, \emph{Reconstructing
+Dark Matter Mass and Discriminating Standard and Non-Standard WIMP-Nucleus
+Interactions with Paleo-Detectors} (2026),
+\href{https://arxiv.org/abs/2608.10105}{arXiv:2608.10105}.
 
 \end{thebibliography}
 

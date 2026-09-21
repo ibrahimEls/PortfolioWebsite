@@ -4459,6 +4459,65 @@ button.btn--pill {
 	margin-bottom: var(--vspace-0_5);
 }
 
+/* a display equation, the page's answer to an equation environment. The
+   text that explains it continues the paragraph the equation interrupted,
+   so that paragraph stays flush the way LaTeX leaves it */
+.post-eq {
+	margin     : var(--vspace-0_5) 0 var(--vspace-0_75);
+	font-size  : 2rem;
+	line-height: 1.35;
+	text-align : center;
+	color      : var(--color-text-dark);
+}
+
+.post > .post-eq + p {
+	text-indent: 0;
+}
+
+/* a superscript and a subscript on the same stem, stacked as in print
+   rather than run one after the other */
+.post-scr {
+	display       : inline-block;
+	/* the block-level scripts inherit the paragraph's first-line indent
+	   otherwise, and the box opens a gap as wide as the indent */
+	text-indent   : 0;
+	vertical-align: -0.42em;
+	font-size     : 0.62em;
+	line-height   : 1.05;
+	text-align    : left;
+}
+
+.post-scr sup,
+.post-scr sub {
+	display       : block;
+	position      : static;
+	top           : auto;
+	bottom        : auto;
+	font-size     : 1em;
+	/* the base rule zeroes the leading so a script does not open up the
+	   line; stacked, the two need their own line back */
+	line-height   : 1.1;
+	vertical-align: baseline;
+}
+
+.post-frac {
+	display       : inline-block;
+	vertical-align: middle;
+	text-align    : center;
+	margin        : 0 0.2em;
+}
+
+.post-frac__num {
+	display      : block;
+	padding      : 0 0.4em 0.1em;
+	border-bottom: 1px solid currentColor;
+}
+
+.post-frac__den {
+	display: block;
+	padding: 0.12em 0.4em 0;
+}
+
 /* project and system names, the page's answer to \textsc in the source */
 .smallcaps {
 	font-variant  : small-caps;
