@@ -461,10 +461,18 @@
 
                                 <h2>Building the Decision Tree</h2>
 
-                                <blockquote class="post-quote">
-                                    <p>The Large Lagrangian Model finds <em>what theories to consider</em>, and the <em>LLM-agent
-                                       does the phenomenology there</em>, both working at scale.</p>
-                                </blockquote>
+                                <figure class="video-figure">
+                                    <video class="video-figure__player" width="1920" height="1080"
+                                           poster="haithem-assets/videos/tree-growth-poster.jpg"
+                                           autoplay muted loop playsinline controls preload="metadata">
+                                        <source src="haithem-assets/videos/tree-growth.mp4" type="video/mp4">
+                                    </video>
+                                    <figcaption>
+                                        The global signature tree as it is grown: the analytic observables split the
+                                        LLaM's viable regions first, then the LLM-agent nodes take over the leaves
+                                        nothing computed so far can tell apart.
+                                    </figcaption>
+                                </figure>
 
                                 <p>
                                     We take all viable points the LLaM found for a Lagrangian, and grow a tree with them, where each
@@ -528,6 +536,11 @@
                                     combination of observables from all runs. For all runs, tool use is enabled and set to web
                                     search and arXiv retrieval, which the agent must use to verify every reference it cites.
                                 </p>
+
+                                <blockquote class="post-quote">
+                                    <p>The Large Lagrangian Model finds <em>what theories to consider</em>, and the <em>LLM-agent
+                                       does the phenomenology there</em>, both working at scale.</p>
+                                </blockquote>
 
                                 <h2>What did we find?</h2>
 
@@ -783,6 +796,20 @@
     <script src="haithem-assets/tree-explorer.js"></script>
     <!-- <script src="haithem-assets/downloads.js"></script> -->
     <script src="haithem-assets/embed-fit.js"></script>
+    <script>
+        // a figure that loops forever is exactly what reduced motion is for:
+        // leave the poster up and hand the reader the controls
+        (function () {
+            if (!window.matchMedia
+                || !matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var vids = document.querySelectorAll('.video-figure__player[autoplay]');
+            Array.prototype.forEach.call(vids, function (v) {
+                v.removeAttribute('autoplay');
+                v.removeAttribute('loop');
+                v.pause();
+            });
+        })();
+    </script>
 
 </body>
 </html>

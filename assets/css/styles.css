@@ -4792,7 +4792,8 @@ button.btn--pill {
 /* the card's own padding closes these figures, so the caption does not
    add a second gap underneath it */
 .ps3d figcaption,
-.ctree figcaption {
+.ctree figcaption,
+.video-figure figcaption {
 	margin-top   : var(--vspace-0_5);
 	margin-bottom: 0;
 	font-size    : var(--text-sm);
@@ -5479,10 +5480,29 @@ button.btn--pill {
 .embed-figure,
 .static-figure--wide,
 .ps3d,
-.ctree {
+.ctree,
+.video-figure {
 	width       : min(126rem, 92vw);
 	margin-left : 50%;
 	transform   : translateX(-50%);
+}
+
+/* a recorded figure: the same frame the static ones get, with the video
+   clipped to it so the rounded corners hold */
+.video-figure {
+	/* vertical only: the shorthand would reset the 50% left margin the
+	   breakout rule above sets, and the figure would slide off-centre */
+	margin-top   : var(--vspace-1_5);
+	margin-bottom: var(--vspace-1_5);
+}
+
+.video-figure__player {
+	display      : block;
+	width        : 100%;
+	height       : auto;
+	border       : 1px solid var(--color-gray-3);
+	border-radius: 0.8rem;
+	background   : #fff;
 }
 
 /* the opening figure runs at 0.85 of that */

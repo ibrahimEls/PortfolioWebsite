@@ -15,6 +15,8 @@
 %    \lead{...}           -> the opening paragraph, set larger
 %    \interactive{key}{}  -> a live figure, keys listed below
 %    \figplace{file}{}{}  -> a static figure from haithem-assets/figures
+%    \videoplace{stem}{}  -> a video from haithem-assets/videos, played at
+%                            the interactive figures' width
 %    figrow environment   -> the figures inside share one row on the page
 %    \pullquote{...}      -> a large centred quote between sections
 %    \pullquote*{...}     -> the same panel without the quotation marks
@@ -68,6 +70,14 @@
   \begin{tcolorbox}[colback=blue!4,colframe=blue!40!black,
                     title={Figure: \texttt{#2}\ifx\relax#1\relax\else\ (#1)\fi}]
   \emph{Caption:} #3
+  \end{tcolorbox}}
+
+% a recorded figure: #1 file stem under haithem-assets/videos, #2 caption.
+% It plays on the page at the interactive figures' width
+\newcommand{\videoplace}[2]{%
+  \begin{tcolorbox}[colback=purple!4,colframe=purple!45!black,
+                    title={Video: \texttt{#1} (wide)}]
+  \emph{Caption:} #2
   \end{tcolorbox}}
 
 % the figures inside share one row on the page; on paper they simply follow
@@ -225,7 +235,9 @@ dimensionality.}
 
 \section{Building the Decision Tree}
 
-\pullquote*{The Large Lagrangian Model finds \emph{what theories to consider}, and the \emph{LLM-agent does the phenomenology there}, both working at scale.}
+\videoplace{tree-growth}{The global signature tree as it is grown: the
+analytic observables split the LLaM's viable regions first, then the LLM-agent
+nodes take over the leaves nothing computed so far can tell apart.}
 
 We take all viable points the LLaM found for a Lagrangian, and
 grow a tree with them, where each node is one observable, and each leaf defines a distinct combination of signatures and contains all viable points that share the same signatures. After growing the tree, we find leaves holding more than one region. We consider these degenerate, in that nothing we currently compute tells the theories in the leaf apart. 
@@ -241,6 +253,8 @@ We enforce ordering rules for the proposal of these node choices. The first atte
 
 We further use ensembling, creating the full tree $N_{\rm repeat} = 5$ times and passing all trees through an aggregation LLM-agent pass, in which the agent chooses the best combination of observables from all runs. For all runs, tool use is enabled and set to web search and arXiv retrieval, which the agent must use to verify every reference it cites. 
 
+
+\pullquote*{The Large Lagrangian Model finds \emph{what theories to consider}, and the \emph{LLM-agent does the phenomenology there}, both working at scale.}
 
 \section{What did we find?}
 \figplace[wide]{paleo-detector}{The agent's proposal, a gypsum paleo-detector. The
