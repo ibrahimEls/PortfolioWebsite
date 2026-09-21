@@ -17,6 +17,11 @@ that revised the paleo nodes; that pass's transcript was not retained locally).
     dot/per-model/<model>_base_titled.dot
     pdf/                                        `dot -Tpdf` of the dot files above
 
+Three per-model base trees were added later, from the same scan but from models
+whose leaves the aggregation never had to split, so they have no `_llm_titled`
+counterpart and no responses: `CsDh_DM.Z2+3+4+5`, `CsDh_U1p.m_DM.Z2+3+4+5` and
+`RsSg_DM.Z2+3+4+5`.
+
 The payload schema is exactly the repeat-run schema of
 `assets/llm-assets/tree-template/scan-llm-split*.md` — no adjudication fields
 (`candidate_reviews`, `aggregation_note`, `path_check`, `improvement_attempts`,
