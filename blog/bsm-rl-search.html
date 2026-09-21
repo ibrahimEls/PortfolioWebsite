@@ -192,17 +192,11 @@
                                 </blockquote>
 
                                 <p>
-                                    Large Language Models (LLMs) may be able to propose useful observables that are efficient at
-                                    disambiguating theories, but they currently struggle with open-ended questions and may be biased
-                                    toward previously explored observables inspired by Lagrangians or regions of Lagrangian
-                                    parameter space with high density in the literature
-                                </p>
-
-                                <p>
                                     We introduce <span class="smallcaps">hAIthem</span> (<strong>H</strong>idden-sector
                                     <strong>AI</strong> for <strong>T</strong>estable <strong>H</strong>ypothesis
-                                    <strong>E</strong>nu<strong>M</strong>eration), a framework designed to make observable
-                                    generation tractable, backronymed after a pioneer of the experimental method, Ibn Al-Haytham
+                                    <strong>E</strong>nu<strong>M</strong>eration), a framework designed to search the space of
+                                    experimental signatures beyond the literature, backronymed after a pioneer of the experimental
+                                    method, Ibn Al-Haytham
                                     (965&ndash;1040 CE), whose work cemented controlled experiment as the arbiter of competing
                                     theory<sup class="post-cite"><a href="#ref-2">2</a>,<a href="#ref-3">3</a></sup>. <span
                                     class="smallcaps">hAIthem</span> turns the task of signature generation into a competition
@@ -281,7 +275,19 @@
                                     environment with reinforcement learning (RL). The LLaM is trained to play a battleship-style
                                     game (with limited turns and limited probes per turn) over the parameter space of a theory. Its
                                     goal is to find regions in that parameter space that can be the correct description of reality
-                                    (that is, no experiment we check rules them out).
+                                    (that is, no experiment we consider rules them out).
+                                </p>
+
+                                <p>
+                                    For a given Lagrangian, this is similar in structure to <span
+                                    class="smallcaps">AlphaGo</span> and <span class="smallcaps">AlphaZero</span><sup
+                                    class="post-cite"><a href="#ref-4">4</a>,<a href="#ref-5">5</a>,<a
+                                    href="#ref-6">6</a></sup> and our approach borrows concepts from each of them. We have a space
+                                    too large for systematic search, made tractable by an RL agent trained with a physically
+                                    grounded &ldquo;game&rdquo; engine. We find the most effective method to build such an agent is
+                                    to adopt the paradigm that defines modern large language models and <span
+                                    class="smallcaps">AlphaGo</span>. That is, large-scale pretraining on an offline dataset,
+                                    followed by Reinforcement Learning fine-tuning in a live environment.
                                 </p>
 
                                 <figure class="ctree" id="ctree"
@@ -342,25 +348,27 @@
                                 <p>
                                     With a set of non-excluded regions found by the LLaM, <span class="smallcaps">hAIthem</span>
                                     constructs a decision tree that generates the competition between candidate signatures. The
-                                    decision tree is built by using analytically computed experimental observables. We compute many
-                                    observables and construct the tree based on bins of those observables. If the decision tree at a
-                                    leaf node contains more than one set of viable regions, we have found more than one description
-                                    of reality that shares exactly the same <em>signature</em> for the experiments we consider. In
-                                    this case, we turn the degeneracy into a question and employ an LLM-agent to continue the
-                                    splitting, asking it to search the literature or propose observables that can split the leaf.
+                                    decision tree formulation coupled to the LLaM is built to encourage the search for signatures
+                                    beyond the literature. Each node in the tree is an observable with a binary outcome that splits
+                                    LLaM-found regions (for example, do we expect an observation at experiment X or not), and the
+                                    leaves of the tree correspond to parameter-space regions that share an experimental signature
+                                    given by the set of nodes that comprise the path to the leaf. We first construct the tree with
+                                    analytically computed observables, depth-ordering observables by their ability to split the set
+                                    of regions we consider. In this construction, degenerate leaves are leaves with more than one
+                                    parameter-space region sharing every experimental signature we compute analytically. These
+                                    leaves are then handed to a set of LLM agents that attempt to propose realistic observables that
+                                    continue the splitting.
                                 </p>
 
                                 <p>
-                                    This approach stands in contrast to open-endedly querying an LLM about what observables may test
-                                    a class of models. In that case, the language model will tend to give answers as vague as the
-                                    question, and likely biased toward signatures well established in the literature. On the other
-                                    hand, breaking degenerate leaves (leaves with more than one parameter-space region that share
-                                    every experimental signature we compute) is a particular task with specific Lagrangians and
-                                    specific parameter values (masses, couplings, etc.). The LLM must give sharp binary verdicts as
-                                    to what and how degenerate regions differ in its proposal. Additionally, it is forced to think
-                                    beyond observables already analytically computed earlier in the tree and is allowed null answers
-                                    (no signature found). We further find that the decision tree formulation leads to a natural
-                                    grouping of Lagrangian-viable regions into experimentally distinguishable classes.
+                                    The tree construction turns breaking these degeneracies into a concrete, non-open-ended task
+                                    given specific Lagrangians and specific parameter values (masses, couplings, etc.). The
+                                    LLM-agents must compete to give realistic signatures along with sharp binary verdicts as to how
+                                    degenerate regions differ in their proposal. Additionally, they are forced to think beyond
+                                    observables already analytically computed earlier in the tree (reuse is explicitly prohibited)
+                                    and are allowed null answers (no signature found). We further find that the decision tree
+                                    formulation leads to a natural grouping of Lagrangian-viable regions into experimentally
+                                    distinguishable classes.
                                 </p>
 
                                 <h2>The Large Lagrangian Model</h2>
@@ -596,6 +604,22 @@
                                         J. Al-Khalili, <em>In retrospect: Book of Optics</em>, Nature
                                         <strong>518</strong> (2015) 164&ndash;165.
                                         <a href="https://doi.org/10.1038/518164a" target="_blank" rel="noopener">doi:10.1038/518164a</a>
+                                    </li>
+                                    <li id="ref-4">
+                                        D. Silver <em>et al.</em>, <em>Mastering the game of Go with deep neural networks and
+                                        tree search</em>, Nature <strong>529</strong> (2016) 484&ndash;489.
+                                        <a href="https://doi.org/10.1038/nature16961" target="_blank" rel="noopener">doi:10.1038/nature16961</a>
+                                    </li>
+                                    <li id="ref-5">
+                                        D. Silver <em>et al.</em>, <em>Mastering the game of Go without human knowledge</em>,
+                                        Nature <strong>550</strong> (2017) 354&ndash;359.
+                                        <a href="https://doi.org/10.1038/nature24270" target="_blank" rel="noopener">doi:10.1038/nature24270</a>
+                                    </li>
+                                    <li id="ref-6">
+                                        D. Silver <em>et al.</em>, <em>A general reinforcement learning algorithm that masters
+                                        chess, shogi, and Go through self-play</em>, Science <strong>362</strong> (2018)
+                                        1140&ndash;1144.
+                                        <a href="https://doi.org/10.1126/science.aar6404" target="_blank" rel="noopener">doi:10.1126/science.aar6404</a>
                                     </li>
                                 </ol>
                                 <p class="post-draft-note">

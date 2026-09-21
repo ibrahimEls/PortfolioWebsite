@@ -120,23 +120,23 @@ This is to say, there is an overabundance of ways to describe reality, but not e
 \pullquote*[What are unexplored \textbf{observables} that distinguish these descriptions?]{What is the best \textbf{description} of
 reality?}
 
-Large Language Models (LLMs) may be able to propose useful observables that are efficient at disambiguating theories, but they currently struggle with open-ended questions and may be biased toward previously explored observables inspired by Lagrangians or regions of Lagrangian parameter space with high density in the literature
 
-We introduce \haithem{} (\textbf{H}idden-sector \textbf{AI} for \textbf{T}estable \textbf{H}ypothesis \textbf{E}nu\textbf{M}eration), a framework designed to make observable generation tractable, backronymed after a pioneer of the experimental method, Ibn Al-Haytham (965-1040 CE), whose work cemented controlled experiment as the arbiter of competing theory \cite{Sabra:1989optics,Ibn-al-haythem-reflect}. \haithem{} turns the task of signature generation into a competition between candidate signatures' ability and practicality for separating two or more descriptions of reality that satisfy current experimental constraints.
+We introduce \haithem{} (\textbf{H}idden-sector \textbf{AI} for \textbf{T}estable \textbf{H}ypothesis \textbf{E}nu\textbf{M}eration), a framework designed to search the space of experimental signatures beyond the literature, backronymed after a pioneer of the experimental method, Ibn Al-Haytham (965-1040 CE), whose work cemented controlled experiment as the arbiter of competing theory \cite{Sabra:1989optics,Ibn-al-haythem-reflect}. \haithem{} turns the task of signature generation into a competition between candidate signatures' ability and practicality for separating two or more descriptions of reality that satisfy current experimental constraints.
 
 \interactive{param3d}{Watch a trained Large Lagrangian Model play the
 battleship-like search over parameter space.}
 
-To do so, \haithem{} is first composed of what we call a Large Lagrangian Model (LLaM), an autoregressive transformer pretrained from scratch on over 1 Billion Output Tokens from over $10,000$ specially tokenized Lagrangians, and fine-tuned in a live environment with reinforcement learning (RL). The LLaM is trained to play a battleship-style game (with limited turns and limited probes per turn) over the parameter space of a theory. Its goal is to find regions in that parameter space that can be the correct description of reality (that is, no experiment we check rules them out).
+To do so, \haithem{} is first composed of what we call a Large Lagrangian Model (LLaM), an autoregressive transformer pretrained from scratch on over 1 Billion Output Tokens from over $10,000$ specially tokenized Lagrangians, and fine-tuned in a live environment with reinforcement learning (RL). The LLaM is trained to play a battleship-style game (with limited turns and limited probes per turn) over the parameter space of a theory. Its goal is to find regions in that parameter space that can be the correct description of reality (that is, no experiment we consider rules them out).
 
+For a given Lagrangian, this is similar in structure to \textsc{AlphaGo} and \textsc{AlphaZero} \cite{silvergo,SilverGo2,doi:10.1126/science.aar6404} and our approach borrows concepts from each of them. We have a space too large for systematic search, made tractable by an RL agent trained with a physically grounded “game” engine. We find the most effective method to build such an agent is to adopt the paradigm that defines modern large language models and \textsc{AlphaGo}. That is, large-scale pretraining on an offline dataset, followed by Reinforcement Learning fine-tuning in a live environment.
 
 \interactive{tree}{\textbf{Walk the tree:} Answer what observables were found
 and find what Lagrangians survive. \textbf{Whole tree:} show the full tree,
 scroll to zoom, and click a node for its details.}
 
-With a set of non-excluded regions found by the LLaM, \haithem{} constructs a decision tree that generates the competition between candidate signatures. The decision tree is built by using analytically computed experimental observables. We compute many observables and construct the tree based on bins of those observables. If the decision tree at a leaf node contains more than one set of viable regions, we have found more than one description of reality that shares exactly the same \textit{signature} for the experiments we consider. In this case, we turn the degeneracy into a question and employ an LLM-agent to continue the splitting, asking it to search the literature or propose observables that can split the leaf.
+With a set of non-excluded regions found by the LLaM, \haithem{} constructs a decision tree that generates the competition between candidate signatures. The decision tree formulation coupled to the LLaM is built to encourage the search for signatures beyond the literature. Each node in the tree is an observable with a binary outcome that splits LLaM-found regions (for example, do we expect an observation at experiment X or not), and the leaves of the tree correspond to parameter-space regions that share an experimental signature given by the set of nodes that comprise the path to the leaf. We first construct the tree with analytically computed observables, depth-ordering observables by their ability to split the set of regions we consider. In this construction, degenerate leaves are leaves with more than one parameter-space region sharing every experimental signature we compute analytically. These leaves are then handed to a set of LLM agents that attempt to propose realistic observables that continue the splitting. 
 
-This approach stands in contrast to open-endedly querying an LLM about what observables may test a class of models. In that case, the language model will tend to give answers as vague as the question, and likely biased toward signatures well established in the literature. On the other hand,  breaking degenerate leaves (leaves with more than one parameter-space region that share every experimental signature we compute) is a particular task with specific Lagrangians and specific parameter values (masses, couplings, etc.). The LLM must give sharp binary verdicts as to what and how degenerate regions differ in its proposal. Additionally, it is forced to think beyond observables already analytically computed earlier in the tree and is allowed null answers (no signature found). We further find that the decision tree formulation leads to a natural grouping of Lagrangian-viable regions into experimentally distinguishable classes. 
+The tree construction turns breaking these degeneracies into a concrete, non-open-ended task given specific Lagrangians and specific parameter values (masses, couplings, etc.). The LLM-agents must compete to give realistic signatures along with sharp binary verdicts as to how degenerate regions differ in their proposal. Additionally, they are forced to think beyond observables already analytically computed earlier in the tree (reuse is explicitly prohibited) and are allowed null answers (no signature found). We further find that the decision tree formulation leads to a natural grouping of Lagrangian-viable regions into experimentally distinguishable classes.
 
 % ----------------------------------------------------------------- method --
 \section{The Large Lagrangian Model}
@@ -259,6 +259,22 @@ London, London (1989). ISBN 0-85481-072-2.
 \bibitem{Ibn-al-haythem-reflect}
 J.~Al-Khalili, \emph{In retrospect: Book of Optics}, Nature \textbf{518}
 (2015) 164--165, \href{https://doi.org/10.1038/518164a}{doi:10.1038/518164a}.
+
+\bibitem{silvergo}
+D.~Silver \emph{et al.}, \emph{Mastering the game of Go with deep neural
+networks and tree search}, Nature \textbf{529} (2016) 484--489,
+\href{https://doi.org/10.1038/nature16961}{doi:10.1038/nature16961}.
+
+\bibitem{SilverGo2}
+D.~Silver \emph{et al.}, \emph{Mastering the game of Go without human
+knowledge}, Nature \textbf{550} (2017) 354--359,
+\href{https://doi.org/10.1038/nature24270}{doi:10.1038/nature24270}.
+
+\bibitem{doi:10.1126/science.aar6404}
+D.~Silver \emph{et al.}, \emph{A general reinforcement learning algorithm that
+masters chess, shogi, and Go through self-play}, Science \textbf{362} (2018)
+1140--1144,
+\href{https://doi.org/10.1126/science.aar6404}{doi:10.1126/science.aar6404}.
 
 \end{thebibliography}
 
