@@ -4529,6 +4529,58 @@ button.btn--pill {
 	padding: 0.12em 0.4em 0;
 }
 
+/* the paper this post accompanies: its title page, set apart from the prose
+   the way the reference list is */
+.post-paper {
+	margin       : var(--vspace-1) 0 var(--vspace-1_5);
+	padding      : var(--vspace-1) var(--vspace-1_25);
+	border       : 1px solid var(--color-gray-3);
+	border-left  : 3px solid var(--color-1);
+	border-radius: 0 1.2rem 1.2rem 0;
+	background   : var(--color-1-lightest);
+}
+
+.post-paper__title {
+	font-family: var(--font-2);
+	font-size  : var(--text-lg);
+	line-height: 1.25;
+	color      : var(--color-text-dark);
+	margin     : 0 0 var(--vspace-0_25);
+}
+
+.post-paper__authors {
+	font-size  : var(--text-sm);
+	line-height: 1.5;
+	margin     : 0 0 var(--vspace-0_25);
+}
+
+.post-paper__affil {
+	margin     : 0 0 var(--vspace-0_5);
+	padding    : 0 0 0 2.2rem;
+	list-style : decimal;
+	font-size  : calc(var(--text-sm) * 0.92);
+	line-height: 1.45;
+	color      : var(--color-text-light);
+}
+
+.post-paper__label {
+	font-family   : var(--font-1);
+	font-size     : var(--text-xs);
+	font-weight   : 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color         : var(--color-1-dark);
+	margin        : 0 0 var(--vspace-0_125, 0.4rem);
+}
+
+.post-paper__abstract {
+	/* a step under the prose: this is the paper talking, not the post */
+	font-size  : 1.7rem;
+	line-height: 1.45;
+	margin     : 0;
+	text-indent: 0;
+}
+
 /* project and system names, the page's answer to \textsc in the source */
 .smallcaps {
 	font-variant  : small-caps;

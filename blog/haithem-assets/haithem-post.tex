@@ -25,6 +25,9 @@
 %                            the text column (for very wide diagrams)
 %    \haithem \alphago    -> names, styled the same wherever they appear
 %    \alphazero
+%    \papercard            -> the "The paper" block above the references: the
+%                            paper's title, authors and abstract, which are
+%                            also the page's search metadata
 %    thebibliography      -> the References list at the foot of the page,
 %                            \cite keys become superscript links into it
 %    \indexcard            -> the card this post gets on blog.html, the
@@ -98,6 +101,21 @@
   \end{center}}
 \makeatother
 
+% the paper this post accompanies. Printed on the page under "The paper",
+% just above the references, and repeated in the page's metadata so the
+% paper's title and abstract find their way here
+\newcommand{\papertitle}[1]{\def\thepapertitle{#1}}
+\newcommand{\paperauthors}[1]{\def\thepaperauthors{#1}}
+\newcommand{\paperaffil}[1]{\def\thepaperaffil{#1}}
+\newcommand{\paperabstract}[1]{\def\thepaperabstract{#1}}
+
+\newcommand{\papercard}{%
+  \section*{The paper}
+  \noindent{\large\thepapertitle}\par\medskip
+  \noindent\thepaperauthors\par\smallskip
+  \begin{enumerate}\itemsep0pt \thepaperaffil \end{enumerate}
+  \noindent\textbf{Abstract.} \thepaperabstract\par}
+
 % the blog.html listing: the page's own heading, and the card this post
 % gets in the list. Everything here is text on that page, not on the post.
 \newcommand{\indexpretitle}[1]{\def\theindexpretitle{#1}}
@@ -132,6 +150,47 @@
 \postdate{September 2026}
 \posttags{Large Lagrangian Models; Dark Matter; Reinforcement Learning; LLM Agents}
 \postbyline{by Ibrahim Elsharkawy, last edited September 2026}
+
+\papertitle{Searching for BSM Experimental Signatures with Large Lagrangian
+Models}
+\paperauthors{Ibrahim Elsharkawy$^{1,2}$, Victoria Knapp-Perez$^{3,4}$,
+Wahid Bhimji$^{2}$, Aishik Ghosh$^{5,6}$}
+\paperaffil{%
+  \item Department of Physics, University of Toronto and Vector Institute,
+        Toronto, ON, Canada
+  \item NERSC, Lawrence Berkeley National Laboratory, Berkeley, California, USA
+  \item Department of Physics and Astronomy, University of California, Irvine,
+        CA 92697, USA
+  \item Halluminate, San Francisco, California, USA, 94107
+  \item Georgia Institute of Technology, Atlanta, GA 30332, USA
+  \item Physics Division, Lawrence Berkeley National Laboratory, Berkeley,
+        CA 94720, USA}
+\paperabstract{The search for Beyond-Standard-Model (BSM) physics is generally
+limited not by the supply of theory descriptions but by the lack of
+discriminating experimental observations. A case in point is dark matter, where
+the overwhelming gravitational evidence only goes so far in distinguishing
+between models within a vast theory space. In such cases, exploring the space of
+testable model signatures may help identify overlooked experimental observables
+and indicate which future experiments are useful for breaking degeneracies
+within a class of models. A challenge is designing a search that explores models
+and their signatures outside what is found in the literature. We introduce
+\haithem{}, a framework built to do just that, composed of two stages. The first
+is a reinforcement-learning agent that learns to find portions of a theory's
+high-dimensional parameter space that are not excluded by playing a
+Battleship-style ``game''. The agent is built as a Large Lagrangian Model
+(LLaM), an autoregressive transformer that reads a tokenized Lagrangian, is
+pretrained at scale (here on $\sim$1 billion tokens from $\sim$10,000
+Lagrangians), and is fine-tuned in a live environment. The second is a
+decision-tree construction that first separates LLaM-found regions with
+analytically computed observables, then passes remaining degenerate regions to a
+set of LLM agents that compete in producing realistic signatures. For this
+proof-of-concept, we focus on the space of thermal WIMPs. Compared to a
+genetic-algorithm-based baseline, the LLaM-search discovers more viable regions
+and greater physical diversity within them. As an example of how such a tool
+could be useful, we search for signatures over a set of single-dark-multiplet
+models. Already in this well-studied space, \haithem{} proposes combinations of
+observables not previously studied, for example, the application of a
+halo-independent kinematic ratio to paleo-detectors.}
 
 \indexpretitle{Blog}
 \indextitle{Research Thoughts}
@@ -235,9 +294,7 @@ dimensionality.}
 
 \section{Building the Decision Tree}
 
-\videoplace{tree-growth}{The global signature tree as it is grown: the
-analytic observables split the LLaM's viable regions first, then the LLM-agent
-nodes take over the leaves nothing computed so far can tell apart.}
+\videoplace{tree-growth}{The global signature tree as it grows.}
 
 We take all viable points the LLaM found for a Lagrangian, and
 grow a tree with them, where each node is one observable, and each leaf defines a distinct combination of signatures and contains all viable points that share the same signatures. After growing the tree, we find leaves holding more than one region. We consider these degenerate, in that nothing we currently compute tells the theories in the leaf apart. 
@@ -303,6 +360,9 @@ This work opens the door to large-scale searches for unexplored observables acro
 % as one Markdown file. Each button greys out where that run has nothing to
 % give. Nothing to write here, it updates itself when the downloads are
 % rebuilt.}
+
+% ----------------------------------------------------------- the paper ----
+\papercard
 
 % ------------------------------------------------------------ references --
 \begin{thebibliography}{9}
