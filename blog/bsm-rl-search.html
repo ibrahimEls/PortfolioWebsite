@@ -778,54 +778,6 @@
                                     matter and BSM models, and may help the community make better-informed scientific investments.
                                 </p>
 
-                                <h2 id="paper">The paper</h2>
-
-                                <div class="post-paper">
-                                    <p class="post-paper__title">Searching for BSM Experimental Signatures with Large
-                                       Lagrangian Models</p>
-                                    <p class="post-paper__authors">
-                                        <a href="https://ibrahimelsharkawy.com/">Ibrahim Elsharkawy</a><sup>1,2</sup>,
-                                        <a href="https://inspirehep.net/authors/1848398">Victoria Knapp-Perez</a><sup>3,4</sup>,
-                                        <a href="https://www.nersc.gov/profile/wahid-bhimji">Wahid Bhimji</a><sup>2</sup>,
-                                        <a href="https://physics.gatech.edu/user/aishik-ghosh">Aishik Ghosh</a><sup>5,6</sup>
-                                    </p>
-                                    <ol class="post-paper__affil">
-                                        <li>Department of Physics, University of Toronto and Vector Institute, Toronto, ON, Canada</li>
-                                        <li>NERSC, Lawrence Berkeley National Laboratory, Berkeley, California, USA</li>
-                                        <li>Department of Physics and Astronomy, University of California, Irvine, CA 92697, USA</li>
-                                        <li>Halluminate, San Francisco, California, USA, 94107</li>
-                                        <li>Georgia Institute of Technology, Atlanta, GA 30332, USA</li>
-                                        <li>Physics Division, Lawrence Berkeley National Laboratory, Berkeley, CA 94720, USA</li>
-                                    </ol>
-                                    <p class="post-paper__label">Abstract</p>
-                                    <p class="post-paper__abstract">
-                                        The search for Beyond-Standard-Model (BSM) physics is generally limited not by the supply
-                                        of theory descriptions but by the lack of discriminating experimental observations. A case
-                                        in point is dark matter, where the overwhelming gravitational evidence only goes so far in
-                                        distinguishing between models within a vast theory space. In such cases, exploring the
-                                        space of testable model signatures may help identify overlooked experimental observables
-                                        and indicate which future experiments are useful for breaking degeneracies within a class
-                                        of models. A challenge is designing a search that explores models and their signatures
-                                        outside what is found in the literature. We introduce <span
-                                        class="smallcaps">hAIthem</span>, a framework built to do just that, composed of two
-                                        stages. The first is a reinforcement-learning agent that learns to find portions of a
-                                        theory's high-dimensional parameter space that are not excluded by playing a
-                                        Battleship-style &ldquo;game&rdquo;. The agent is built as a Large Lagrangian Model (LLaM),
-                                        an autoregressive transformer that reads a tokenized Lagrangian, is pretrained at scale
-                                        (here on &sim;1 billion tokens from &sim;10,000 Lagrangians), and is fine-tuned in a live
-                                        environment. The second is a decision-tree construction that first separates LLaM-found
-                                        regions with analytically computed observables, then passes remaining degenerate regions to
-                                        a set of LLM agents that compete in producing realistic signatures. For this
-                                        proof-of-concept, we focus on the space of thermal WIMPs. Compared to a
-                                        genetic-algorithm-based baseline, the LLaM-search discovers more viable regions and greater
-                                        physical diversity within them. As an example of how such a tool could be useful, we search
-                                        for signatures over a set of single-dark-multiplet models. Already in this well-studied
-                                        space, <span class="smallcaps">hAIthem</span> proposes combinations of observables not
-                                        previously studied, for example, the application of a halo-independent kinematic ratio to
-                                        paleo-detectors.
-                                    </p>
-                                </div>
-
                                 <h2 id="references">References</h2>
 
                                 <ol class="post-refs">

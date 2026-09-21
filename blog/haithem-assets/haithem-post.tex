@@ -25,9 +25,9 @@
 %                            the text column (for very wide diagrams)
 %    \haithem \alphago    -> names, styled the same wherever they appear
 %    \alphazero
-%    \papercard            -> the "The paper" block above the references: the
-%                            paper's title, authors and abstract, which are
-%                            also the page's search metadata
+%    \papercard            -> not text on the page: the paper's title, authors
+%                            and abstract, which become the page's search
+%                            metadata (description and JSON-LD)
 %    thebibliography      -> the References list at the foot of the page,
 %                            \cite keys become superscript links into it
 %    \indexcard            -> the card this post gets on blog.html, the
@@ -101,20 +101,22 @@
   \end{center}}
 \makeatother
 
-% the paper this post accompanies. Printed on the page under "The paper",
-% just above the references, and repeated in the page's metadata so the
-% paper's title and abstract find their way here
+% the paper this post accompanies. Not printed on the page: it is the source
+% of the page's search metadata (the description a search engine shows, and
+% the JSON-LD naming the paper, its authors and its abstract)
 \newcommand{\papertitle}[1]{\def\thepapertitle{#1}}
 \newcommand{\paperauthors}[1]{\def\thepaperauthors{#1}}
 \newcommand{\paperaffil}[1]{\def\thepaperaffil{#1}}
 \newcommand{\paperabstract}[1]{\def\thepaperabstract{#1}}
 
 \newcommand{\papercard}{%
-  \section*{The paper}
-  \noindent{\large\thepapertitle}\par\medskip
-  \noindent\thepaperauthors\par\smallskip
+  \begin{tcolorbox}[colback=cyan!4,colframe=cyan!45!black,
+                    title={Page metadata: the paper (not printed on the page)}]
+  \textbf{Title:} \thepapertitle\par\smallskip
+  \textbf{Authors:} \thepaperauthors
   \begin{enumerate}\itemsep0pt \thepaperaffil \end{enumerate}
-  \noindent\textbf{Abstract.} \thepaperabstract\par}
+  \textbf{Abstract:} \thepaperabstract
+  \end{tcolorbox}}
 
 % the blog.html listing: the page's own heading, and the card this post
 % gets in the list. Everything here is text on that page, not on the post.
@@ -361,7 +363,7 @@ This work opens the door to large-scale searches for unexplored observables acro
 % give. Nothing to write here, it updates itself when the downloads are
 % rebuilt.}
 
-% ----------------------------------------------------------- the paper ----
+% ------------------------------------------- the paper, as page metadata --
 \papercard
 
 % ------------------------------------------------------------ references --
