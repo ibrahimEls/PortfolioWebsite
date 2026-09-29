@@ -1,0 +1,203 @@
+% ===========================================================================
+%  ASTROLABE blog post, editable source
+%
+%  Write the prose here; hand the file back and it gets pushed to
+%  blog/astrolabe-flow-matching.html. Everything the page renders has a placeholder
+%  below, in page order, so moving a \interactive or \figplace block moves
+%  the real thing on the page.
+%
+%  Compile with pdflatex to see the layout with the placeholders drawn in.
+%
+%  Rules of the mapping:
+%    \section{...}        -> an <h2> on the page
+%    \subsection{...}     -> an <h3> on the page
+%    ordinary paragraphs  -> <p>
+%    \lead{...}           -> the opening paragraph, set larger
+%    \interactive{key}{}  -> a live figure, keys listed below
+%    \figplace{file}{}{}  -> a static figure from haithem-assets/figures
+%    \videoplace{stem}{}  -> a video from haithem-assets/videos, played at
+%                            the interactive figures' width
+%    figrow environment   -> the figures inside share one row on the page
+%    \pullquote{...}      -> a large centred quote between sections
+%    \pullquote*{...}     -> the same panel without the quotation marks
+%    \pullquote[b]{a}     -> two of them, "a" then an arrow then "b"
+%    \wide                -> as the last argument, breaks the figure out of
+%                            the text column (for very wide diagrams)
+%    \astrolabe           -> a name, styled the same wherever it appears
+%    \papercard            -> not text on the page: the paper's title, authors
+%                            and abstract, which become the page's search
+%                            metadata (description and JSON-LD)
+%    thebibliography      -> the References list at the foot of the page,
+%                            \cite keys become superscript links into it
+%    \indexcard            -> the card this post gets on blog.html, the
+%                            listing page. It is not part of the post; it
+%                            sits at the end of this file, after the
+%                            references, and is drawn last on paper too.
+%
+%  Interactive keys: none yet. Add one here when a live figure is built,
+%  and use \interactive{<key>}{<caption>} where it belongs in the body.
+% ===========================================================================
+
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{parskip}
+
+% names that get the same bold small-caps treatment wherever they appear
+\newcommand{\astrolabe}{\textbf{\textsc{Astrolabe}}}
+
+\newcommand{\posttitle}[1]{\title{#1}\def\theposttitle{#1}}
+\newcommand{\posttags}[1]{\def\theposttags{#1}}
+\newcommand{\postdate}[1]{\date{#1}\def\thepostdate{#1}}
+\newcommand{\postbyline}[1]{\def\thepostbyline{#1}}
+
+% opening paragraph, rendered larger on the page
+\newcommand{\lead}[1]{{\large #1}\par\medskip}
+
+% a live figure on the page
+\newcommand{\interactive}[3][]{%
+  \begin{tcolorbox}[colback=orange!5,colframe=orange!60!black,
+                    title={Interactive: \texttt{#2}\ifx\relax#1\relax\else\ (#1)\fi}]
+  \emph{Caption:} #3
+  \end{tcolorbox}}
+
+% a static figure; #1 optional "wide", #2 file stem, #3 caption
+\newcommand{\figplace}[3][]{%
+  \begin{tcolorbox}[colback=blue!4,colframe=blue!40!black,
+                    title={Figure: \texttt{#2}\ifx\relax#1\relax\else\ (#1)\fi}]
+  \emph{Caption:} #3
+  \end{tcolorbox}}
+
+% a recorded figure: #1 file stem under haithem-assets/videos, #2 caption.
+% It plays on the page at the interactive figures' width
+\newcommand{\videoplace}[2]{%
+  \begin{tcolorbox}[colback=purple!4,colframe=purple!45!black,
+                    title={Video: \texttt{#1} (wide)}]
+  \emph{Caption:} #2
+  \end{tcolorbox}}
+
+% the figures inside share one row on the page; on paper they simply follow
+% one another
+\newenvironment{figrow}{}{}
+
+% a large centred quote. \pullquote{one} on its own, or \pullquote[after]{before}
+% for the two-part form with an arrow between them
+\makeatletter
+\newcommand{\pullquote}{\@ifstar\pq@bare\pq@quoted}
+\newcommand{\pq@quoted}[2][]{%
+  \begin{center}\itshape\large
+  ``#2''\ifx\relax#1\relax\else\ $\Rightarrow$\ ``#1''\fi
+  \end{center}}
+\newcommand{\pq@bare}[2][]{%
+  \begin{center}\itshape\large
+  #2\ifx\relax#1\relax\else\ $\Rightarrow$\ #1\fi
+  \end{center}}
+\makeatother
+
+% the paper this post accompanies. Not printed on the page: it is the source
+% of the page's search metadata (the description a search engine shows, and
+% the JSON-LD naming the paper, its authors and its abstract)
+\newcommand{\papertitle}[1]{\def\thepapertitle{#1}}
+\newcommand{\paperauthors}[1]{\def\thepaperauthors{#1}}
+\newcommand{\paperaffil}[1]{\def\thepaperaffil{#1}}
+\newcommand{\paperabstract}[1]{\def\thepaperabstract{#1}}
+
+\newcommand{\papercard}{%
+  \begin{tcolorbox}[colback=cyan!4,colframe=cyan!45!black,
+                    title={Page metadata: the paper (not printed on the page)}]
+  \textbf{Title:} \thepapertitle\par\smallskip
+  \textbf{Authors:} \thepaperauthors
+  \begin{enumerate}\itemsep0pt \thepaperaffil \end{enumerate}
+  \textbf{Abstract:} \thepaperabstract
+  \end{tcolorbox}}
+
+% the blog.html listing: the page's own heading, and the card this post
+% gets in the list. Everything here is text on that page, not on the post.
+\newcommand{\indexpretitle}[1]{\def\theindexpretitle{#1}}
+\newcommand{\indextitle}[1]{\def\theindextitle{#1}}
+\newcommand{\postexcerpt}[1]{\def\thepostexcerpt{#1}}
+\newcommand{\postthumbalt}[1]{\def\thepostthumbalt{#1}}
+\newcommand{\postmore}[1]{\def\thepostmore{#1}}
+
+\newcommand{\indexcard}{%
+  \begin{tcolorbox}[colback=green!4,colframe=green!45!black,
+                    title={Listing page: \texttt{blog.html}}]
+  \textbf{Page heading:} \theindexpretitle{} / \theindextitle
+
+  \medskip
+  \textbf{Card}\par
+  \textit{Date:} \thepostdate\par
+  \textit{Title:} \theposttitle\par
+  \textit{Excerpt:} \thepostexcerpt\par
+  \textit{Tags:} \theposttags\par
+  \textit{Link:} \thepostmore\par
+  \textit{Thumbnail alt text:} \thepostthumbalt
+  \end{tcolorbox}}
+
+% the downloads picker at the foot of the post
+\newcommand{\datalist}[1]{%
+  \begin{tcolorbox}[colback=gray!6,colframe=gray!50,
+                    title={Generated: downloads picker}]
+  #1
+  \end{tcolorbox}}
+
+\posttitle{ASTROLABE: Full-Resolution 3D Cosmology Simulation Emulation with Physical Flow Matching}
+\postdate{September 2026}
+\posttags{Cosmology; Flow Matching; Generative Models; Simulation Emulation}
+\postbyline{by Ibrahim Elsharkawy, last edited September 2026}
+
+\papertitle{ASTROLABE: Full-Resolution 3D Cosmology Simulation Emulation with
+Physical Flow Matching}
+\paperauthors{Ibrahim Elsharkawy$^{1,2}$, Yonatan Kahn$^{1}$,
+Neal Weiner$^{3}$, David Curtin$^{4}$}
+\paperaffil{%
+  \item Department of Physics, University of Toronto and Vector Institute,
+        Toronto, ON, M5S 1A7, Canada
+  \item NERSC, Lawrence Berkeley National Laboratory, Berkeley, California, USA
+  \item Center for Cosmology and Particle Physics, Department of Physics,
+        New York University, New York, NY 10003, USA
+  \item Department of Physics, University of Toronto, Toronto, ON, M5S 1A7,
+        Canada}
+\paperabstract{}
+
+% the page is unlisted: nothing links to it and it asks not to be indexed,
+% so there is no card for it on blog.html yet. These are here for when it
+% is published.
+\indexpretitle{Blog}
+\indextitle{Research Thoughts}
+\postexcerpt{}
+\postmore{Read post $\rightarrow$}
+\postthumbalt{}
+
+\begin{document}
+\maketitle
+\noindent\textbf{Tags:} \theposttags
+
+% ---------------------------------------------------------------- opening --
+
+% the byline sits under the opening figure, not in the page header
+\noindent\textit{\thepostbyline}\par\medskip
+
+
+% Body goes here. Sections become <h2> on the page, subsections <h3>,
+% paragraphs <p>. See the mapping rules at the top of this file.
+
+
+% ------------------------------------------- the paper, as page metadata --
+\papercard
+
+% ------------------------------------------------------------ references --
+\begin{thebibliography}{9}
+
+% \bibitem{key}
+% A.~Author, \emph{Title}, Journal \textbf{vol} (year) pages,
+% \href{https://arxiv.org/abs/0000.00000}{arXiv:0000.00000}.
+
+\end{thebibliography}
+
+% the card this post would get on blog.html, once it is listed there
+\indexcard
+
+\end{document}
