@@ -36,6 +36,7 @@
 %                            references, and is drawn last on paper too.
 %
 %  Interactive keys, do not rename:
+%    overview   the bundled hAIthem overview diagram
 %    alphazero  the bundled AlphaZero parameter-space page
 %    param3d    the 3D parameter-space explorer
 %    tree       the constraint-tree explorer (walk + whole tree)
@@ -206,9 +207,11 @@ space}
 \noindent\textbf{Tags:} \theposttags
 
 % ---------------------------------------------------------------- opening --
-\interactive{alphazero}{Illustration of the similarities between \alphago{}
-and \alphazero{} and \haithem{}. Both search optimal moves conditioned on
-the current play turn and past actions.}
+\interactive{overview}{\haithem{} end to end: the Large Lagrangian Model plays
+battleship over a theory's parameter space until it has the viable regions, and
+the signature decision tree --- extended by competing LLM agents where the
+analytic observables run out --- turns what survives into an unexplored
+observable.}
 
 % the byline sits under the opening figure, not in the page header
 \noindent\textit{\thepostbyline}\par\medskip
@@ -244,6 +247,10 @@ With a set of non-excluded regions found by the LLaM, \haithem{} constructs a de
 The tree construction turns breaking these degeneracies into a concrete, non-open-ended task given specific Lagrangians and specific parameter values (masses, couplings, etc.). The LLM-agents must compete to give realistic signatures along with sharp binary verdicts as to how degenerate regions differ in their proposal. Additionally, they are forced to think beyond observables already analytically computed earlier in the tree (reuse is explicitly prohibited) and are allowed null answers (no signature found). We further find that the decision tree formulation leads to a natural grouping of Lagrangian-viable regions into experimentally distinguishable classes.
 
 % ----------------------------------------------------------------- method --
+\interactive{alphazero}{Illustration of the similarities between \alphago{}
+and \alphazero{} and \haithem{}. Both search optimal moves conditioned on
+the current play turn and past actions.}
+
 \section{The Large Lagrangian Model}
 
 

@@ -18,11 +18,17 @@
         var h = +frame.getAttribute('data-h') || 720;
         var avail = frame.clientWidth;
         if (!avail) return;
-        var k = Math.min(1, avail / w);
+        // a figure drawn narrower than the column can ask to grow into it
+        // (data-grow); the rest only ever scale down
+        var grow = frame.getAttribute('data-grow') === '1';
+        var k = avail / w;
+        k = grow ? Math.min(k, 1.5) : Math.min(1, k);
         iframe.style.width = w + 'px';
         iframe.style.height = h + 'px';
         iframe.style.transformOrigin = 'top left';
         iframe.style.transform = 'scale(' + k + ')';
+        // centre what is left over, so a short figure is not pinned left
+        iframe.style.marginLeft = Math.max(0, (avail - w * k) / 2) + 'px';
         frame.style.height = Math.round(h * k) + 'px';
     }
 
