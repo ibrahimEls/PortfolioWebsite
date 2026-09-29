@@ -296,16 +296,15 @@
                             <article class="post">
 
                                 <figure class="embed-figure">
-                                    <div class="embed-figure__frame" data-w="932" data-h="704" data-grow="1">
-                                        <iframe src="haithem-assets/haithem-overview.html"
-                                                title="hAIthem overview"
+                                    <div class="embed-figure__frame" data-w="1465" data-h="628">
+                                        <iframe src="haithem-assets/alphazero-parameter-space.html"
+                                                title="AlphaZero-style parameter-space search"
                                                 scrolling="no"></iframe>
                                     </div>
                                     <figcaption>
-                                        <span class="smallcaps">hAIthem</span> end to end: the Large Lagrangian Model plays
-                                        battleship over a theory's parameter space until it has the viable regions, and the
-                                        signature decision tree &mdash; extended by competing LLM agents where the analytic
-                                        observables run out &mdash; turns what survives into an unexplored observable.
+                                        Illustration of the similarities between <span class="smallcaps">AlphaGo</span> and <span class="smallcaps">AlphaZero</span> and
+                                        <span class="smallcaps">hAIthem</span>. Both search optimal moves conditioned on the current play turn
+                                        and past actions.
                                     </figcaption>
                                 </figure>
 
@@ -514,15 +513,20 @@
                                 </p>
 
                                 <figure class="embed-figure">
-                                    <div class="embed-figure__frame" data-w="1465" data-h="628">
-                                        <iframe src="haithem-assets/alphazero-parameter-space.html"
-                                                title="AlphaZero-style parameter-space search"
+                                    <div class="embed-figure__frame" data-w="932" data-h="704" data-grow="1">
+                                        <iframe src="haithem-assets/haithem-overview.html"
+                                                title="hAIthem overview"
                                                 scrolling="no"></iframe>
                                     </div>
                                     <figcaption>
-                                        Illustration of the similarities between <span class="smallcaps">AlphaGo</span> and <span class="smallcaps">AlphaZero</span> and
-                                        <span class="smallcaps">hAIthem</span>. Both search optimal moves conditioned on the current play turn
-                                        and past actions.
+                                        Illustration of the <span class="smallcaps">hAIthem</span> framework. Symbolic
+                                        Lagrangians are built and fed to the Large Lagrangian Model along with an encoding of
+                                        what exclusions we consider. The Large Lagrangian Model searches through parameter space
+                                        over <em>B</em> turns, where each round it probes parameter space <em>N</em> times. The
+                                        non-excluded regions it finds (non-excluded under our set up, not in nature) are then
+                                        used to build a decision tree first with observables we compute with community built
+                                        tools. Remaining degenerate nodes are fed to a set of LLM-agents who compete in
+                                        producing a realistic signature.
                                     </figcaption>
                                 </figure>
 
