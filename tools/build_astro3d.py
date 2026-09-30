@@ -18,7 +18,8 @@ particle data behind the cinematic movies. This script
 Usage:  python3 tools/build_astro3d.py <export_dir> <case> [<data_root>]
 
 <data_root> is the data repository (default AstrolabeData/, the clone of
-github.com/ibrahimEls/AstrolabeData kept in this folder); the case goes to
+github.com/ibrahimEls/AstrolabeData kept in this folder, published at
+https://ibrahimels.github.io/AstrolabeData); the case goes to
 <data_root>/<case>/ and is listed in <data_root>/index.json, which the widget
 reads for its simulation menu.
 

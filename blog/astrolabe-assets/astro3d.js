@@ -25,8 +25,8 @@
     var root = document.getElementById('astro3d');
     if (!root || typeof THREE === 'undefined') return;
 
-    // the data repository (github.com/ibrahimEls/AstrolabeData), served
-    // beside the site, with one folder per case and an index of them
+    // the data repository (github.com/ibrahimEls/AstrolabeData), served by
+    // its own Pages site, with one folder per case and an index of them
     var ROOT = root.getAttribute('data-root');
     var CASE = root.getAttribute('data-case');
     var DIR = ROOT + '/' + CASE;

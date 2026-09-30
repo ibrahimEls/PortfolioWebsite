@@ -4937,6 +4937,154 @@ button.btn--pill {
 	.astro3d__hint { display: none; }
 }
 
+/* --- the movie gallery: a grid of posters, each opening a player --- */
+.gallery {
+	display              : grid;
+	grid-template-columns: repeat(auto-fill, minmax(26rem, 1fr));
+	gap                  : var(--vspace-0_75);
+	margin               : var(--vspace-0_5) 0 var(--vspace-1_5);
+	padding              : 0;
+	list-style           : none;
+	width                : min(126rem, 92vw);
+	margin-left          : 50%;
+	transform            : translateX(-50%);
+}
+
+.gallery__item { margin: 0; }
+
+.gallery__btn {
+	display      : block;
+	width        : 100%;
+	height       : auto;          /* the theme gives buttons a fixed height */
+	margin       : 0;
+	padding      : 0;
+	border       : 1px solid var(--color-gray-3);
+	border-radius: 0.8rem;
+	background   : #000;
+	overflow     : hidden;
+	cursor       : pointer;
+	text-align   : left;
+	line-height  : 0;
+	transition   : transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.gallery__btn:hover,
+.gallery__btn:focus-visible {
+	transform   : translateY(-3px);
+	box-shadow  : 0 10px 30px rgba(0, 0, 0, 0.18);
+	border-color: var(--color-1);
+	outline     : none;
+}
+
+/* the frame carries the aspect ratio and the poster fills it, so the
+   theme's image rules cannot squash it */
+.gallery__frame {
+	display     : block;
+	position    : relative;
+	aspect-ratio: 16 / 9;
+	background  : #000;
+}
+
+.gallery__poster {
+	position  : absolute;
+	inset     : 0;
+	width     : 100%;
+	height    : 100%;
+	object-fit: cover;
+}
+
+.gallery__play {
+	position      : absolute;
+	left          : 50%;
+	top           : 50%;
+	width         : 5.6rem;
+	height        : 5.6rem;
+	margin        : -2.8rem 0 0 -2.8rem;
+	border-radius : 50%;
+	background    : rgba(255, 255, 255, 0.9);
+	color         : #111;
+	font-size     : 2rem;
+	line-height   : 5.6rem;
+	text-align    : center;
+	text-indent   : 0.3rem;
+	box-shadow    : 0 2px 10px rgba(0, 0, 0, 0.5);
+	pointer-events: none;
+}
+
+.gallery__caption {
+	margin     : var(--vspace-0_25) 0 0;
+	font-family: var(--font-1);
+	font-size  : var(--text-sm);
+	line-height: 1.45;
+	color      : var(--color-text-light);
+	text-indent: 0;
+}
+
+.gallery__caption strong { color: var(--color-text-dark); font-weight: 600; }
+
+/* the player: the post's video figure, over a dimmed page */
+.lightbox {
+	position       : fixed;
+	inset          : 0;
+	z-index        : 1000;
+	display        : flex;
+	align-items    : center;
+	justify-content: center;
+	padding        : 3vh 3vw;
+	background     : rgba(10, 10, 12, 0.92);
+	opacity        : 0;
+	transition     : opacity 0.2s ease;
+}
+
+.lightbox.is-open { opacity: 1; }
+
+.lightbox__box {
+	position : relative;
+	width    : min(96vw, calc((100vh - 12rem) * 16 / 9));
+	max-width: 180rem;
+}
+
+.lightbox__video {
+	display      : block;
+	width        : 100%;
+	height       : auto;
+	aspect-ratio : 16 / 9;
+	background   : #000;
+	border-radius: 0.8rem;
+}
+
+.lightbox__caption {
+	margin     : var(--vspace-0_5) 0 0;
+	font-family: var(--font-1);
+	font-size  : var(--text-sm);
+	line-height: 1.5;
+	color      : #cfcfcf;
+	text-align : center;
+}
+
+.lightbox__caption strong { color: #fff; font-weight: 600; }
+
+.lightbox__close {
+	position     : absolute;
+	top          : -1.4rem;
+	right        : -1.4rem;
+	width        : 4rem;
+	height       : 4rem;
+	margin       : 0;
+	padding      : 0;
+	border       : none;
+	border-radius: 50%;
+	background   : #fff;
+	color        : #111;
+	font-size    : 2.4rem;
+	line-height  : 4rem;
+	text-align   : center;
+	cursor       : pointer;
+	box-shadow   : 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+body.has-lightbox { overflow: hidden; }
+
 /* the card's own padding closes these figures, so the caption does not
    add a second gap underneath it */
 .ps3d figcaption,
