@@ -4530,6 +4530,12 @@ button.btn--pill {
 }
 
 /* project and system names, the page's answer to \textsc in the source */
+.smallcaps--plain {
+	font-weight   : inherit;
+	font-size     : 1em;
+	letter-spacing: 0.04em;
+}
+
 .smallcaps {
 	font-variant  : small-caps;
 	font-weight   : 700;

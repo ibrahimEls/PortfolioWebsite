@@ -115,7 +115,7 @@
                         <div class="column xl-12">
                             <h1 class="page-title page-title--post">
                                 <span class="page-title__small-type text-pretitle">Blog</span>
-                                <span class="page-title__line"><span class="smallcaps">ASTROLABE</span>: Full-Resolution 3D</span>
+                                <span class="page-title__line"><span class="smallcaps smallcaps--plain">astrolabe</span>: Full-Resolution 3D</span>
                                 <span class="page-title__line">Cosmology Simulation Emulation</span>
                                 <span class="page-title__line">with Physical Flow Matching</span>
                             </h1>
@@ -196,20 +196,30 @@
                                     </div>
                                     <p class="ps3d__status"></p>
                                     <figcaption>
-                                        The 10 Mpc/h CDM box, as in the movies: the N-body simulation to the
-                                        left of the bar, the model to the right, from one camera. Play runs the
-                                        movie: structure forms while the camera orbits, then it zooms into the
-                                        most massive halo. Or orbit, zoom and pan yourself, at any redshift, and
-                                        drag the bar across to compare.
+                                        A 3D interactive figure to inspect N-body Simulation vs <span class="smallcaps smallcaps--plain">astrolabe</span>. The
+                                        N-body simulation is on the left of the draggable bar, and <span class="smallcaps smallcaps--plain">astrolabe</span> is on
+                                        the right. Play runs a pre-designed camera path while <em>z</em> evolves.
+                                        You can also orbit, zoom and pan yourself at any redshift, and drag the
+                                        bar across to compare.
                                     </figcaption>
                                 </figure>
+
+                                <p>
+                                    The microphysics of dark matter is thought to be imprinted on cosmological structure
+                                    across an enormous dynamic range. The most reliable forward model of dark sector
+                                    physics to nonlinear cosmological observables is the <em>N</em>-body or hydrodynamic
+                                    simulation. At a cost of <em>O</em>(10<sup>6</sup>) CPU-hours per full-resolution
+                                    run, systematic scans over dark-matter theory space are computationally intractable
+                                    with <em>N</em>-body simulations. Machine learning emulators provide a possible
+                                    solution, but are currently limited by either low resolution or only the ability to
+                                    emulate specific observables. We introduce <span class="smallcaps smallcaps--plain">astrolabe</span>, a physical
+                                    flow-matching-based generative emulator designed to be free of both constraints.
+                                </p>
 
                                 <h2 id="gallery">Gallery</h2>
 
                                 <p>
-                                    The cinematic movies, one per simulation: the N-body truth on the left, the
-                                    Astrolabe field on the right, orbiting as structure forms and then zooming into
-                                    the most massive halo. Pick one to play it.
+                                    Movies of N-body Simulation vs <span class="smallcaps smallcaps--plain">astrolabe</span> for various test cases.
                                 </p>
 
                                 <h3>2M CDM</h3>
