@@ -28,6 +28,7 @@ Needs numpy and scipy (cKDTree); nothing else.
 import json
 import math
 import os
+import re
 import shutil
 import sys
 
@@ -198,8 +199,10 @@ def main():
     u = np.clip((v - lo) / (hi - lo), 0.0, 1.0)
     write_ppm(os.path.join(out, "_calibration_truth_z0.ppm"), lut[(u * 255).astype(int)])
 
+    # the export's titles say which realisation a box is; the figure does not
+    title = re.sub(r'\s*\((?:movie|evaluation) seed[^)]*\)', '', case["title"])
     fig = {
-        "case": case_name, "title": case["title"],
+        "case": case_name, "title": title,
         "box_kpc_h": box, "n_side": case["n_side"], "n_particles": case["n_particles"],
         "omega_m": case["omega_m"], "h": case["h"],
         "halo": {"R200m_kpc_h": case["halo"]["R200m_kpc_h"],
@@ -230,7 +233,7 @@ def main():
     # the menu of cases, kept in the order they were built
     ipath = os.path.join(root, "index.json")
     index = json.load(open(ipath)) if os.path.exists(ipath) else {"cases": []}
-    entry = {"name": case_name, "title": case["title"],
+    entry = {"name": case_name, "title": title,
              "box_kpc_h": box, "evolution": fig["evolution"],
              "models": [fields[m]["label"] for m in fig["models"]]}
     index["cases"] = [c for c in index["cases"] if c["name"] != case_name] + [entry]
