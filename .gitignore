@@ -18,3 +18,7 @@ __pycache__/
 
 # video generator: a local tool, not part of the published site
 tools/ps3d-video.html
+
+# the data repo (github.com/ibrahimEls/AstrolabeData), cloned here for
+# convenience; it is its own repository and is published from there
+/AstrolabeData/

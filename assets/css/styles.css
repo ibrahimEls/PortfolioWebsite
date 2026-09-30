@@ -4789,6 +4789,154 @@ button.btn--pill {
 	color      : var(--color-1-dark);
 }
 
+/* --- the Astrolabe 3D figure: the LLaM figure's card, with a black stage
+   and the movie's overlays drawn over the canvas --- */
+.astro3d__stage {
+	position     : relative;
+	width        : 100%;
+	aspect-ratio : 16 / 9;
+	max-height   : 72rem;
+	background   : #000;
+	border-radius: 0.8rem;
+	overflow     : hidden;
+	user-select  : none;
+	touch-action : none;
+	cursor       : grab;
+}
+
+.astro3d__stage:active { cursor: grabbing; }
+
+.astro3d__canvas {
+	display: block;
+	width  : 100%;
+	height : 100%;
+}
+
+.astro3d__hud {
+	position      : absolute;
+	inset         : 0;
+	pointer-events: none;
+	font-family   : var(--font-1);
+	font-weight   : 300;
+	color         : #e1e1e1;
+}
+
+.astro3d__hud > * { position: absolute; }
+
+.astro3d__z     { left: 3.6%; top: 3.6%; font-size: 3.4rem; line-height: 1; }
+.astro3d__t     { left: 3.6%; top: 3.6%; margin-top: 4.2rem; font-size: 1.6rem; color: #b9b9b9; }
+.astro3d__brand { right: 3.6%; top: 3.6%; font-size: 2.6rem; line-height: 1; letter-spacing: 0.02em; }
+
+.astro3d__label {
+	bottom     : 3.6%;
+	font-size  : 1.8rem;
+	font-weight: 600;
+	color      : #d2d2d2;
+	transition : opacity 0.2s ease;
+}
+.astro3d__label--left  { left: 3.6%; }
+.astro3d__label--right { right: 3.6%; }
+
+.astro3d__scale {
+	right         : 3.6%;
+	bottom        : calc(3.6% + 3.2rem);
+	display       : flex;
+	flex-direction: column;
+	align-items   : center;
+	gap           : 0.4rem;
+	font-size     : 1.4rem;
+	color         : #b9b9b9;
+}
+.astro3d__scale-bar {
+	display   : block;
+	height    : 0.5rem;
+	border    : 2px solid #b9b9b9;
+	border-top: none;
+}
+
+/* the comparison bar: the movies' 4 px gap between the two panels, with
+   a grip so it reads as something to drag */
+.astro3d__split {
+	position  : absolute;
+	top       : 0;
+	bottom    : 0;
+	left      : 50%;
+	width     : 1.6rem;
+	margin-left: -0.8rem;
+	cursor    : col-resize;
+	touch-action: none;
+}
+.astro3d__split::before {
+	content   : "";
+	position  : absolute;
+	top       : 0;
+	bottom    : 0;
+	left      : 50%;
+	width     : 4px;
+	margin-left: -2px;
+	background: #000;
+	box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+.astro3d__grip {
+	position     : absolute;
+	top          : 50%;
+	left         : 50%;
+	width        : 3.2rem;
+	height       : 3.2rem;
+	margin       : -1.6rem 0 0 -1.6rem;
+	border-radius: 50%;
+	background   : rgba(255, 255, 255, 0.92);
+	color        : #111;
+	font-size    : 1.8rem;
+	line-height  : 3.2rem;
+	text-align   : center;
+	box-shadow   : 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.astro3d__loading {
+	position   : absolute;
+	left       : 50%;
+	top        : 50%;
+	transform  : translate(-50%, -50%);
+	font-family: var(--font-1);
+	font-size  : var(--text-sm);
+	color      : #b9b9b9;
+	pointer-events: none;
+}
+
+.astro3d__reset {
+	margin        : 0;
+	padding       : 0 1.2rem;
+	height        : 3rem;
+	line-height   : 3rem;
+	font-family   : var(--font-1);
+	font-size     : var(--text-xs);
+	font-weight   : 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color         : var(--color-text-dark);
+	background    : #fff;
+	border        : 1px solid var(--color-gray-3);
+	border-radius : 0.5rem;
+	cursor        : pointer;
+}
+.astro3d__reset:hover { border-color: var(--color-1); color: var(--color-1-dark); }
+
+.astro3d__hint {
+	align-self : center;
+	font-family: var(--font-1);
+	font-size  : calc(var(--text-xs) * 0.95);
+	color      : var(--color-text-light);
+}
+
+@media screen and (max-width: 700px) {
+	.astro3d__z { font-size: 2.4rem; }
+	.astro3d__t { margin-top: 3rem; font-size: 1.3rem; }
+	.astro3d__brand { font-size: 1.9rem; }
+	.astro3d__label { font-size: 1.4rem; }
+	.astro3d__hint { display: none; }
+}
+
 /* the card's own padding closes these figures, so the caption does not
    add a second gap underneath it */
 .ps3d figcaption,

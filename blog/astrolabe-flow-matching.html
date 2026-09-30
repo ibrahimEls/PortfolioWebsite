@@ -36,6 +36,15 @@
 <body id="top">
 
 
+    <div id="preloader">
+        <div id="loader" class="dots-fade">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+
     <div id="page" class="s-pagewrap ss-home">
 
 
@@ -146,9 +155,54 @@
 
                                 <p class="post-byline">by Ibrahim Elsharkawy, last edited September 2026</p>
 
-                                <!-- body goes here: written in
-                                     astrolabe-assets/astrolabe-post.tex and
-                                     synced onto this page -->
+                                <figure class="ps3d astro3d" id="astro3d"
+                                        data-root="/AstrolabeData" data-case="CDM-2M-10Mpc-seed34">
+                                    <div class="ps3d__bar">
+                                        <button type="button" class="ps3d__play">Play</button>
+                                        <input type="range" class="ps3d__slider astro3d__time"
+                                               min="0" max="1" step="0.0005" value="0"
+                                               aria-label="Movie time">
+                                        <span class="ps3d__turn astro3d__clock"></span>
+                                    </div>
+                                    <div class="astro3d__stage">
+                                        <canvas class="astro3d__canvas"></canvas>
+                                        <div class="astro3d__hud" aria-hidden="true">
+                                            <div class="astro3d__z"></div>
+                                            <div class="astro3d__t"></div>
+                                            <div class="astro3d__brand">Astrolabe</div>
+                                            <div class="astro3d__label astro3d__label--left"></div>
+                                            <div class="astro3d__label astro3d__label--right"></div>
+                                            <div class="astro3d__scale">
+                                                <span class="astro3d__scale-text"></span>
+                                                <span class="astro3d__scale-bar"></span>
+                                            </div>
+                                        </div>
+                                        <div class="astro3d__split" role="separator"
+                                             aria-label="Drag to compare the simulation and the model">
+                                            <div class="astro3d__grip">&#x21D4;</div>
+                                        </div>
+                                        <div class="astro3d__loading">Loading the simulation&hellip;</div>
+                                    </div>
+                                    <div class="ps3d__controls">
+                                        <label>Simulation
+                                            <select class="astro3d__case"></select>
+                                        </label>
+                                        <label>Model
+                                            <select class="astro3d__model"></select>
+                                        </label>
+                                        <button type="button" class="astro3d__reset">Reset view</button>
+                                        <span class="astro3d__hint">Drag to orbit &middot; scroll to zoom
+                                            &middot; shift-drag to pan &middot; drag the bar to compare</span>
+                                    </div>
+                                    <p class="ps3d__status"></p>
+                                    <figcaption>
+                                        The 10 Mpc/h CDM box, as in the movies: the N-body simulation to the
+                                        left of the bar, the model to the right, from one camera. Play runs the
+                                        movie &mdash; structure forms while the camera orbits, then it zooms into
+                                        the most massive halo &mdash; or orbit, zoom and pan yourself, at any
+                                        redshift, and drag the bar across to compare.
+                                    </figcaption>
+                                </figure>
 
                             </article>
 
@@ -228,6 +282,8 @@
 
     <script src="../assets/js/plugins.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+    <script src="astrolabe-assets/astro3d.js"></script>
 
 </body>
 </html>
