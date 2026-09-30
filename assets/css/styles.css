@@ -4944,19 +4944,18 @@ button.btn--pill {
 }
 
 /* --- the movie gallery: a grid of posters, each opening a player --- */
+/* two films to a row, in the text column, flush left with the prose */
 .gallery {
 	display              : grid;
-	/* fixed columns, centred as a group, so a short row sits in the middle
-	   rather than hugging the left edge */
-	grid-template-columns: repeat(auto-fit, 29rem);
-	justify-content      : center;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap                  : var(--vspace-0_75) var(--vspace-1);
 	margin               : var(--vspace-0_5) 0 var(--vspace-1_5);
 	padding              : 0;
 	list-style           : none;
-	width                : min(126rem, 92vw);
-	margin-left          : 50%;
-	transform            : translateX(-50%);
+}
+
+@media screen and (max-width: 600px) {
+	.gallery { grid-template-columns: minmax(0, 1fr); }
 }
 
 .gallery__item { margin: 0; }
