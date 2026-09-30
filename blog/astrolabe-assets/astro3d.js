@@ -123,14 +123,25 @@
     var pointRange = gl.getParameter(gl.ALIASED_POINT_SIZE_RANGE);
     var SIZE_MAX = Math.min(64, pointRange ? pointRange[1] : 64);
 
-    // the accumulation target: float if the GPU renders to it, else half
+    /* The accumulation target. Sprites are blended into it additively, and
+       blending into a 32-bit float target needs EXT_float_blend, which
+       mobile browsers often lack: without it every draw is a GL error and
+       the pane stays black. A half-float target blends wherever it can be
+       rendered to, so float is used only when both extensions are there,
+       and the choice is verified after the first frame. */
+    var ext = renderer.extensions;
     var floatOK = renderer.capabilities.isWebGL2
-        && renderer.extensions.has('EXT_color_buffer_float');
-    var accum = new THREE.WebGLRenderTarget(2, 2, {
-        type: floatOK ? THREE.FloatType : THREE.HalfFloatType,
-        format: THREE.RGBAFormat, depthBuffer: false, stencilBuffer: false,
-        minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter
-    });
+        && ext.has('EXT_color_buffer_float') && ext.has('EXT_float_blend');
+    var accumType = floatOK ? THREE.FloatType : THREE.HalfFloatType;
+    function accumTarget(type) {
+        return new THREE.WebGLRenderTarget(2, 2, {
+            type: type, format: THREE.RGBAFormat,
+            depthBuffer: false, stencilBuffer: false,
+            minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter
+        });
+    }
+    var accum = accumTarget(accumType);
+    var verified = false;
     // sprites are accumulated at 1/64 of their weight so a dense core does
     // not overflow a half-float pixel; the composite scales it back
     var WSCALE = 1 / 64;
@@ -229,7 +240,7 @@
     var HAZE_SIGMA_1080 = 16, HAZE_GAIN = 1;
     function blurTarget() {
         return new THREE.WebGLRenderTarget(2, 2, {
-            type: accum.texture.type, format: THREE.RGBAFormat,
+            type: accumType, format: THREE.RGBAFormat,
             depthBuffer: false, stencilBuffer: false,
             minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter
         });
@@ -594,6 +605,8 @@
         renderer.setViewport(0, 0, w, h);
         renderer.render(quadScene, quadCam);
 
+        if (!verified) verify();
+
         // overlays
         var z = 1 / tl.a - 1;
         hud.z.textContent = 'z = ' + z.toFixed(2);
@@ -605,6 +618,33 @@
         hud.left.style.opacity = split > 0.16 ? 1 : 0;
         hud.right.style.opacity = split < 0.84 ? 1 : 0;
         splitEl.style.left = (split * 100) + '%';
+    }
+
+    /* After the first frame: is the accumulation target complete and did
+       the draws go through? If not, drop to half float once; if that fails
+       too, say so where the picture would be rather than leave it black. */
+    function verify() {
+        verified = true;
+        renderer.setRenderTarget(accum);
+        var status = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
+        var err = gl.getError();
+        renderer.setRenderTarget(null);
+        var ok = status === gl.FRAMEBUFFER_COMPLETE && err === gl.NO_ERROR;
+        if (ok) return;
+        if (accumType === THREE.FloatType) {
+            accumType = THREE.HalfFloatType;
+            accum.dispose(); hazeH.dispose(); hazeV.dispose();
+            accum = accumTarget(accumType); hazeH = blurTarget(); hazeV = blurTarget();
+            compMat.uniforms.tAcc.value = accum.texture;
+            compMat.uniforms.tHaze.value = hazeV.texture;
+            verified = false;
+            dirty = true;
+            return;
+        }
+        hud.loading.hidden = false;
+        hud.loading.textContent = 'This browser cannot draw the figure '
+            + '(framebuffer ' + status + ', error ' + err + ').';
+        if (window.console) console.error('astro3d: accumulation target unusable', status, err);
     }
 
     function setSideVisible(side, on) {
@@ -866,7 +906,13 @@
             },
             timeline: timeline, haloCentre: haloCentre, fig: function () { return FIG; },
             loadCase: loadCase,
-            caps: { sizeMax: SIZE_MAX, floatTarget: floatOK, pixelRatio: renderer.getPixelRatio() }
+            caps: function () {
+                return { sizeMax: SIZE_MAX, target: accumType === THREE.FloatType ? 'float' : 'half',
+                         webgl2: renderer.capabilities.isWebGL2,
+                         colorBufferFloat: ext.has('EXT_color_buffer_float'),
+                         floatBlend: ext.has('EXT_float_blend'),
+                         pixelRatio: renderer.getPixelRatio() };
+            }
         };
         caseSel.addEventListener('change', function () {
             loadCase(caseSel.value).catch(fail);
