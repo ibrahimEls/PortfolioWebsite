@@ -4536,6 +4536,11 @@ button.btn--pill {
 	letter-spacing: 0.04em;
 }
 
+/* in the title the name stands a step above the rest of the line */
+.page-title .smallcaps--plain {
+	font-size: 1.3em;
+}
+
 .smallcaps {
 	font-variant  : small-caps;
 	font-weight   : 700;
