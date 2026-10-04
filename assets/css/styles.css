@@ -3729,6 +3729,28 @@ button.btn--pill {
 }
 
 
+/* publications in two columns, one per theme, numbered P1.. and A1.. */
+.pub-cols {
+	display              : grid;
+	grid-template-columns: 1fr 1fr;
+	gap                  : 0 var(--vspace-1_5);
+	align-items          : start;
+}
+
+.pub-cols__title {
+	margin-top   : 0;
+	margin-bottom: var(--vspace-0_5);
+}
+
+.pub-list--tagged li { padding-left: 4.4rem; }
+
+.pub-list--tagged[data-tag="P"] li::before { content: "P" counter(pub-ctr); }
+.pub-list--tagged[data-tag="A"] li::before { content: "A" counter(pub-ctr); }
+
+@media screen and (max-width: 800px) {
+	.pub-cols { grid-template-columns: 1fr; gap: var(--vspace-1_5) 0; }
+}
+
 .pub-list--grid {
 	display              : grid;
 	grid-template-columns: 1fr 1fr;
