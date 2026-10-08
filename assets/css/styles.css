@@ -3098,10 +3098,14 @@ button.btn--pill {
 }
 
 @media screen and (max-width: 800px) {
-	.blogstrip { flex-wrap: wrap; gap: var(--vspace-0_75); }
-	.blogstrip__thumb { width: 10rem; }
+	.blogstrip { flex-direction: column; align-items: stretch; gap: var(--vspace-0_75); }
+	.blogstrip__main { gap: var(--vspace-0_75); align-items: flex-start; }
+	.blogstrip__thumb { width: 9rem; }
+	.blogstrip__pretitle { flex-wrap: wrap; gap: 0.3rem 1rem; letter-spacing: 0.14em; }
+	.blogstrip__title { font-size: var(--text-md); }
 	.blogstrip__excerpt { display: none; }
-	.blogstrip__actions { flex-direction: row; margin-left: calc(10rem + var(--vspace-0_75)); }
+	.blogstrip__actions { flex-direction: row; flex-wrap: wrap; gap: 0.8rem; }
+	.blogstrip__cta { flex: 1 1 auto; padding: 0.9rem 1.2rem; }
 }
 
 .s-news {
@@ -4273,6 +4277,10 @@ button.btn--pill {
 
 	.pub-list li {
 		padding-left: 2.8rem;
+	}
+
+	.pub-list--tagged li {
+		padding-left: 4.4rem;
 	}
 
 	.timeline {
