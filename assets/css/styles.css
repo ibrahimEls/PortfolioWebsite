@@ -3959,6 +3959,18 @@ button.btn--pill {
 	color: var(--color-text-light);
 }
 
+/* a line on what the paper does: upright, a shade darker than the venue,
+   set off from the metadata above it */
+.pub-list__desc {
+	margin-top : 0.9rem;
+	padding-top: 0.8rem;
+	border-top : 1px solid var(--color-gray-3);
+	font-family: var(--font-1);
+	font-size  : calc(var(--text-sm) * 0.95);
+	line-height: 1.55;
+	color      : var(--color-text);
+}
+
 .pub-list__links {
 	margin-top: 0.6rem;
 }
