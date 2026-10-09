@@ -20,6 +20,8 @@
 %                            little under the whole
 %    \videoplace{stem}{}  -> a video from haithem-assets/videos, played at
 %                            the interactive figures' width
+%    \figpair{a}{b}{}     -> two pictures side by side at the text's width,
+%                            one caption under both
 %    figrow environment   -> the figures inside share one row on the page
 %    gallery environment  -> a grid of movie posters that open a player;
 %                            \movie{group/stem}{title}{caption} inside it is
@@ -88,6 +90,14 @@
 % the figures inside share one row on the page; on paper they simply follow
 % one another
 \newenvironment{figrow}{}{}
+
+% two pictures side by side at the text's width, under one caption:
+% #1 and #2 file stems, #3 the caption
+\newcommand{\figpair}[3]{%
+  \begin{tcolorbox}[colback=blue!4,colframe=blue!40!black,
+                    title={Figure pair: \texttt{#1} and \texttt{#2}}]
+  \emph{Caption:} #3
+  \end{tcolorbox}}
 
 % the movie gallery: the environment is the grid, each \movie a poster in it.
 % #1 group/stem under movies/ in the data repository, #2 title, #3 caption
@@ -211,20 +221,18 @@ evolved under flow time from the COLA distributions in the middle row.}
 
 In the cases we test, \astrolabe{} produces realistic fields with accurate power spectra, halo mass functions, and velocity profiles for the CDM fields it was trained on. We also observe out-of-distribution generalization, with accurate emulation of dark-acoustic oscillation initial conditions. We further find \astrolabe{} capable of being fine-tuned to simulate large particle numbers, and we demonstrate this by emulating a TNG-50-dark simulation at a fraction of the cost. This method represents a first step toward a general and powerful cosmology simulation surrogate, which may eventually permit the inclusion of baryonic physics and richer dark sector interactions.
 
-\figplace[narrow]{cdm-2m-10mpc-zoom-z0}{Example CDM field for
-$128^3\approx2\,\rm M$ particles in a 10 Mpc/$h$ box. $\Sigma$ is a surface
-density in units of particles per pixel. \textbf{Top left:} A \textsc{GIZMO}
-\cite{Hopkins:2014qka} $N$-body simulation, which serves as the truth-level
-phase space density for this example. \textbf{Top right:} Coarse approximation
-to the truth-level density given by COLA with a mesh of $256^3$ and 40
-timesteps \cite{Tassev:2013pn}. \textbf{Bottom left:} \astrolabe{}-Small
-evaluated with ten integration steps and no subsampling. \textbf{Bottom
-right:} \astrolabe{}-Small Fast Inference evaluated with 2 integration steps
-and $c=8$ subsampling.}
-
-\figplace{mass-profile-stack-z0}{Consistency tests for halo density profiles.
-Halo mass profile averaged over all halos with more than 5000 particles for
-each box size, with concentration $c$ from an NFW fit and inner slope $\gamma$
+\figpair{cdm-2m-10mpc-zoom-z0}{mass-profile-1mpc-z0}{\textbf{Left:} Example
+CDM field for $128^3\approx2\,\rm M$ particles in a 10 Mpc/$h$ box. $\Sigma$ is
+a surface density in units of particles per pixel. \textbf{Top left:} A
+\textsc{GIZMO} \cite{Hopkins:2014qka} $N$-body simulation, which serves as the
+truth-level phase space density for this example. \textbf{Top right:} Coarse
+approximation to the truth-level density given by COLA with a mesh of $256^3$
+and 40 timesteps \cite{Tassev:2013pn}. \textbf{Bottom left:} \astrolabe{}-Small
+evaluated with ten integration steps and no subsampling. \textbf{Bottom right:}
+\astrolabe{}-Small Fast Inference evaluated with 2 integration steps and $c=8$
+subsampling. \textbf{Right:} Consistency test for halo density profiles in the
+1 Mpc/$h$ box. Halo mass profile averaged over all halos with more than 5000
+particles, with concentration $c$ from an NFW fit and inner slope $\gamma$
 displayed.}
 
 \section{Gallery}

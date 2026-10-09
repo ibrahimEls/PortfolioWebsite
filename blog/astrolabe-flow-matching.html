@@ -250,12 +250,16 @@
                                     interactions.
                                 </p>
 
-                                <figure class="static-figure static-figure--narrow static-figure--zoom">
-                                    <img src="astrolabe-assets/figures/cdm-2m-10mpc-zoom-z0.png" data-zoom="astrolabe-assets/figures/cdm-2m-10mpc-zoom-z0.png" tabindex="0" role="button" aria-label="Enlarge figure"
-                                         alt="Four density maps of the same 10 Mpc/h box at z = 0, each with a zoom on the most massive halo: N-body, COLA, Astrolabe-Small with ten steps, Astrolabe-Small fast inference">
+                                <figure class="static-figure static-figure--pair static-figure--zoom">
+                                    <div class="static-figure__pair">
+                                        <img src="astrolabe-assets/figures/cdm-2m-10mpc-zoom-z0.png" data-zoom="astrolabe-assets/figures/cdm-2m-10mpc-zoom-z0.png" tabindex="0" role="button" aria-label="Enlarge the density field"
+                                             alt="Four density maps of the same 10 Mpc/h box at z = 0, each with a zoom on the most massive halo: N-body, COLA, Astrolabe-Small with ten steps, Astrolabe-Small fast inference">
+                                        <img src="astrolabe-assets/figures/mass-profile-1mpc-z0.png" data-zoom="astrolabe-assets/figures/mass-profile-1mpc-z0.png" tabindex="0" role="button" aria-label="Enlarge the mass profiles"
+                                             alt="Enclosed mass against radius for stacked halos in the 1 Mpc/h box: N-body, COLA, Astrolabe-Small and Astrolabe-Medium">
+                                    </div>
                                     <figcaption>
-                                        Example CDM field for 128<sup>3</sup> &asymp; 2M particles in a 10 Mpc/<em>h</em>
-                                        box. &Sigma; is a surface density in units of particles per pixel.
+                                        <strong>Left:</strong> Example CDM field for 128<sup>3</sup> &asymp; 2M particles in a
+                                        10 Mpc/<em>h</em> box. &Sigma; is a surface density in units of particles per pixel.
                                         <strong>Top left:</strong> A GIZMO<sup class="post-cite"><a href="#ref-2">2</a></sup>
                                         <em>N</em>-body simulation, which serves as the truth-level phase space density for
                                         this example. <strong>Top right:</strong> Coarse approximation to the truth-level
@@ -264,18 +268,12 @@
                                         <strong>Bottom left:</strong> <span class="smallcaps smallcaps--plain">astrolabe</span>-Small evaluated with ten integration steps and
                                         no subsampling. <strong>Bottom right:</strong> <span class="smallcaps smallcaps--plain">astrolabe</span>-Small Fast Inference
                                         evaluated with 2 integration steps and <em>c</em> = 8 subsampling.
-                                        <a href="astrolabe-assets/pdf/cdm-2m-10mpc-zoom-z0.pdf">PDF</a>
-                                    </figcaption>
-                                </figure>
-
-                                <figure class="static-figure static-figure--medium static-figure--zoom">
-                                    <img src="astrolabe-assets/figures/mass-profile-stack-z0.png" data-zoom="astrolabe-assets/figures/mass-profile-stack-z0.png" tabindex="0" role="button" aria-label="Enlarge figure"
-                                         alt="Enclosed mass against radius for stacked halos in the 1 and 10 Mpc/h boxes: N-body, COLA, Astrolabe-Small and Astrolabe-Medium">
-                                    <figcaption>
-                                        Consistency tests for halo density profiles. Halo mass profile averaged over all
-                                        halos with more than 5000 particles for each box size, with concentration <em>c</em>
-                                        from an NFW fit and inner slope <em>&gamma;</em> displayed.
-                                        <a href="astrolabe-assets/pdf/mass-profile-stack-z0.pdf">PDF</a>
+                                        <strong>Right:</strong> Consistency test for halo density profiles in the
+                                        1 Mpc/<em>h</em> box. Halo mass profile averaged over all halos with more than 5000
+                                        particles, with concentration <em>c</em> from an NFW fit and inner slope
+                                        <em>&gamma;</em> displayed.
+                                        <a href="astrolabe-assets/pdf/cdm-2m-10mpc-zoom-z0.pdf">PDF (left)</a>
+                                        <a href="astrolabe-assets/pdf/mass-profile-1mpc-z0.pdf">PDF (right)</a>
                                     </figcaption>
                                 </figure>
 
