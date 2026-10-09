@@ -5339,6 +5339,7 @@ body.has-lightbox { overflow: hidden; }
 .video-figure figcaption,
 .embed-figure figcaption,
 .static-figure--wide figcaption,
+.static-figure--pair figcaption,
 .figure-row figcaption {
 	max-width    : calc(var(--width-narrower) - 4.8rem);
 	margin-left  : auto;
@@ -6040,32 +6041,30 @@ body.has-lightbox { overflow: hidden; }
 .static-figure--narrow img { width: min(100%, 58rem); }
 .static-figure--medium img { width: min(100%, 84rem); }
 
-/* two pictures side by side at the text's width, matched in height and
-   centred, one caption under both; stacked on narrow screens */
+/* two pictures side by side, as wide as the interactive figures, the
+   first given the larger share, one caption under both at the text's
+   width; stacked on narrow screens */
 .static-figure__pair {
-	display        : flex;
-	justify-content: center;
-	align-items    : flex-start;
-	gap            : var(--vspace-0_75);
+	display              : grid;
+	grid-template-columns: 58fr 42fr;
+	align-items          : center;
+	gap                  : var(--vspace-0_75);
 }
 
 .static-figure--pair img {
-	width    : auto;
-	max-width: 100%;
-	height   : 46rem;
-	flex     : 0 1 auto;
-	min-width: 0;
+	width : 100%;
+	height: auto;
 }
 
 @media screen and (max-width: 700px) {
-	.static-figure__pair { flex-direction: column; align-items: stretch; }
-	.static-figure--pair img { width: 100%; height: auto; }
+	.static-figure__pair { grid-template-columns: 1fr; }
 }
 
 /* these figures are drawn wider than the reading column, so let them
    break out of it rather than clipping or scrolling inside it */
 .embed-figure,
 .static-figure--wide,
+.static-figure--pair,
 .ps3d,
 .ctree,
 .video-figure {
