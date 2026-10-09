@@ -5314,6 +5314,17 @@ body.has-lightbox { overflow: hidden; }
    add a second gap underneath it */
 .ps3d figcaption,
 .ctree figcaption,
+.video-figure figcaption,
+.embed-figure figcaption,
+.static-figure--wide figcaption,
+.figure-row figcaption {
+	max-width    : calc(var(--width-narrower) - 4.8rem);
+	margin-left  : auto;
+	margin-right : auto;
+}
+
+.ps3d figcaption,
+.ctree figcaption,
 .video-figure figcaption {
 	margin-top   : var(--vspace-0_5);
 	margin-bottom: 0;
@@ -5996,15 +6007,16 @@ body.has-lightbox { overflow: hidden; }
 	padding      : var(--vspace-0_75);
 }
 
-/* figures held back from the column's full width: a tall one at about
-   half, a wide one a little under it, both centred */
-.static-figure--narrow,
-.static-figure--medium {
+/* figures held back from the column's full width: the picture narrows
+   (a tall one to about half, a wide one a little under full) and sits
+   centred, while the caption keeps the column's width like the text */
+.static-figure--narrow img,
+.static-figure--medium img {
 	margin-left : auto;
 	margin-right: auto;
 }
-.static-figure--narrow { max-width: 58rem; }
-.static-figure--medium { max-width: 84rem; }
+.static-figure--narrow img { width: min(100%, 58rem); }
+.static-figure--medium img { width: min(100%, 84rem); }
 
 /* these figures are drawn wider than the reading column, so let them
    break out of it rather than clipping or scrolling inside it */
