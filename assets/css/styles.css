@@ -6041,12 +6041,12 @@ body.has-lightbox { overflow: hidden; }
 .static-figure--narrow img { width: min(100%, 58rem); }
 .static-figure--medium img { width: min(100%, 84rem); }
 
-/* two pictures side by side, as wide as the interactive figures, the
-   first given the larger share, one caption under both at the text's
-   width; stacked on narrow screens */
+/* two pictures side by side in equal columns, as wide as the
+   interactive figures, one caption under both at the text's width;
+   stacked on narrow screens */
 .static-figure__pair {
 	display              : grid;
-	grid-template-columns: 58fr 42fr;
+	grid-template-columns: 1fr 1fr;
 	align-items          : center;
 	gap                  : var(--vspace-0_75);
 }
