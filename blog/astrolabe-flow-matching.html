@@ -229,10 +229,17 @@
                                     <img src="astrolabe-assets/figures/cdm-2m-10mpc-zoom-z0.png"
                                          alt="Four density maps of the same 10 Mpc/h box at z = 0, each with a zoom on the most massive halo: N-body, COLA, Astrolabe-Small with ten steps, Astrolabe-Small fast inference">
                                     <figcaption>
-                                        The <em>z</em> = 0 density field of a 10 <em>h</em><sup>&minus;1</sup> Mpc CDM box
-                                        (<em>N</em> = 128<sup>3</sup>), with a zoom on its most massive halo: the
-                                        <em>N</em>-body simulation, the COLA input, and <span class="smallcaps smallcaps--plain">astrolabe</span>-Small with ten flow steps
-                                        and with fast inference.
+                                        Example CDM field for 128<sup>3</sup> &asymp; 2M particles in a 10 Mpc/<em>h</em>
+                                        box. We plot density on a log scale post-rasterization and zoom into the largest
+                                        halo. &Sigma; is a surface density in units of particles per pixel.
+                                        <strong>Top left:</strong> A GIZMO<sup class="post-cite"><a href="#ref-1">1</a></sup>
+                                        <em>N</em>-body simulation, which serves as the truth-level phase space density for
+                                        this example. <strong>Top right:</strong> Coarse approximation to the truth-level
+                                        density given by COLA with a mesh of 256<sup>3</sup> and 40
+                                        timesteps<sup class="post-cite"><a href="#ref-2">2</a></sup>.
+                                        <strong>Bottom left:</strong> <span class="smallcaps smallcaps--plain">astrolabe</span>-Small evaluated with ten integration steps and
+                                        no subsampling. <strong>Bottom right:</strong> <span class="smallcaps smallcaps--plain">astrolabe</span>-Small Fast Inference
+                                        evaluated with 2 integration steps and <em>c</em> = 8 subsampling.
                                         <a href="astrolabe-assets/pdf/cdm-2m-10mpc-zoom-z0.pdf">PDF</a>
                                     </figcaption>
                                 </figure>
@@ -356,7 +363,7 @@
                                     </li>
                                 </ul>
 
-                                <h3>TNG-50/100-Dark-3<sup class="post-cite"><a href="#ref-1">1</a></sup></h3>
+                                <h3>TNG-50/100-Dark-3<sup class="post-cite"><a href="#ref-3">3</a></sup></h3>
 
                                 <ul class="gallery">
                                     <li class="gallery__item">
@@ -391,6 +398,16 @@
 
                                 <ol class="post-refs">
                                     <li id="ref-1">
+                                        P. F. Hopkins, <em>A new class of accurate, mesh-free hydrodynamic simulation methods</em>,
+                                        Mon. Not. Roy. Astron. Soc. <strong>450</strong> (2015) 53&ndash;110.
+                                        <a href="https://arxiv.org/abs/1409.7395" target="_blank" rel="noopener">arXiv:1409.7395</a>
+                                    </li>
+                                    <li id="ref-2">
+                                        S. Tassev, M. Zaldarriaga and D. Eisenstein, <em>Solving Large Scale Structure in Ten Easy
+                                        Steps with COLA</em>, JCAP <strong>06</strong> (2013) 036.
+                                        <a href="https://arxiv.org/abs/1301.0322" target="_blank" rel="noopener">arXiv:1301.0322</a>
+                                    </li>
+                                    <li id="ref-3">
                                         D. Nelson <em>et al.</em>, <em>The IllustrisTNG simulations: public data release</em>,
                                         Comput. Astrophys. Cosmol. <strong>6</strong> (2019) 2.
                                         <a href="https://arxiv.org/abs/1812.05609" target="_blank" rel="noopener">arXiv:1812.05609</a>
