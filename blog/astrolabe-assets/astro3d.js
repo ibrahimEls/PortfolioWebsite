@@ -414,6 +414,19 @@
 
     function smoothstep(u) { u = Math.min(1, Math.max(0, u)); return u * u * (3 - 2 * u); }
 
+    // where the figure opens on the timeline; the slider still reaches back
+    // to the first keyframe
+    var START_Z = 5;
+    function timeAtRedshift(z) {
+        var a = 1 / (1 + z), lo = 0, hi = T_EV;
+        if (a <= timeline(0).a) return 0;
+        for (var i = 0; i < 40; i++) {
+            var mid = (lo + hi) / 2;
+            if (timeline(mid).a < a) lo = mid; else hi = mid;
+        }
+        return (lo + hi) / 2;
+    }
+
     var curAspect = 16 / 9;
     function timeline(t) {
         var ser = FIG.fields.truth.series, a0 = evolves() ? ser[0].a : 1;
@@ -819,6 +832,8 @@
             L = fig.box_kpc_h; N_FULL = fig.n_particles; SPACING = L / fig.n_side;
             T_EV = fig.camera.t_evolve; T_ZOOM = fig.camera.t_zoom; T_HOLD = fig.camera.t_hold;
             T_TOTAL = T_EV + T_ZOOM + T_HOLD;
+            time = evolves() ? timeAtRedshift(START_Z) : 0;
+            slider.value = time / T_TOTAL;
 
             var lut = new Uint8Array(256 * 4);
             fig.colour.lut_256_rgb.forEach(function (c, i) { lut.set([c[0], c[1], c[2], 255], 4 * i); });
