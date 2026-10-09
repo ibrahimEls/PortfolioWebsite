@@ -219,27 +219,22 @@
                                     field-particle hybrid transformer in which every particle cross-attends to multiscale
                                     field tokens, so compute and memory are linear in particle count <em>N</em>. We further
                                     introduce so-called physical flow matching to improve inductive bias. The flow
-                                    transports approximate COmoving Lagrangian Acceleration (COLA) based positions rather
+                                    transports approximate COmoving Lagrangian Acceleration (COLA)<sup class="post-cite"><a href="#ref-1">1</a></sup> based positions rather
                                     than noise, and momentum conservation is exactly enforced at all points along flow
                                     time.
                                 </p>
 
-                                <figure class="static-figure static-figure--narrow static-figure--zoom">
-                                    <img src="astrolabe-assets/figures/cdm-2m-10mpc-zoom-z0.png" data-zoom="astrolabe-assets/figures/cdm-2m-10mpc-zoom-z0.png" tabindex="0" role="button" aria-label="Enlarge figure"
-                                         alt="Four density maps of the same 10 Mpc/h box at z = 0, each with a zoom on the most massive halo: N-body, COLA, Astrolabe-Small with ten steps, Astrolabe-Small fast inference">
+
+                                <figure class="static-figure static-figure--medium static-figure--zoom">
+                                    <img src="astrolabe-assets/figures/fig-flowtime-decoupled.png" data-zoom="astrolabe-assets/figures/fig-flowtime-decoupled.png" tabindex="0" role="button" aria-label="Enlarge figure"
+                                         alt="Three rows of density maps at z = 2.13, 0.92, 0.32 and 0: the initial condition at the bottom, COLA fields above it, Astrolabe fields on top, with arrows for the COLA evolution and the momentum-conserving flow">
                                     <figcaption>
-                                        Example CDM field for 128<sup>3</sup> &asymp; 2M particles in a 10 Mpc/<em>h</em>
-                                        box. We plot density on a log scale post-rasterization and zoom into the largest
-                                        halo. &Sigma; is a surface density in units of particles per pixel.
-                                        <strong>Top left:</strong> A GIZMO<sup class="post-cite"><a href="#ref-1">1</a></sup>
-                                        <em>N</em>-body simulation, which serves as the truth-level phase space density for
-                                        this example. <strong>Top right:</strong> Coarse approximation to the truth-level
-                                        density given by COLA with a mesh of 256<sup>3</sup> and 40
-                                        timesteps<sup class="post-cite"><a href="#ref-2">2</a></sup>.
-                                        <strong>Bottom left:</strong> <span class="smallcaps smallcaps--plain">astrolabe</span>-Small evaluated with ten integration steps and
-                                        no subsampling. <strong>Bottom right:</strong> <span class="smallcaps smallcaps--plain">astrolabe</span>-Small Fast Inference
-                                        evaluated with 2 integration steps and <em>c</em> = 8 subsampling.
-                                        <a href="astrolabe-assets/pdf/cdm-2m-10mpc-zoom-z0.pdf">PDF</a>
+                                        Illustration of physical flow matching, with flow time decoupled from redshift.
+                                        <strong>Bottom:</strong> Simulation initial conditions. <strong>Middle row:</strong>
+                                        COLA fields, evolved under cosmic time from the initial conditions.
+                                        <strong>Top row:</strong> <span class="smallcaps smallcaps--plain">astrolabe</span> density field, evolved under flow time from the COLA
+                                        distributions in the middle row.
+                                        <a href="astrolabe-assets/pdf/fig-flowtime-decoupled.pdf">PDF</a>
                                     </figcaption>
                                 </figure>
 
@@ -254,6 +249,24 @@
                                     eventually permit the inclusion of baryonic physics and richer dark sector
                                     interactions.
                                 </p>
+
+                                <figure class="static-figure static-figure--narrow static-figure--zoom">
+                                    <img src="astrolabe-assets/figures/cdm-2m-10mpc-zoom-z0.png" data-zoom="astrolabe-assets/figures/cdm-2m-10mpc-zoom-z0.png" tabindex="0" role="button" aria-label="Enlarge figure"
+                                         alt="Four density maps of the same 10 Mpc/h box at z = 0, each with a zoom on the most massive halo: N-body, COLA, Astrolabe-Small with ten steps, Astrolabe-Small fast inference">
+                                    <figcaption>
+                                        Example CDM field for 128<sup>3</sup> &asymp; 2M particles in a 10 Mpc/<em>h</em>
+                                        box. &Sigma; is a surface density in units of particles per pixel.
+                                        <strong>Top left:</strong> A GIZMO<sup class="post-cite"><a href="#ref-2">2</a></sup>
+                                        <em>N</em>-body simulation, which serves as the truth-level phase space density for
+                                        this example. <strong>Top right:</strong> Coarse approximation to the truth-level
+                                        density given by COLA with a mesh of 256<sup>3</sup> and 40
+                                        timesteps<sup class="post-cite"><a href="#ref-1">1</a></sup>.
+                                        <strong>Bottom left:</strong> <span class="smallcaps smallcaps--plain">astrolabe</span>-Small evaluated with ten integration steps and
+                                        no subsampling. <strong>Bottom right:</strong> <span class="smallcaps smallcaps--plain">astrolabe</span>-Small Fast Inference
+                                        evaluated with 2 integration steps and <em>c</em> = 8 subsampling.
+                                        <a href="astrolabe-assets/pdf/cdm-2m-10mpc-zoom-z0.pdf">PDF</a>
+                                    </figcaption>
+                                </figure>
 
                                 <figure class="static-figure static-figure--medium static-figure--zoom">
                                     <img src="astrolabe-assets/figures/mass-profile-stack-z0.png" data-zoom="astrolabe-assets/figures/mass-profile-stack-z0.png" tabindex="0" role="button" aria-label="Enlarge figure"
@@ -395,14 +408,14 @@
 
                                 <ol class="post-refs">
                                     <li id="ref-1">
-                                        P. F. Hopkins, <em>A new class of accurate, mesh-free hydrodynamic simulation methods</em>,
-                                        Mon. Not. Roy. Astron. Soc. <strong>450</strong> (2015) 53&ndash;110.
-                                        <a href="https://arxiv.org/abs/1409.7395" target="_blank" rel="noopener">arXiv:1409.7395</a>
-                                    </li>
-                                    <li id="ref-2">
                                         S. Tassev, M. Zaldarriaga and D. Eisenstein, <em>Solving Large Scale Structure in Ten Easy
                                         Steps with COLA</em>, JCAP <strong>06</strong> (2013) 036.
                                         <a href="https://arxiv.org/abs/1301.0322" target="_blank" rel="noopener">arXiv:1301.0322</a>
+                                    </li>
+                                    <li id="ref-2">
+                                        P. F. Hopkins, <em>A new class of accurate, mesh-free hydrodynamic simulation methods</em>,
+                                        Mon. Not. Roy. Astron. Soc. <strong>450</strong> (2015) 53&ndash;110.
+                                        <a href="https://arxiv.org/abs/1409.7395" target="_blank" rel="noopener">arXiv:1409.7395</a>
                                     </li>
                                     <li id="ref-3">
                                         D. Nelson <em>et al.</em>, <em>The IllustrisTNG simulations: public data release</em>,
