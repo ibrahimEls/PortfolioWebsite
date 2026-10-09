@@ -6039,7 +6039,7 @@ body.has-lightbox { overflow: hidden; }
 	margin-right: auto;
 }
 .static-figure--narrow img { width: min(100%, 58rem); }
-.static-figure--medium img { width: min(100%, 84rem); }
+.static-figure--medium img { width: min(100%, 71rem); }
 
 /* two pictures side by side in equal columns, as wide as the
    interactive figures, one caption under both at the text's width;
@@ -6059,6 +6059,9 @@ body.has-lightbox { overflow: hidden; }
 @media screen and (max-width: 700px) {
 	.static-figure__pair { grid-template-columns: 1fr; }
 }
+
+/* the pair sits a little inside the interactive figures' width */
+.static-figure--pair.static-figure--pair { width: min(107rem, 78vw); }
 
 /* these figures are drawn wider than the reading column, so let them
    break out of it rather than clipping or scrolling inside it */
