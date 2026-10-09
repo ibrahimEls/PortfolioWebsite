@@ -5278,6 +5278,28 @@ button.btn--pill {
 	border-radius: 0.8rem;
 }
 
+/* whichever of the two the player is not showing stays out of the layout:
+   their display rules would otherwise outrank the hidden attribute */
+.lightbox__video[hidden],
+.lightbox__img[hidden] { display: none; }
+
+/* a figure shown at full size: as tall as the window allows */
+.lightbox__img {
+	display      : block;
+	max-width    : 100%;
+	max-height   : calc(100vh - 14rem);
+	width        : auto;
+	height       : auto;
+	margin       : 0 auto;
+	border-radius: 0.8rem;
+	background   : #fff;
+}
+
+.lightbox__box:has(.lightbox__img:not([hidden])) { width: auto; max-width: min(96vw, 180rem); }
+
+.static-figure--zoom img { cursor: zoom-in; }
+.static-figure--zoom img:focus-visible { outline: 3px solid var(--color-1); outline-offset: 3px; }
+
 .lightbox__caption {
 	margin     : var(--vspace-0_5) 0 0;
 	font-family: var(--font-1);
