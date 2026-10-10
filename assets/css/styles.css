@@ -6497,6 +6497,9 @@ sup { top: -0.45em; }
 	margin     : var(--vspace-0_5) 0 0 0;
 }
 
+/* the line naming the paper sits right under the collaborators */
+.post-collab--paper { margin-top: var(--vspace-0_25); }
+
 .post-collab a {
 	color        : var(--color-1-lighter);
 	border-bottom: 1px solid transparent;
