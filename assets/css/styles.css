@@ -6489,6 +6489,18 @@ sup { top: -0.45em; }
 	margin     : 0 0 var(--vspace-0_75) 0;
 }
 
+/* a link in the byline keeps the byline's colour, marked only by a faint rule */
+.post-byline a {
+	color        : inherit;
+	border-bottom: 1px solid rgba(254, 245, 228, 0.25);
+	transition   : border-color 0.2s ease;
+}
+
+.post-byline a:focus,
+.post-byline a:hover {
+	border-bottom-color: var(--color-1-lighter);
+}
+
 .post-collab {
 	font-family: var(--font-1);
 	font-size  : var(--text-sm);
@@ -6496,9 +6508,6 @@ sup { top: -0.45em; }
 	color      : rgba(254, 245, 228, 0.6);
 	margin     : var(--vspace-0_5) 0 0 0;
 }
-
-/* the line naming the paper sits right under the collaborators */
-.post-collab--paper { margin-top: var(--vspace-0_25); }
 
 .post-collab a {
 	color        : var(--color-1-lighter);

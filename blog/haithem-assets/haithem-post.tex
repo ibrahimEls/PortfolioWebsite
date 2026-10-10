@@ -103,10 +103,10 @@
 \makeatother
 
 % the paper this post accompanies. The page prints its title once, in the
-% header under the collaborators ("This is the companion post to the paper
-% ..."), linked to the arXiv entry; the rest is the source of the page's
-% search metadata (the description a search engine shows, and the JSON-LD
-% naming the paper, its authors and its abstract)
+% byline line under the opening figure, linked to the arXiv entry; the rest
+% is the source of the page's search metadata (the description a search
+% engine shows, and the JSON-LD naming the paper, its authors and its
+% abstract)
 \newcommand{\papertitle}[1]{\def\thepapertitle{#1}}
 \newcommand{\paperauthors}[1]{\def\thepaperauthors{#1}}
 \newcommand{\paperaffil}[1]{\def\thepaperaffil{#1}}
@@ -213,8 +213,11 @@ space}
 and \alphazero{} and \haithem{}. Both search optimal moves conditioned on
 the current play turn and past actions.}
 
-% the byline sits under the opening figure, not in the page header
-\noindent\textit{\thepostbyline}\par\medskip
+% the byline sits under the opening figure, not in the page header, and
+% names the paper the post accompanies
+\noindent\textit{\thepostbyline}\\
+\textit{This is the companion post to the paper
+\href{https://arxiv.org/abs/2609.38309}{\thepapertitle}}\par\medskip
 
 
 The current state of the search for beyond standard model (BSM) physics is one of experimental drought and theoretical abundance. No new elementary particle has been confirmed since the Higgs in 2012, and many dedicated experiments across high-energy physics (including the Large Hadron Collider) have found little significant deviation from the Standard Model across thousands of observables. Despite this, over the same period, the number of BSM descriptions has grown significantly \cite{Bertone:2018krk}. 
