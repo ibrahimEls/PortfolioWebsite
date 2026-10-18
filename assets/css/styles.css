@@ -3078,6 +3078,26 @@ button.btn--pill {
 	color      : hsla(39, 93%, 95%, 0.72);
 }
 
+/* the post's tags: quiet outlined chips under the excerpt */
+.blogstrip__tags {
+	display  : flex;
+	flex-wrap: wrap;
+	gap      : 0.5rem;
+	margin-top: 0.4rem;
+}
+
+.blogstrip__tag {
+	font-family   : var(--font-1);
+	font-size     : calc(var(--text-xs) * 0.9);
+	font-weight   : 500;
+	letter-spacing: 0.04em;
+	line-height   : 1;
+	color         : hsla(39, 93%, 95%, 0.6);
+	border        : 1px solid hsla(39, 93%, 95%, 0.18);
+	border-radius : 2rem;
+	padding       : 0.45rem 0.9rem;
+}
+
 .blogstrip__actions {
 	flex          : none;
 	display       : flex;
@@ -3127,7 +3147,8 @@ button.btn--pill {
 	.blogstrip__thumb { width: 9rem; }
 	.blogstrip__pretitle { flex-wrap: wrap; gap: 0.3rem 1rem; letter-spacing: 0.14em; }
 	.blogstrip__title { font-size: var(--text-md); }
-	.blogstrip__excerpt { display: none; }
+	.blogstrip__excerpt,
+	.blogstrip__tags { display: none; }
 	.blogstrip__actions { flex-direction: row; flex-wrap: wrap; gap: 0.8rem; }
 	.blogstrip__cta { flex: 1 1 auto; padding: 0.9rem 1.2rem; }
 }
