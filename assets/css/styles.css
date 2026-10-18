@@ -3014,6 +3014,13 @@ button.btn--pill {
 	transition: transform 0.3s ease;
 }
 
+.blogstrip__thumb--full {
+	padding   : 0;
+	background: #16082c;
+}
+
+.blogstrip__thumb--full img { margin: 0; border-radius: inherit; }
+
 .blogstrip__main:hover .blogstrip__thumb { border-color: var(--color-1); }
 .blogstrip__main:hover .blogstrip__thumb img { transform: scale(1.04); }
 
@@ -4502,6 +4509,22 @@ button.btn--pill {
 .post-list__link:focus .post-list__thumb {
 	border-color: var(--color-1-lighter);
 	box-shadow  : 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* a thumbnail that is a full picture fills its plate edge to edge, with
+   nothing of the wash or the frame showing */
+.post-list__thumb--full {
+	padding   : 0;
+	background: #16082c;
+	border    : 0;
+}
+
+.post-list__thumb--full::before { content: none; }
+
+.post-list__thumb--full img {
+	margin       : 0;
+	border-radius: inherit;
+	filter       : none;
 }
 
 /* the tree is a wide detail crop, so it gets to bleed past the column edge
