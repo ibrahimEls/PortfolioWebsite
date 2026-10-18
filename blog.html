@@ -6,14 +6,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ibrahim Elsharkawy - Blog</title>
-    <meta name="description" content="Research blog by Ibrahim Elsharkawy. Interactive companion to “Searching for BSM Experimental Signatures with Large Lagrangian Models”: hAIthem, Large Lagrangian Models and LLM agents for dark matter phenomenology.">
-    <meta name="keywords" content="Ibrahim Elsharkawy, blog, hAIthem, Large Lagrangian Model, LLaM, BSM physics, dark matter, reinforcement learning, LLM agents, AI for science">
+    <meta name="description" content="Research blog by Ibrahim Elsharkawy. Interactive companions to “ASTROLABE: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching” and “Searching for BSM Experimental Signatures with Large Lagrangian Models”.">
+    <meta name="keywords" content="Ibrahim Elsharkawy, blog, ASTROLABE, cosmology simulation emulator, flow matching, hAIthem, Large Lagrangian Model, LLaM, BSM physics, dark matter, reinforcement learning, LLM agents, AI for science">
     <link rel="canonical" href="https://ibrahimelsharkawy.com/blog.html">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Ibrahim Elsharkawy - Blog">
-    <meta property="og:description" content="Research blog by Ibrahim Elsharkawy. Interactive companion to “Searching for BSM Experimental Signatures with Large Lagrangian Models”: hAIthem, Large Lagrangian Models and LLM agents for dark matter phenomenology.">
+    <meta property="og:description" content="Research blog by Ibrahim Elsharkawy. Interactive companions to “ASTROLABE: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching” and “Searching for BSM Experimental Signatures with Large Lagrangian Models”.">
     <meta property="og:url" content="https://ibrahimelsharkawy.com/blog.html">
     <meta property="og:image" content="https://ibrahimelsharkawy.com/assets/images/ibrahim.png">
     <meta property="og:site_name" content="Ibrahim Elsharkawy">
@@ -21,7 +21,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Ibrahim Elsharkawy - Blog">
-    <meta name="twitter:description" content="Research blog by Ibrahim Elsharkawy. Interactive companion to “Searching for BSM Experimental Signatures with Large Lagrangian Models”: hAIthem, Large Lagrangian Models and LLM agents for dark matter phenomenology.">
+    <meta name="twitter:description" content="Research blog by Ibrahim Elsharkawy. Interactive companions to “ASTROLABE: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching” and “Searching for BSM Experimental Signatures with Large Lagrangian Models”.">
     <meta name="twitter:image" content="https://ibrahimelsharkawy.com/assets/images/ibrahim.png">
 
     <script type="application/ld+json">
@@ -30,7 +30,7 @@
         "@type": "Blog",
         "@id": "https://ibrahimelsharkawy.com/blog.html#blog",
         "name": "Research Thoughts — Ibrahim Elsharkawy",
-        "description": "Research blog by Ibrahim Elsharkawy. Interactive companion to “Searching for BSM Experimental Signatures with Large Lagrangian Models”: hAIthem, Large Lagrangian Models and LLM agents for dark matter phenomenology.",
+        "description": "Research blog by Ibrahim Elsharkawy. Interactive companions to “ASTROLABE: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching” and “Searching for BSM Experimental Signatures with Large Lagrangian Models”.",
         "url": "https://ibrahimelsharkawy.com/blog.html",
         "inLanguage": "en",
         "author": {
@@ -39,6 +39,20 @@
             "url": "https://ibrahimelsharkawy.com/"
         },
         "blogPost": [
+            {
+                "@type": "BlogPosting",
+                "@id": "https://ibrahimelsharkawy.com/blog/astrolabe-flow-matching.html#post",
+                "headline": "ASTROLABE: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching",
+                "url": "https://ibrahimelsharkawy.com/blog/astrolabe-flow-matching.html",
+                "datePublished": "2026-10-18",
+                "dateModified": "2026-10-18",
+                "image": "https://ibrahimelsharkawy.com/blog/astrolabe-assets/figures/thumb-flowtime-z0.png",
+                "description": "A blog post for “ASTROLABE: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching” with an interactive 3D comparison of N-body simulation and ASTROLABE, and the cinematic movies.",
+                "author": {
+                    "@type": "Person",
+                    "name": "Ibrahim Elsharkawy"
+                }
+            },
             {
                 "@type": "BlogPosting",
                 "@id": "https://ibrahimelsharkawy.com/blog/bsm-rl-search.html#post",
@@ -167,6 +181,31 @@
                         <div class="column xl-12">
 
                             <ul class="post-list">
+
+                                <li class="post-list__item">
+                                    <a class="post-list__link" href="blog/astrolabe-flow-matching.html">
+                                        <div class="post-list__thumbs">
+                                            <div class="post-list__thumb">
+                                                <img src="blog/astrolabe-assets/figures/thumb-flowtime-z0.png"
+                                                     alt="The ASTROLABE density field at z = 0 for a 10 Mpc/h box">
+                                            </div>
+                                        </div>
+                                        <div class="post-list__body">
+                                        <div class="post-list__date">September 2026</div>
+                                        <h3 class="post-list__title"><span class="smallcaps smallcaps--plain">astrolabe</span>: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching</h3>
+                                        <p class="post-list__excerpt">
+                                            Dark-matter microphysics is imprinted on cosmological structure across an enormous dynamic range, but the <em>N</em>-body simulations that forward-model it cost <em>O</em>(10<sup>6</sup>) CPU-hours per run, putting systematic scans over theory space out of reach. We introduce <span class="smallcaps smallcaps--plain">astrolabe</span>, a flow-matching emulator that acts directly on the 6<em>N</em> phase-space coordinates of individual particles: no voxel grid in the output, compute linear in particle count, and a flow that transports COLA positions with momentum conservation enforced along flow time.
+                                        </p>
+                                        <div class="post-list__tags">
+                                            <span class="post-list__tag">Cosmology</span>
+                                            <span class="post-list__tag">Flow Matching</span>
+                                            <span class="post-list__tag">Generative Models</span>
+                                            <span class="post-list__tag">Simulation Emulation</span>
+                                        </div>
+                                        <span class="post-list__more">Read post &rarr;</span>
+                                        </div>
+                                    </a>
+                                </li>
 
                                 <li class="post-list__item">
                                     <a class="post-list__link" href="blog/bsm-rl-search.html">

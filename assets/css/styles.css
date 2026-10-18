@@ -2960,8 +2960,8 @@ button.btn--pill {
 }
 
 
-/* --- the blog band on the home page: one post, advertised in a thin dark
-   strip between the papers and the research focus --- */
+/* --- the blog band on the home page: the posts, newest first, advertised
+   in a thin dark strip between the papers and the research focus --- */
 .s-blogstrip {
 	background-color: hsl(130deg, 10%, 11%);
 	border-top      : 1px solid hsla(39, 93%, 95%, 0.07);
@@ -2974,6 +2974,12 @@ button.btn--pill {
 	align-items: center;
 	gap        : var(--vspace-1_25);
 	color      : var(--color-3);
+}
+
+.blogstrip + .blogstrip {
+	margin-top : var(--vspace-1);
+	padding-top: var(--vspace-1);
+	border-top : 1px solid hsla(39, 93%, 95%, 0.07);
 }
 
 /* the post's own link: thumbnail and text; the buttons stand beside it */

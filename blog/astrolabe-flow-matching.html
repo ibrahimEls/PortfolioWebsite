@@ -5,19 +5,144 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ASTROLABE: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching - Ibrahim Elsharkawy</title>
+    <meta name="description" content="A blog post for “ASTROLABE: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching” with an interactive 3D comparison of N-body simulation and ASTROLABE, and the cinematic movies.">
+    <meta name="keywords" content="ASTROLABE, cosmology simulation emulator, N-body simulation, flow matching, physical flow matching, generative model, dark matter, large-scale structure, COLA, point cloud transformer, Ibrahim Elsharkawy, Yonatan Kahn, Neal Weiner, David Curtin">
+    <link rel="canonical" href="https://ibrahimelsharkawy.com/blog/astrolabe-flow-matching.html">
 
-    <!-- unlisted: nothing links here, and it stays out of search results
-         until the post is ready to be published -->
-    <meta name="robots" content="noindex, nofollow">
-
-    <!-- no indexing, but a shared link should still preview properly -->
     <meta property="og:type" content="article">
-    <meta property="og:title" content="ASTROLABE">
-    <meta property="og:description" content="A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching.">
+    <meta property="og:title" content="ASTROLABE: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching">
+    <meta property="og:description" content="A blog post for “ASTROLABE: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching” with an interactive 3D comparison of N-body simulation and ASTROLABE, and the cinematic movies.">
+    <meta property="og:url" content="https://ibrahimelsharkawy.com/blog/astrolabe-flow-matching.html">
+    <meta property="og:image" content="https://ibrahimelsharkawy.com/blog/astrolabe-assets/figures/thumb-flowtime-z0.png">
     <meta property="og:site_name" content="Ibrahim Elsharkawy">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="ASTROLABE">
-    <meta name="twitter:description" content="A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching.">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2026-10-18">
+    <meta property="article:modified_time" content="2026-10-18">
+    <meta property="article:author" content="Ibrahim Elsharkawy">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ASTROLABE: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching">
+    <meta name="twitter:description" content="A blog post for “ASTROLABE: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching” with an interactive 3D comparison of N-body simulation and ASTROLABE, and the cinematic movies.">
+    <meta name="twitter:image" content="https://ibrahimelsharkawy.com/blog/astrolabe-assets/figures/thumb-flowtime-z0.png">
+
+    <script type="application/ld+json">
+{
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "BlogPosting",
+                "@id": "https://ibrahimelsharkawy.com/blog/astrolabe-flow-matching.html#post",
+                "mainEntityOfPage": "https://ibrahimelsharkawy.com/blog/astrolabe-flow-matching.html",
+                "headline": "ASTROLABE: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching",
+                "description": "A blog post for “ASTROLABE: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching” with an interactive 3D comparison of N-body simulation and ASTROLABE, and the cinematic movies.",
+                "image": [
+                    "https://ibrahimelsharkawy.com/blog/astrolabe-assets/figures/thumb-flowtime-z0.png"
+                ],
+                "datePublished": "2026-10-18",
+                "dateModified": "2026-10-18",
+                "inLanguage": "en",
+                "author": {
+                    "@type": "Person",
+                    "name": "Ibrahim Elsharkawy",
+                    "affiliation": [
+                        {
+                            "@type": "Organization",
+                            "name": "Department of Physics, University of Toronto and Vector Institute, Toronto, ON, M5S 1A7, Canada"
+                        },
+                        {
+                            "@type": "Organization",
+                            "name": "NERSC, Lawrence Berkeley National Laboratory, Berkeley, California, USA"
+                        }
+                    ],
+                    "url": "https://ibrahimelsharkawy.com/"
+                },
+                "publisher": {
+                    "@type": "Person",
+                    "name": "Ibrahim Elsharkawy",
+                    "url": "https://ibrahimelsharkawy.com/"
+                },
+                "isBasedOn": {
+                    "@id": "https://ibrahimelsharkawy.com/blog/astrolabe-flow-matching.html#paper"
+                },
+                "about": [
+                    {
+                        "@type": "Thing",
+                        "name": "Cosmological simulation"
+                    },
+                    {
+                        "@type": "Thing",
+                        "name": "Dark matter"
+                    },
+                    {
+                        "@type": "Thing",
+                        "name": "Flow matching"
+                    },
+                    {
+                        "@type": "Thing",
+                        "name": "Generative models"
+                    }
+                ],
+                "keywords": "ASTROLABE, cosmology simulation emulator, N-body simulation, flow matching, physical flow matching, generative model, dark matter, large-scale structure"
+            },
+            {
+                "@type": "ScholarlyArticle",
+                "@id": "https://ibrahimelsharkawy.com/blog/astrolabe-flow-matching.html#paper",
+                "name": "ASTROLABE: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching",
+                "headline": "ASTROLABE: A 3D Particle-Level Surrogate for Cosmology Simulation with Physical Flow Matching",
+                "abstract": "The microphysics of dark matter is thought to be imprinted on cosmological structure across an enormous dynamic range. The most reliable forward model of dark sector physics to nonlinear cosmological observables is the N-body or hydrodynamic simulation. At a cost of O(10^6) CPU-hours per full-resolution run, systematic scans over dark-matter theory space are computationally intractable with N-body simulations. Machine learning emulators provide a possible solution, but are currently limited by either low resolution or only the ability to emulate specific observables. We introduce ASTROLABE, a flow-matching-based generative emulator designed to be free of both constraints. ASTROLABE acts directly on the 6N phase-space coordinates of individual particles. With no voxel grid in the output, there is no voxel-resolution ceiling, and in principle any observable can be measured from inference. ASTROLABE is made computationally tractable by employing a field-particle hybrid transformer in which every particle cross-attends to multiscale field tokens, so compute and memory are linear in particle count N. We further introduce so-called physical flow matching to improve inductive bias. The flow transports approximate COmoving Lagrangian Acceleration (COLA) based positions rather than noise, and momentum conservation is exactly enforced at all points along flow time.",
+                "inLanguage": "en",
+                "author": [
+                    {
+                        "@type": "Person",
+                        "name": "Ibrahim Elsharkawy",
+                        "affiliation": [
+                            {
+                                "@type": "Organization",
+                                "name": "Department of Physics, University of Toronto and Vector Institute, Toronto, ON, M5S 1A7, Canada"
+                            },
+                            {
+                                "@type": "Organization",
+                                "name": "NERSC, Lawrence Berkeley National Laboratory, Berkeley, California, USA"
+                            }
+                        ],
+                        "url": "https://ibrahimelsharkawy.com/"
+                    },
+                    {
+                        "@type": "Person",
+                        "name": "Yonatan Kahn",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "Department of Physics, University of Toronto and Vector Institute, Toronto, ON, M5S 1A7, Canada"
+                        },
+                        "url": "https://kahn-group.physics.utoronto.ca/"
+                    },
+                    {
+                        "@type": "Person",
+                        "name": "Neal Weiner",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "Center for Cosmology and Particle Physics, Department of Physics, New York University, New York, NY 10003, USA"
+                        },
+                        "url": "https://as.nyu.edu/faculty/neal-weiner.html"
+                    },
+                    {
+                        "@type": "Person",
+                        "name": "David Curtin",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "Department of Physics, University of Toronto, Toronto, ON, M5S 1A7, Canada"
+                        },
+                        "url": "https://curtin.physics.utoronto.ca"
+                    }
+                ],
+                "keywords": "cosmology simulation, N-body, flow matching, generative emulator, dark matter, large-scale structure, COLA",
+                "subjectOf": {
+                    "@id": "https://ibrahimelsharkawy.com/blog/astrolabe-flow-matching.html#post"
+                }
+            }
+        ]
+    }
+    </script>
 
     <script>
         document.documentElement.classList.remove('no-js');
