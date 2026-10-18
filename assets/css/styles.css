@@ -2969,6 +2969,17 @@ button.btn--pill {
 	padding         : var(--vspace-1_5) 0;
 }
 
+/* the band's own heading, above the posts */
+.blogstrip__heading {
+	font-family   : var(--font-1);
+	font-size     : var(--text-md);
+	font-weight   : 600;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color         : var(--color-1);
+	margin-bottom : var(--vspace-1);
+}
+
 .blogstrip {
 	display    : flex;
 	align-items: center;
